@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WB JEE PYQ Solver – Practice App</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0a0f1e;--surface:#111827;--card:#1a2235;--border:#243044;--accent:#f59e0b;--accent2:#3b82f6;--green:#10b981;--red:#ef4444;--text:#f1f5f9;--muted:#94a3b8;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 20% 0%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(245,158,11,.06) 0%,transparent 60%);}
+header{padding:16px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,15,30,.92);backdrop-filter:blur(10px);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.logo-text{font-size:1.05rem;font-weight:800;}.logo-text span{color:var(--accent);}
+.back-btn{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:8px;font-size:.78rem;cursor:pointer;transition:all .2s;}
+.back-btn:hover{border-color:var(--accent2);color:var(--text);}
+.badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600;}
+.hero{text-align:center;padding:36px 24px 20px;}
+.hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);margin-top:8px;font-size:.88rem;}
+.stats{display:flex;justify-content:center;gap:24px;padding:14px 24px 22px;flex-wrap:wrap;}
+.stat{text-align:center;}.stat-num{font-size:1.4rem;font-weight:800;color:var(--accent);}.stat-label{font-size:.68rem;color:var(--muted);margin-top:2px;}
+.subject-tabs{display:flex;gap:7px;padding:0 20px 16px;max-width:980px;margin:0 auto;flex-wrap:wrap;}
+.tab{font-family:'Sora',sans-serif;padding:6px 16px;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .2s;}
+.tab-all.active{background:var(--text);color:#000;border-color:transparent;}
+.tab-physics.active{background:var(--accent2);color:#fff;border-color:transparent;}
+.tab-chemistry.active{background:var(--green);color:#fff;border-color:transparent;}
+.tab-maths.active{background:var(--accent);color:#000;border-color:transparent;}
+.filters{display:flex;gap:9px;padding:0 20px 18px;max-width:980px;margin:0 auto;flex-wrap:wrap;align-items:center;}
+select{font-family:'Sora',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 13px;border-radius:9px;font-size:.82rem;cursor:pointer;outline:none;transition:all .2s;}
+select:hover{border-color:var(--accent2);}
+.btn-primary{font-family:'Sora',sans-serif;background:var(--accent);color:#000;font-weight:700;border:none;padding:8px 20px;border-radius:9px;font-size:.82rem;cursor:pointer;transition:all .2s;}
+.btn-primary:hover{background:#fbbf24;transform:translateY(-1px);}
+.q-count-badge{font-size:.73rem;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:5px 11px;border-radius:8px;font-family:'JetBrains Mono',monospace;}
+.main{max-width:980px;margin:0 auto;padding:0 20px 60px;}
+.progress-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 17px;margin-bottom:16px;display:flex;align-items:center;gap:13px;flex-wrap:wrap;}
+.progress-track{flex:1;min-width:70px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:3px;transition:width .4s;}
+.progress-text{font-size:.73rem;color:var(--muted);white-space:nowrap;font-family:'JetBrains Mono',monospace;}
+.score-display{display:flex;gap:14px;}.score-item{display:flex;align-items:center;gap:5px;font-size:.73rem;}
+.dot{width:7px;height:7px;border-radius:50%;}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:24px;margin-bottom:16px;animation:fadeUp .35s ease;position:relative;overflow:hidden;}
+.q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.q-meta{display:flex;gap:6px;margin-bottom:13px;flex-wrap:wrap;}
+.tag{font-size:.66rem;font-weight:600;padding:3px 8px;border-radius:6px;letter-spacing:.3px;}
+.tag-physics{background:rgba(59,130,246,.15);color:var(--accent2);border:1px solid rgba(59,130,246,.25);}
+.tag-chemistry{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+.tag-maths{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.25);}
+.tag-year{background:rgba(148,163,184,.1);color:var(--muted);border:1px solid rgba(148,163,184,.15);}
+.tag-chapter{background:rgba(168,85,247,.12);color:#a78bfa;border:1px solid rgba(168,85,247,.2);}
+.q-number{font-size:.7rem;color:var(--muted);margin-bottom:6px;font-family:'JetBrains Mono',monospace;}
+.q-text{font-size:.95rem;line-height:1.75;color:var(--text);margin-bottom:18px;}
+.options{display:grid;gap:8px;}
+.option{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;font-size:.86rem;}
+.option:hover{border-color:var(--accent2);background:rgba(59,130,246,.07);}
+.option.revealed-correct,.option.correct{border-color:var(--green);background:rgba(16,185,129,.1);}
+.option.wrong{border-color:var(--red);background:rgba(239,68,68,.08);}
+.opt-letter{width:25px;height:25px;border-radius:6px;background:var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.76rem;flex-shrink:0;}
+.correct .opt-letter,.revealed-correct .opt-letter{background:var(--green);color:#fff;}
+.wrong .opt-letter{background:var(--red);color:#fff;}
+.q-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.btn-sm{font-family:'Sora',sans-serif;padding:6px 13px;border-radius:7px;font-size:.76rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:5px;}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent);}
+.btn-ai{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(249,115,22,.12));border-color:rgba(245,158,11,.35);color:var(--accent);}
+.btn-ai:hover{background:linear-gradient(135deg,rgba(245,158,11,.22),rgba(249,115,22,.22));}
+.ai-box{margin-top:15px;background:linear-gradient(135deg,rgba(245,158,11,.04),rgba(59,130,246,.04));border:1px solid rgba(245,158,11,.18);border-radius:11px;padding:16px;display:none;}
+.ai-box.active{display:block;animation:fadeUp .3s ease;}
+.ai-header{display:flex;align-items:center;gap:6px;font-size:.73rem;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:.4px;}
+.ai-content{font-size:.83rem;line-height:1.85;color:#cbd5e1;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
+.typing-cursor{display:inline-block;width:2px;height:12px;background:var(--accent);animation:blink .8s infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.loading-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin:0 2px;animation:bounce 1.2s infinite;}
+.loading-dots span:nth-child(2){animation-delay:.2s}.loading-dots span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.nav-btns{display:flex;gap:10px;justify-content:center;margin-top:4px;align-items:center;}
+.btn-nav{font-family:'Sora',sans-serif;padding:8px 22px;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-prev{background:var(--surface);border:1px solid var(--border);color:var(--muted);}
+.btn-prev:hover{border-color:var(--accent2);color:var(--text);}
+.btn-next{background:var(--accent2);border:none;color:#fff;}
+.btn-next:hover{background:#2563eb;transform:translateY(-1px);}
+.q-jump{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 9px;border-radius:7px;font-size:.78rem;width:55px;text-align:center;outline:none;}
+.empty{text-align:center;padding:60px 24px;color:var(--muted);}
+.empty-icon{font-size:3rem;margin-bottom:12px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><div class="logo-icon">📚</div><div class="logo-text">WB JEE <span>PYQ</span> Solver</div></div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="back-btn" onclick="window.location.href='index.html'">← Home</button>
+    <div class="badge">✦ AI Powered • 90 Questions</div>
+  </div>
+</header>
+<div class="hero">
+  <h1>Crack WB JEE with <span>AI Explanations</span></h1>
+  <p>90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-num">90</div><div class="stat-label">Questions</div></div>
+  <div class="stat"><div class="stat-num">10 Yrs</div><div class="stat-label">2015–2024</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Subjects</div></div>
+  <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Explanations</div></div>
+</div>
+<div class="subject-tabs">
+  <button class="tab tab-all active" onclick="setTab('all',this)">All (90)</button>
+  <button class="tab tab-physics" onclick="setTab('Physics',this)">⚡ Physics (30)</button>
+  <button class="tab tab-chemistry" onclick="setTab('Chemistry',this)">🧪 Chemistry (30)</button>
+  <button class="tab tab-maths" onclick="setTab('Mathematics',this)">📐 Maths (30)</button>
+</div>
+<div class="filters">
+  <select id="yearFilter"><option value="all">All Years</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option></select>
+  <select id="diffFilter"><option value="all">All Difficulty</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select>
+  <button class="btn-primary" onclick="applyFilters()">🔍 Filter</button>
+  <div class="q-count-badge" id="qCountBadge">90 questions</div>
+</div>
+<div class="main">
+  <div class="progress-bar">
+    <div style="font-size:.73rem;color:var(--muted);white-space:nowrap">Progress</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-text" id="progressText">0 / 90</div>
+    <div class="score-display">
+      <div class="score-item"><div class="dot" style="background:var(--green)"></div><span id="correctCount">0</span> Correct</div>
+      <div class="score-item"><div class="dot" style="background:var(--red)"></div><span id="wrongCount">0</span> Wrong</div>
+    </div>
+  </div>
+  <div id="questionArea"></div>
+  <div class="nav-btns" id="navBtns">
+    <button class="btn-nav btn-prev" onclick="navigate(-1)">← Prev</button>
+    <input class="q-jump" id="jumpInput" type="number" min="1" placeholder="Q#" onchange="jumpTo(this.value)" title="Jump to question"/>
+    <button class="btn-nav btn-next" onclick="navigate(1)">Next →</button>
+  </div>
+</div>
+<script>
+const ALL_QUESTIONS=[
+// PHYSICS
+{id:1,year:2024,subject:"Physics",chapter:"Kinematics",difficulty:"Medium",text:"A particle moves along x-axis with position x = 6t² − 2t³. The particle comes to rest at time t =",options:["t = 0 only","t = 2 s only","t = 0 and t = 2 s","t = 1 s only"],answer:2,explanation:"v = dx/dt = 12t − 6t²\nSet v = 0: 6t(2−t) = 0 → t = 0 or t = 2 s\n\n✅ Answer: t = 0 and t = 2 s\n💡 Tip: Differentiate position to get velocity, set to zero."},
+{id:2,year:2024,subject:"Physics",chapter:"Laws of Motion",difficulty:"Easy",text:"A block of mass 5 kg is on a rough surface with μ = 0.4. Minimum force to move it? (g = 10 m/s²)",options:["10 N","20 N","25 N","40 N"],answer:1,explanation:"N = mg = 50 N\nLimiting friction f = μN = 0.4×50 = 20 N\n\n✅ Answer: 20 N\n💡 Object moves when applied force equals limiting friction."},
+{id:3,year:2023,subject:"Physics",chapter:"Work & Energy",difficulty:"Medium",text:"A body of mass 2 kg thrown upward with KE = 490 J. Height reached? (g = 9.8 m/s²)",options:["50 m","25 m","20 m","10 m"],answer:1,explanation:"KE = mgh → 490 = 2×9.8×h → h = 25 m\n\n✅ Answer: 25 m\n💡 Energy conservation: KE at bottom = PE at top."},
+{id:4,year:2023,subject:"Physics",chapter:"Gravitation",difficulty:"Easy",text:"Value of g at height equal to Earth's radius R above the surface:",options:["g/2","g/4","g/3","2g"],answer:1,explanation:"g' = gR²/(R+h)² = gR²/(2R)² = g/4\n\n✅ Answer: g/4\n💡 At height R, distance from centre = 2R → g reduces by 4."},
+{id:5,year:2022,subject:"Physics",chapter:"Waves",difficulty:"Medium",text:"Speed of sound at 0°C is 332 m/s. Speed at 100°C is approximately:",options:["372 m/s","386 m/s","366 m/s","400 m/s"],answer:1,explanation:"v ∝ √T (Kelvin)\nv₂ = 332×√(373/273) ≈ 386 m/s\n\n✅ Answer: 386 m/s\n💡 Always convert °C to Kelvin before applying formula."},
+{id:6,year:2022,subject:"Physics",chapter:"Current Electricity",difficulty:"Easy",text:"Resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance =",options:["1 Ω","11 Ω","0.5 Ω","2 Ω"],answer:0,explanation:"1/R = 1/2+1/3+1/6 = 1 → R = 1 Ω\n\n✅ Answer: 1 Ω\n💡 Parallel: 1/R_eq = sum of 1/R_i."},
+{id:7,year:2021,subject:"Physics",chapter:"Optics",difficulty:"Medium",text:"Convex lens f = 20 cm. Image at v = 60 cm. Object distance u =",options:["30 cm","40 cm","15 cm","60 cm"],answer:0,explanation:"1/v − 1/u = 1/f → 1/60 − 1/u = 1/20\n1/u = −2/60 → u = −30 cm\n\n✅ Answer: 30 cm"},
+{id:8,year:2021,subject:"Physics",chapter:"Magnetism",difficulty:"Hard",text:"Proton (m=1.67×10⁻²⁷ kg, q=1.6×10⁻¹⁹ C) moves at 10⁶ m/s perpendicular to B=0.5 T. Radius =",options:["0.021 m","0.21 m","2.1 m","0.0021 m"],answer:0,explanation:"r = mv/qB = (1.67×10⁻²⁷×10⁶)/(1.6×10⁻¹⁹×0.5) = 0.021 m\n\n✅ Answer: 0.021 m\n💡 r = mv/qB — tested every year!"},
+{id:9,year:2020,subject:"Physics",chapter:"Thermodynamics",difficulty:"Medium",text:"In an isothermal process, internal energy of an ideal gas:",options:["Increases","Decreases","Remains constant","Becomes zero"],answer:2,explanation:"Isothermal: T = constant. U ∝ T → ΔU = 0\n\n✅ Answer: Remains constant\n💡 Isothermal: ΔT=0 → ΔU=0."},
+{id:10,year:2019,subject:"Physics",chapter:"Modern Physics",difficulty:"Hard",text:"de Broglie wavelength of a particle of mass m, velocity v is:",options:["h/mv","mv/h","h×mv","m/hv"],answer:0,explanation:"λ = h/p = h/mv\n\n✅ Answer: h/mv\n💡 h = 6.626×10⁻³⁴ J·s."},
+{id:11,year:2024,subject:"Physics",chapter:"Projectile Motion",difficulty:"Medium",text:"A ball projected horizontally at 20 m/s from a 80 m cliff. Time to reach ground: (g=10)",options:["4 s","8 s","2 s","6 s"],answer:0,explanation:"80 = ½×10×t² → t = 4 s\n\n✅ Answer: 4 s\n💡 Horizontal & vertical motions are independent."},
+{id:12,year:2023,subject:"Physics",chapter:"Rotational Motion",difficulty:"Hard",text:"Moment of inertia of a solid sphere of mass M radius R about its diameter:",options:["2MR²/5","MR²/2","MR²","2MR²/3"],answer:0,explanation:"Standard result: I = (2/5)MR²\n\n✅ Answer: 2MR²/5\n💡 Learn MI for all shapes — they appear every year."},
+{id:13,year:2022,subject:"Physics",chapter:"Fluid Mechanics",difficulty:"Medium",text:"A body floats with 60% volume submerged. Its density: (ρ_water = 1000 kg/m³)",options:["600 kg/m³","400 kg/m³","1200 kg/m³","800 kg/m³"],answer:0,explanation:"ρ_body/ρ_water = 0.6 → ρ_body = 600 kg/m³\n\n✅ Answer: 600 kg/m³"},
+{id:14,year:2021,subject:"Physics",chapter:"SHM",difficulty:"Medium",text:"Simple pendulum of length 1 m. Time period: (g=10, π²≈10)",options:["2 s","1 s","4 s","0.5 s"],answer:0,explanation:"T = 2π√(L/g) = 2π√(0.1) ≈ 2 s\n\n✅ Answer: 2 s\n💡 Standard result: 1 m pendulum ≈ 2 s."},
+{id:15,year:2020,subject:"Physics",chapter:"Electromagnetic Induction",difficulty:"Hard",text:"Coil: 100 turns, area 0.01 m², B = 2 T drops to 0 in 0.5 s. Induced EMF =",options:["4 V","2 V","1 V","8 V"],answer:0,explanation:"EMF = N×A×ΔB/Δt = 100×0.01×2/0.5 = 4 V\n\n✅ Answer: 4 V\n💡 Don't forget to multiply by N (turns)!"},
+{id:16,year:2019,subject:"Physics",chapter:"Nuclear Physics",difficulty:"Medium",text:"Half-life = 10 days. Fraction remaining after 30 days:",options:["1/8","1/4","1/2","1/16"],answer:0,explanation:"n = 30/10 = 3 half-lives\nFraction = (1/2)³ = 1/8\n\n✅ Answer: 1/8"},
+{id:17,year:2018,subject:"Physics",chapter:"Electrostatics",difficulty:"Medium",text:"Charges +2μC and +8μC are 30 cm apart. Neutral point from +2μC:",options:["10 cm","20 cm","15 cm","25 cm"],answer:0,explanation:"k×2/x² = k×8/(0.3−x)² → x = 10 cm\n\n✅ Answer: 10 cm\n💡 Neutral point is closer to the weaker charge."},
+{id:18,year:2017,subject:"Physics",chapter:"Capacitors",difficulty:"Medium",text:"Energy stored in capacitor C charged to voltage V:",options:["½CV²","CV²","2CV²","CV"],answer:0,explanation:"E = ½CV²\n\n✅ Answer: ½CV²\n💡 Also: E = Q²/2C = ½QV."},
+{id:19,year:2016,subject:"Physics",chapter:"Semiconductors",difficulty:"Easy",text:"In a p-n junction diode, depletion layer width:",options:["Increases in reverse bias","Increases in forward bias","Remains same","Becomes zero in reverse bias"],answer:0,explanation:"Reverse bias: majority carriers move away → depletion layer widens.\n\n✅ Answer: Increases in reverse bias"},
+{id:20,year:2015,subject:"Physics",chapter:"Ray Optics",difficulty:"Easy",text:"Critical angle for medium with refractive index √2:",options:["45°","30°","60°","90°"],answer:0,explanation:"sin C = 1/μ = 1/√2 → C = 45°\n\n✅ Answer: 45°"},
+{id:21,year:2024,subject:"Physics",chapter:"Units & Dimensions",difficulty:"Easy",text:"Dimensions of pressure are:",options:["[ML⁻¹T⁻²]","[MLT⁻²]","[ML²T⁻²]","[ML⁻²T⁻²]"],answer:0,explanation:"Pressure = Force/Area = [MLT⁻²]/[L²] = [ML⁻¹T⁻²]\n\n✅ Answer: [ML⁻¹T⁻²]"},
+{id:22,year:2023,subject:"Physics",chapter:"Circular Motion",difficulty:"Medium",text:"Car of mass 1000 kg moves in circle r=50 m at 10 m/s. Centripetal force =",options:["2000 N","1000 N","500 N","4000 N"],answer:0,explanation:"F = mv²/r = 1000×100/50 = 2000 N\n\n✅ Answer: 2000 N"},
+{id:23,year:2022,subject:"Physics",chapter:"Elasticity",difficulty:"Medium",text:"Young's modulus = 2×10¹¹ Pa. Strain = 0.001. Stress =",options:["2×10⁸ Pa","2×10¹⁴ Pa","2×10⁵ Pa","2×10² Pa"],answer:0,explanation:"Stress = Y×Strain = 2×10¹¹×0.001 = 2×10⁸ Pa\n\n✅ Answer: 2×10⁸ Pa"},
+{id:24,year:2021,subject:"Physics",chapter:"Communication",difficulty:"Easy",text:"Which EM wave has the highest frequency?",options:["Gamma rays","X-rays","UV rays","Microwaves"],answer:0,explanation:"Gamma > X-ray > UV > Visible > IR > Microwave > Radio\n\n✅ Answer: Gamma rays"},
+{id:25,year:2020,subject:"Physics",chapter:"Photoelectric Effect",difficulty:"Medium",text:"Work function = 2 eV. Threshold frequency: (h=6.6×10⁻³⁴ Js)",options:["4.8×10¹⁴ Hz","9.6×10¹⁴ Hz","2.4×10¹⁴ Hz","1.2×10¹⁴ Hz"],answer:0,explanation:"ν₀ = φ/h = 3.2×10⁻¹⁹/6.6×10⁻³⁴ ≈ 4.8×10¹⁴ Hz\n\n✅ Answer: 4.8×10¹⁴ Hz\n💡 1 eV = 1.6×10⁻¹⁹ J"},
+{id:26,year:2019,subject:"Physics",chapter:"AC Circuits",difficulty:"Hard",text:"In an LCR circuit at resonance, impedance equals:",options:["R only","√(R²+X²)","X_L − X_C","Zero"],answer:0,explanation:"At resonance X_L = X_C → Z = R\n\n✅ Answer: R only\n💡 At resonance: Z = R (minimum), current is maximum."},
+{id:27,year:2018,subject:"Physics",chapter:"Thermal Expansion",difficulty:"Easy",text:"Rod: length 2 m at 20°C, α=1.2×10⁻⁵/°C. Length at 70°C:",options:["2.0012 m","2.012 m","2.12 m","2.001 m"],answer:0,explanation:"ΔL = Lα ΔT = 2×1.2×10⁻⁵×50 = 0.0012 m\nNew L = 2.0012 m\n\n✅ Answer: 2.0012 m"},
+{id:28,year:2017,subject:"Physics",chapter:"Interference",difficulty:"Hard",text:"In YDSE, fringe width β = λD/d. If d is halved, β becomes:",options:["2β","β/2","4β","β"],answer:0,explanation:"β = λD/d → d/2 → β doubles\n\n✅ Answer: 2β\n💡 Fringe width ∝ 1/d."},
+{id:29,year:2016,subject:"Physics",chapter:"Viscosity",difficulty:"Medium",text:"Terminal velocity of a sphere in viscous fluid is proportional to:",options:["r²","r³","r","r⁴"],answer:0,explanation:"Stokes: v_t = 2r²(ρ−σ)g/9η → v_t ∝ r²\n\n✅ Answer: r²"},
+{id:30,year:2015,subject:"Physics",chapter:"Kinetic Theory",difficulty:"Medium",text:"RMS speed of gas molecules is proportional to:",options:["√T","T","T²","1/√T"],answer:0,explanation:"v_rms = √(3RT/M) → v_rms ∝ √T\n\n✅ Answer: √T"},
+// CHEMISTRY
+{id:31,year:2024,subject:"Chemistry",chapter:"Periodic Table",difficulty:"Easy",text:"Which element has the highest electronegativity?",options:["Oxygen","Nitrogen","Fluorine","Chlorine"],answer:2,explanation:"F > O > N > Cl. Fluorine = 3.98 (Pauling)\n\n✅ Answer: Fluorine"},
+{id:32,year:2024,subject:"Chemistry",chapter:"Chemical Bonding",difficulty:"Medium",text:"Shape of NH₃ molecule:",options:["Trigonal planar","Pyramidal","Tetrahedral","Linear"],answer:1,explanation:"N: 3 bond pairs + 1 lone pair → pyramidal\nBond angle ≈ 107°\n\n✅ Answer: Pyramidal"},
+{id:33,year:2023,subject:"Chemistry",chapter:"Mole Concept",difficulty:"Medium",text:"Number of molecules in 22.4 L of gas at STP:",options:["6.022×10²²","6.022×10²³","3.011×10²³","1.2×10²⁴"],answer:1,explanation:"22.4 L = 1 mole = 6.022×10²³ molecules\n\n✅ Answer: 6.022×10²³\n💡 Avogadro's number!"},
+{id:34,year:2023,subject:"Chemistry",chapter:"Redox Reactions",difficulty:"Medium",text:"In MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺, manganese is:",options:["Oxidised","Reduced","Neither","Acts as catalyst"],answer:1,explanation:"Mn: +7 → +2 (decrease) = Reduction\n\n✅ Answer: Reduced\n💡 OIL RIG: Reduction Is Gain."},
+{id:35,year:2022,subject:"Chemistry",chapter:"Chemical Equilibrium",difficulty:"Hard",text:"For A ⇌ B, Kc = 4 and [A] = 2 mol/L. [B] at equilibrium =",options:["8 mol/L","2 mol/L","0.5 mol/L","4 mol/L"],answer:0,explanation:"Kc = [B]/[A] → 4 = [B]/2 → [B] = 8 mol/L\n\n✅ Answer: 8 mol/L"},
+{id:36,year:2022,subject:"Chemistry",chapter:"Acids & Bases",difficulty:"Easy",text:"pH of solution with [H⁺] = 10⁻³ mol/L:",options:["3","−3","11","7"],answer:0,explanation:"pH = −log(10⁻³) = 3\n\n✅ Answer: 3"},
+{id:37,year:2021,subject:"Chemistry",chapter:"Organic Chemistry",difficulty:"Medium",text:"Which is NOT an isomer of C₄H₁₀?",options:["n-Butane","Isobutane","2-methylpropane","Cyclobutane"],answer:3,explanation:"Cyclobutane = C₄H₈ (different formula)\n\n✅ Answer: Cyclobutane"},
+{id:38,year:2021,subject:"Chemistry",chapter:"Electrochemistry",difficulty:"Hard",text:"E°cell with E°cathode = +0.34 V, E°anode = −0.76 V:",options:["1.10 V","0.42 V","−0.42 V","−1.10 V"],answer:0,explanation:"E°cell = 0.34−(−0.76) = 1.10 V\n\n✅ Answer: 1.10 V"},
+{id:39,year:2020,subject:"Chemistry",chapter:"Gaseous State",difficulty:"Easy",text:"At constant T, pressure doubles, volume:",options:["Doubles","Halves","Remains same","Becomes four times"],answer:1,explanation:"Boyle's Law: PV = const → V halves\n\n✅ Answer: Halves"},
+{id:40,year:2019,subject:"Chemistry",chapter:"Nuclear Chemistry",difficulty:"Medium",text:"²³⁸U → ²³⁴Th + X. X is:",options:["Neutron","Proton","Alpha particle","Beta particle"],answer:2,explanation:"A=4, Z=2 → Alpha particle (⁴He)\n\n✅ Answer: Alpha particle"},
+{id:41,year:2024,subject:"Chemistry",chapter:"Atomic Structure",difficulty:"Medium",text:"Number of orbitals in the third shell (n=3):",options:["9","3","6","18"],answer:0,explanation:"3s(1)+3p(3)+3d(5) = 9 orbitals\n\n✅ Answer: 9\n💡 Total orbitals = n²."},
+{id:42,year:2023,subject:"Chemistry",chapter:"s-Block Elements",difficulty:"Easy",text:"Which alkali metal reacts most vigorously with water?",options:["Li","Na","K","Cs"],answer:3,explanation:"Reactivity increases down group: Cs > Rb > K > Na > Li\n\n✅ Answer: Cs"},
+{id:43,year:2023,subject:"Chemistry",chapter:"Thermochemistry",difficulty:"Medium",text:"ΔH = −200 kJ, ΔS = −100 J/K at 300 K. ΔG =",options:["−170 kJ","−230 kJ","−200 kJ","170 kJ"],answer:0,explanation:"ΔG = ΔH−TΔS = −200−(300×−0.1) = −170 kJ\n\n✅ Answer: −170 kJ\n💡 Convert ΔS to kJ first!"},
+{id:44,year:2022,subject:"Chemistry",chapter:"Coordination Compounds",difficulty:"Hard",text:"IUPAC name of [Cu(NH₃)₄]²⁺:",options:["Tetraamminecopper(II)","Tetraamminecopper(I)","Copper tetraamine","Amminecopper(IV)"],answer:0,explanation:"Ligand NH₃×4 = tetraammine, Cu²⁺ = copper(II)\n\n✅ Answer: Tetraamminecopper(II)"},
+{id:45,year:2021,subject:"Chemistry",chapter:"Solutions",difficulty:"Medium",text:"Osmotic pressure of 0.1 M glucose at 27°C: (R=0.082 L·atm/mol·K)",options:["2.46 atm","0.82 atm","24.6 atm","0.246 atm"],answer:0,explanation:"π = MRT = 0.1×0.082×300 = 2.46 atm\n\n✅ Answer: 2.46 atm"},
+{id:46,year:2020,subject:"Chemistry",chapter:"p-Block Elements",difficulty:"Easy",text:"Which is most acidic?",options:["HClO₄","HClO₃","HClO₂","HClO"],answer:0,explanation:"More O atoms = more acidic: HClO₄ > HClO₃ > HClO₂ > HClO\n\n✅ Answer: HClO₄"},
+{id:47,year:2019,subject:"Chemistry",chapter:"Polymers",difficulty:"Easy",text:"Teflon is a polymer of:",options:["Tetrafluoroethylene","Ethylene","Propylene","Vinyl chloride"],answer:0,explanation:"Teflon = PTFE, monomer = CF₂=CF₂\n\n✅ Answer: Tetrafluoroethylene"},
+{id:48,year:2018,subject:"Chemistry",chapter:"Biomolecules",difficulty:"Easy",text:"The monomer of proteins is:",options:["Amino acids","Glucose","Nucleotides","Fatty acids"],answer:0,explanation:"Proteins = polymers of amino acids (peptide bonds)\n\n✅ Answer: Amino acids"},
+{id:49,year:2017,subject:"Chemistry",chapter:"Surface Chemistry",difficulty:"Medium",text:"Which is an example of emulsion?",options:["Milk","Smoke","Fog","Pumice"],answer:0,explanation:"Emulsion = liquid in liquid. Milk = fat in water.\n\n✅ Answer: Milk"},
+{id:50,year:2016,subject:"Chemistry",chapter:"Isomerism",difficulty:"Medium",text:"Which exhibits geometrical isomerism?",options:["2-butene","Propene","Ethylene","Acetylene"],answer:0,explanation:"2-Butene: CH₃-CH=CH-CH₃ → cis and trans possible\n\n✅ Answer: 2-butene"},
+{id:51,year:2015,subject:"Chemistry",chapter:"Haloalkanes",difficulty:"Medium",text:"SN2 reaction is favoured by:",options:["Primary alkyl halide","Tertiary alkyl halide","Secondary alkyl halide","Allyl halide"],answer:0,explanation:"SN2: least steric hindrance needed → Primary alkyl halide\n\n✅ Answer: Primary alkyl halide"},
+{id:52,year:2024,subject:"Chemistry",chapter:"d-Block Elements",difficulty:"Medium",text:"Which transition metal has the highest melting point?",options:["Tungsten (W)","Iron (Fe)","Copper (Cu)","Chromium (Cr)"],answer:0,explanation:"Tungsten = 3422°C, highest melting point of all metals\n\n✅ Answer: Tungsten"},
+{id:53,year:2023,subject:"Chemistry",chapter:"Aldehydes & Ketones",difficulty:"Medium",text:"Which test distinguishes aldehyde from ketone?",options:["Tollens' test","Iodoform test","Lucas test","Benedict's test"],answer:0,explanation:"Tollens' test: positive for aldehydes (silver mirror), negative for ketones\n\n✅ Answer: Tollens' test"},
+{id:54,year:2022,subject:"Chemistry",chapter:"Carboxylic Acids",difficulty:"Easy",text:"Acetic acid + NaOH forms:",options:["Sodium acetate + water","Sodium acetate + H₂","Ethanol + NaCl","Ethyl acetate"],answer:0,explanation:"CH₃COOH + NaOH → CH₃COONa + H₂O\n\n✅ Answer: Sodium acetate + water"},
+{id:55,year:2021,subject:"Chemistry",chapter:"Amines",difficulty:"Medium",text:"Which has highest basic strength in aqueous solution?",options:["Methylamine","Ammonia","Dimethylamine","Trimethylamine"],answer:2,explanation:"In aqueous solution: Dimethylamine > Methylamine > Trimethylamine > NH₃\n\n✅ Answer: Dimethylamine"},
+{id:56,year:2020,subject:"Chemistry",chapter:"Solid State",difficulty:"Hard",text:"Atoms per unit cell in FCC:",options:["4","2","1","8"],answer:0,explanation:"FCC: 8×(1/8) + 6×(1/2) = 1+3 = 4\n\n✅ Answer: 4\n💡 BCC=2, Simple cubic=1."},
+{id:57,year:2019,subject:"Chemistry",chapter:"Chemical Kinetics",difficulty:"Medium",text:"For a first-order reaction, half-life t½ is:",options:["0.693/k","k/0.693","1/k","0.693k"],answer:0,explanation:"t½ = 0.693/k (independent of concentration)\n\n✅ Answer: 0.693/k"},
+{id:58,year:2018,subject:"Chemistry",chapter:"Colligative Properties",difficulty:"Medium",text:"Elevation in boiling point depends on:",options:["Number of solute particles","Nature of solute","Nature of solvent only","Size of solute"],answer:0,explanation:"Colligative properties depend only on number of particles\n\n✅ Answer: Number of solute particles"},
+{id:59,year:2017,subject:"Chemistry",chapter:"Metallurgy",difficulty:"Easy",text:"Heating ore in limited air to remove volatile impurities is:",options:["Calcination","Roasting","Smelting","Refining"],answer:0,explanation:"Calcination: heating in limited air, removes CO₂, H₂O\n\n✅ Answer: Calcination"},
+{id:60,year:2016,subject:"Chemistry",chapter:"Environmental Chemistry",difficulty:"Easy",text:"Main cause of acid rain:",options:["SO₂ and NO₂","CO₂","O₃","CH₄"],answer:0,explanation:"SO₂ + H₂O → H₂SO₃; NOₓ + H₂O → HNO₃\n\n✅ Answer: SO₂ and NO₂"},
+// MATHEMATICS
+{id:61,year:2024,subject:"Mathematics",chapter:"Quadratic Equations",difficulty:"Easy",text:"If α, β are roots of x² − 5x + 6 = 0, then α² + β² =",options:["25","13","12","37"],answer:1,explanation:"α+β=5, αβ=6\nα²+β² = (α+β)²−2αβ = 25−12 = 13\n\n✅ Answer: 13"},
+{id:62,year:2024,subject:"Mathematics",chapter:"Trigonometry",difficulty:"Easy",text:"sin 30° + cos 60° − tan 45° =",options:["0","1","−1","0.5"],answer:0,explanation:"0.5 + 0.5 − 1 = 0\n\n✅ Answer: 0"},
+{id:63,year:2023,subject:"Mathematics",chapter:"Matrices",difficulty:"Medium",text:"If A = [[2,0],[0,3]], A² =",options:["[[4,0],[0,9]]","[[4,0],[0,6]]","[[2,0],[0,9]]","[[4,9],[0,0]]"],answer:0,explanation:"Diagonal matrix: square each element\n[[4,0],[0,9]]\n\n✅ Answer: [[4,0],[0,9]]"},
+{id:64,year:2023,subject:"Mathematics",chapter:"Probability",difficulty:"Medium",text:"A die is thrown. P(prime number) =",options:["1/2","1/3","2/3","1/6"],answer:0,explanation:"Primes: {2,3,5} = 3/6 = 1/2\n\n✅ Answer: 1/2\n💡 1 is NOT prime!"},
+{id:65,year:2022,subject:"Mathematics",chapter:"Differentiation",difficulty:"Medium",text:"y = x³ + 2x² − 5x + 1. dy/dx at x = 1:",options:["3","2","1","0"],answer:1,explanation:"dy/dx = 3x²+4x−5\nAt x=1: 3+4−5 = 2\n\n✅ Answer: 2"},
+{id:66,year:2022,subject:"Mathematics",chapter:"Integration",difficulty:"Hard",text:"∫(2x + 3) dx =",options:["x² + 3x + C","2x² + 3x + C","x² + 3 + C","2x + C"],answer:0,explanation:"= x² + 3x + C\n\n✅ Answer: x² + 3x + C\n💡 Always add C!"},
+{id:67,year:2021,subject:"Mathematics",chapter:"Permutation & Combination",difficulty:"Medium",text:"Arrangements of letters of 'INDIA' =",options:["120","60","24","30"],answer:1,explanation:"5!/2! = 60 (I repeats twice)\n\n✅ Answer: 60"},
+{id:68,year:2021,subject:"Mathematics",chapter:"Straight Lines",difficulty:"Medium",text:"Slope of line parallel to 3x − 4y + 7 = 0:",options:["3/4","−4/3","4/3","−3/4"],answer:0,explanation:"4y = 3x+7 → slope = 3/4\nParallel: same slope\n\n✅ Answer: 3/4"},
+{id:69,year:2020,subject:"Mathematics",chapter:"Sets & Functions",difficulty:"Easy",text:"A = {1,2,3}, B = {2,3,4}. A ∩ B =",options:["{2,3}","{1,2,3,4}","{1,4}","{1,2,3}"],answer:0,explanation:"Common elements = {2,3}\n\n✅ Answer: {2,3}"},
+{id:70,year:2019,subject:"Mathematics",chapter:"Complex Numbers",difficulty:"Hard",text:"Modulus of z = 3 + 4i:",options:["5","7","1","25"],answer:0,explanation:"|z| = √(9+16) = 5\n\n✅ Answer: 5\n💡 3-4-5 Pythagorean triple!"},
+{id:71,year:2024,subject:"Mathematics",chapter:"Binomial Theorem",difficulty:"Medium",text:"Number of terms in (a + b)¹⁰:",options:["11","10","9","12"],answer:0,explanation:"n+1 = 10+1 = 11\n\n✅ Answer: 11"},
+{id:72,year:2023,subject:"Mathematics",chapter:"Sequences & Series",difficulty:"Medium",text:"Sum of first 10 terms of AP: 2, 5, 8...",options:["155","150","145","160"],answer:0,explanation:"Sn = n/2[2a+(n−1)d] = 5×31 = 155\n\n✅ Answer: 155"},
+{id:73,year:2023,subject:"Mathematics",chapter:"Limits",difficulty:"Medium",text:"lim(x→0) sin x / x =",options:["1","0","∞","−1"],answer:0,explanation:"Standard limit = 1 (x in radians)\n\n✅ Answer: 1\n💡 Most important standard limit!"},
+{id:74,year:2022,subject:"Mathematics",chapter:"Circles",difficulty:"Medium",text:"Radius of x² + y² − 6x + 8y − 11 = 0:",options:["6","√36","3√2","√56"],answer:0,explanation:"(x−3)²+(y+4)² = 36 → r = 6\n\n✅ Answer: 6"},
+{id:75,year:2022,subject:"Mathematics",chapter:"Vectors",difficulty:"Medium",text:"|a⃗|=3, |b⃗|=4 and a⃗·b⃗=0. |a⃗+b⃗| =",options:["5","7","1","25"],answer:0,explanation:"Perpendicular → |a+b|² = 9+16 = 25 → 5\n\n✅ Answer: 5"},
+{id:76,year:2021,subject:"Mathematics",chapter:"3D Geometry",difficulty:"Hard",text:"Direction cosines of line joining (1,2,3) and (4,6,3):",options:["3/5, 4/5, 0","3,4,0","1/5,2/5,3/5","4/5,3/5,0"],answer:0,explanation:"DRs = (3,4,0), magnitude=5\nDCs = (3/5, 4/5, 0)\n\n✅ Answer: 3/5, 4/5, 0"},
+{id:77,year:2020,subject:"Mathematics",chapter:"Logarithms",difficulty:"Easy",text:"log₂ 32 =",options:["5","4","6","16"],answer:0,explanation:"32 = 2⁵ → log₂ 32 = 5\n\n✅ Answer: 5"},
+{id:78,year:2019,subject:"Mathematics",chapter:"Determinants",difficulty:"Medium",text:"Value of |2 3; 1 4| =",options:["5","11","−5","8"],answer:0,explanation:"2×4−3×1 = 8−3 = 5\n\n✅ Answer: 5"},
+{id:79,year:2018,subject:"Mathematics",chapter:"Statistics",difficulty:"Easy",text:"Mean of {5, 7, 9, 11, 13}:",options:["9","10","8","11"],answer:0,explanation:"Sum=45, n=5, Mean=9\n\n✅ Answer: 9"},
+{id:80,year:2017,subject:"Mathematics",chapter:"Parabola",difficulty:"Medium",text:"Vertex of parabola y = x² − 4x + 7:",options:["(2,3)","(−2,3)","(2,−3)","(4,7)"],answer:0,explanation:"y = (x−2)²+3 → Vertex = (2,3)\n\n✅ Answer: (2,3)"},
+{id:81,year:2016,subject:"Mathematics",chapter:"Inverse Trigonometry",difficulty:"Medium",text:"sin⁻¹(1/2) =",options:["π/6","π/3","π/4","π/2"],answer:0,explanation:"sin(π/6) = 1/2 → sin⁻¹(1/2) = π/6\n\n✅ Answer: π/6"},
+{id:82,year:2015,subject:"Mathematics",chapter:"Continuity",difficulty:"Hard",text:"f(x) = x² is continuous at x = 2. f(2) =",options:["4","2","0","8"],answer:0,explanation:"f(2) = 4. Polynomials are continuous everywhere.\n\n✅ Answer: 4"},
+{id:83,year:2024,subject:"Mathematics",chapter:"Inequalities",difficulty:"Medium",text:"Solution of |x − 3| < 2:",options:["1 < x < 5","x > 5 or x < 1","−5 < x < −1","x > 1"],answer:0,explanation:"|x−3| < 2 → −2 < x−3 < 2 → 1 < x < 5\n\n✅ Answer: 1 < x < 5"},
+{id:84,year:2023,subject:"Mathematics",chapter:"Ellipse",difficulty:"Hard",text:"Eccentricity of ellipse x²/16 + y²/9 = 1:",options:["√7/4","3/4","4/3","7/16"],answer:0,explanation:"c² = 16−9 = 7 → e = √7/4\n\n✅ Answer: √7/4"},
+{id:85,year:2022,subject:"Mathematics",chapter:"Hyperbola",difficulty:"Hard",text:"For hyperbola x²/9 − y²/16 = 1, eccentricity:",options:["5/3","4/3","3/5","5/4"],answer:0,explanation:"c² = 9+16 = 25 → e = 5/3\n\n✅ Answer: 5/3"},
+{id:86,year:2021,subject:"Mathematics",chapter:"Differential Equations",difficulty:"Hard",text:"Order and degree of y'' + (y')² + y = 0:",options:["2 and 1","1 and 2","2 and 2","1 and 1"],answer:0,explanation:"Highest derivative: y'' → Order=2, Power=1 → Degree=1\n\n✅ Answer: Order=2, Degree=1"},
+{id:87,year:2020,subject:"Mathematics",chapter:"Functions",difficulty:"Medium",text:"f(x) = x²+1, g(x) = 2x−3. f(g(2)) =",options:["2","5","3","1"],answer:0,explanation:"g(2)=1, f(1)=2\n\n✅ Answer: 2"},
+{id:88,year:2019,subject:"Mathematics",chapter:"Conic Sections",difficulty:"Medium",text:"Eccentricity of a circle:",options:["0","1","∞","0.5"],answer:0,explanation:"Circle: a=b → c=0 → e=0\n\n✅ Answer: 0\n💡 Circle e=0, Ellipse 0<e<1, Parabola e=1, Hyperbola e>1"},
+{id:89,year:2018,subject:"Mathematics",chapter:"Mathematical Reasoning",difficulty:"Easy",text:"Negation of 'All cats are black' is:",options:["Some cats are not black","No cats are black","All cats are white","Some cats are black"],answer:0,explanation:"¬(∀x P(x)) = ∃x ¬P(x)\n\n✅ Answer: Some cats are not black"},
+{id:90,year:2017,subject:"Mathematics",chapter:"Area Under Curves",difficulty:"Hard",text:"Area bounded by y=x², x-axis, x=0 and x=3:",options:["9 sq units","27/3 sq units","3 sq units","18 sq units"],answer:0,explanation:"∫₀³ x² dx = [x³/3]₀³ = 9\n\n✅ Answer: 9 sq units"},
+];
+
+let filtered=[...ALL_QUESTIONS],current=0,answered={},activeTab='all';
+
+function setTab(s,el){activeTab=s;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');applyFilters();}
+function applyFilters(){
+  const yr=document.getElementById('yearFilter').value,diff=document.getElementById('diffFilter').value;
+  filtered=ALL_QUESTIONS.filter(q=>(activeTab==='all'||q.subject===activeTab)&&(yr==='all'||q.year==yr)&&(diff==='all'||q.difficulty===diff));
+  current=0;document.getElementById('qCountBadge').textContent=filtered.length+' questions';
+  if(!filtered.length){document.getElementById('questionArea').innerHTML='<div class="empty"><div class="empty-icon">🔍</div><p>No questions found.<br>Try different filters.</p></div>';document.getElementById('navBtns').style.display='none';updateProgress();return;}
+  document.getElementById('navBtns').style.display='flex';renderQuestion();
+}
+function renderQuestion(){
+  const q=filtered[current];if(!q)return;
+  updateProgress();
+  const ans=answered[q.id];
+  const sc=q.subject==='Physics'?'tag-physics':q.subject==='Chemistry'?'tag-chemistry':'tag-maths';
+  const si=q.subject==='Physics'?'⚡':q.subject==='Chemistry'?'🧪':'📐';
+  const dc=q.difficulty==='Easy'?'#10b981':q.difficulty==='Medium'?'#f59e0b':'#ef4444';
+  const opts=q.options.map((o,i)=>{let c='';if(ans!==undefined){if(i===q.answer)c='revealed-correct';if(i===ans&&ans!==q.answer)c='wrong';}return`<div class="option ${c}" onclick="selectAnswer(${i})"><div class="opt-letter">${String.fromCharCode(65+i)}</div><span>${o}</span></div>`;}).join('');
+  const aiShown=answered[q.id+'_ai'];
+  document.getElementById('questionArea').innerHTML=`<div class="q-card"><div class="q-meta"><span class="tag ${sc}">${si} ${q.subject}</span><span class="tag tag-year">📅 WB JEE ${q.year}</span><span class="tag tag-chapter">📖 ${q.chapter}</span><span class="tag" style="background:${dc}22;color:${dc};border:1px solid ${dc}44">${q.difficulty}</span></div><div class="q-number">Question ${current+1} of ${filtered.length}</div><div class="q-text">${q.text}</div><div class="options">${opts}</div><div class="q-actions">${ans!==undefined?`<button class="btn-sm btn-ai" onclick="getAIExplanation()">🤖 AI Explanation</button>`:''}<button class="btn-sm" onclick="revealAnswer()">👁 ${ans!==undefined?'Show Answer':'Reveal Answer'}</button></div><div class="ai-box ${aiShown?'active':''}" id="aiBox"><div class="ai-header">🤖 AI EXPLANATION <span style="opacity:.5;font-weight:400">• Claude</span></div><div class="ai-content" id="aiContent">${aiShown?(answered[q.id+'_exp']||q.explanation):''}</div></div></div>`;
+  document.getElementById('jumpInput').value=current+1;
+}
+function selectAnswer(i){const q=filtered[current];if(answered[q.id]!==undefined)return;answered[q.id]=i;renderQuestion();updateProgress();}
+function revealAnswer(){const q=filtered[current];if(answered[q.id]===undefined)answered[q.id]=q.answer;renderQuestion();}
+function updateProgress(){
+  const total=filtered.length,done=filtered.filter(q=>answered[q.id]!==undefined).length;
+  const correct=filtered.filter(q=>answered[q.id]===q.answer).length;
+  document.getElementById('progressFill').style.width=total?(done/total*100)+'%':'0%';
+  document.getElementById('progressText').textContent=`${done} / ${total}`;
+  document.getElementById('correctCount').textContent=correct;
+  document.getElementById('wrongCount').textContent=done-correct;
+}
+async function getAIExplanation(){
+  const q=filtered[current];
+  document.getElementById('aiBox').classList.add('active');
+  document.getElementById('aiContent').innerHTML='<div class="loading-dots"><span></span><span></span><span></span></div> Generating explanation...';
+  const prompt=`You are a WB JEE expert tutor. Give a concise step-by-step solution.\n\nSubject: ${q.subject} | Chapter: ${q.chapter} | Year: WB JEE ${q.year} | Difficulty: ${q.difficulty}\nQuestion: ${q.text}\nOptions: ${q.options.map((o,i)=>String.fromCharCode(65+i)+') '+o).join(' | ')}\nCorrect Answer: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer]}\n\nProvide 3-5 clear steps. Simple language for Class 12 WB JEE students. End with one exam tip.`;
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
+    const data=await res.json();
+    const text=data.content?.map(b=>b.text||'').join('')||q.explanation;
+    answered[q.id+'_ai']=true;answered[q.id+'_exp']=text;typeText(text);
+  }catch(e){answered[q.id+'_ai']=true;typeText(q.explanation);}
+}
+function typeText(text){
+  const c=document.getElementById('aiContent');c.innerHTML='';let i=0;
+  const cur=document.createElement('span');cur.className='typing-cursor';
+  function type(){if(i<text.length){c.textContent=text.slice(0,++i);c.appendChild(cur);setTimeout(type,9);}else cur.remove();}
+  type();
+}
+function navigate(dir){current=Math.max(0,Math.min(filtered.length-1,current+dir));renderQuestion();}
+function jumpTo(val){const n=parseInt(val)-1;if(!isNaN(n)&&n>=0&&n<filtered.length){current=n;renderQuestion();}}
+applyFilters();
+</script>
+</body>
+</html>
