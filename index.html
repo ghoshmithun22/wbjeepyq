@@ -42,6 +42,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:fl
 .nav-user{display:flex;align-items:center;gap:8px;}
 .nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#000;cursor:pointer;font-family:'Sora',sans-serif!important;}
 .nav-pro-badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:700;font-family:'Sora',sans-serif!important;}
+.nav-user-info{display:flex;flex-direction:column;align-items:flex-end;cursor:pointer;position:relative;}
+.nav-user-name{font-size:.78rem;font-weight:700;color:var(--text);line-height:1.2;font-family:'Sora',sans-serif!important;}
+.nav-user-meta{font-size:.65rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;line-height:1.2;}
+.nav-user-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:#111827;border:1px solid var(--border);border-radius:12px;padding:14px 16px;min-width:240px;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:ddIn .2s ease;}
+@keyframes ddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.nav-user-dropdown.hidden{display:none;}
+.dd-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.dd-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#000;flex-shrink:0;font-family:'Sora',sans-serif!important;}
+.dd-name{font-size:.82rem;font-weight:700;color:var(--text);}
+.dd-email{font-size:.68rem;color:var(--muted2);}
+.dd-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.dd-info-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
+.dd-info-label{font-size:.6rem;color:var(--muted2);margin-bottom:2px;letter-spacing:.4px;text-transform:uppercase;}
+.dd-info-value{font-size:.73rem;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;}
+.dd-plan{font-size:.7rem;padding:4px 10px;border-radius:8px;font-weight:700;text-align:center;margin-bottom:10px;font-family:'Sora',sans-serif!important;}
+.dd-plan.free{background:rgba(148,163,184,.1);color:var(--muted2);border:1px solid var(--border);}
+.dd-plan.pro{background:rgba(245,158,11,.12);color:var(--accent);border:1px solid rgba(245,158,11,.3);}
+.dd-btn{width:100%;padding:8px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);transition:all .2s;margin-bottom:5px;text-align:left;display:flex;align-items:center;gap:7px;}
+.dd-btn:hover{border-color:var(--accent);color:var(--accent);}
+.dd-btn.danger{color:var(--red);border-color:rgba(239,68,68,.2);}
+.dd-btn.danger:hover{background:rgba(239,68,68,.06);border-color:var(--red);}
 
 /* LANG BAR */
 .lang-bar{background:rgba(59,130,246,.08);border-bottom:1px solid rgba(59,130,246,.15);padding:7px 28px;text-align:center;font-size:.73rem;color:var(--muted2);display:none;margin-top:57px;}
@@ -220,11 +241,44 @@ footer span{color:var(--accent);}
       <button class="nav-login-btn" onclick="openModal('login')" data-t="navLogin">Log In</button>
       <button class="nav-cta" onclick="openModal('signup')" data-t="navCta">Start Free →</button>
     </div>
-    <!-- User info (shown when logged in) -->
-    <div class="nav-user hidden" id="navUserArea">
-      <div class="nav-avatar" id="navAvatar" onclick="goToApp()">?</div>
-      <span class="nav-pro-badge hidden" id="navProBadge">PRO</span>
-      <button class="nav-login-btn" onclick="logout()" data-t="navLogout">Log Out</button>
+    <!-- User info (shown when logged in) — no logout button, shows dropdown -->
+    <div class="nav-user hidden" id="navUserArea" style="position:relative;">
+      <div class="nav-user-info" onclick="toggleDropdown()" id="navUserInfo">
+        <span class="nav-user-name" id="navUserName">User</span>
+        <span class="nav-user-meta" id="navUserMeta">Last login: —</span>
+      </div>
+      <span class="nav-pro-badge hidden" id="navProBadge">PRO ✦</span>
+      <!-- DROPDOWN -->
+      <div class="nav-user-dropdown hidden" id="navDropdown">
+        <div class="dd-row">
+          <div class="dd-avatar" id="ddAvatar">U</div>
+          <div>
+            <div class="dd-name" id="ddName">—</div>
+            <div class="dd-email" id="ddEmail">—</div>
+          </div>
+        </div>
+        <div class="dd-info">
+          <div class="dd-info-item">
+            <div class="dd-info-label">User ID</div>
+            <div class="dd-info-value" id="ddUserId">—</div>
+          </div>
+          <div class="dd-info-item">
+            <div class="dd-info-label">Last Login</div>
+            <div class="dd-info-value" id="ddLastLogin">—</div>
+          </div>
+          <div class="dd-info-item">
+            <div class="dd-info-label">Member Since</div>
+            <div class="dd-info-value" id="ddMemberSince">—</div>
+          </div>
+          <div class="dd-info-item">
+            <div class="dd-info-label">Questions Today</div>
+            <div class="dd-info-value" id="ddQToday">—</div>
+          </div>
+        </div>
+        <div class="dd-plan free" id="ddPlan">FREE PLAN — 10 questions/day</div>
+        <button class="dd-btn" onclick="goToApp()">📚 Go to Practice App</button>
+        <button class="dd-btn danger" onclick="logout()">🚪 Log Out</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -401,7 +455,7 @@ Step 3: t = 0 or t = 2 s
 
 <footer>
   <p>© 2025 WB JEE <span>PYQ</span> Solver · <span data-t="footerMade">Made with ❤️ for WB JEE aspirants in West Bengal</span></p>
-  <p style="margin-top:7px;font-size:.7rem;" data-t="footerLinks">Privacy Policy · Terms of Service · Contact: support@wbjeepyq.in</p>
+  <p style="margin-top:7px;font-size:.7rem;" data-t="footerLinks">Privacy Policy · Terms of Service · Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7b4b2b7b7a8b5b387b0a5ada2a2b7beb6e9aea9">[email&#160;protected]</a></p>
 </footer>
 
 <!-- WHATSAPP BUTTON -->
@@ -467,7 +521,7 @@ Step 3: t = 0 or t = 2 s
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════════════
 // TRANSLATIONS
 // ═══════════════════════════════════════════════════════
@@ -514,27 +568,116 @@ function loadAuth(){
   }catch(e){}
 }
 function saveUser(u){currentUser=u;try{localStorage.setItem('wbjee_user',JSON.stringify(u));}catch(e){}}
+
+// Generate short user ID from email
+function makeUserId(email){
+  if(!email) return 'USR-0000';
+  let hash=0;for(let i=0;i<email.length;i++){hash=((hash<<5)-hash)+email.charCodeAt(i);hash|=0;}
+  return 'USR-'+(Math.abs(hash)%100000).toString().padStart(5,'0');
+}
+
+function fmtDate(ts){
+  if(!ts) return '—';
+  const d=new Date(ts);
+  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+}
+
+function fmtDateShort(ts){
+  if(!ts) return '—';
+  const d=new Date(ts);
+  const now=new Date();
+  const diffMs=now-d;
+  const diffMins=Math.floor(diffMs/60000);
+  if(diffMins<1) return 'Just now';
+  if(diffMins<60) return diffMins+'m ago';
+  const diffHrs=Math.floor(diffMins/60);
+  if(diffHrs<24) return diffHrs+'h ago';
+  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+}
+
+function getTodayUsage(){
+  try{
+    const key='wbjee_u_'+new Date().toISOString().slice(0,10);
+    const raw=localStorage.getItem(key);
+    return raw?JSON.parse(raw):{q:0,ai:0};
+  }catch{return{q:0,ai:0};}
+}
+
 function updateNavAuth(){
   const authBtns=document.getElementById('navAuthBtns');
   const userArea=document.getElementById('navUserArea');
-  const avatar=document.getElementById('navAvatar');
   const proBadge=document.getElementById('navProBadge');
+
   if(currentUser){
     authBtns.classList.add('hidden');
     userArea.classList.remove('hidden');
-    avatar.textContent=(currentUser.name||'U')[0].toUpperCase();
-    if(currentUser.isPro)proBadge.classList.remove('hidden');
+
+    // Record last login time
+    const now=Date.now();
+    const prev=currentUser.lastLogin||now;
+    currentUser.lastLogin=now;
+    try{localStorage.setItem('wbjee_user',JSON.stringify(currentUser));}catch(e){}
+
+    const uid=makeUserId(currentUser.email);
+    const lastLoginStr=fmtDateShort(prev);
+    const memberSince=fmtDate(currentUser.createdAt||now);
+    const usage=getTodayUsage();
+
+    // Nav bar — show name + last login (no logout button)
+    document.getElementById('navUserName').textContent=currentUser.name||'User';
+    document.getElementById('navUserMeta').textContent='Last login: '+lastLoginStr;
+
+    // Pro badge
+    if(currentUser.isPro) proBadge.classList.remove('hidden');
     else proBadge.classList.add('hidden');
+
+    // Dropdown content
+    document.getElementById('ddAvatar').textContent=(currentUser.name||'U')[0].toUpperCase();
+    document.getElementById('ddName').textContent=currentUser.name||'User';
+    document.getElementById('ddEmail').textContent=currentUser.email||'—';
+    document.getElementById('ddUserId').textContent=uid;
+    document.getElementById('ddLastLogin').textContent=lastLoginStr;
+    document.getElementById('ddMemberSince').textContent=memberSince;
+    document.getElementById('ddQToday').textContent=usage.q+' / 10';
+
+    // Plan badge
+    const planEl=document.getElementById('ddPlan');
+    if(currentUser.isPro){
+      planEl.textContent='⭐ PRO PLAN — Unlimited access';
+      planEl.className='dd-plan pro';
+    }else{
+      planEl.textContent='FREE PLAN — 10 questions/day';
+      planEl.className='dd-plan free';
+    }
   }else{
     authBtns.classList.remove('hidden');
     userArea.classList.add('hidden');
   }
 }
+
+let dropdownOpen=false;
+function toggleDropdown(){
+  const dd=document.getElementById('navDropdown');
+  dropdownOpen=!dropdownOpen;
+  dd.classList.toggle('hidden',!dropdownOpen);
+}
+// Close dropdown when clicking outside
+document.addEventListener('click',function(e){
+  const area=document.getElementById('navUserArea');
+  if(area&&!area.contains(e.target)){
+    document.getElementById('navDropdown')?.classList.add('hidden');
+    dropdownOpen=false;
+  }
+});
+
 function logout(){
   currentUser=null;
   try{localStorage.removeItem('wbjee_user');}catch(e){}
+  // Close dropdown
+  document.getElementById('navDropdown')?.classList.add('hidden');
+  dropdownOpen=false;
   updateNavAuth();
-  gtag('event','logout');
+  if(typeof gtag==='function') gtag('event','logout');
 }
 function goToApp(){window.location.href='app.html';}
 
@@ -576,7 +719,7 @@ function handleLogin(){
   // Simulate login (in production connect to Firebase/Supabase)
   const storedUser=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}')[email];
   if(!storedUser||storedUser.password!==pass){showErr('loginPassErr','Invalid email or password.');return;}
-  saveUser({email,name:storedUser.name,isPro:storedUser.isPro||false});
+  saveUser({email,name:storedUser.name,isPro:storedUser.isPro||false,lastLogin:Date.now(),createdAt:storedUser.createdAt||Date.now()});
   updateNavAuth();
   gtag('event','login',{method:'email'});
   showSuccess('✅ Logged in successfully!');
@@ -598,7 +741,7 @@ function handleSignupSubmit(){
   try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
   allUsers[email]={name,password:pass,isPro:false,createdAt:Date.now()};
   localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));
-  saveUser({email,name,isPro:false});
+  saveUser({email,name,isPro:false,lastLogin:Date.now(),createdAt:Date.now()});
   updateNavAuth();
   gtag('event','sign_up',{method:'email'});
   showSuccess('🎉 Account created! Welcome ' + name + '!');
@@ -611,7 +754,7 @@ function handleGoogleAuth(){
   let allUsers={};
   try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
   if(!allUsers[mockEmail]){allUsers[mockEmail]={name:mockName,password:'google',isPro:false,createdAt:Date.now()};localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));}
-  saveUser({email:mockEmail,name:mockName,isPro:allUsers[mockEmail].isPro});
+  saveUser({email:mockEmail,name:mockName,isPro:allUsers[mockEmail].isPro,lastLogin:Date.now(),createdAt:allUsers[mockEmail].createdAt||Date.now()});
   updateNavAuth();
   gtag('event','sign_up',{method:'google'});
   showSuccess('✅ Signed in with Google!');
@@ -672,10 +815,4 @@ document.querySelectorAll('.btn-hero-primary,.btn-solid,.nav-cta').forEach(b=>{b
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=>{
-  loadAuth();
-  try{const lang=localStorage.getItem('wbjee_lang');if(lang&&lang!=='en'){const btn=document.querySelector('.lang-btn[onclick*="\''+lang+'\'"]');if(btn)setLang(lang,btn);}}catch(e){}
-});
-</script>
-</body>
-</html>
+document.addEventListener('DOMContentLoaded',()=
