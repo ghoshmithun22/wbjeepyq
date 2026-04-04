@@ -4,114 +4,199 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WB JEE PYQ Solver – Practice App</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<!-- Razorpay -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0a0f1e;--surface:#111827;--card:#1a2235;--border:#243044;--accent:#f59e0b;--accent2:#3b82f6;--green:#10b981;--red:#ef4444;--text:#f1f5f9;--muted:#94a3b8;}
+:root{--bg:#0a0f1e;--surface:#111827;--card:#1a2235;--border:#243044;--accent:#f59e0b;--accent2:#3b82f6;--green:#10b981;--red:#ef4444;--purple:#8b5cf6;--text:#f1f5f9;--muted:#94a3b8;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 20% 0%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(245,158,11,.06) 0%,transparent 60%);}
 body.lang-bn{font-family:'Noto Sans Bengali','Sora',sans-serif;}
 body.lang-hi{font-family:'Noto Sans Devanagari','Sora',sans-serif;}
-header{padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,15,30,.92);backdrop-filter:blur(10px);flex-wrap:wrap;gap:8px;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo-icon{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.logo-text{font-size:1rem;font-weight:800;font-family:'Sora',sans-serif!important;}.logo-text span{color:var(--accent);}
+.hidden{display:none!important;}
+
+/* HEADER */
+header{padding:12px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,15,30,.93);backdrop-filter:blur(10px);flex-wrap:wrap;gap:8px;}
+.logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
+.logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.logo-text{font-size:.98rem;font-weight:800;font-family:'Sora',sans-serif!important;}.logo-text span{color:var(--accent);}
 .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.lang-switcher{display:flex;align-items:center;gap:3px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:3px;}
-.lang-btn{font-family:'Sora',sans-serif!important;padding:5px 11px;border-radius:7px;font-size:.72rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s;white-space:nowrap;}
+.lang-switcher{display:flex;gap:3px;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:3px;}
+.lang-btn{font-family:'Sora',sans-serif!important;padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s;}
 .lang-btn.active{background:var(--accent);color:#000;}
 .lang-btn:hover:not(.active){background:rgba(255,255,255,.07);color:var(--text);}
-.badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:4px 10px;border-radius:20px;font-size:.68rem;font-weight:600;font-family:'Sora',sans-serif!important;}
-.back-btn{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:8px;font-size:.75rem;cursor:pointer;transition:all .2s;}
-.back-btn:hover{border-color:var(--accent2);color:var(--text);}
-.hero{text-align:center;padding:30px 24px 14px;}
-.hero h1{font-size:clamp(1.3rem,4vw,2.1rem);font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:3px 9px;border-radius:16px;font-size:.67rem;font-weight:600;font-family:'Sora',sans-serif!important;}
+.pro-badge{background:linear-gradient(135deg,#f59e0b,#f97316);color:#000;border:none;font-weight:800;}
+.btn-header{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:7px;font-size:.74rem;cursor:pointer;transition:all .2s;}
+.btn-header:hover{border-color:var(--accent);color:var(--accent);}
+.btn-upgrade{background:var(--accent);color:#000;border:none;font-weight:700;padding:5px 12px;border-radius:7px;font-size:.74rem;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s;}
+.btn-upgrade:hover{background:#fbbf24;}
+.nav-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#000;font-family:'Sora',sans-serif!important;}
+
+/* FREE LIMIT BAR */
+.limit-bar{background:rgba(245,158,11,.08);border-bottom:1px solid rgba(245,158,11,.2);padding:7px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.75rem;}
+.limit-bar.hidden{display:none!important;}
+.limit-counters{display:flex;gap:16px;flex-wrap:wrap;}
+.limit-item{display:flex;align-items:center;gap:6px;}
+.limit-dots{display:flex;gap:3px;}
+.limit-dot{width:8px;height:8px;border-radius:50%;}
+.limit-dot.used{background:var(--red);}
+.limit-dot.free{background:rgba(255,255,255,.15);}
+.limit-text{color:var(--muted);font-size:.72rem;}
+.btn-go-pro{background:var(--accent);color:#000;border:none;font-weight:700;padding:4px 12px;border-radius:6px;font-size:.7rem;cursor:pointer;font-family:'Sora',sans-serif;}
+
+/* HERO */
+.hero{text-align:center;padding:28px 22px 14px;}
+.hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero h1 .accent{background:linear-gradient(135deg,var(--accent),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{color:var(--muted);margin-top:6px;font-size:.84rem;}
-.stats{display:flex;justify-content:center;gap:20px;padding:10px 24px 16px;flex-wrap:wrap;}
-.stat{text-align:center;}.stat-num{font-size:1.3rem;font-weight:800;color:var(--accent);font-family:'Sora',sans-serif!important;}.stat-label{font-size:.65rem;color:var(--muted);margin-top:2px;}
-.subject-tabs{display:flex;gap:6px;padding:0 20px 12px;max-width:980px;margin:0 auto;flex-wrap:wrap;}
-.tab{font-family:'Sora',sans-serif;padding:5px 13px;border-radius:20px;font-size:.75rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .2s;}
+.hero p{color:var(--muted);margin-top:6px;font-size:.83rem;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:20px;padding:10px 22px 14px;flex-wrap:wrap;}
+.stat{text-align:center;}.stat-num{font-size:1.2rem;font-weight:800;color:var(--accent);font-family:'Sora',sans-serif!important;}.stat-label{font-size:.63rem;color:var(--muted);margin-top:2px;}
+
+/* TABS */
+.subject-tabs{display:flex;gap:5px;padding:0 18px 12px;max-width:980px;margin:0 auto;flex-wrap:wrap;}
+.tab{font-family:'Sora',sans-serif;padding:5px 13px;border-radius:16px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .2s;}
 .tab-all.active{background:var(--text);color:#000;border-color:transparent;}
 .tab-physics.active{background:var(--accent2);color:#fff;border-color:transparent;}
 .tab-chemistry.active{background:var(--green);color:#fff;border-color:transparent;}
 .tab-maths.active{background:var(--accent);color:#000;border-color:transparent;}
-.filters{display:flex;gap:7px;padding:0 20px 14px;max-width:980px;margin:0 auto;flex-wrap:wrap;align-items:center;}
-select{font-family:'Sora',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 11px;border-radius:8px;font-size:.8rem;cursor:pointer;outline:none;transition:all .2s;}
+
+/* FILTERS */
+.filters{display:flex;gap:7px;padding:0 18px 13px;max-width:980px;margin:0 auto;flex-wrap:wrap;align-items:center;}
+select{font-family:'Sora',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 11px;border-radius:8px;font-size:.79rem;cursor:pointer;outline:none;transition:all .2s;}
 select:hover{border-color:var(--accent2);}
-.btn-primary{font-family:'Sora',sans-serif;background:var(--accent);color:#000;font-weight:700;border:none;padding:7px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.btn-primary{font-family:'Sora',sans-serif;background:var(--accent);color:#000;font-weight:700;border:none;padding:7px 15px;border-radius:8px;font-size:.79rem;cursor:pointer;transition:all .2s;}
 .btn-primary:hover{background:#fbbf24;transform:translateY(-1px);}
-.q-count-badge{font-size:.7rem;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 10px;border-radius:7px;font-family:'JetBrains Mono',monospace;}
-.main{max-width:980px;margin:0 auto;padding:0 20px 60px;}
-.lang-notice{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:9px;padding:9px 14px;margin-bottom:12px;font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:7px;}
-.lang-notice.hidden{display:none;}
-.progress-bar{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
+.q-count-badge{font-size:.68rem;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 9px;border-radius:7px;font-family:'JetBrains Mono',monospace;}
+
+/* MAIN */
+.main{max-width:980px;margin:0 auto;padding:0 18px 60px;}
+.progress-bar{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;margin-bottom:11px;display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
 .progress-track{flex:1;min-width:60px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:3px;transition:width .4s;}
 .progress-text{font-size:.7rem;color:var(--muted);white-space:nowrap;font-family:'JetBrains Mono',monospace;}
 .score-display{display:flex;gap:11px;}.score-item{display:flex;align-items:center;gap:4px;font-size:.7rem;}
 .dot{width:6px;height:6px;border-radius:50%;}
-.q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:12px;animation:fadeUp .3s ease;position:relative;overflow:hidden;}
+
+/* QUESTION CARD */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:11px;animation:fadeUp .3s ease;position:relative;overflow:hidden;}
 .q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .q-meta{display:flex;gap:5px;margin-bottom:11px;flex-wrap:wrap;}
-.tag{font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:5px;letter-spacing:.3px;font-family:'Sora',sans-serif!important;}
+.tag{font-size:.61rem;font-weight:600;padding:2px 7px;border-radius:5px;letter-spacing:.3px;font-family:'Sora',sans-serif!important;}
 .tag-physics{background:rgba(59,130,246,.15);color:var(--accent2);border:1px solid rgba(59,130,246,.25);}
 .tag-chemistry{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.25);}
 .tag-maths{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.25);}
 .tag-year{background:rgba(148,163,184,.1);color:var(--muted);border:1px solid rgba(148,163,184,.15);}
 .tag-chapter{background:rgba(168,85,247,.12);color:#a78bfa;border:1px solid rgba(168,85,247,.2);}
-.q-number{font-size:.68rem;color:var(--muted);margin-bottom:5px;font-family:'JetBrains Mono',monospace;}
-.q-text{font-size:.93rem;line-height:1.8;color:var(--text);margin-bottom:15px;}
+.q-number{font-size:.67rem;color:var(--muted);margin-bottom:5px;font-family:'JetBrains Mono',monospace;}
+.q-text{font-size:.92rem;line-height:1.8;color:var(--text);margin-bottom:15px;}
 .options{display:grid;gap:7px;}
-.option{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;font-size:.84rem;line-height:1.5;}
+.option{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;font-size:.83rem;line-height:1.5;}
 .option:hover{border-color:var(--accent2);background:rgba(59,130,246,.07);}
 .option.revealed-correct,.option.correct{border-color:var(--green);background:rgba(16,185,129,.1);}
 .option.wrong{border-color:var(--red);background:rgba(239,68,68,.08);}
-.opt-letter{width:23px;height:23px;border-radius:5px;background:var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.72rem;flex-shrink:0;font-family:'Sora',sans-serif!important;}
+.opt-letter{width:23px;height:23px;border-radius:5px;background:var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.71rem;flex-shrink:0;font-family:'Sora',sans-serif!important;}
 .correct .opt-letter,.revealed-correct .opt-letter{background:var(--green);color:#fff;}
 .wrong .opt-letter{background:var(--red);color:#fff;}
 .q-actions{display:flex;gap:7px;margin-top:13px;flex-wrap:wrap;}
-.btn-sm{font-family:'Sora',sans-serif;padding:6px 11px;border-radius:7px;font-size:.73rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:4px;}
+.btn-sm{font-family:'Sora',sans-serif;padding:6px 11px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:4px;}
 .btn-sm:hover{border-color:var(--accent);color:var(--accent);}
 .btn-ai{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(249,115,22,.12));border-color:rgba(245,158,11,.35);color:var(--accent);}
 .btn-ai:hover{background:linear-gradient(135deg,rgba(245,158,11,.22),rgba(249,115,22,.22));}
+.btn-ai:disabled{opacity:.4;cursor:not-allowed;}
 .ai-box{margin-top:12px;background:linear-gradient(135deg,rgba(245,158,11,.04),rgba(59,130,246,.04));border:1px solid rgba(245,158,11,.18);border-radius:10px;padding:14px;display:none;}
 .ai-box.active{display:block;animation:fadeUp .3s ease;}
-.ai-header{display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:8px;letter-spacing:.4px;font-family:'Sora',sans-serif!important;}
-.ai-content{font-size:.82rem;line-height:1.9;color:#cbd5e1;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
-body.lang-bn .ai-content,body.lang-hi .ai-content{font-family:'Noto Sans Bengali','Noto Sans Devanagari',sans-serif;font-size:.86rem;}
+.ai-header{display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:8px;font-family:'Sora',sans-serif!important;}
+.ai-content{font-size:.81rem;line-height:1.9;color:#cbd5e1;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
+body.lang-bn .ai-content,body.lang-hi .ai-content{font-family:'Noto Sans Bengali','Noto Sans Devanagari',sans-serif;font-size:.84rem;}
 .typing-cursor{display:inline-block;width:2px;height:12px;background:var(--accent);animation:blink .8s infinite;vertical-align:middle;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .loading-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin:0 2px;animation:bounce 1.2s infinite;}
 .loading-dots span:nth-child(2){animation-delay:.2s}.loading-dots span:nth-child(3){animation-delay:.4s}
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
 .nav-btns{display:flex;gap:9px;justify-content:center;margin-top:4px;align-items:center;}
-.btn-nav{font-family:'Sora',sans-serif;padding:7px 19px;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-nav{font-family:'Sora',sans-serif;padding:7px 19px;border-radius:8px;font-size:.79rem;font-weight:700;cursor:pointer;transition:all .2s;}
 .btn-prev{background:var(--surface);border:1px solid var(--border);color:var(--muted);}
 .btn-prev:hover{border-color:var(--accent2);color:var(--text);}
 .btn-next{background:var(--accent2);border:none;color:#fff;}
 .btn-next:hover{background:#2563eb;transform:translateY(-1px);}
-.q-jump{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:7px;font-size:.76rem;width:50px;text-align:center;outline:none;}
+.q-jump{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:7px;font-size:.74rem;width:48px;text-align:center;outline:none;}
 .empty{text-align:center;padding:60px 24px;color:var(--muted);}
 .empty-icon{font-size:3rem;margin-bottom:12px;}
+
+/* PAYWALL MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
+.modal-overlay.hidden{display:none!important;}
+.paywall-modal{background:#111827;border:1px solid rgba(245,158,11,.3);border-radius:22px;padding:36px;max-width:440px;width:100%;text-align:center;animation:modalIn .3s ease;position:relative;}
+@keyframes modalIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.paywall-icon{font-size:3rem;margin-bottom:12px;}
+.paywall-modal h2{font-size:1.4rem;font-weight:800;margin-bottom:8px;}
+.paywall-modal p{color:var(--muted);font-size:.86rem;line-height:1.7;margin-bottom:22px;}
+.paywall-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:26px;background:rgba(245,158,11,.05);border-radius:12px;padding:16px;}
+.paywall-features li{font-size:.82rem;display:flex;align-items:center;gap:8px;color:var(--muted);}
+.paywall-features li .check{color:var(--green);}
+.btn-paywall-primary{width:100%;padding:13px;border-radius:11px;font-family:'Sora',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;border:none;background:var(--accent);color:#000;margin-bottom:10px;transition:all .2s;}
+.btn-paywall-primary:hover{background:#fbbf24;transform:translateY(-1px);}
+.btn-paywall-secondary{width:100%;padding:10px;border-radius:11px;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--muted);transition:all .2s;}
+.btn-paywall-secondary:hover{border-color:var(--muted);color:var(--text);}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.07);border:none;color:var(--muted);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:rgba(255,255,255,.14);color:var(--text);}
+
+/* WHATSAPP */
+.whatsapp-btn{position:fixed;bottom:22px;right:22px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);cursor:pointer;transition:all .3s;text-decoration:none;}
+.whatsapp-btn:hover{transform:scale(1.1);}
+.whatsapp-btn svg{width:26px;height:26px;fill:#fff;}
+.whatsapp-tooltip{position:absolute;right:58px;background:#1a2235;color:var(--text);padding:5px 11px;border-radius:7px;font-size:.72rem;white-space:nowrap;border:1px solid var(--border);opacity:0;pointer-events:none;transition:opacity .2s;font-family:'Sora',sans-serif;}
+.whatsapp-btn:hover .whatsapp-tooltip{opacity:1;}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo">
+  <div class="logo" onclick="window.location.href='index.html'">
     <div class="logo-icon">📚</div>
     <div class="logo-text">WB JEE <span>PYQ</span></div>
   </div>
   <div class="header-right">
-    <div class="lang-switcher" title="Change language / ভাষা পরিবর্তন / भाषा बदलें">
+    <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
       <button class="lang-btn" onclick="setLang('bn',this)">বাং</button>
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
-    <button class="back-btn" onclick="window.location.href='index.html'">← <span data-t="home">Home</span></button>
-    <div class="badge">✦ AI • 90 Qs</div>
+    <!-- Shown when logged out -->
+    <div id="appAuthBtns">
+      <button class="btn-header" onclick="window.location.href='index.html'" data-t="loginLink">Log In / Sign Up</button>
+    </div>
+    <!-- Shown when logged in -->
+    <div class="hidden" id="appUserArea" style="display:flex;align-items:center;gap:7px;">
+      <div class="nav-avatar" id="appAvatar">U</div>
+      <span class="badge pro-badge hidden" id="appProBadge">PRO ✦</span>
+      <button class="btn-upgrade hidden" id="appUpgradeBtn" onclick="showPaywall('limit')" data-t="upgradeBtn">Upgrade to Pro</button>
+    </div>
+    <div class="badge" id="appBadgeLabel">✦ AI • 90 Qs</div>
   </div>
 </header>
+
+<!-- FREE USAGE LIMIT BAR -->
+<div class="limit-bar hidden" id="limitBar">
+  <div class="limit-counters">
+    <div class="limit-item">
+      <div class="limit-dots" id="qDots"></div>
+      <span class="limit-text" id="qLimitText">Questions: 0/10</span>
+    </div>
+    <div class="limit-item">
+      <div class="limit-dots" id="aiDots"></div>
+      <span class="limit-text" id="aiLimitText">AI: 0/3</span>
+    </div>
+  </div>
+  <button class="btn-go-pro" onclick="showPaywall('limit')" data-t="goPro">Go Pro — Unlimited →</button>
+</div>
 
 <div class="hero">
   <h1><span data-t="heroTitle">Crack WB JEE with</span> <span class="accent" data-t="heroAI">AI Explanations</span></h1>
@@ -150,9 +235,6 @@ body.lang-bn .ai-content,body.lang-hi .ai-content{font-family:'Noto Sans Bengali
 </div>
 
 <div class="main">
-  <div class="lang-notice hidden" id="langNotice">
-    🌐 <span id="langNoticeText"></span>
-  </div>
   <div class="progress-bar">
     <div style="font-size:.7rem;color:var(--muted);white-space:nowrap" data-t="progress">Progress</div>
     <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
@@ -170,12 +252,40 @@ body.lang-bn .ai-content,body.lang-hi .ai-content{font-family:'Noto Sans Bengali
   </div>
 </div>
 
+<!-- PAYWALL MODAL -->
+<div class="modal-overlay hidden" id="paywallModal">
+  <div class="paywall-modal">
+    <button class="modal-close" onclick="closePaywall()">✕</button>
+    <div class="paywall-icon">🚀</div>
+    <h2 id="paywallTitle">Upgrade to Pro</h2>
+    <p id="paywallDesc">You've reached your daily free limit. Upgrade to Pro for unlimited questions and AI explanations!</p>
+    <ul class="paywall-features">
+      <li><span class="check">✓</span> Unlimited questions every day</li>
+      <li><span class="check">✓</span> Unlimited AI explanations (Bengali, Hindi, English)</li>
+      <li><span class="check">✓</span> Chapter-wise tests & mock exams</li>
+      <li><span class="check">✓</span> Progress analytics & rank predictor</li>
+      <li><span class="check">✓</span> Priority WhatsApp support</li>
+    </ul>
+    <button class="btn-paywall-primary" onclick="handleProPayment(99,'monthly')">Get Pro for ₹99/month →</button>
+    <button class="btn-paywall-secondary" onclick="handleProPayment(799,'yearly')">Or get Yearly for ₹799 (Save ₹389)</button>
+    <p style="margin-top:12px;font-size:.7rem;color:var(--muted);" id="paywallNote">✓ Instant activation · ✓ Cancel anytime</p>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp-btn" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20help%20with%20WB%20JEE%20PYQ%20Solver" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="whatsapp-tooltip" data-t="waTooltip">Chat on WhatsApp</span>
+</a>
+
 <script>
-// ── TRANSLATIONS ──
+// ═══════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════
 const T={
-  en:{home:"Home",heroTitle:"Crack WB JEE with",heroAI:"AI Explanations",heroSub:"90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024",statQ:"Questions",statYrs:"Years",statSub:"Subjects",statAI:"Powered",tabAll:"All (90)",filterAllYears:"All Years",filterAllDiff:"All Difficulty",easy:"Easy",medium:"Medium",hard:"Hard",filter:"Filter",progress:"Progress",correct:"Correct",wrong:"Wrong",prev:"Prev",next:"Next",revealAns:"Reveal Answer",showAns:"Show Answer",aiBtn:"🤖 AI Explanation",aiHeader:"🤖 AI EXPLANATION",aiPowered:"• Claude",loading:"Generating explanation...",noQ:"No questions found.\nTry different filters.",langNotice:"AI explanations in English.",qOf:"Question {c} of {t}",diffEasy:"Easy",diffMedium:"Medium",diffHard:"Hard"},
-  bn:{home:"হোম",heroTitle:"WB JEE জয় করুন",heroAI:"AI ব্যাখ্যা দিয়ে",heroSub:"৯০টি বিগত বছরের প্রশ্ন • পদার্থবিজ্ঞান • রসায়ন • গণিত • ২০১৫–২০২৪",statQ:"প্রশ্ন",statYrs:"বছর",statSub:"বিষয়",statAI:"AI চালিত",tabAll:"সব (৯০)",filterAllYears:"সব বছর",filterAllDiff:"সব কঠিনতা",easy:"সহজ",medium:"মাঝারি",hard:"কঠিন",filter:"ফিল্টার",progress:"অগ্রগতি",correct:"সঠিক",wrong:"ভুল",prev:"আগে",next:"পরে",revealAns:"উত্তর দেখুন",showAns:"উত্তর দেখুন",aiBtn:"🤖 AI ব্যাখ্যা",aiHeader:"🤖 AI ব্যাখ্যা",aiPowered:"• Claude",loading:"বাংলায় ব্যাখ্যা তৈরি হচ্ছে...",noQ:"কোনো প্রশ্ন পাওয়া যায়নি।\nঅন্য ফিল্টার চেষ্টা করুন।",langNotice:"AI ব্যাখ্যা বাংলায় তৈরি হবে।",qOf:"প্রশ্ন {c} / {t}",diffEasy:"সহজ",diffMedium:"মাঝারি",diffHard:"কঠিন"},
-  hi:{home:"होम",heroTitle:"WB JEE क्रैक करें",heroAI:"AI व्याख्या से",heroSub:"90 पिछले वर्षों के प्रश्न • भौतिकी • रसायन • गणित • 2015–2024",statQ:"प्रश्न",statYrs:"वर्ष",statSub:"विषय",statAI:"AI संचालित",tabAll:"सभी (90)",filterAllYears:"सभी वर्ष",filterAllDiff:"सभी कठिनाई",easy:"आसान",medium:"मध्यम",hard:"कठिन",filter:"फ़िल्टर",progress:"प्रगति",correct:"सही",wrong:"गलत",prev:"पिछला",next:"अगला",revealAns:"उत्तर देखें",showAns:"उत्तर देखें",aiBtn:"🤖 AI व्याख्या",aiHeader:"🤖 AI व्याख्या",aiPowered:"• Claude",loading:"हिन्दी में व्याख्या तैयार हो रही है...",noQ:"कोई प्रश्न नहीं मिला।\nदूसरे फ़िल्टर आज़माएं।",langNotice:"AI व्याख्या हिन्दी में होगी।",qOf:"प्रश्न {c} / {t}",diffEasy:"आसान",diffMedium:"मध्यम",diffHard:"कठिन"}
+  en:{heroTitle:"Crack WB JEE with",heroAI:"AI Explanations",heroSub:"90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024",statQ:"Questions",statYrs:"Years",statSub:"Subjects",statAI:"Powered",tabAll:"All (90)",filterAllYears:"All Years",filterAllDiff:"All Difficulty",easy:"Easy",medium:"Medium",hard:"Hard",filter:"Filter",progress:"Progress",correct:"Correct",wrong:"Wrong",prev:"Prev",next:"Next",revealAns:"Reveal Answer",showAns:"Show Answer",aiBtn:"🤖 AI Explanation",aiHeader:"🤖 AI EXPLANATION",aiPowered:"• Claude",loading:"Generating explanation...",noQ:"No questions found.\nTry different filters.",qOf:"Question {c} of {t}",diffEasy:"Easy",diffMedium:"Medium",diffHard:"Hard",goPro:"Go Pro — Unlimited →",upgradeBtn:"Upgrade to Pro",loginLink:"Log In / Sign Up",waTooltip:"Chat on WhatsApp",qLimitText:"Questions: {u}/{max} today",aiLimitText:"AI: {u}/{max} today"},
+  bn:{heroTitle:"WB JEE জয় করুন",heroAI:"AI ব্যাখ্যা দিয়ে",heroSub:"৯০টি বিগত বছরের প্রশ্ন • পদার্থবিজ্ঞান • রসায়ন • গণিত • ২০১৫–২০২৪",statQ:"প্রশ্ন",statYrs:"বছর",statSub:"বিষয়",statAI:"AI চালিত",tabAll:"সব (৯০)",filterAllYears:"সব বছর",filterAllDiff:"সব কঠিনতা",easy:"সহজ",medium:"মাঝারি",hard:"কঠিন",filter:"ফিল্টার",progress:"অগ্রগতি",correct:"সঠিক",wrong:"ভুল",prev:"আগে",next:"পরে",revealAns:"উত্তর দেখুন",showAns:"উত্তর দেখুন",aiBtn:"🤖 AI ব্যাখ্যা",aiHeader:"🤖 AI ব্যাখ্যা",aiPowered:"• Claude",loading:"বাংলায় ব্যাখ্যা তৈরি হচ্ছে...",noQ:"কোনো প্রশ্ন পাওয়া যায়নি।\nঅন্য ফিল্টার চেষ্টা করুন।",qOf:"প্রশ্ন {c} / {t}",diffEasy:"সহজ",diffMedium:"মাঝারি",diffHard:"কঠিন",goPro:"প্রো নিন — সীমাহীন →",upgradeBtn:"প্রো-তে আপগ্রেড করুন",loginLink:"লগ ইন / সাইন আপ",waTooltip:"WhatsApp-এ চ্যাট করুন",qLimitText:"প্রশ্ন: আজ {u}/{max}",aiLimitText:"AI: আজ {u}/{max}"},
+  hi:{heroTitle:"WB JEE क्रैक करें",heroAI:"AI व्याख्या से",heroSub:"90 पिछले वर्षों के प्रश्न • भौतिकी • रसायन • गणित • 2015–2024",statQ:"प्रश्न",statYrs:"वर्ष",statSub:"विषय",statAI:"AI संचालित",tabAll:"सभी (90)",filterAllYears:"सभी वर्ष",filterAllDiff:"सभी कठिनाई",easy:"आसान",medium:"मध्यम",hard:"कठिन",filter:"फ़िल्टर",progress:"प्रगति",correct:"सही",wrong:"गलत",prev:"पिछला",next:"अगला",revealAns:"उत्तर देखें",showAns:"उत्तर देखें",aiBtn:"🤖 AI व्याख्या",aiHeader:"🤖 AI व्याख्या",aiPowered:"• Claude",loading:"हिन्दी में व्याख्या तैयार हो रही है...",noQ:"कोई प्रश्न नहीं मिला।\nदूसरे फ़िल्टर आज़माएं।",qOf:"प्रश्न {c} / {t}",diffEasy:"आसान",diffMedium:"मध्यम",diffHard:"कठिन",goPro:"प्रो लें — असीमित →",upgradeBtn:"प्रो में अपग्रेड करें",loginLink:"लॉग इन / साइन अप",waTooltip:"WhatsApp पर चैट करें",qLimitText:"प्रश्न: आज {u}/{max}",aiLimitText:"AI: आज {u}/{max}"}
 };
 let currentLang='en';
 function t(k){return T[currentLang][k]||T.en[k]||k;}
@@ -184,178 +294,366 @@ function setLang(lang,el){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.body.className=lang!=='en'?'lang-'+lang:'';
-  document.querySelectorAll('[data-t]').forEach(el=>{const k=el.getAttribute('data-t');const v=T[lang][k]||T.en[k];if(v)el.textContent=v;});
-  const notice=document.getElementById('langNotice');
-  if(lang!=='en'){notice.classList.remove('hidden');document.getElementById('langNoticeText').textContent=T[lang].langNotice||'';}
-  else notice.classList.add('hidden');
-  if(filtered.length) renderQuestion();
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-t]').forEach(e=>{const k=e.getAttribute('data-t');const v=T[lang][k]||T.en[k];if(v!==undefined)e.textContent=v;});
+  updateLimitBar();
+  if(filtered.length)renderQuestion();
+  try{localStorage.setItem('wbjee_lang',lang);}catch(e){}
 }
 
-// ── QUESTIONS ──
+// ═══════════════════════════════════
+// AUTH & USER STATE
+// ═══════════════════════════════════
+let currentUser=null;
+const FREE_Q_LIMIT=10, FREE_AI_LIMIT=3;
+
+function loadAuth(){
+  try{
+    const u=localStorage.getItem('wbjee_user');
+    if(u)currentUser=JSON.parse(u);
+  }catch(e){}
+  updateAppNav();
+}
+
+function updateAppNav(){
+  const authBtns=document.getElementById('appAuthBtns');
+  const userArea=document.getElementById('appUserArea');
+  const avatar=document.getElementById('appAvatar');
+  const proBadge=document.getElementById('appProBadge');
+  const upgradeBtn=document.getElementById('appUpgradeBtn');
+  if(currentUser){
+    authBtns.classList.add('hidden');
+    userArea.classList.remove('hidden');
+    avatar.textContent=(currentUser.name||'U')[0].toUpperCase();
+    if(currentUser.isPro){proBadge.classList.remove('hidden');upgradeBtn.classList.add('hidden');}
+    else{proBadge.classList.add('hidden');upgradeBtn.classList.remove('hidden');}
+    updateLimitBar();
+  }else{
+    authBtns.classList.remove('hidden');
+    userArea.classList.add('hidden');
+    document.getElementById('limitBar').classList.add('hidden');
+  }
+}
+
+// ═══════════════════════════════════
+// DAILY USAGE TRACKING
+// ═══════════════════════════════════
+function getTodayKey(){return new Date().toISOString().split('T')[0];}
+function getUsage(){
+  try{
+    const raw=localStorage.getItem('wbjee_usage_'+getTodayKey());
+    return raw?JSON.parse(raw):{questions:0,ai:0};
+  }catch(e){return{questions:0,ai:0};}
+}
+function saveUsage(u){try{localStorage.setItem('wbjee_usage_'+getTodayKey(),JSON.stringify(u));}catch(e){}}
+function incrementUsage(type){const u=getUsage();u[type]=(u[type]||0)+1;saveUsage(u);updateLimitBar();}
+function canUseQuestion(){if(!currentUser||currentUser.isPro)return true;return getUsage().questions<FREE_Q_LIMIT;}
+function canUseAI(){if(!currentUser||currentUser.isPro)return true;return getUsage().ai<FREE_AI_LIMIT;}
+
+function updateLimitBar(){
+  if(!currentUser||currentUser.isPro){document.getElementById('limitBar').classList.add('hidden');return;}
+  document.getElementById('limitBar').classList.remove('hidden');
+  const u=getUsage();
+  // Q dots
+  let qDots='',aiDots='';
+  for(let i=0;i<FREE_Q_LIMIT;i++)qDots+=`<div class="limit-dot ${i<u.questions?'used':'free'}"></div>`;
+  for(let i=0;i<FREE_AI_LIMIT;i++)aiDots+=`<div class="limit-dot ${i<u.ai?'used':'free'}"></div>`;
+  document.getElementById('qDots').innerHTML=qDots;
+  document.getElementById('aiDots').innerHTML=aiDots;
+  document.getElementById('qLimitText').textContent=t('qLimitText').replace('{u}',u.questions).replace('{max}',FREE_Q_LIMIT);
+  document.getElementById('aiLimitText').textContent=t('aiLimitText').replace('{u}',u.ai).replace('{max}',FREE_AI_LIMIT);
+  document.getElementById('goPro')&&(document.getElementById('goPro').textContent=t('goPro'));
+}
+
+// ═══════════════════════════════════
+// PAYWALL
+// ═══════════════════════════════════
+function showPaywall(reason){
+  const modal=document.getElementById('paywallModal');
+  const title=document.getElementById('paywallTitle');
+  const desc=document.getElementById('paywallDesc');
+  if(reason==='ai_limit'){
+    title.textContent='AI Explanation Limit Reached';
+    desc.textContent=currentLang==='bn'?'আজকের AI ব্যাখ্যার সীমা শেষ হয়ে গেছে। সীমাহীন AI সমাধানের জন্য প্রো প্ল্যান নিন!':currentLang==='hi'?'आज की AI व्याख्या सीमा समाप्त हो गई है। असीमित AI समाधान के लिए प्रो प्लान लें!':'You\'ve used all 3 free AI explanations for today. Upgrade to Pro for unlimited AI solutions!';
+  }else if(reason==='q_limit'){
+    title.textContent='Daily Question Limit Reached';
+    desc.textContent=currentLang==='bn'?'আজকের প্রশ্নের সীমা শেষ। সীমাহীন অনুশীলনের জন্য প্রো প্ল্যান নিন!':currentLang==='hi'?'आज की प्रश्न सीमा समाप्त। असीमित अभ्यास के लिए प्रो लें!':'You\'ve reached your daily limit of 10 free questions. Upgrade to Pro for unlimited practice!';
+  }else{
+    title.textContent='Unlock Pro Features';
+    desc.textContent='Upgrade to Pro for unlimited questions, AI explanations in 3 languages, and more!';
+  }
+  modal.classList.remove('hidden');
+  document.body.style.overflow='hidden';
+  gtag('event','paywall_shown',{reason});
+}
+function closePaywall(){document.getElementById('paywallModal').classList.add('hidden');document.body.style.overflow='';}
+document.getElementById('paywallModal').addEventListener('click',function(e){if(e.target===this)closePaywall();});
+
+// ═══════════════════════════════════
+// RAZORPAY
+// ═══════════════════════════════════
+function handleProPayment(amount,plan){
+  closePaywall();
+  if(!currentUser){window.location.href='index.html';return;}
+  gtag('event','begin_checkout',{currency:'INR',value:amount,plan});
+  const options={
+    key:'rzp_test_XXXXXXXXXXXXXXXX', // Replace with your Razorpay Key ID
+    amount:amount*100,
+    currency:'INR',
+    name:'WB JEE PYQ Solver',
+    description:plan==='monthly'?'Pro Plan – ₹99/month':'Pro Plan – ₹799/year',
+    prefill:{name:currentUser.name||'',email:currentUser.email||''},
+    theme:{color:'#f59e0b'},
+    handler:function(response){
+      gtag('event','purchase',{currency:'INR',value:amount,transaction_id:response.razorpay_payment_id,plan});
+      // Mark user as Pro
+      let allUsers={};
+      try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
+      if(allUsers[currentUser.email]){allUsers[currentUser.email].isPro=true;allUsers[currentUser.email].plan=plan;localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));}
+      const updatedUser={...currentUser,isPro:true,plan};
+      currentUser=updatedUser;
+      try{localStorage.setItem('wbjee_user',JSON.stringify(updatedUser));}catch(e){}
+      updateAppNav();
+      alert('🎉 Payment successful! You are now a Pro member. Enjoy unlimited access!');
+    },
+    modal:{ondismiss:()=>gtag('event','checkout_abandoned',{value:amount})}
+  };
+  try{const rzp=new Razorpay(options);rzp.open();}
+  catch(e){alert('Payment gateway is in demo mode. Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID in the code.');}
+}
+
+// ═══════════════════════════════════
+// QUESTIONS DATA
+// ═══════════════════════════════════
 const ALL_QUESTIONS=[
-{id:1,year:2024,subject:"Physics",chapter:"Kinematics",difficulty:"Medium",text:"A particle moves along x-axis with position x = 6t² − 2t³. The particle comes to rest at time t =",options:["t = 0 only","t = 2 s only","t = 0 and t = 2 s","t = 1 s only"],answer:2,explanation:{en:"v = dx/dt = 12t − 6t²\nSet v = 0: 6t(2−t) = 0 → t = 0 or t = 2 s\n\n✅ Answer: t = 0 and t = 2 s\n💡 Differentiate position to get velocity, set to zero.",bn:"v = dx/dt = 12t − 6t²\nv = 0 রাখলে: 6t(2−t) = 0 → t = 0 বা t = 2 s\n\n✅ উত্তর: t = 0 এবং t = 2 s\n💡 অবস্থানের অবকলন করলে বেগ পাওয়া যায়।",hi:"v = dx/dt = 12t − 6t²\nv = 0 रखने पर: 6t(2−t) = 0 → t = 0 या t = 2 s\n\n✅ उत्तर: t = 0 और t = 2 s\n💡 स्थिति का अवकलन = वेग।"}},
-{id:2,year:2024,subject:"Physics",chapter:"Laws of Motion",difficulty:"Easy",text:"A block of mass 5 kg is on a rough surface with μ = 0.4. Minimum force to move it? (g = 10 m/s²)",options:["10 N","20 N","25 N","40 N"],answer:1,explanation:{en:"N = mg = 50 N\nLimiting friction = μN = 20 N\n\n✅ Answer: 20 N",bn:"N = mg = 50 N\nসীমান্ত ঘর্ষণ = μN = 20 N\n\n✅ উত্তর: 20 N",hi:"N = mg = 50 N\nसीमांत घर्षण = μN = 20 N\n\n✅ उत्तर: 20 N"}},
-{id:3,year:2023,subject:"Physics",chapter:"Work & Energy",difficulty:"Medium",text:"Body of mass 2 kg thrown upward with KE = 490 J. Height reached? (g = 9.8 m/s²)",options:["50 m","25 m","20 m","10 m"],answer:1,explanation:{en:"KE = mgh → h = 490/(2×9.8) = 25 m\n\n✅ Answer: 25 m\n💡 Energy conservation: KE = PE at top.",bn:"KE = mgh → h = 25 m\n\n✅ উত্তর: 25 m",hi:"KE = mgh → h = 25 m\n\n✅ उत्तर: 25 m"}},
+{id:1,year:2024,subject:"Physics",chapter:"Kinematics",difficulty:"Medium",text:"A particle moves along x-axis with position x = 6t² − 2t³. The particle comes to rest at time t =",options:["t = 0 only","t = 2 s only","t = 0 and t = 2 s","t = 1 s only"],answer:2,explanation:{en:"v = dx/dt = 12t − 6t²\nSet v = 0: 6t(2−t) = 0 → t = 0 or t = 2 s\n\n✅ Answer: t = 0 and t = 2 s\n💡 Differentiate position to get velocity, set to zero.",bn:"v = dx/dt = 12t − 6t²\nv = 0 রাখলে: 6t(2−t) = 0 → t = 0 বা t = 2 s\n\n✅ উত্তর: t = 0 এবং t = 2 s\n💡 অবস্থানের অবকলন = বেগ। শূন্য রাখুন।",hi:"v = dx/dt = 12t − 6t²\nv = 0 रखें: 6t(2−t) = 0 → t = 0 या t = 2 s\n\n✅ उत्तर: t = 0 और t = 2 s\n💡 स्थिति का अवकलन = वेग। शून्य रखें।"}},
+{id:2,year:2024,subject:"Physics",chapter:"Laws of Motion",difficulty:"Easy",text:"A block of mass 5 kg is on a rough surface with μ = 0.4. Minimum force to move it? (g = 10 m/s²)",options:["10 N","20 N","25 N","40 N"],answer:1,explanation:{en:"N = mg = 50 N\nLimiting friction = μN = 0.4×50 = 20 N\n\n✅ Answer: 20 N",bn:"N = 50 N, সীমান্ত ঘর্ষণ = 20 N\n\n✅ উত্তর: 20 N",hi:"N = 50 N, सीमांत घर्षण = 20 N\n\n✅ उत्तर: 20 N"}},
+{id:3,year:2023,subject:"Physics",chapter:"Work & Energy",difficulty:"Medium",text:"Body of mass 2 kg thrown upward with KE = 490 J. Height reached? (g = 9.8)",options:["50 m","25 m","20 m","10 m"],answer:1,explanation:{en:"KE = mgh → h = 490/(2×9.8) = 25 m\n\n✅ Answer: 25 m",bn:"KE = mgh → h = 25 m\n\n✅ উত্তর: 25 m",hi:"KE = mgh → h = 25 m\n\n✅ उत्तर: 25 m"}},
 {id:4,year:2023,subject:"Physics",chapter:"Gravitation",difficulty:"Easy",text:"Value of g at height equal to Earth's radius R above the surface:",options:["g/2","g/4","g/3","2g"],answer:1,explanation:{en:"g' = gR²/(2R)² = g/4\n\n✅ Answer: g/4",bn:"g' = g/4\n\n✅ উত্তর: g/4",hi:"g' = g/4\n\n✅ उत्तर: g/4"}},
-{id:5,year:2022,subject:"Physics",chapter:"Waves",difficulty:"Medium",text:"Speed of sound at 0°C is 332 m/s. Speed at 100°C is approximately:",options:["372 m/s","386 m/s","366 m/s","400 m/s"],answer:1,explanation:{en:"v ∝ √T → v₂ = 332×√(373/273) ≈ 386 m/s\n\n✅ Answer: 386 m/s\n💡 Convert °C to Kelvin first!",bn:"v ∝ √T → v₂ ≈ 386 m/s\n\n✅ উত্তর: 386 m/s\n💡 সেলসিয়াসকে কেলভিনে রূপান্তর করুন।",hi:"v ∝ √T → v₂ ≈ 386 m/s\n\n✅ उत्तर: 386 m/s\n💡 सेल्सियस को केल्विन में बदलें।"}},
-{id:6,year:2022,subject:"Physics",chapter:"Current Electricity",difficulty:"Easy",text:"Resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance =",options:["1 Ω","11 Ω","0.5 Ω","2 Ω"],answer:0,explanation:{en:"1/R = 1/2+1/3+1/6 = 1 → R = 1 Ω\n\n✅ Answer: 1 Ω",bn:"1/R = 1 → R = 1 Ω\n\n✅ উত্তর: 1 Ω",hi:"1/R = 1 → R = 1 Ω\n\n✅ उत्तर: 1 Ω"}},
-{id:7,year:2021,subject:"Physics",chapter:"Optics",difficulty:"Medium",text:"Convex lens f = 20 cm. Image at v = 60 cm. Object distance u =",options:["30 cm","40 cm","15 cm","60 cm"],answer:0,explanation:{en:"1/v − 1/u = 1/f → u = 30 cm\n\n✅ Answer: 30 cm",bn:"লেন্স সূত্র থেকে u = 30 cm\n\n✅ উত্তর: 30 cm",hi:"लेंस सूत्र से u = 30 cm\n\n✅ उत्तर: 30 cm"}},
-{id:8,year:2021,subject:"Physics",chapter:"Magnetism",difficulty:"Hard",text:"Proton (m=1.67×10⁻²⁷ kg, q=1.6×10⁻¹⁹ C) at 10⁶ m/s in B=0.5 T. Radius =",options:["0.021 m","0.21 m","2.1 m","0.0021 m"],answer:0,explanation:{en:"r = mv/qB = 0.021 m\n\n✅ Answer: 0.021 m\n💡 r = mv/qB — asked every year!",bn:"r = mv/qB = 0.021 m\n\n✅ উত্তর: 0.021 m",hi:"r = mv/qB = 0.021 m\n\n✅ उत्तर: 0.021 m"}},
-{id:9,year:2020,subject:"Physics",chapter:"Thermodynamics",difficulty:"Medium",text:"In isothermal process, internal energy of ideal gas:",options:["Increases","Decreases","Remains constant","Becomes zero"],answer:2,explanation:{en:"T = constant → U ∝ T → ΔU = 0\n\n✅ Answer: Remains constant",bn:"T ধ্রুবক → ΔU = 0\n\n✅ উত্তর: অপরিবর্তিত",hi:"T स्थिर → ΔU = 0\n\n✅ उत्तर: अपरिवर्तित"}},
-{id:10,year:2019,subject:"Physics",chapter:"Modern Physics",difficulty:"Hard",text:"de Broglie wavelength of mass m, velocity v is:",options:["h/mv","mv/h","h×mv","m/hv"],answer:0,explanation:{en:"λ = h/mv\n\n✅ Answer: h/mv",bn:"λ = h/mv\n\n✅ উত্তর: h/mv",hi:"λ = h/mv\n\n✅ उत्तर: h/mv"}},
-{id:11,year:2024,subject:"Physics",chapter:"Projectile Motion",difficulty:"Medium",text:"Ball projected horizontally at 20 m/s from 80 m cliff. Time to hit ground: (g=10)",options:["4 s","8 s","2 s","6 s"],answer:0,explanation:{en:"80 = ½×10×t² → t = 4 s\n\n✅ Answer: 4 s",bn:"80 = ½×10×t² → t = 4 s\n\n✅ উত্তর: 4 s",hi:"80 = ½×10×t² → t = 4 s\n\n✅ उत्तर: 4 s"}},
-{id:12,year:2023,subject:"Physics",chapter:"Rotational Motion",difficulty:"Hard",text:"Moment of inertia of solid sphere of mass M, radius R about diameter:",options:["2MR²/5","MR²/2","MR²","2MR²/3"],answer:0,explanation:{en:"I = (2/5)MR²\n\n✅ Answer: 2MR²/5",bn:"I = (2/5)MR²\n\n✅ উত্তর: 2MR²/5",hi:"I = (2/5)MR²\n\n✅ उत्तर: 2MR²/5"}},
-{id:13,year:2022,subject:"Physics",chapter:"Fluid Mechanics",difficulty:"Medium",text:"Body floats with 60% volume submerged. Its density: (ρ_water = 1000 kg/m³)",options:["600 kg/m³","400 kg/m³","1200 kg/m³","800 kg/m³"],answer:0,explanation:{en:"ρ_body = 0.6×1000 = 600 kg/m³\n\n✅ Answer: 600 kg/m³",bn:"ρ_body = 600 kg/m³\n\n✅ উত্তর: 600 kg/m³",hi:"ρ_body = 600 kg/m³\n\n✅ उत्तर: 600 kg/m³"}},
-{id:14,year:2021,subject:"Physics",chapter:"SHM",difficulty:"Medium",text:"Simple pendulum of length 1 m. Time period: (g=10, π²≈10)",options:["2 s","1 s","4 s","0.5 s"],answer:0,explanation:{en:"T = 2π√(1/10) ≈ 2 s\n\n✅ Answer: 2 s",bn:"T ≈ 2 s\n\n✅ উত্তর: 2 s",hi:"T ≈ 2 s\n\n✅ उत्तर: 2 s"}},
-{id:15,year:2020,subject:"Physics",chapter:"EM Induction",difficulty:"Hard",text:"Coil: 100 turns, A=0.01 m², B drops 2T→0 in 0.5 s. EMF =",options:["4 V","2 V","1 V","8 V"],answer:0,explanation:{en:"EMF = N×A×ΔB/Δt = 100×0.01×2/0.5 = 4 V\n\n✅ Answer: 4 V",bn:"EMF = 4 V\n\n✅ উত্তর: 4 V",hi:"EMF = 4 V\n\n✅ उत्तर: 4 V"}},
-{id:16,year:2019,subject:"Physics",chapter:"Nuclear Physics",difficulty:"Medium",text:"Half-life = 10 days. Fraction remaining after 30 days:",options:["1/8","1/4","1/2","1/16"],answer:0,explanation:{en:"3 half-lives → (1/2)³ = 1/8\n\n✅ Answer: 1/8",bn:"3 অর্ধজীবন → 1/8\n\n✅ উত্তর: 1/8",hi:"3 अर्धायु → 1/8\n\n✅ उत्तर: 1/8"}},
-{id:17,year:2018,subject:"Physics",chapter:"Electrostatics",difficulty:"Medium",text:"Charges +2μC and +8μC 30 cm apart. Neutral point from +2μC:",options:["10 cm","20 cm","15 cm","25 cm"],answer:0,explanation:{en:"2/x² = 8/(0.3−x)² → x = 10 cm\n\n✅ Answer: 10 cm",bn:"x = 10 cm\n\n✅ উত্তর: 10 cm",hi:"x = 10 cm\n\n✅ उत्तर: 10 cm"}},
+{id:5,year:2022,subject:"Physics",chapter:"Waves",difficulty:"Medium",text:"Speed of sound at 0°C is 332 m/s. Speed at 100°C ≈",options:["372 m/s","386 m/s","366 m/s","400 m/s"],answer:1,explanation:{en:"v ∝ √T → v₂ = 332×√(373/273) ≈ 386 m/s\n\n✅ Answer: 386 m/s",bn:"v ∝ √T → 386 m/s\n\n✅ উত্তর: 386 m/s",hi:"v ∝ √T → 386 m/s\n\n✅ उत्तर: 386 m/s"}},
+{id:6,year:2022,subject:"Physics",chapter:"Current Electricity",difficulty:"Easy",text:"Resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance =",options:["1 Ω","11 Ω","0.5 Ω","2 Ω"],answer:0,explanation:{en:"1/R = 1/2+1/3+1/6 = 1 → R = 1 Ω\n\n✅ Answer: 1 Ω",bn:"R = 1 Ω\n\n✅ উত্তর: 1 Ω",hi:"R = 1 Ω\n\n✅ उत्तर: 1 Ω"}},
+{id:7,year:2021,subject:"Physics",chapter:"Optics",difficulty:"Medium",text:"Convex lens f=20cm, image at v=60cm. Object distance u=",options:["30 cm","40 cm","15 cm","60 cm"],answer:0,explanation:{en:"1/v−1/u=1/f → u=30 cm\n\n✅ Answer: 30 cm",bn:"u = 30 cm\n\n✅ উত্তর: 30 cm",hi:"u = 30 cm\n\n✅ उत्तर: 30 cm"}},
+{id:8,year:2021,subject:"Physics",chapter:"Magnetism",difficulty:"Hard",text:"Proton (m=1.67×10⁻²⁷kg, q=1.6×10⁻¹⁹C) at 10⁶m/s in B=0.5T. Radius =",options:["0.021 m","0.21 m","2.1 m","0.0021 m"],answer:0,explanation:{en:"r = mv/qB = 0.021 m\n\n✅ Answer: 0.021 m\n💡 r=mv/qB — tested every year!",bn:"r = mv/qB = 0.021 m\n\n✅ উত্তর: 0.021 m",hi:"r = mv/qB = 0.021 m\n\n✅ उत्तर: 0.021 m"}},
+{id:9,year:2020,subject:"Physics",chapter:"Thermodynamics",difficulty:"Medium",text:"In isothermal process, internal energy of ideal gas:",options:["Increases","Decreases","Remains constant","Becomes zero"],answer:2,explanation:{en:"T=constant → U∝T → ΔU=0\n\n✅ Answer: Remains constant",bn:"সমতাপ: ΔU = 0\n\n✅ উত্তর: অপরিবর্তিত",hi:"समतापी: ΔU = 0\n\n✅ उत्तर: अपरिवर्तित"}},
+{id:10,year:2019,subject:"Physics",chapter:"Modern Physics",difficulty:"Hard",text:"de Broglie wavelength of mass m, velocity v:",options:["h/mv","mv/h","h×mv","m/hv"],answer:0,explanation:{en:"λ = h/mv\n\n✅ Answer: h/mv",bn:"λ = h/mv\n\n✅ উত্তর: h/mv",hi:"λ = h/mv\n\n✅ उत्तर: h/mv"}},
+{id:11,year:2024,subject:"Physics",chapter:"Projectile Motion",difficulty:"Medium",text:"Ball projected horizontally at 20m/s from 80m cliff. Time to hit ground: (g=10)",options:["4 s","8 s","2 s","6 s"],answer:0,explanation:{en:"80=½×10×t² → t=4s\n\n✅ Answer: 4 s",bn:"t = 4 s\n\n✅ উত্তর: 4 s",hi:"t = 4 s\n\n✅ उत्तर: 4 s"}},
+{id:12,year:2023,subject:"Physics",chapter:"Rotational Motion",difficulty:"Hard",text:"Moment of inertia of solid sphere (mass M, radius R) about diameter:",options:["2MR²/5","MR²/2","MR²","2MR²/3"],answer:0,explanation:{en:"I = (2/5)MR²\n\n✅ Answer: 2MR²/5",bn:"I = (2/5)MR²\n\n✅ উত্তর: 2MR²/5",hi:"I = (2/5)MR²\n\n✅ उत्तर: 2MR²/5"}},
+{id:13,year:2022,subject:"Physics",chapter:"Fluid Mechanics",difficulty:"Medium",text:"Body floats with 60% volume submerged. Its density: (ρ_water=1000)",options:["600 kg/m³","400 kg/m³","1200 kg/m³","800 kg/m³"],answer:0,explanation:{en:"ρ_body = 0.6×1000 = 600 kg/m³\n\n✅ Answer: 600 kg/m³",bn:"ρ = 600 kg/m³\n\n✅ উত্তর: 600 kg/m³",hi:"ρ = 600 kg/m³\n\n✅ उत्तर: 600 kg/m³"}},
+{id:14,year:2021,subject:"Physics",chapter:"SHM",difficulty:"Medium",text:"Simple pendulum, length 1m. Time period: (g=10, π²≈10)",options:["2 s","1 s","4 s","0.5 s"],answer:0,explanation:{en:"T=2π√(L/g)≈2s\n\n✅ Answer: 2 s",bn:"T ≈ 2 s\n\n✅ উত্তর: 2 s",hi:"T ≈ 2 s\n\n✅ उत्तर: 2 s"}},
+{id:15,year:2020,subject:"Physics",chapter:"EM Induction",difficulty:"Hard",text:"Coil: 100 turns, A=0.01m², B drops 2T→0 in 0.5s. EMF=",options:["4 V","2 V","1 V","8 V"],answer:0,explanation:{en:"EMF=N×A×ΔB/Δt=100×0.01×2/0.5=4V\n\n✅ Answer: 4 V",bn:"EMF = 4 V\n\n✅ উত্তর: 4 V",hi:"EMF = 4 V\n\n✅ उत्तर: 4 V"}},
+{id:16,year:2019,subject:"Physics",chapter:"Nuclear Physics",difficulty:"Medium",text:"Half-life=10 days. Fraction remaining after 30 days:",options:["1/8","1/4","1/2","1/16"],answer:0,explanation:{en:"3 half-lives → (1/2)³=1/8\n\n✅ Answer: 1/8",bn:"১/৮\n\n✅ উত্তর: 1/8",hi:"1/8\n\n✅ उत्तर: 1/8"}},
+{id:17,year:2018,subject:"Physics",chapter:"Electrostatics",difficulty:"Medium",text:"Charges +2μC and +8μC are 30cm apart. Neutral point from +2μC:",options:["10 cm","20 cm","15 cm","25 cm"],answer:0,explanation:{en:"2/x²=8/(0.3−x)² → x=10cm\n\n✅ Answer: 10 cm",bn:"x = 10 cm\n\n✅ উত্তর: 10 cm",hi:"x = 10 cm\n\n✅ उत्तर: 10 cm"}},
 {id:18,year:2017,subject:"Physics",chapter:"Capacitors",difficulty:"Medium",text:"Energy stored in capacitor C charged to voltage V:",options:["½CV²","CV²","2CV²","CV"],answer:0,explanation:{en:"E = ½CV²\n\n✅ Answer: ½CV²",bn:"E = ½CV²\n\n✅ উত্তর: ½CV²",hi:"E = ½CV²\n\n✅ उत्तर: ½CV²"}},
-{id:19,year:2016,subject:"Physics",chapter:"Semiconductors",difficulty:"Easy",text:"In p-n junction, depletion layer width in reverse bias:",options:["Increases","Decreases","Remains same","Becomes zero"],answer:0,explanation:{en:"Reverse bias → depletion layer widens.\n\n✅ Answer: Increases",bn:"বিপরীত বায়াস → অবক্ষয় স্তর চওড়া হয়।\n\n✅ উত্তর: বৃদ্ধি পায়",hi:"विपरीत बायस → अवक्षय परत चौड़ी होती है।\n\n✅ उत्तर: बढ़ती है"}},
-{id:20,year:2015,subject:"Physics",chapter:"Ray Optics",difficulty:"Easy",text:"Critical angle for medium with refractive index √2:",options:["45°","30°","60°","90°"],answer:0,explanation:{en:"sin C = 1/√2 → C = 45°\n\n✅ Answer: 45°",bn:"sin C = 1/√2 → C = 45°\n\n✅ উত্তর: 45°",hi:"sin C = 1/√2 → C = 45°\n\n✅ उत्तर: 45°"}},
-{id:21,year:2024,subject:"Physics",chapter:"Units & Dimensions",difficulty:"Easy",text:"Dimensions of pressure:",options:["[ML⁻¹T⁻²]","[MLT⁻²]","[ML²T⁻²]","[ML⁻²T⁻²]"],answer:0,explanation:{en:"P = F/A → [ML⁻¹T⁻²]\n\n✅ Answer: [ML⁻¹T⁻²]",bn:"P = F/A → [ML⁻¹T⁻²]\n\n✅ উত্তর: [ML⁻¹T⁻²]",hi:"P = F/A → [ML⁻¹T⁻²]\n\n✅ उत्तर: [ML⁻¹T⁻²]"}},
-{id:22,year:2023,subject:"Physics",chapter:"Circular Motion",difficulty:"Medium",text:"Car 1000 kg, circle r=50 m at 10 m/s. Centripetal force =",options:["2000 N","1000 N","500 N","4000 N"],answer:0,explanation:{en:"F = mv²/r = 1000×100/50 = 2000 N\n\n✅ Answer: 2000 N",bn:"F = 2000 N\n\n✅ উত্তর: 2000 N",hi:"F = 2000 N\n\n✅ उत्तर: 2000 N"}},
-{id:23,year:2022,subject:"Physics",chapter:"Elasticity",difficulty:"Medium",text:"Young's modulus = 2×10¹¹ Pa. Strain = 0.001. Stress =",options:["2×10⁸ Pa","2×10¹⁴ Pa","2×10⁵ Pa","2×10² Pa"],answer:0,explanation:{en:"Stress = Y×Strain = 2×10⁸ Pa\n\n✅ Answer: 2×10⁸ Pa",bn:"পীড়ন = 2×10⁸ Pa\n\n✅ উত্তর: 2×10⁸ Pa",hi:"प्रतिबल = 2×10⁸ Pa\n\n✅ उत्तर: 2×10⁸ Pa"}},
-{id:24,year:2021,subject:"Physics",chapter:"EM Waves",difficulty:"Easy",text:"Which EM wave has the highest frequency?",options:["Gamma rays","X-rays","UV rays","Microwaves"],answer:0,explanation:{en:"Gamma > X-ray > UV > Visible > IR > Microwave\n\n✅ Answer: Gamma rays",bn:"গামা সর্বোচ্চ কম্পাঙ্কের।\n\n✅ উত্তর: Gamma rays",hi:"गामा की आवृत्ति सर्वाधिक।\n\n✅ उत्तर: Gamma rays"}},
-{id:25,year:2020,subject:"Physics",chapter:"Photoelectric Effect",difficulty:"Medium",text:"Work function = 2 eV. Threshold frequency: (h=6.6×10⁻³⁴ Js)",options:["4.8×10¹⁴ Hz","9.6×10¹⁴ Hz","2.4×10¹⁴ Hz","1.2×10¹⁴ Hz"],answer:0,explanation:{en:"ν₀ = φ/h = 3.2×10⁻¹⁹/6.6×10⁻³⁴ ≈ 4.8×10¹⁴ Hz\n\n✅ Answer: 4.8×10¹⁴ Hz\n💡 1 eV = 1.6×10⁻¹⁹ J",bn:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ উত্তর: 4.8×10¹⁴ Hz",hi:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ उत्तर: 4.8×10¹⁴ Hz"}},
-{id:26,year:2019,subject:"Physics",chapter:"AC Circuits",difficulty:"Hard",text:"In LCR circuit at resonance, impedance =",options:["R only","√(R²+X²)","X_L − X_C","Zero"],answer:0,explanation:{en:"Resonance: X_L = X_C → Z = R\n\n✅ Answer: R only",bn:"অনুনাদে: Z = R\n\n✅ উত্তর: শুধু R",hi:"अनुनाद पर: Z = R\n\n✅ उत्तर: केवल R"}},
-{id:27,year:2018,subject:"Physics",chapter:"Thermal Expansion",difficulty:"Easy",text:"Rod: 2 m at 20°C, α=1.2×10⁻⁵/°C. Length at 70°C:",options:["2.0012 m","2.012 m","2.12 m","2.001 m"],answer:0,explanation:{en:"ΔL = 2×1.2×10⁻⁵×50 = 0.0012 m → 2.0012 m\n\n✅ Answer: 2.0012 m",bn:"ΔL = 0.0012 m → 2.0012 m\n\n✅ উত্তর: 2.0012 m",hi:"ΔL = 0.0012 m → 2.0012 m\n\n✅ उत्तर: 2.0012 m"}},
-{id:28,year:2017,subject:"Physics",chapter:"Interference",difficulty:"Hard",text:"In YDSE β = λD/d. If d is halved, β becomes:",options:["2β","β/2","4β","β"],answer:0,explanation:{en:"β ∝ 1/d → d/2 → β doubles\n\n✅ Answer: 2β",bn:"β ∝ 1/d → d অর্ধেক → β দ্বিগুণ\n\n✅ উত্তর: 2β",hi:"β ∝ 1/d → d आधा → β दोगुना\n\n✅ उत्तर: 2β"}},
-{id:29,year:2016,subject:"Physics",chapter:"Viscosity",difficulty:"Medium",text:"Terminal velocity of sphere in viscous fluid ∝",options:["r²","r³","r","r⁴"],answer:0,explanation:{en:"Stokes: v_t ∝ r²\n\n✅ Answer: r²",bn:"স্টোকস: v_t ∝ r²\n\n✅ উত্তর: r²",hi:"स्टोक्स: v_t ∝ r²\n\n✅ उत्तर: r²"}},
-{id:30,year:2015,subject:"Physics",chapter:"Kinetic Theory",difficulty:"Medium",text:"RMS speed of gas molecules ∝",options:["√T","T","T²","1/√T"],answer:0,explanation:{en:"v_rms = √(3RT/M) ∝ √T\n\n✅ Answer: √T",bn:"v_rms ∝ √T\n\n✅ উত্তর: √T",hi:"v_rms ∝ √T\n\n✅ उत्तर: √T"}},
+{id:19,year:2016,subject:"Physics",chapter:"Semiconductors",difficulty:"Easy",text:"In p-n junction, depletion layer width in reverse bias:",options:["Increases","Decreases","Remains same","Becomes zero"],answer:0,explanation:{en:"Reverse bias → depletion layer widens.\n\n✅ Answer: Increases",bn:"বিপরীত বায়াস → অবক্ষয় স্তর চওড়া হয়\n\n✅ উত্তর: বৃদ্ধি পায়",hi:"विपरीत बायस → अवक्षय परत चौड़ी\n\n✅ उत्तर: बढ़ती है"}},
+{id:20,year:2015,subject:"Physics",chapter:"Ray Optics",difficulty:"Easy",text:"Critical angle for medium with refractive index √2:",options:["45°","30°","60°","90°"],answer:0,explanation:{en:"sinC=1/√2 → C=45°\n\n✅ Answer: 45°",bn:"C = 45°\n\n✅ উত্তর: 45°",hi:"C = 45°\n\n✅ उत्तर: 45°"}},
+{id:21,year:2024,subject:"Physics",chapter:"Units & Dimensions",difficulty:"Easy",text:"Dimensions of pressure:",options:["[ML⁻¹T⁻²]","[MLT⁻²]","[ML²T⁻²]","[ML⁻²T⁻²]"],answer:0,explanation:{en:"P=F/A → [ML⁻¹T⁻²]\n\n✅ Answer: [ML⁻¹T⁻²]",bn:"[ML⁻¹T⁻²]\n\n✅ উত্তর: [ML⁻¹T⁻²]",hi:"[ML⁻¹T⁻²]\n\n✅ उत्तर: [ML⁻¹T⁻²]"}},
+{id:22,year:2023,subject:"Physics",chapter:"Circular Motion",difficulty:"Medium",text:"Car 1000kg, circle r=50m at 10m/s. Centripetal force=",options:["2000 N","1000 N","500 N","4000 N"],answer:0,explanation:{en:"F=mv²/r=1000×100/50=2000N\n\n✅ Answer: 2000 N",bn:"F = 2000 N\n\n✅ উত্তর: 2000 N",hi:"F = 2000 N\n\n✅ उत्तर: 2000 N"}},
+{id:23,year:2022,subject:"Physics",chapter:"Elasticity",difficulty:"Medium",text:"Y=2×10¹¹Pa. Strain=0.001. Stress=",options:["2×10⁸ Pa","2×10¹⁴ Pa","2×10⁵ Pa","2×10² Pa"],answer:0,explanation:{en:"Stress=Y×Strain=2×10⁸Pa\n\n✅ Answer: 2×10⁸ Pa",bn:"পীড়ন = 2×10⁸ Pa\n\n✅ উত্তর: 2×10⁸ Pa",hi:"प्रतिबल = 2×10⁸ Pa\n\n✅ उत्तर: 2×10⁸ Pa"}},
+{id:24,year:2021,subject:"Physics",chapter:"EM Waves",difficulty:"Easy",text:"Which EM wave has the highest frequency?",options:["Gamma rays","X-rays","UV rays","Microwaves"],answer:0,explanation:{en:"Gamma > X-ray > UV > Visible > IR > Microwave\n\n✅ Answer: Gamma rays",bn:"গামা > এক্স-রে > UV...\n\n✅ উত্তর: Gamma rays",hi:"गामा सर्वाधिक आवृत्ति\n\n✅ उत्तर: Gamma rays"}},
+{id:25,year:2020,subject:"Physics",chapter:"Photoelectric Effect",difficulty:"Medium",text:"Work function=2eV. Threshold frequency: (h=6.6×10⁻³⁴)",options:["4.8×10¹⁴ Hz","9.6×10¹⁴ Hz","2.4×10¹⁴ Hz","1.2×10¹⁴ Hz"],answer:0,explanation:{en:"ν₀=φ/h=3.2×10⁻¹⁹/6.6×10⁻³⁴≈4.8×10¹⁴Hz\n\n✅ Answer: 4.8×10¹⁴ Hz\n💡 1eV=1.6×10⁻¹⁹J",bn:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ উত্তর: 4.8×10¹⁴ Hz",hi:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ उत्तर: 4.8×10¹⁴ Hz"}},
+{id:26,year:2019,subject:"Physics",chapter:"AC Circuits",difficulty:"Hard",text:"In LCR circuit at resonance, impedance=",options:["R only","√(R²+X²)","X_L−X_C","Zero"],answer:0,explanation:{en:"Resonance: X_L=X_C → Z=R\n\n✅ Answer: R only",bn:"অনুনাদে Z = R\n\n✅ উত্তর: শুধু R",hi:"अनुनाद पर Z = R\n\n✅ उत्तर: केवल R"}},
+{id:27,year:2018,subject:"Physics",chapter:"Thermal Expansion",difficulty:"Easy",text:"Rod 2m at 20°C, α=1.2×10⁻⁵/°C. Length at 70°C:",options:["2.0012 m","2.012 m","2.12 m","2.001 m"],answer:0,explanation:{en:"ΔL=Lα ΔT=0.0012m → 2.0012m\n\n✅ Answer: 2.0012 m",bn:"L = 2.0012 m\n\n✅ উত্তর: 2.0012 m",hi:"L = 2.0012 m\n\n✅ उत्तर: 2.0012 m"}},
+{id:28,year:2017,subject:"Physics",chapter:"Interference",difficulty:"Hard",text:"YDSE: β=λD/d. If d halved, β becomes:",options:["2β","β/2","4β","β"],answer:0,explanation:{en:"β∝1/d → d/2 → β doubles\n\n✅ Answer: 2β",bn:"β দ্বিগুণ\n\n✅ উত্তর: 2β",hi:"β दोगुना\n\n✅ उत्तर: 2β"}},
+{id:29,year:2016,subject:"Physics",chapter:"Viscosity",difficulty:"Medium",text:"Terminal velocity of sphere in viscous fluid ∝",options:["r²","r³","r","r⁴"],answer:0,explanation:{en:"Stokes: v_t∝r²\n\n✅ Answer: r²",bn:"v_t ∝ r²\n\n✅ উত্তর: r²",hi:"v_t ∝ r²\n\n✅ उत्तर: r²"}},
+{id:30,year:2015,subject:"Physics",chapter:"Kinetic Theory",difficulty:"Medium",text:"RMS speed of gas molecules ∝",options:["√T","T","T²","1/√T"],answer:0,explanation:{en:"v_rms=√(3RT/M) ∝ √T\n\n✅ Answer: √T",bn:"v_rms ∝ √T\n\n✅ উত্তর: √T",hi:"v_rms ∝ √T\n\n✅ उत्तर: √T"}},
 // CHEMISTRY
-{id:31,year:2024,subject:"Chemistry",chapter:"Periodic Table",difficulty:"Easy",text:"Which element has the highest electronegativity?",options:["Oxygen","Nitrogen","Fluorine","Chlorine"],answer:2,explanation:{en:"F > O > N > Cl. Fluorine = 3.98\n\n✅ Answer: Fluorine",bn:"F > O > N > Cl\n\n✅ উত্তর: Fluorine",hi:"F > O > N > Cl\n\n✅ उत्तर: Fluorine"}},
-{id:32,year:2024,subject:"Chemistry",chapter:"Chemical Bonding",difficulty:"Medium",text:"Shape of NH₃ molecule:",options:["Trigonal planar","Pyramidal","Tetrahedral","Linear"],answer:1,explanation:{en:"3 bond pairs + 1 lone pair → Pyramidal, angle ≈ 107°\n\n✅ Answer: Pyramidal",bn:"৩ বন্ধন + ১ একাকী জোড় → পিরামিডাকার\n\n✅ উত্তর: Pyramidal",hi:"3 बंध + 1 एकाकी जोड़ी → पिरामिडनुमा\n\n✅ उत्तर: Pyramidal"}},
-{id:33,year:2023,subject:"Chemistry",chapter:"Mole Concept",difficulty:"Medium",text:"Number of molecules in 22.4 L of gas at STP:",options:["6.022×10²²","6.022×10²³","3.011×10²³","1.2×10²⁴"],answer:1,explanation:{en:"22.4 L = 1 mol = 6.022×10²³ molecules\n\n✅ Answer: 6.022×10²³",bn:"22.4 L = 1 মোল = 6.022×10²³\n\n✅ উত্তর: 6.022×10²³",hi:"22.4 L = 1 मोल = 6.022×10²³\n\n✅ उत्तर: 6.022×10²³"}},
-{id:34,year:2023,subject:"Chemistry",chapter:"Redox Reactions",difficulty:"Medium",text:"In MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺, manganese is:",options:["Oxidised","Reduced","Neither","Acts as catalyst"],answer:1,explanation:{en:"Mn: +7 → +2 (decrease) = Reduction\n\n✅ Answer: Reduced",bn:"Mn: +7 → +2 = বিজারণ\n\n✅ উত্তর: Reduced",hi:"Mn: +7 → +2 = अपचयन\n\n✅ उत्तर: Reduced"}},
-{id:35,year:2022,subject:"Chemistry",chapter:"Chemical Equilibrium",difficulty:"Hard",text:"For A ⇌ B, Kc = 4, [A] = 2 mol/L. [B] =",options:["8 mol/L","2 mol/L","0.5 mol/L","4 mol/L"],answer:0,explanation:{en:"[B] = Kc×[A] = 4×2 = 8 mol/L\n\n✅ Answer: 8 mol/L",bn:"[B] = 8 mol/L\n\n✅ উত্তর: 8 mol/L",hi:"[B] = 8 mol/L\n\n✅ उत्तर: 8 mol/L"}},
-{id:36,year:2022,subject:"Chemistry",chapter:"Acids & Bases",difficulty:"Easy",text:"pH of [H⁺] = 10⁻³ mol/L:",options:["3","−3","11","7"],answer:0,explanation:{en:"pH = −log(10⁻³) = 3\n\n✅ Answer: 3",bn:"pH = 3\n\n✅ উত্তর: 3",hi:"pH = 3\n\n✅ उत्तर: 3"}},
-{id:37,year:2021,subject:"Chemistry",chapter:"Organic Chemistry",difficulty:"Medium",text:"Which is NOT an isomer of C₄H₁₀?",options:["n-Butane","Isobutane","2-methylpropane","Cyclobutane"],answer:3,explanation:{en:"Cyclobutane = C₄H₈ (different formula)\n\n✅ Answer: Cyclobutane",bn:"Cyclobutane = C₄H₈ (ভিন্ন সংকেত)\n\n✅ উত্তর: Cyclobutane",hi:"Cyclobutane = C₄H₈ (अलग सूत्र)\n\n✅ उत्तर: Cyclobutane"}},
-{id:38,year:2021,subject:"Chemistry",chapter:"Electrochemistry",difficulty:"Hard",text:"E°cell: E°cathode=+0.34V, E°anode=−0.76V:",options:["1.10 V","0.42 V","−0.42 V","−1.10 V"],answer:0,explanation:{en:"E°cell = 0.34−(−0.76) = 1.10 V\n\n✅ Answer: 1.10 V",bn:"E°cell = 1.10 V\n\n✅ উত্তর: 1.10 V",hi:"E°cell = 1.10 V\n\n✅ उत्तर: 1.10 V"}},
-{id:39,year:2020,subject:"Chemistry",chapter:"Gaseous State",difficulty:"Easy",text:"At constant T, pressure doubles, volume:",options:["Doubles","Halves","Remains same","Four times"],answer:1,explanation:{en:"Boyle's Law: PV = const → V halves\n\n✅ Answer: Halves",bn:"বয়েলের সূত্র: V অর্ধেক\n\n✅ উত্তর: অর্ধেক",hi:"बॉयल नियम: V आधा\n\n✅ उत्तर: आधा"}},
-{id:40,year:2019,subject:"Chemistry",chapter:"Nuclear Chemistry",difficulty:"Medium",text:"²³⁸U → ²³⁴Th + X. X is:",options:["Neutron","Proton","Alpha particle","Beta particle"],answer:2,explanation:{en:"A=4, Z=2 → Alpha (⁴He)\n\n✅ Answer: Alpha particle",bn:"A=4, Z=2 → আলফা\n\n✅ উত্তর: Alpha particle",hi:"A=4, Z=2 → अल्फा\n\n✅ उत्तर: Alpha particle"}},
-{id:41,year:2024,subject:"Chemistry",chapter:"Atomic Structure",difficulty:"Medium",text:"Number of orbitals in third shell (n=3):",options:["9","3","6","18"],answer:0,explanation:{en:"3s(1)+3p(3)+3d(5) = 9\n\n✅ Answer: 9\n💡 n² orbitals per shell.",bn:"3s+3p+3d = 9 অরবিটাল\n\n✅ উত্তর: 9",hi:"3s+3p+3d = 9 कक्षक\n\n✅ उत्तर: 9"}},
-{id:42,year:2023,subject:"Chemistry",chapter:"s-Block Elements",difficulty:"Easy",text:"Which alkali metal reacts most vigorously with water?",options:["Li","Na","K","Cs"],answer:3,explanation:{en:"Reactivity: Cs > Rb > K > Na > Li\n\n✅ Answer: Cs",bn:"Cs > Rb > K > Na > Li\n\n✅ উত্তর: Cs",hi:"Cs > Rb > K > Na > Li\n\n✅ उत्तर: Cs"}},
-{id:43,year:2023,subject:"Chemistry",chapter:"Thermochemistry",difficulty:"Medium",text:"ΔH = −200 kJ, ΔS = −100 J/K at 300 K. ΔG =",options:["−170 kJ","−230 kJ","−200 kJ","170 kJ"],answer:0,explanation:{en:"ΔG = −200−(300×−0.1) = −170 kJ\n\n✅ Answer: −170 kJ\n💡 Convert ΔS to kJ first!",bn:"ΔG = −170 kJ\n\n✅ উত্তর: −170 kJ",hi:"ΔG = −170 kJ\n\n✅ उत्तर: −170 kJ"}},
-{id:44,year:2022,subject:"Chemistry",chapter:"Coordination Compounds",difficulty:"Hard",text:"IUPAC name of [Cu(NH₃)₄]²⁺:",options:["Tetraamminecopper(II)","Tetraamminecopper(I)","Copper tetraamine","Amminecopper(IV)"],answer:0,explanation:{en:"NH₃×4 = tetraammine, Cu²⁺ = copper(II)\n\n✅ Answer: Tetraamminecopper(II)",bn:"Tetraamminecopper(II)\n\n✅ উত্তর: Tetraamminecopper(II)",hi:"Tetraamminecopper(II)\n\n✅ उत्तर: Tetraamminecopper(II)"}},
-{id:45,year:2021,subject:"Chemistry",chapter:"Solutions",difficulty:"Medium",text:"Osmotic pressure of 0.1 M glucose at 27°C: (R=0.082)",options:["2.46 atm","0.82 atm","24.6 atm","0.246 atm"],answer:0,explanation:{en:"π = MRT = 0.1×0.082×300 = 2.46 atm\n\n✅ Answer: 2.46 atm",bn:"π = 2.46 atm\n\n✅ উত্তর: 2.46 atm",hi:"π = 2.46 atm\n\n✅ उत्तर: 2.46 atm"}},
-{id:46,year:2020,subject:"Chemistry",chapter:"p-Block Elements",difficulty:"Easy",text:"Which is most acidic?",options:["HClO₄","HClO₃","HClO₂","HClO"],answer:0,explanation:{en:"More O atoms → more acidic. HClO₄ is most acidic.\n\n✅ Answer: HClO₄",bn:"বেশি O → বেশি অম্লীয়। HClO₄ সবচেয়ে বেশি।\n\n✅ উত্তর: HClO₄",hi:"अधिक O → अधिक अम्लीय। HClO₄ सबसे अम्लीय।\n\n✅ उत्तर: HClO₄"}},
-{id:47,year:2019,subject:"Chemistry",chapter:"Polymers",difficulty:"Easy",text:"Teflon is a polymer of:",options:["Tetrafluoroethylene","Ethylene","Propylene","Vinyl chloride"],answer:0,explanation:{en:"Teflon = PTFE, monomer = CF₂=CF₂\n\n✅ Answer: Tetrafluoroethylene",bn:"Teflon = PTFE, একক = CF₂=CF₂\n\n✅ উত্তর: Tetrafluoroethylene",hi:"Teflon = PTFE, एकलक = CF₂=CF₂\n\n✅ उत्तर: Tetrafluoroethylene"}},
-{id:48,year:2018,subject:"Chemistry",chapter:"Biomolecules",difficulty:"Easy",text:"The monomer of proteins is:",options:["Amino acids","Glucose","Nucleotides","Fatty acids"],answer:0,explanation:{en:"Proteins = amino acids linked by peptide bonds.\n\n✅ Answer: Amino acids",bn:"প্রোটিন = অ্যামিনো অ্যাসিডের বহুলক\n\n✅ উত্তর: Amino acids",hi:"प्रोटीन = अमीनो अम्ल का बहुलक\n\n✅ उत्तर: Amino acids"}},
-{id:49,year:2017,subject:"Chemistry",chapter:"Surface Chemistry",difficulty:"Medium",text:"Which is an example of emulsion?",options:["Milk","Smoke","Fog","Pumice"],answer:0,explanation:{en:"Emulsion = liquid in liquid. Milk = fat in water.\n\n✅ Answer: Milk",bn:"ইমালশন = তরলে তরল। দুধ = পানিতে চর্বি।\n\n✅ উত্তর: Milk",hi:"इमल्शन = द्रव में द्रव। दूध = जल में वसा।\n\n✅ उत्तर: Milk"}},
-{id:50,year:2016,subject:"Chemistry",chapter:"Isomerism",difficulty:"Medium",text:"Which exhibits geometrical isomerism?",options:["2-butene","Propene","Ethylene","Acetylene"],answer:0,explanation:{en:"2-Butene has cis and trans forms.\n\n✅ Answer: 2-butene",bn:"2-বিউটিনে সিস-ট্রান্স সমাণু সম্ভব।\n\n✅ উত্তর: 2-butene",hi:"2-ब्यूटीन में सिस-ट्रांस संभव।\n\n✅ उत्तर: 2-butene"}},
-{id:51,year:2015,subject:"Chemistry",chapter:"Haloalkanes",difficulty:"Medium",text:"SN2 reaction is favoured by:",options:["Primary alkyl halide","Tertiary alkyl halide","Secondary alkyl halide","Aryl halide"],answer:0,explanation:{en:"SN2 needs least steric hindrance → Primary.\n\n✅ Answer: Primary alkyl halide",bn:"SN2-এ ন্যূনতম বাধা → প্রাথমিক\n\n✅ উত্তর: Primary alkyl halide",hi:"SN2 में कम बाधा → प्राथमिक\n\n✅ उत्तर: Primary alkyl halide"}},
-{id:52,year:2024,subject:"Chemistry",chapter:"d-Block Elements",difficulty:"Medium",text:"Which transition metal has the highest melting point?",options:["Tungsten (W)","Iron (Fe)","Copper (Cu)","Chromium (Cr)"],answer:0,explanation:{en:"Tungsten: 3422°C — highest of all metals.\n\n✅ Answer: Tungsten",bn:"টাংস্টেন: 3422°C — সর্বোচ্চ\n\n✅ উত্তর: Tungsten",hi:"टंगस्टन: 3422°C — सर्वाधिक\n\n✅ उत्तर: Tungsten"}},
-{id:53,year:2023,subject:"Chemistry",chapter:"Aldehydes & Ketones",difficulty:"Medium",text:"Which test distinguishes aldehyde from ketone?",options:["Tollens' test","Iodoform test","Lucas test","Benedict's test"],answer:0,explanation:{en:"Tollens' test: silver mirror — positive for aldehyde only.\n\n✅ Answer: Tollens' test",bn:"টলেন্স পরীক্ষা: শুধু অ্যালডিহাইডে ধনাত্মক।\n\n✅ উত্তর: Tollens' test",hi:"टॉलेन परीक्षण: केवल एल्डिहाइड के लिए सकारात्मक।\n\n✅ उत्तर: Tollens' test"}},
-{id:54,year:2022,subject:"Chemistry",chapter:"Carboxylic Acids",difficulty:"Easy",text:"Acetic acid + NaOH forms:",options:["Sodium acetate + water","Sodium acetate + H₂","Ethanol + NaCl","Ethyl acetate"],answer:0,explanation:{en:"CH₃COOH + NaOH → CH₃COONa + H₂O\n\n✅ Answer: Sodium acetate + water",bn:"CH₃COONa + H₂O\n\n✅ উত্তর: সোডিয়াম অ্যাসিটেট + জল",hi:"CH₃COONa + H₂O\n\n✅ उत्तर: सोडियम एसीटेट + जल"}},
-{id:55,year:2021,subject:"Chemistry",chapter:"Amines",difficulty:"Medium",text:"Highest basic strength in aqueous solution:",options:["Methylamine","Ammonia","Dimethylamine","Trimethylamine"],answer:2,explanation:{en:"Dimethylamine > Methylamine > Trimethylamine > NH₃\n\n✅ Answer: Dimethylamine",bn:"Dimethylamine সবচেয়ে বেশি ক্ষারীয়\n\n✅ উত্তর: Dimethylamine",hi:"Dimethylamine सबसे अधिक क्षारीय\n\n✅ उत्तर: Dimethylamine"}},
-{id:56,year:2020,subject:"Chemistry",chapter:"Solid State",difficulty:"Hard",text:"Atoms per unit cell in FCC:",options:["4","2","1","8"],answer:0,explanation:{en:"8×(1/8) + 6×(1/2) = 4\n\n✅ Answer: 4\n💡 BCC=2, SC=1",bn:"8×(1/8) + 6×(1/2) = 4\n\n✅ উত্তর: 4",hi:"8×(1/8) + 6×(1/2) = 4\n\n✅ उत्तर: 4"}},
-{id:57,year:2019,subject:"Chemistry",chapter:"Chemical Kinetics",difficulty:"Medium",text:"For first-order reaction, half-life t½ =",options:["0.693/k","k/0.693","1/k","0.693k"],answer:0,explanation:{en:"t½ = 0.693/k (independent of concentration)\n\n✅ Answer: 0.693/k",bn:"t½ = 0.693/k (ঘনত্ব নিরপেক্ষ)\n\n✅ উত্তর: 0.693/k",hi:"t½ = 0.693/k (सांद्रता निरपेक्ष)\n\n✅ उत्तर: 0.693/k"}},
-{id:58,year:2018,subject:"Chemistry",chapter:"Colligative Properties",difficulty:"Medium",text:"Elevation in boiling point depends on:",options:["Number of solute particles","Nature of solute","Nature of solvent","Size of solute"],answer:0,explanation:{en:"Colligative properties depend only on number of particles.\n\n✅ Answer: Number of solute particles",bn:"অবনমন ধর্ম শুধু কণার সংখ্যার উপর নির্ভরশীল।\n\n✅ উত্তর: দ্রাবক কণার সংখ্যা",hi:"अणुसंख्य गुण केवल कणों की संख्या पर।\n\n✅ उत्तर: विलेय कणों की संख्या"}},
-{id:59,year:2017,subject:"Chemistry",chapter:"Metallurgy",difficulty:"Easy",text:"Heating ore in limited air to remove volatile impurities:",options:["Calcination","Roasting","Smelting","Refining"],answer:0,explanation:{en:"Calcination: limited air → removes CO₂, H₂O.\n\n✅ Answer: Calcination",bn:"ক্যালসিনেশন: সীমিত বায়ু → CO₂, H₂O সরে যায়।\n\n✅ উত্তর: Calcination",hi:"कैल्सिनेशन: सीमित वायु → CO₂, H₂O हटता है।\n\n✅ उत्तर: Calcination"}},
-{id:60,year:2016,subject:"Chemistry",chapter:"Environmental Chemistry",difficulty:"Easy",text:"Main cause of acid rain:",options:["SO₂ and NO₂","CO₂","O₃","CH₄"],answer:0,explanation:{en:"SO₂ + H₂O → H₂SO₃; NOₓ → HNO₃\n\n✅ Answer: SO₂ and NO₂",bn:"SO₂ এবং NO₂ অ্যাসিড বৃষ্টির কারণ।\n\n✅ উত্তর: SO₂ and NO₂",hi:"SO₂ और NO₂ अम्ल वर्षा का कारण।\n\n✅ उत्तर: SO₂ and NO₂"}},
+{id:31,year:2024,subject:"Chemistry",chapter:"Periodic Table",difficulty:"Easy",text:"Which element has the highest electronegativity?",options:["Oxygen","Nitrogen","Fluorine","Chlorine"],answer:2,explanation:{en:"F>O>N>Cl. Fluorine=3.98\n\n✅ Answer: Fluorine",bn:"ফ্লোরিন সবচেয়ে বেশি তড়িৎ-ঋণাত্মক\n\n✅ উত্তর: Fluorine",hi:"फ्लोरीन सबसे विद्युत-ऋणात्मक\n\n✅ उत्तर: Fluorine"}},
+{id:32,year:2024,subject:"Chemistry",chapter:"Chemical Bonding",difficulty:"Medium",text:"Shape of NH₃ molecule:",options:["Trigonal planar","Pyramidal","Tetrahedral","Linear"],answer:1,explanation:{en:"3 bond pairs + 1 lone pair → Pyramidal, angle≈107°\n\n✅ Answer: Pyramidal",bn:"৩ বন্ধন + ১ একাকী জোড় → পিরামিডাকার\n\n✅ উত্তর: Pyramidal",hi:"3 बंध + 1 एकाकी → पिरामिडनुमा\n\n✅ उत्तर: Pyramidal"}},
+{id:33,year:2023,subject:"Chemistry",chapter:"Mole Concept",difficulty:"Medium",text:"Molecules in 22.4L gas at STP:",options:["6.022×10²²","6.022×10²³","3.011×10²³","1.2×10²⁴"],answer:1,explanation:{en:"22.4L=1mol=6.022×10²³\n\n✅ Answer: 6.022×10²³",bn:"22.4L = 1 মোল = 6.022×10²³\n\n✅ উত্তর: 6.022×10²³",hi:"22.4L=1mol=6.022×10²³\n\n✅ उत्तर: 6.022×10²³"}},
+{id:34,year:2023,subject:"Chemistry",chapter:"Redox Reactions",difficulty:"Medium",text:"In MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺, manganese is:",options:["Oxidised","Reduced","Neither","Acts as catalyst"],answer:1,explanation:{en:"Mn: +7→+2 (decrease) = Reduction\n\n✅ Answer: Reduced",bn:"Mn: +7→+2 = বিজারণ\n\n✅ উত্তর: Reduced",hi:"Mn: +7→+2 = अपचयन\n\n✅ उत्तर: Reduced"}},
+{id:35,year:2022,subject:"Chemistry",chapter:"Chemical Equilibrium",difficulty:"Hard",text:"For A⇌B, Kc=4, [A]=2 mol/L. [B]=",options:["8 mol/L","2 mol/L","0.5 mol/L","4 mol/L"],answer:0,explanation:{en:"[B]=Kc×[A]=8 mol/L\n\n✅ Answer: 8 mol/L",bn:"[B] = 8 mol/L\n\n✅ উত্তর: 8 mol/L",hi:"[B] = 8 mol/L\n\n✅ उत्तर: 8 mol/L"}},
+{id:36,year:2022,subject:"Chemistry",chapter:"Acids & Bases",difficulty:"Easy",text:"pH of [H⁺]=10⁻³ mol/L:",options:["3","−3","11","7"],answer:0,explanation:{en:"pH=−log(10⁻³)=3\n\n✅ Answer: 3",bn:"pH = 3\n\n✅ উত্তর: 3",hi:"pH = 3\n\n✅ उत्तर: 3"}},
+{id:37,year:2021,subject:"Chemistry",chapter:"Organic Chemistry",difficulty:"Medium",text:"Which is NOT an isomer of C₄H₁₀?",options:["n-Butane","Isobutane","2-methylpropane","Cyclobutane"],answer:3,explanation:{en:"Cyclobutane=C₄H₈ (different formula)\n\n✅ Answer: Cyclobutane",bn:"Cyclobutane = C₄H₈\n\n✅ উত্তর: Cyclobutane",hi:"Cyclobutane=C₄H₈\n\n✅ उत्तर: Cyclobutane"}},
+{id:38,year:2021,subject:"Chemistry",chapter:"Electrochemistry",difficulty:"Hard",text:"E°cell: E°cathode=+0.34V, E°anode=−0.76V:",options:["1.10 V","0.42 V","−0.42 V","−1.10 V"],answer:0,explanation:{en:"E°cell=0.34−(−0.76)=1.10V\n\n✅ Answer: 1.10 V",bn:"E°cell = 1.10 V\n\n✅ উত্তর: 1.10 V",hi:"E°cell = 1.10 V\n\n✅ उत्तर: 1.10 V"}},
+{id:39,year:2020,subject:"Chemistry",chapter:"Gaseous State",difficulty:"Easy",text:"At constant T, pressure doubles, volume:",options:["Doubles","Halves","Remains same","Four times"],answer:1,explanation:{en:"Boyle's Law: PV=const → V halves\n\n✅ Answer: Halves",bn:"বয়েলের সূত্র: V অর্ধেক\n\n✅ উত্তর: Halves",hi:"बॉयल नियम: V आधा\n\n✅ उत्तर: Halves"}},
+{id:40,year:2019,subject:"Chemistry",chapter:"Nuclear Chemistry",difficulty:"Medium",text:"²³⁸U→²³⁴Th+X. X is:",options:["Neutron","Proton","Alpha particle","Beta particle"],answer:2,explanation:{en:"A=4, Z=2 → Alpha (⁴He)\n\n✅ Answer: Alpha particle",bn:"A=4, Z=2 → আলফা কণা\n\n✅ উত্তর: Alpha particle",hi:"A=4, Z=2 → अल्फा\n\n✅ उत्तर: Alpha particle"}},
+{id:41,year:2024,subject:"Chemistry",chapter:"Atomic Structure",difficulty:"Medium",text:"Number of orbitals in third shell (n=3):",options:["9","3","6","18"],answer:0,explanation:{en:"3s+3p+3d=1+3+5=9\n\n✅ Answer: 9",bn:"3s+3p+3d = 9\n\n✅ উত্তর: 9",hi:"3s+3p+3d=9\n\n✅ उत्तर: 9"}},
+{id:42,year:2023,subject:"Chemistry",chapter:"s-Block Elements",difficulty:"Easy",text:"Which alkali metal reacts most vigorously with water?",options:["Li","Na","K","Cs"],answer:3,explanation:{en:"Reactivity: Cs>Rb>K>Na>Li\n\n✅ Answer: Cs",bn:"সক্রিয়তা: Cs>Rb>K>Na>Li\n\n✅ উত্তর: Cs",hi:"सक्रियता: Cs>Rb>K>Na>Li\n\n✅ उत्तर: Cs"}},
+{id:43,year:2023,subject:"Chemistry",chapter:"Thermochemistry",difficulty:"Medium",text:"ΔH=−200kJ, ΔS=−100J/K at 300K. ΔG=",options:["−170 kJ","−230 kJ","−200 kJ","170 kJ"],answer:0,explanation:{en:"ΔG=ΔH−TΔS=−200+30=−170kJ\n\n✅ Answer: −170 kJ",bn:"ΔG = −170 kJ\n\n✅ উত্তর: −170 kJ",hi:"ΔG = −170 kJ\n\n✅ उत्तर: −170 kJ"}},
+{id:44,year:2022,subject:"Chemistry",chapter:"Coordination Compounds",difficulty:"Hard",text:"IUPAC name of [Cu(NH₃)₄]²⁺:",options:["Tetraamminecopper(II)","Tetraamminecopper(I)","Copper tetraamine","Amminecopper(IV)"],answer:0,explanation:{en:"Tetraamminecopper(II)\n\n✅ Answer: Tetraamminecopper(II)",bn:"Tetraamminecopper(II)\n\n✅ উত্তর: Tetraamminecopper(II)",hi:"Tetraamminecopper(II)\n\n✅ उत्तर: Tetraamminecopper(II)"}},
+{id:45,year:2021,subject:"Chemistry",chapter:"Solutions",difficulty:"Medium",text:"Osmotic pressure of 0.1M glucose at 27°C: (R=0.082)",options:["2.46 atm","0.82 atm","24.6 atm","0.246 atm"],answer:0,explanation:{en:"π=MRT=0.1×0.082×300=2.46atm\n\n✅ Answer: 2.46 atm",bn:"π = 2.46 atm\n\n✅ উত্তর: 2.46 atm",hi:"π = 2.46 atm\n\n✅ उत्तर: 2.46 atm"}},
+{id:46,year:2020,subject:"Chemistry",chapter:"p-Block Elements",difficulty:"Easy",text:"Which is most acidic?",options:["HClO₄","HClO₃","HClO₂","HClO"],answer:0,explanation:{en:"More O atoms=more acidic. HClO₄ most acidic.\n\n✅ Answer: HClO₄",bn:"বেশি O → বেশি অম্লীয়. HClO₄\n\n✅ উত্তর: HClO₄",hi:"अधिक O → अधिक अम्लीय. HClO₄\n\n✅ उत्तर: HClO₄"}},
+{id:47,year:2019,subject:"Chemistry",chapter:"Polymers",difficulty:"Easy",text:"Teflon is a polymer of:",options:["Tetrafluoroethylene","Ethylene","Propylene","Vinyl chloride"],answer:0,explanation:{en:"Teflon=PTFE, monomer=CF₂=CF₂\n\n✅ Answer: Tetrafluoroethylene",bn:"একক = CF₂=CF₂\n\n✅ উত্তর: Tetrafluoroethylene",hi:"एकलक=CF₂=CF₂\n\n✅ उत्तर: Tetrafluoroethylene"}},
+{id:48,year:2018,subject:"Chemistry",chapter:"Biomolecules",difficulty:"Easy",text:"The monomer of proteins is:",options:["Amino acids","Glucose","Nucleotides","Fatty acids"],answer:0,explanation:{en:"Proteins=polymers of amino acids\n\n✅ Answer: Amino acids",bn:"প্রোটিন = অ্যামিনো অ্যাসিডের বহুলক\n\n✅ উত্তর: Amino acids",hi:"प्रोटीन=अमीनो अम्ल का बहुलक\n\n✅ उत्तर: Amino acids"}},
+{id:49,year:2017,subject:"Chemistry",chapter:"Surface Chemistry",difficulty:"Medium",text:"Which is an example of emulsion?",options:["Milk","Smoke","Fog","Pumice"],answer:0,explanation:{en:"Emulsion=liquid in liquid. Milk=fat in water.\n\n✅ Answer: Milk",bn:"ইমালশন=তরলে তরল. দুধ\n\n✅ উত্তর: Milk",hi:"इमल्शन=द्रव में द्रव. दूध\n\n✅ उत्तर: Milk"}},
+{id:50,year:2016,subject:"Chemistry",chapter:"Isomerism",difficulty:"Medium",text:"Which exhibits geometrical isomerism?",options:["2-butene","Propene","Ethylene","Acetylene"],answer:0,explanation:{en:"2-Butene: cis and trans forms possible.\n\n✅ Answer: 2-butene",bn:"2-বিউটিন: সিস-ট্রান্স সম্ভব\n\n✅ উত্তর: 2-butene",hi:"2-ब्यूटीन: सिस-ट्रांस संभव\n\n✅ उत्तर: 2-butene"}},
+{id:51,year:2015,subject:"Chemistry",chapter:"Haloalkanes",difficulty:"Medium",text:"SN2 reaction is favoured by:",options:["Primary alkyl halide","Tertiary alkyl halide","Secondary alkyl halide","Aryl halide"],answer:0,explanation:{en:"SN2 needs least steric hindrance→Primary\n\n✅ Answer: Primary alkyl halide",bn:"SN2→ প্রাথমিক অ্যালকাইল হ্যালাইড\n\n✅ উত্তর: Primary",hi:"SN2→प्राथमिक एल्किल हैलाइड\n\n✅ उत्तर: Primary"}},
+{id:52,year:2024,subject:"Chemistry",chapter:"d-Block Elements",difficulty:"Medium",text:"Which transition metal has the highest melting point?",options:["Tungsten (W)","Iron (Fe)","Copper (Cu)","Chromium (Cr)"],answer:0,explanation:{en:"Tungsten: 3422°C—highest of all metals.\n\n✅ Answer: Tungsten",bn:"টাংস্টেন: 3422°C\n\n✅ উত্তর: Tungsten",hi:"टंगस्टन: 3422°C\n\n✅ उत्तर: Tungsten"}},
+{id:53,year:2023,subject:"Chemistry",chapter:"Aldehydes & Ketones",difficulty:"Medium",text:"Which test distinguishes aldehyde from ketone?",options:["Tollens' test","Iodoform test","Lucas test","Benedict's test"],answer:0,explanation:{en:"Tollens': silver mirror—positive for aldehyde only.\n\n✅ Answer: Tollens' test",bn:"টলেন্স পরীক্ষা\n\n✅ উত্তর: Tollens' test",hi:"टॉलेन परीक्षण\n\n✅ उत्तर: Tollens' test"}},
+{id:54,year:2022,subject:"Chemistry",chapter:"Carboxylic Acids",difficulty:"Easy",text:"Acetic acid + NaOH forms:",options:["Sodium acetate + water","Sodium acetate + H₂","Ethanol + NaCl","Ethyl acetate"],answer:0,explanation:{en:"CH₃COOH+NaOH→CH₃COONa+H₂O\n\n✅ Answer: Sodium acetate + water",bn:"CH₃COONa + H₂O\n\n✅ উত্তর: সোডিয়াম অ্যাসিটেট + জল",hi:"CH₃COONa+H₂O\n\n✅ उत्तर: सोडियम एसीटेट+जल"}},
+{id:55,year:2021,subject:"Chemistry",chapter:"Amines",difficulty:"Medium",text:"Highest basic strength in aqueous solution:",options:["Methylamine","Ammonia","Dimethylamine","Trimethylamine"],answer:2,explanation:{en:"Dimethylamine>Methylamine>Trimethylamine>NH₃\n\n✅ Answer: Dimethylamine",bn:"Dimethylamine সবচেয়ে বেশি ক্ষারীয়\n\n✅ উত্তর: Dimethylamine",hi:"Dimethylamine सर्वाधिक क्षारीय\n\n✅ उत्तर: Dimethylamine"}},
+{id:56,year:2020,subject:"Chemistry",chapter:"Solid State",difficulty:"Hard",text:"Atoms per unit cell in FCC:",options:["4","2","1","8"],answer:0,explanation:{en:"8×(1/8)+6×(1/2)=4\n\n✅ Answer: 4\n💡 BCC=2, SC=1",bn:"4\n\n✅ উত্তর: 4",hi:"4\n\n✅ उत्तर: 4"}},
+{id:57,year:2019,subject:"Chemistry",chapter:"Chemical Kinetics",difficulty:"Medium",text:"For first-order reaction, half-life t½=",options:["0.693/k","k/0.693","1/k","0.693k"],answer:0,explanation:{en:"t½=0.693/k (independent of concentration)\n\n✅ Answer: 0.693/k",bn:"t½=0.693/k\n\n✅ উত্তর: 0.693/k",hi:"t½=0.693/k\n\n✅ उत्तर: 0.693/k"}},
+{id:58,year:2018,subject:"Chemistry",chapter:"Colligative Properties",difficulty:"Medium",text:"Elevation in boiling point depends on:",options:["Number of solute particles","Nature of solute","Nature of solvent","Size of solute"],answer:0,explanation:{en:"Colligative properties→number of particles only\n\n✅ Answer: Number of solute particles",bn:"কণার সংখ্যার উপর নির্ভরশীল\n\n✅ উত্তর: কণার সংখ্যা",hi:"केवल कणों की संख्या\n\n✅ उत्तर: विलेय कणों की संख्या"}},
+{id:59,year:2017,subject:"Chemistry",chapter:"Metallurgy",difficulty:"Easy",text:"Heating ore in limited air to remove volatile impurities:",options:["Calcination","Roasting","Smelting","Refining"],answer:0,explanation:{en:"Calcination: limited air→removes CO₂, H₂O\n\n✅ Answer: Calcination",bn:"ক্যালসিনেশন\n\n✅ উত্তর: Calcination",hi:"कैल्सिनेशन\n\n✅ उत्तर: Calcination"}},
+{id:60,year:2016,subject:"Chemistry",chapter:"Environmental Chemistry",difficulty:"Easy",text:"Main cause of acid rain:",options:["SO₂ and NO₂","CO₂","O₃","CH₄"],answer:0,explanation:{en:"SO₂+H₂O→H₂SO₃; NOₓ→HNO₃\n\n✅ Answer: SO₂ and NO₂",bn:"SO₂ এবং NO₂\n\n✅ উত্তর: SO₂ and NO₂",hi:"SO₂ और NO₂\n\n✅ उत्तर: SO₂ and NO₂"}},
 // MATHEMATICS
-{id:61,year:2024,subject:"Mathematics",chapter:"Quadratic Equations",difficulty:"Easy",text:"If α, β are roots of x² − 5x + 6 = 0, then α² + β² =",options:["25","13","12","37"],answer:1,explanation:{en:"α+β=5, αβ=6\nα²+β² = 25−12 = 13\n\n✅ Answer: 13",bn:"α+β=5, αβ=6 → α²+β² = 13\n\n✅ উত্তর: 13",hi:"α+β=5, αβ=6 → α²+β² = 13\n\n✅ उत्तर: 13"}},
-{id:62,year:2024,subject:"Mathematics",chapter:"Trigonometry",difficulty:"Easy",text:"sin 30° + cos 60° − tan 45° =",options:["0","1","−1","0.5"],answer:0,explanation:{en:"0.5 + 0.5 − 1 = 0\n\n✅ Answer: 0",bn:"0.5 + 0.5 − 1 = 0\n\n✅ উত্তর: 0",hi:"0.5 + 0.5 − 1 = 0\n\n✅ उत्तर: 0"}},
-{id:63,year:2023,subject:"Mathematics",chapter:"Matrices",difficulty:"Medium",text:"If A = [[2,0],[0,3]], A² =",options:["[[4,0],[0,9]]","[[4,0],[0,6]]","[[2,0],[0,9]]","[[4,9],[0,0]]"],answer:0,explanation:{en:"Diagonal: square each element → [[4,0],[0,9]]\n\n✅ Answer: [[4,0],[0,9]]",bn:"কর্ণ ম্যাট্রিক্স → [[4,0],[0,9]]\n\n✅ উত্তর: [[4,0],[0,9]]",hi:"विकर्ण → [[4,0],[0,9]]\n\n✅ उत्तर: [[4,0],[0,9]]"}},
-{id:64,year:2023,subject:"Mathematics",chapter:"Probability",difficulty:"Medium",text:"A die is thrown. P(prime number) =",options:["1/2","1/3","2/3","1/6"],answer:0,explanation:{en:"Primes: {2,3,5} = 3/6 = 1/2\n\n✅ Answer: 1/2\n💡 1 is NOT prime!",bn:"মৌলিক: {2,3,5} → P = 1/2\n\n✅ উত্তর: 1/2\n💡 1 মৌলিক নয়!",hi:"अभाज्य: {2,3,5} → P = 1/2\n\n✅ उत्तर: 1/2\n💡 1 अभाज्य नहीं!"}},
-{id:65,year:2022,subject:"Mathematics",chapter:"Differentiation",difficulty:"Medium",text:"y = x³ + 2x² − 5x + 1. dy/dx at x = 1:",options:["3","2","1","0"],answer:1,explanation:{en:"dy/dx = 3x²+4x−5; at x=1: 2\n\n✅ Answer: 2",bn:"dy/dx = 3x²+4x−5; x=1 এ: 2\n\n✅ উত্তর: 2",hi:"dy/dx = 3x²+4x−5; x=1 पर: 2\n\n✅ उत्तर: 2"}},
-{id:66,year:2022,subject:"Mathematics",chapter:"Integration",difficulty:"Hard",text:"∫(2x + 3) dx =",options:["x² + 3x + C","2x² + 3x + C","x² + 3 + C","2x + C"],answer:0,explanation:{en:"= x² + 3x + C\n\n✅ Answer: x² + 3x + C\n💡 Always add C!",bn:"= x² + 3x + C\n\n✅ উত্তর: x² + 3x + C\n💡 সর্বদা C যোগ করুন!",hi:"= x² + 3x + C\n\n✅ उत्तर: x² + 3x + C\n💡 हमेशा C जोड़ें!"}},
-{id:67,year:2021,subject:"Mathematics",chapter:"Permutation & Combination",difficulty:"Medium",text:"Arrangements of letters of 'INDIA':",options:["120","60","24","30"],answer:1,explanation:{en:"5!/2! = 60 (I repeated)\n\n✅ Answer: 60",bn:"5!/2! = 60 (I দুবার)\n\n✅ উত্তর: 60",hi:"5!/2! = 60 (I दो बार)\n\n✅ उत्तर: 60"}},
-{id:68,year:2021,subject:"Mathematics",chapter:"Straight Lines",difficulty:"Medium",text:"Slope of line parallel to 3x − 4y + 7 = 0:",options:["3/4","−4/3","4/3","−3/4"],answer:0,explanation:{en:"slope = 3/4; parallel → same slope\n\n✅ Answer: 3/4",bn:"ঢাল = 3/4\n\n✅ উত্তর: 3/4",hi:"ढाल = 3/4\n\n✅ उत्तर: 3/4"}},
-{id:69,year:2020,subject:"Mathematics",chapter:"Sets & Functions",difficulty:"Easy",text:"A = {1,2,3}, B = {2,3,4}. A ∩ B =",options:["{2,3}","{1,2,3,4}","{1,4}","{1,2,3}"],answer:0,explanation:{en:"Common = {2,3}\n\n✅ Answer: {2,3}",bn:"সাধারণ = {2,3}\n\n✅ উত্তর: {2,3}",hi:"सामान्य = {2,3}\n\n✅ उत्तर: {2,3}"}},
-{id:70,year:2019,subject:"Mathematics",chapter:"Complex Numbers",difficulty:"Hard",text:"Modulus of z = 3 + 4i:",options:["5","7","1","25"],answer:0,explanation:{en:"|z| = √(9+16) = 5\n\n✅ Answer: 5\n💡 3-4-5 Pythagorean triple!",bn:"|z| = 5\n\n✅ উত্তর: 5",hi:"|z| = 5\n\n✅ उत्तर: 5"}},
-{id:71,year:2024,subject:"Mathematics",chapter:"Binomial Theorem",difficulty:"Medium",text:"Number of terms in (a + b)¹⁰:",options:["11","10","9","12"],answer:0,explanation:{en:"n+1 = 11\n\n✅ Answer: 11",bn:"n+1 = 11\n\n✅ উত্তর: 11",hi:"n+1 = 11\n\n✅ उत्तर: 11"}},
-{id:72,year:2023,subject:"Mathematics",chapter:"Sequences & Series",difficulty:"Medium",text:"Sum of first 10 terms of AP: 2, 5, 8...",options:["155","150","145","160"],answer:0,explanation:{en:"S₁₀ = 5×[4+27] = 5×31 = 155\n\n✅ Answer: 155",bn:"S₁₀ = 155\n\n✅ উত্তর: 155",hi:"S₁₀ = 155\n\n✅ उत्तर: 155"}},
-{id:73,year:2023,subject:"Mathematics",chapter:"Limits",difficulty:"Medium",text:"lim(x→0) sin x / x =",options:["1","0","∞","−1"],answer:0,explanation:{en:"Standard limit = 1 (x in radians)\n\n✅ Answer: 1",bn:"প্রমাণ সীমা = 1\n\n✅ উত্তর: 1",hi:"मानक सीमा = 1\n\n✅ उत्तर: 1"}},
-{id:74,year:2022,subject:"Mathematics",chapter:"Circles",difficulty:"Medium",text:"Radius of x² + y² − 6x + 8y − 11 = 0:",options:["6","√25","3√2","√56"],answer:0,explanation:{en:"(x−3)²+(y+4)² = 36 → r = 6\n\n✅ Answer: 6",bn:"r = 6\n\n✅ উত্তর: 6",hi:"r = 6\n\n✅ उत्तर: 6"}},
-{id:75,year:2022,subject:"Mathematics",chapter:"Vectors",difficulty:"Medium",text:"|a⃗|=3, |b⃗|=4, a⃗·b⃗=0. |a⃗+b⃗| =",options:["5","7","1","25"],answer:0,explanation:{en:"Perpendicular: |a+b| = √(9+16) = 5\n\n✅ Answer: 5",bn:"|a+b| = 5\n\n✅ উত্তর: 5",hi:"|a+b| = 5\n\n✅ उत्तर: 5"}},
-{id:76,year:2021,subject:"Mathematics",chapter:"3D Geometry",difficulty:"Hard",text:"Direction cosines of line joining (1,2,3) and (4,6,3):",options:["3/5, 4/5, 0","3,4,0","1/5,2/5,3/5","4/5,3/5,0"],answer:0,explanation:{en:"DRs=(3,4,0), |mag|=5 → DCs=(3/5,4/5,0)\n\n✅ Answer: 3/5, 4/5, 0",bn:"দিক কোসাইন = (3/5, 4/5, 0)\n\n✅ উত্তর: 3/5, 4/5, 0",hi:"दिक् कोसाइन = (3/5, 4/5, 0)\n\n✅ उत्तर: 3/5, 4/5, 0"}},
-{id:77,year:2020,subject:"Mathematics",chapter:"Logarithms",difficulty:"Easy",text:"log₂ 32 =",options:["5","4","6","16"],answer:0,explanation:{en:"32 = 2⁵ → log₂ 32 = 5\n\n✅ Answer: 5",bn:"32 = 2⁵ → 5\n\n✅ উত্তর: 5",hi:"32 = 2⁵ → 5\n\n✅ उत्तर: 5"}},
-{id:78,year:2019,subject:"Mathematics",chapter:"Determinants",difficulty:"Medium",text:"Value of |2 3; 1 4| =",options:["5","11","−5","8"],answer:0,explanation:{en:"2×4−3×1 = 5\n\n✅ Answer: 5",bn:"2×4−3×1 = 5\n\n✅ উত্তর: 5",hi:"2×4−3×1 = 5\n\n✅ उत्तर: 5"}},
-{id:79,year:2018,subject:"Mathematics",chapter:"Statistics",difficulty:"Easy",text:"Mean of {5, 7, 9, 11, 13}:",options:["9","10","8","11"],answer:0,explanation:{en:"Sum=45, n=5, Mean=9\n\n✅ Answer: 9",bn:"গড় = 9\n\n✅ উত্তর: 9",hi:"माध्य = 9\n\n✅ उत्तर: 9"}},
-{id:80,year:2017,subject:"Mathematics",chapter:"Parabola",difficulty:"Medium",text:"Vertex of y = x² − 4x + 7:",options:["(2,3)","(−2,3)","(2,−3)","(4,7)"],answer:0,explanation:{en:"y = (x−2)²+3 → Vertex (2,3)\n\n✅ Answer: (2,3)",bn:"শীর্ষ = (2,3)\n\n✅ উত্তর: (2,3)",hi:"शीर्ष = (2,3)\n\n✅ उत्तर: (2,3)"}},
-{id:81,year:2016,subject:"Mathematics",chapter:"Inverse Trigonometry",difficulty:"Medium",text:"sin⁻¹(1/2) =",options:["π/6","π/3","π/4","π/2"],answer:0,explanation:{en:"sin(π/6) = 1/2 → π/6\n\n✅ Answer: π/6",bn:"sin⁻¹(1/2) = π/6\n\n✅ উত্তর: π/6",hi:"sin⁻¹(1/2) = π/6\n\n✅ उत्तर: π/6"}},
-{id:82,year:2015,subject:"Mathematics",chapter:"Continuity",difficulty:"Hard",text:"f(x) = x² at x = 2. f(2) =",options:["4","2","0","8"],answer:0,explanation:{en:"f(2) = 4. Polynomials continuous everywhere.\n\n✅ Answer: 4",bn:"f(2) = 4\n\n✅ উত্তর: 4",hi:"f(2) = 4\n\n✅ उत्तर: 4"}},
-{id:83,year:2024,subject:"Mathematics",chapter:"Inequalities",difficulty:"Medium",text:"Solution of |x − 3| < 2:",options:["1 < x < 5","x > 5 or x < 1","−5 < x < −1","x > 1"],answer:0,explanation:{en:"|x−3| < 2 → 1 < x < 5\n\n✅ Answer: 1 < x < 5",bn:"1 < x < 5\n\n✅ উত্তর: 1 < x < 5",hi:"1 < x < 5\n\n✅ उत्तर: 1 < x < 5"}},
-{id:84,year:2023,subject:"Mathematics",chapter:"Ellipse",difficulty:"Hard",text:"Eccentricity of x²/16 + y²/9 = 1:",options:["√7/4","3/4","4/3","7/16"],answer:0,explanation:{en:"c² = 7 → e = √7/4\n\n✅ Answer: √7/4",bn:"e = √7/4\n\n✅ উত্তর: √7/4",hi:"e = √7/4\n\n✅ उत्तर: √7/4"}},
-{id:85,year:2022,subject:"Mathematics",chapter:"Hyperbola",difficulty:"Hard",text:"Eccentricity of x²/9 − y²/16 = 1:",options:["5/3","4/3","3/5","5/4"],answer:0,explanation:{en:"c² = 25 → e = 5/3\n\n✅ Answer: 5/3",bn:"e = 5/3\n\n✅ উত্তর: 5/3",hi:"e = 5/3\n\n✅ उत्तर: 5/3"}},
-{id:86,year:2021,subject:"Mathematics",chapter:"Differential Equations",difficulty:"Hard",text:"Order and degree of y'' + (y')² + y = 0:",options:["2 and 1","1 and 2","2 and 2","1 and 1"],answer:0,explanation:{en:"Highest derivative y'' → Order=2, power=1 → Degree=1\n\n✅ Answer: 2 and 1",bn:"কোটি=2, ঘাত=1\n\n✅ উত্তর: 2 and 1",hi:"कोटि=2, घात=1\n\n✅ उत्तर: 2 and 1"}},
-{id:87,year:2020,subject:"Mathematics",chapter:"Functions",difficulty:"Medium",text:"f(x)=x²+1, g(x)=2x−3. f(g(2)) =",options:["2","5","3","1"],answer:0,explanation:{en:"g(2)=1, f(1)=2\n\n✅ Answer: 2",bn:"g(2)=1, f(1)=2\n\n✅ উত্তর: 2",hi:"g(2)=1, f(1)=2\n\n✅ उत्तर: 2"}},
-{id:88,year:2019,subject:"Mathematics",chapter:"Conic Sections",difficulty:"Medium",text:"Eccentricity of a circle:",options:["0","1","∞","0.5"],answer:0,explanation:{en:"a=b → c=0 → e=0\n\n✅ Answer: 0",bn:"e = 0\n\n✅ উত্তর: 0",hi:"e = 0\n\n✅ उत्तर: 0"}},
-{id:89,year:2018,subject:"Mathematics",chapter:"Mathematical Reasoning",difficulty:"Easy",text:"Negation of 'All cats are black':",options:["Some cats are not black","No cats are black","All cats are white","Some cats are black"],answer:0,explanation:{en:"¬(∀x P(x)) = ∃x ¬P(x)\n\n✅ Answer: Some cats are not black",bn:"কিছু বিড়াল কালো নয়\n\n✅ উত্তর: Some cats are not black",hi:"कुछ बिल्लियाँ काली नहीं\n\n✅ उत्तर: Some cats are not black"}},
-{id:90,year:2017,subject:"Mathematics",chapter:"Area Under Curves",difficulty:"Hard",text:"Area bounded by y=x², x-axis, x=0 to x=3:",options:["9 sq units","27 sq units","3 sq units","18 sq units"],answer:0,explanation:{en:"∫₀³ x² dx = [x³/3]₀³ = 9\n\n✅ Answer: 9 sq units",bn:"∫₀³ x² dx = 9 বর্গ একক\n\n✅ উত্তর: 9 sq units",hi:"∫₀³ x² dx = 9 वर्ग इकाई\n\n✅ उत्तर: 9 sq units"}}
+{id:61,year:2024,subject:"Mathematics",chapter:"Quadratic Equations",difficulty:"Easy",text:"If α, β are roots of x²−5x+6=0, then α²+β²=",options:["25","13","12","37"],answer:1,explanation:{en:"α+β=5, αβ=6\nα²+β²=25−12=13\n\n✅ Answer: 13",bn:"α²+β² = 13\n\n✅ উত্তর: 13",hi:"α²+β² = 13\n\n✅ उत्तर: 13"}},
+{id:62,year:2024,subject:"Mathematics",chapter:"Trigonometry",difficulty:"Easy",text:"sin 30° + cos 60° − tan 45° =",options:["0","1","−1","0.5"],answer:0,explanation:{en:"0.5+0.5−1=0\n\n✅ Answer: 0",bn:"0.5+0.5−1=0\n\n✅ উত্তর: 0",hi:"0.5+0.5−1=0\n\n✅ उत्तर: 0"}},
+{id:63,year:2023,subject:"Mathematics",chapter:"Matrices",difficulty:"Medium",text:"If A=[[2,0],[0,3]], A²=",options:["[[4,0],[0,9]]","[[4,0],[0,6]]","[[2,0],[0,9]]","[[4,9],[0,0]]"],answer:0,explanation:{en:"Diagonal: square each element→[[4,0],[0,9]]\n\n✅ Answer: [[4,0],[0,9]]",bn:"[[4,0],[0,9]]\n\n✅ উত্তর: [[4,0],[0,9]]",hi:"[[4,0],[0,9]]\n\n✅ उत्तर: [[4,0],[0,9]]"}},
+{id:64,year:2023,subject:"Mathematics",chapter:"Probability",difficulty:"Medium",text:"A die is thrown. P(prime number)=",options:["1/2","1/3","2/3","1/6"],answer:0,explanation:{en:"Primes:{2,3,5}=3/6=1/2\n\n✅ Answer: 1/2\n💡 1 is NOT prime!",bn:"মৌলিক: {2,3,5} → P=1/2\n\n✅ উত্তর: 1/2",hi:"अभाज्य:{2,3,5}→P=1/2\n\n✅ उत्तर: 1/2"}},
+{id:65,year:2022,subject:"Mathematics",chapter:"Differentiation",difficulty:"Medium",text:"y=x³+2x²−5x+1. dy/dx at x=1:",options:["3","2","1","0"],answer:1,explanation:{en:"dy/dx=3x²+4x−5; at x=1: 2\n\n✅ Answer: 2",bn:"dy/dx=3x²+4x−5; x=1 এ: 2\n\n✅ উত্তর: 2",hi:"dy/dx=3x²+4x−5; x=1 पर: 2\n\n✅ उत्तर: 2"}},
+{id:66,year:2022,subject:"Mathematics",chapter:"Integration",difficulty:"Hard",text:"∫(2x+3)dx=",options:["x²+3x+C","2x²+3x+C","x²+3+C","2x+C"],answer:0,explanation:{en:"=x²+3x+C\n\n✅ Answer: x²+3x+C",bn:"=x²+3x+C\n\n✅ উত্তর: x²+3x+C",hi:"=x²+3x+C\n\n✅ उत्तर: x²+3x+C"}},
+{id:67,year:2021,subject:"Mathematics",chapter:"Permutation & Combination",difficulty:"Medium",text:"Arrangements of letters of 'INDIA':",options:["120","60","24","30"],answer:1,explanation:{en:"5!/2!=60 (I repeated)\n\n✅ Answer: 60",bn:"5!/2! = 60\n\n✅ উত্তর: 60",hi:"5!/2!=60\n\n✅ उत्तर: 60"}},
+{id:68,year:2021,subject:"Mathematics",chapter:"Straight Lines",difficulty:"Medium",text:"Slope of line parallel to 3x−4y+7=0:",options:["3/4","−4/3","4/3","−3/4"],answer:0,explanation:{en:"slope=3/4; parallel→same slope\n\n✅ Answer: 3/4",bn:"ঢাল = 3/4\n\n✅ উত্তর: 3/4",hi:"ढाल = 3/4\n\n✅ उत्तर: 3/4"}},
+{id:69,year:2020,subject:"Mathematics",chapter:"Sets & Functions",difficulty:"Easy",text:"A={1,2,3}, B={2,3,4}. A∩B=",options:["{2,3}","{1,2,3,4}","{1,4}","{1,2,3}"],answer:0,explanation:{en:"Common={2,3}\n\n✅ Answer: {2,3}",bn:"সাধারণ = {2,3}\n\n✅ উত্তর: {2,3}",hi:"सामान्य={2,3}\n\n✅ उत्तर: {2,3}"}},
+{id:70,year:2019,subject:"Mathematics",chapter:"Complex Numbers",difficulty:"Hard",text:"Modulus of z=3+4i:",options:["5","7","1","25"],answer:0,explanation:{en:"|z|=√(9+16)=5\n\n✅ Answer: 5\n💡 3-4-5 triple!",bn:"|z| = 5\n\n✅ উত্তর: 5",hi:"|z| = 5\n\n✅ उत्तर: 5"}},
+{id:71,year:2024,subject:"Mathematics",chapter:"Binomial Theorem",difficulty:"Medium",text:"Number of terms in (a+b)¹⁰:",options:["11","10","9","12"],answer:0,explanation:{en:"n+1=11\n\n✅ Answer: 11",bn:"n+1 = 11\n\n✅ উত্তর: 11",hi:"n+1=11\n\n✅ उत्तर: 11"}},
+{id:72,year:2023,subject:"Mathematics",chapter:"Sequences & Series",difficulty:"Medium",text:"Sum of first 10 terms of AP: 2,5,8...",options:["155","150","145","160"],answer:0,explanation:{en:"S₁₀=5×31=155\n\n✅ Answer: 155",bn:"S₁₀ = 155\n\n✅ উত্তর: 155",hi:"S₁₀=155\n\n✅ उत्तर: 155"}},
+{id:73,year:2023,subject:"Mathematics",chapter:"Limits",difficulty:"Medium",text:"lim(x→0) sinx/x=",options:["1","0","∞","−1"],answer:0,explanation:{en:"Standard limit=1 (x in radians)\n\n✅ Answer: 1",bn:"প্রমাণ সীমা = 1\n\n✅ উত্তর: 1",hi:"मानक सीमा=1\n\n✅ उत्तर: 1"}},
+{id:74,year:2022,subject:"Mathematics",chapter:"Circles",difficulty:"Medium",text:"Radius of x²+y²−6x+8y−11=0:",options:["6","√25","3√2","√56"],answer:0,explanation:{en:"(x−3)²+(y+4)²=36→r=6\n\n✅ Answer: 6",bn:"r = 6\n\n✅ উত্তর: 6",hi:"r=6\n\n✅ उत्तर: 6"}},
+{id:75,year:2022,subject:"Mathematics",chapter:"Vectors",difficulty:"Medium",text:"|a⃗|=3, |b⃗|=4, a⃗·b⃗=0. |a⃗+b⃗|=",options:["5","7","1","25"],answer:0,explanation:{en:"Perpendicular: |a+b|=√(9+16)=5\n\n✅ Answer: 5",bn:"|a+b| = 5\n\n✅ উত্তর: 5",hi:"|a+b|=5\n\n✅ उत्तर: 5"}},
+{id:76,year:2021,subject:"Mathematics",chapter:"3D Geometry",difficulty:"Hard",text:"Direction cosines of line joining (1,2,3) and (4,6,3):",options:["3/5,4/5,0","3,4,0","1/5,2/5,3/5","4/5,3/5,0"],answer:0,explanation:{en:"DRs=(3,4,0),|mag|=5→DCs=(3/5,4/5,0)\n\n✅ Answer: 3/5,4/5,0",bn:"(3/5, 4/5, 0)\n\n✅ উত্তর: 3/5,4/5,0",hi:"(3/5,4/5,0)\n\n✅ उत्तर: 3/5,4/5,0"}},
+{id:77,year:2020,subject:"Mathematics",chapter:"Logarithms",difficulty:"Easy",text:"log₂ 32=",options:["5","4","6","16"],answer:0,explanation:{en:"32=2⁵→log₂32=5\n\n✅ Answer: 5",bn:"32=2⁵→5\n\n✅ উত্তর: 5",hi:"32=2⁵→5\n\n✅ उत्तर: 5"}},
+{id:78,year:2019,subject:"Mathematics",chapter:"Determinants",difficulty:"Medium",text:"Value of |2 3; 1 4|=",options:["5","11","−5","8"],answer:0,explanation:{en:"2×4−3×1=5\n\n✅ Answer: 5",bn:"2×4−3×1=5\n\n✅ উত্তর: 5",hi:"2×4−3×1=5\n\n✅ उत्तर: 5"}},
+{id:79,year:2018,subject:"Mathematics",chapter:"Statistics",difficulty:"Easy",text:"Mean of {5,7,9,11,13}:",options:["9","10","8","11"],answer:0,explanation:{en:"Sum=45, n=5, Mean=9\n\n✅ Answer: 9",bn:"গড় = 9\n\n✅ উত্তর: 9",hi:"माध्य=9\n\n✅ उत्तर: 9"}},
+{id:80,year:2017,subject:"Mathematics",chapter:"Parabola",difficulty:"Medium",text:"Vertex of y=x²−4x+7:",options:["(2,3)","(−2,3)","(2,−3)","(4,7)"],answer:0,explanation:{en:"y=(x−2)²+3→Vertex(2,3)\n\n✅ Answer: (2,3)",bn:"শীর্ষ = (2,3)\n\n✅ উত্তর: (2,3)",hi:"शीर्ष=(2,3)\n\n✅ उत्तर: (2,3)"}},
+{id:81,year:2016,subject:"Mathematics",chapter:"Inverse Trigonometry",difficulty:"Medium",text:"sin⁻¹(1/2)=",options:["π/6","π/3","π/4","π/2"],answer:0,explanation:{en:"sin(π/6)=1/2→π/6\n\n✅ Answer: π/6",bn:"π/6\n\n✅ উত্তর: π/6",hi:"π/6\n\n✅ उत्तर: π/6"}},
+{id:82,year:2015,subject:"Mathematics",chapter:"Continuity",difficulty:"Hard",text:"f(x)=x² at x=2. f(2)=",options:["4","2","0","8"],answer:0,explanation:{en:"f(2)=4. Polynomials continuous everywhere.\n\n✅ Answer: 4",bn:"f(2)=4\n\n✅ উত্তর: 4",hi:"f(2)=4\n\n✅ उत्तर: 4"}},
+{id:83,year:2024,subject:"Mathematics",chapter:"Inequalities",difficulty:"Medium",text:"Solution of |x−3|<2:",options:["1<x<5","x>5 or x<1","−5<x<−1","x>1"],answer:0,explanation:{en:"|x−3|<2→1<x<5\n\n✅ Answer: 1<x<5",bn:"1<x<5\n\n✅ উত্তর: 1<x<5",hi:"1<x<5\n\n✅ उत्तर: 1<x<5"}},
+{id:84,year:2023,subject:"Mathematics",chapter:"Ellipse",difficulty:"Hard",text:"Eccentricity of x²/16+y²/9=1:",options:["√7/4","3/4","4/3","7/16"],answer:0,explanation:{en:"c²=7→e=√7/4\n\n✅ Answer: √7/4",bn:"e = √7/4\n\n✅ উত্তর: √7/4",hi:"e=√7/4\n\n✅ उत्तर: √7/4"}},
+{id:85,year:2022,subject:"Mathematics",chapter:"Hyperbola",difficulty:"Hard",text:"Eccentricity of x²/9−y²/16=1:",options:["5/3","4/3","3/5","5/4"],answer:0,explanation:{en:"c²=25→e=5/3\n\n✅ Answer: 5/3",bn:"e = 5/3\n\n✅ উত্তর: 5/3",hi:"e=5/3\n\n✅ उत्तर: 5/3"}},
+{id:86,year:2021,subject:"Mathematics",chapter:"Differential Equations",difficulty:"Hard",text:"Order and degree of y''+(y')²+y=0:",options:["2 and 1","1 and 2","2 and 2","1 and 1"],answer:0,explanation:{en:"y''→Order=2, power=1→Degree=1\n\n✅ Answer: 2 and 1",bn:"কোটি=2, ঘাত=1\n\n✅ উত্তর: 2 and 1",hi:"कोटि=2, घात=1\n\n✅ उत्तर: 2 and 1"}},
+{id:87,year:2020,subject:"Mathematics",chapter:"Functions",difficulty:"Medium",text:"f(x)=x²+1, g(x)=2x−3. f(g(2))=",options:["2","5","3","1"],answer:0,explanation:{en:"g(2)=1, f(1)=2\n\n✅ Answer: 2",bn:"g(2)=1, f(1)=2\n\n✅ উত্তর: 2",hi:"g(2)=1, f(1)=2\n\n✅ उत्तर: 2"}},
+{id:88,year:2019,subject:"Mathematics",chapter:"Conic Sections",difficulty:"Medium",text:"Eccentricity of a circle:",options:["0","1","∞","0.5"],answer:0,explanation:{en:"a=b→c=0→e=0\n\n✅ Answer: 0",bn:"e = 0\n\n✅ উত্তর: 0",hi:"e=0\n\n✅ उत्तर: 0"}},
+{id:89,year:2018,subject:"Mathematics",chapter:"Mathematical Reasoning",difficulty:"Easy",text:"Negation of 'All cats are black':",options:["Some cats are not black","No cats are black","All cats are white","Some cats are black"],answer:0,explanation:{en:"¬(∀x P(x))=∃x ¬P(x)\n\n✅ Answer: Some cats are not black",bn:"কিছু বিড়াল কালো নয়\n\n✅ উত্তর: Some cats are not black",hi:"कुछ बिल्लियाँ काली नहीं\n\n✅ उत्तर: Some cats are not black"}},
+{id:90,year:2017,subject:"Mathematics",chapter:"Area Under Curves",difficulty:"Hard",text:"Area bounded by y=x², x-axis, x=0 to x=3:",options:["9 sq units","27 sq units","3 sq units","18 sq units"],answer:0,explanation:{en:"∫₀³x²dx=[x³/3]₀³=9\n\n✅ Answer: 9 sq units",bn:"∫₀³x²dx = 9 বর্গ একক\n\n✅ উত্তর: 9 sq units",hi:"∫₀³x²dx=9 वर्ग इकाई\n\n✅ उत्तर: 9 sq units"}}
 ];
 
-// ── APP LOGIC ──
-let filtered=[...ALL_QUESTIONS],current=0,answered={},activeTab='all';
+// ═══════════════════════════════════
+// APP LOGIC
+// ═══════════════════════════════════
+let filtered=[...ALL_QUESTIONS], current=0, answered={}, activeTab='all';
 
 function setTab(s,el){activeTab=s;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');applyFilters();}
 
 function applyFilters(){
-  const yr=document.getElementById('yearFilter').value,diff=document.getElementById('diffFilter').value;
+  const yr=document.getElementById('yearFilter').value, diff=document.getElementById('diffFilter').value;
   filtered=ALL_QUESTIONS.filter(q=>(activeTab==='all'||q.subject===activeTab)&&(yr==='all'||q.year==yr)&&(diff==='all'||q.difficulty===diff));
   current=0;
   document.getElementById('qCountBadge').textContent=filtered.length+' '+t('statQ').toLowerCase();
-  if(!filtered.length){document.getElementById('questionArea').innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><p>${t('noQ')}</p></div>`;document.getElementById('navBtns').style.display='none';updateProgress();return;}
-  document.getElementById('navBtns').style.display='flex';renderQuestion();
+  if(!filtered.length){
+    document.getElementById('questionArea').innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><p>${t('noQ')}</p></div>`;
+    document.getElementById('navBtns').style.display='none';
+    updateProgress(); return;
+  }
+  document.getElementById('navBtns').style.display='flex';
+  renderQuestion();
 }
 
 function getExpl(q){return q.explanation[currentLang]||q.explanation.en||'';}
 
 function renderQuestion(){
-  const q=filtered[current];if(!q)return;
+  const q=filtered[current]; if(!q)return;
   updateProgress();
   const ans=answered[q.id];
   const sc=q.subject==='Physics'?'tag-physics':q.subject==='Chemistry'?'tag-chemistry':'tag-maths';
   const si=q.subject==='Physics'?'⚡':q.subject==='Chemistry'?'🧪':'📐';
   const dc=q.difficulty==='Easy'?'#10b981':q.difficulty==='Medium'?'#f59e0b':'#ef4444';
   const dl=q.difficulty==='Easy'?t('diffEasy'):q.difficulty==='Medium'?t('diffMedium'):t('diffHard');
-  const opts=q.options.map((o,i)=>{let c='';if(ans!==undefined){if(i===q.answer)c='revealed-correct';if(i===ans&&ans!==q.answer)c='wrong';}return`<div class="option ${c}" onclick="selectAnswer(${i})"><div class="opt-letter">${String.fromCharCode(65+i)}</div><span>${o}</span></div>`;}).join('');
+  const opts=q.options.map((o,i)=>{
+    let c='';
+    if(ans!==undefined){if(i===q.answer)c='revealed-correct';if(i===ans&&ans!==q.answer)c='wrong';}
+    return `<div class="option ${c}" onclick="selectAnswer(${i})"><div class="opt-letter">${String.fromCharCode(65+i)}</div><span>${o}</span></div>`;
+  }).join('');
   const ql=t('qOf').replace('{c}',current+1).replace('{t}',filtered.length);
   const aiShown=answered[q.id+'_ai'];
   const cachedExp=answered[q.id+'_exp_'+currentLang];
-  document.getElementById('questionArea').innerHTML=`<div class="q-card"><div class="q-meta"><span class="tag ${sc}">${si} ${q.subject}</span><span class="tag tag-year">📅 WB JEE ${q.year}</span><span class="tag tag-chapter">📖 ${q.chapter}</span><span class="tag" style="background:${dc}22;color:${dc};border:1px solid ${dc}44">${dl}</span></div><div class="q-number">${ql}</div><div class="q-text">${q.text}</div><div class="options">${opts}</div><div class="q-actions">${ans!==undefined?`<button class="btn-sm btn-ai" onclick="getAIExplanation()">${t('aiBtn')}</button>`:''}<button class="btn-sm" onclick="revealAnswer()">👁 ${ans!==undefined?t('showAns'):t('revealAns')}</button></div><div class="ai-box ${aiShown?'active':''}" id="aiBox"><div class="ai-header">${t('aiHeader')} <span style="opacity:.5;font-weight:400">${t('aiPowered')}</span></div><div class="ai-content" id="aiContent">${aiShown?(cachedExp||getExpl(q)):''}</div></div></div>`;
+  // Check if AI button should be disabled
+  const aiDisabled=(!currentUser||!currentUser.isPro)&&!canUseAI()&&!aiShown;
+  document.getElementById('questionArea').innerHTML=`
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="tag ${sc}">${si} ${q.subject}</span>
+        <span class="tag tag-year">📅 WB JEE ${q.year}</span>
+        <span class="tag tag-chapter">📖 ${q.chapter}</span>
+        <span class="tag" style="background:${dc}22;color:${dc};border:1px solid ${dc}44">${dl}</span>
+      </div>
+      <div class="q-number">${ql}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">${opts}</div>
+      <div class="q-actions">
+        ${ans!==undefined?`<button class="btn-sm btn-ai" onclick="getAIExplanation()" ${aiDisabled?'disabled title="Daily AI limit reached — upgrade to Pro"':''}>🔒${aiDisabled?' Unlock AI':''}${!aiDisabled?t('aiBtn'):''}</button>`:''}
+        <button class="btn-sm" onclick="revealAnswer()">👁 ${ans!==undefined?t('showAns'):t('revealAns')}</button>
+        ${aiDisabled?`<button class="btn-sm" onclick="showPaywall('ai_limit')" style="color:var(--accent);border-color:rgba(245,158,11,.3);">⭐ Go Pro for AI</button>`:''}
+      </div>
+      <div class="ai-box ${aiShown?'active':''}" id="aiBox">
+        <div class="ai-header">${t('aiHeader')} <span style="opacity:.5;font-weight:400">${t('aiPowered')}</span></div>
+        <div class="ai-content" id="aiContent">${aiShown?(cachedExp||getExpl(q)):''}</div>
+      </div>
+    </div>`;
   document.getElementById('jumpInput').value=current+1;
+  // Track question view
+  gtag('event','question_view',{subject:q.subject,chapter:q.chapter,year:q.year,difficulty:q.difficulty});
 }
 
-function selectAnswer(i){const q=filtered[current];if(answered[q.id]!==undefined)return;answered[q.id]=i;renderQuestion();updateProgress();}
-function revealAnswer(){const q=filtered[current];if(answered[q.id]===undefined)answered[q.id]=q.answer;renderQuestion();}
+function selectAnswer(i){
+  const q=filtered[current];
+  if(answered[q.id]!==undefined)return;
+  // Check daily question limit for free users
+  if(currentUser&&!currentUser.isPro&&!canUseQuestion()){showPaywall('q_limit');return;}
+  answered[q.id]=i;
+  if(currentUser&&!currentUser.isPro)incrementUsage('questions');
+  const correct=i===q.answer;
+  gtag('event','answer_submitted',{subject:q.subject,correct,difficulty:q.difficulty});
+  renderQuestion(); updateProgress();
+}
+
+function revealAnswer(){
+  const q=filtered[current];
+  if(answered[q.id]===undefined)answered[q.id]=q.answer;
+  renderQuestion();
+}
 
 function updateProgress(){
-  const total=filtered.length,done=filtered.filter(q=>answered[q.id]!==undefined).length,correct=filtered.filter(q=>answered[q.id]===q.answer).length;
+  const total=filtered.length, done=filtered.filter(q=>answered[q.id]!==undefined).length;
+  const correct=filtered.filter(q=>answered[q.id]===q.answer).length;
   document.getElementById('progressFill').style.width=total?(done/total*100)+'%':'0%';
   document.getElementById('progressText').textContent=`${done} / ${total}`;
   document.getElementById('correctCount').textContent=correct;
   document.getElementById('wrongCount').textContent=done-correct;
+  if(done>0&&total>0)gtag('event','progress_update',{done,total,correct,accuracy:Math.round(correct/done*100)});
 }
 
 async function getAIExplanation(){
   const q=filtered[current];
+  // Check AI limit for free users
+  if(currentUser&&!currentUser.isPro&&!canUseAI()){showPaywall('ai_limit');return;}
   document.getElementById('aiBox').classList.add('active');
   document.getElementById('aiContent').innerHTML=`<div class="loading-dots"><span></span><span></span><span></span></div> ${t('loading')}`;
   const cacheKey=q.id+'_exp_'+currentLang;
-  if(answered[cacheKey]){typeText(answered[cacheKey]);return;}
-  const li=currentLang==='bn'?'Respond ENTIRELY in Bengali (বাংলা). Use Bengali script.':currentLang==='hi'?'Respond ENTIRELY in Hindi (हिन्दी). Use Devanagari script.':'Respond in English.';
-  const prompt=`${li}\n\nYou are a WB JEE expert tutor. Give a clear step-by-step solution.\n\nSubject: ${q.subject} | Chapter: ${q.chapter} | Year: WB JEE ${q.year} | Difficulty: ${q.difficulty}\nQuestion: ${q.text}\nOptions: ${q.options.map((o,i)=>String.fromCharCode(65+i)+') '+o).join(' | ')}\nCorrect Answer: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer]}\n\nProvide 3-5 clear steps. End with one exam tip.`;
+  if(answered[cacheKey]){answered[q.id+'_ai']=true;typeText(answered[cacheKey]);return;}
+  const li=currentLang==='bn'?'Respond ENTIRELY in Bengali (বাংলা script).':currentLang==='hi'?'Respond ENTIRELY in Hindi (Devanagari script).':'Respond in English.';
+  const prompt=`${li}\n\nYou are a WB JEE expert tutor. Give a concise step-by-step solution.\n\nSubject: ${q.subject} | Chapter: ${q.chapter} | Year: WB JEE ${q.year} | Difficulty: ${q.difficulty}\nQuestion: ${q.text}\nOptions: ${q.options.map((o,i)=>String.fromCharCode(65+i)+') '+o).join(' | ')}\nCorrect Answer: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer]}\n\nProvide 3-5 clear steps. End with one exam tip.`;
+  if(currentUser&&!currentUser.isPro)incrementUsage('ai');
+  gtag('event','ai_explanation_used',{subject:q.subject,language:currentLang,isPro:currentUser?.isPro||false});
   try{
     const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
     const data=await res.json();
     const text=data.content?.map(b=>b.text||'').join('')||getExpl(q);
-    answered[q.id+'_ai']=true;answered[cacheKey]=text;typeText(text);
+    answered[q.id+'_ai']=true; answered[cacheKey]=text;
+    typeText(text);
   }catch(e){answered[q.id+'_ai']=true;typeText(getExpl(q));}
 }
 
 function typeText(text){
-  const c=document.getElementById('aiContent');c.innerHTML='';let i=0;
-  const cur=document.createElement('span');cur.className='typing-cursor';
-  function type(){if(i<text.length){c.textContent=text.slice(0,++i);c.appendChild(cur);setTimeout(type,8);}else cur.remove();}type();
+  const c=document.getElementById('aiContent'); c.innerHTML=''; let i=0;
+  const cur=document.createElement('span'); cur.className='typing-cursor';
+  function type(){if(i<text.length){c.textContent=text.slice(0,++i);c.appendChild(cur);setTimeout(type,8);}else cur.remove();}
+  type();
 }
 
 function navigate(dir){current=Math.max(0,Math.min(filtered.length-1,current+dir));renderQuestion();}
 function jumpTo(val){const n=parseInt(val)-1;if(!isNaN(n)&&n>=0&&n<filtered.length){current=n;renderQuestion();}}
 
-applyFilters();
+// ═══════════════════════════════════
+// INIT
+// ═══════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  loadAuth();
+  try{const lang=localStorage.getItem('wbjee_lang');if(lang&&lang!=='en'){const btn=document.querySelector(`.lang-btn[onclick*="'${lang}'"]`);if(btn)setLang(lang,btn);}}catch(e){}
+  applyFilters();
+});
 </script>
 </body>
 </html>
