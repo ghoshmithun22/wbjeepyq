@@ -14,7 +14,6 @@ body.lang-bn{font-family:'Noto Sans Bengali','Sora',sans-serif;}
 body.lang-hi{font-family:'Noto Sans Devanagari','Sora',sans-serif;}
 a{text-decoration:none;color:inherit;}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:800;cursor:pointer;}
 .nav-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
@@ -26,46 +25,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:fl
 .lang-btn{font-family:'Sora',sans-serif;padding:4px 10px;border-radius:7px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
 .lang-btn.active{background:var(--accent);color:#000;}
 .lang-btn:hover:not(.active){background:rgba(255,255,255,.08);color:var(--text);}
-.btn-login{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;}
-.btn-login:hover{border-color:var(--accent);color:var(--accent);}
-.btn-cta{background:var(--accent);color:#000;font-weight:700;padding:7px 18px;border-radius:8px;font-size:.82rem;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:all .2s;}
-.btn-cta:hover{background:#fbbf24;transform:translateY(-1px);}
+.btn-nav-outline{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.btn-nav-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn-nav-cta{background:var(--accent);color:#000;font-weight:700;padding:7px 18px;border-radius:8px;font-size:.82rem;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:all .2s;}
+.btn-nav-cta:hover{background:#fbbf24;transform:translateY(-1px);}
+.nav-email{font-size:.78rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-pro-pill{background:linear-gradient(135deg,#f59e0b,#f97316);color:#000;font-size:.63rem;font-weight:800;padding:2px 9px;border-radius:8px;}
 
-/* USER INFO IN NAV */
-.nav-user-wrap{position:relative;display:none;align-items:center;gap:8px;}
-.nav-user-info{cursor:pointer;text-align:right;}
-.nav-user-name{font-size:.8rem;font-weight:700;color:var(--text);display:block;line-height:1.3;}
-.nav-user-meta{font-size:.63rem;color:var(--muted2);display:block;font-family:'JetBrains Mono',monospace;}
-.nav-pro-pill{background:linear-gradient(135deg,#f59e0b,#f97316);color:#000;font-size:.63rem;font-weight:800;padding:2px 8px;border-radius:8px;}
-
-/* DROPDOWN */
-.nav-dropdown{position:absolute;top:calc(100% + 12px);right:0;background:#111827;border:1px solid var(--border);border-radius:14px;padding:16px;min-width:256px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,.6);display:none;}
-.nav-dropdown.open{display:block;animation:ddIn .2s ease;}
-@keyframes ddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.dd-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
-.dd-av{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:#000;flex-shrink:0;}
-.dd-hname{font-size:.84rem;font-weight:700;color:var(--text);}
-.dd-hemail{font-size:.68rem;color:var(--muted2);margin-top:1px;word-break:break-all;}
-.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-.dd-cell{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
-.dd-clabel{font-size:.58rem;color:var(--muted2);letter-spacing:.4px;text-transform:uppercase;margin-bottom:3px;}
-.dd-cval{font-size:.74rem;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;word-break:break-all;}
-.dd-plan{text-align:center;padding:6px 10px;border-radius:8px;font-size:.72rem;font-weight:700;margin-bottom:12px;}
-.dd-plan.free{background:rgba(148,163,184,.08);color:var(--muted2);border:1px solid var(--border);}
-.dd-plan.pro{background:rgba(245,158,11,.1);color:var(--accent);border:1px solid rgba(245,158,11,.3);}
-.dd-btn{width:100%;padding:8px 12px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);transition:all .2s;margin-bottom:6px;text-align:left;display:flex;align-items:center;gap:8px;}
-.dd-btn:hover{border-color:var(--accent);color:var(--accent);}
-.dd-btn.red{color:var(--red);border-color:rgba(239,68,68,.2);}
-.dd-btn.red:hover{background:rgba(239,68,68,.06);border-color:var(--red);}
-.dd-btn:last-child{margin-bottom:0;}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
 .hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(245,158,11,.12) 0%,transparent 70%);pointer-events:none;}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:600;margin-bottom:24px;letter-spacing:.5px;}
 .hero h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;line-height:1.15;letter-spacing:-2px;max-width:800px;margin-bottom:20px;}
-.hero h1 .gold{background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero h1 .dim{color:var(--muted2);}
+.gold{background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.dim{color:var(--muted2);}
 .hero-sub{font-size:1rem;color:var(--muted2);max-width:520px;line-height:1.75;margin-bottom:36px;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
 .btn-hp{background:var(--accent);color:#000;font-weight:800;padding:13px 30px;border-radius:12px;font-size:.95rem;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:all .2s;}
@@ -76,14 +48,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:fl
 .hs-num{font-size:1.7rem;font-weight:800;color:var(--accent);display:block;}
 .hs-label{font-size:.7rem;color:var(--muted);margin-top:3px;display:block;}
 
-/* SECTIONS */
 section{padding:76px 24px;}
 .si{max-width:1000px;margin:0 auto;}
 .sec-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;margin-bottom:16px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue);}
 .sec-title{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
 .sec-sub{color:var(--muted2);font-size:.92rem;max-width:500px;line-height:1.75;}
 
-/* FEATURES */
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:44px;}
 .feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:all .3s;position:relative;overflow:hidden;}
 .feat-card:hover{border-color:rgba(245,158,11,.3);transform:translateY(-3px);}
@@ -94,21 +64,16 @@ section{padding:76px 24px;}
 .fc-gr::before{background:linear-gradient(90deg,var(--green),#14b8a6);}
 .fc-p::before{background:linear-gradient(90deg,var(--purple),#ec4899);}
 .feat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
-.fi-g{background:rgba(245,158,11,.15);}
-.fi-b{background:rgba(59,130,246,.15);}
-.fi-gr{background:rgba(16,185,129,.15);}
-.fi-p{background:rgba(139,92,246,.15);}
+.fi-g{background:rgba(245,158,11,.15);} .fi-b{background:rgba(59,130,246,.15);} .fi-gr{background:rgba(16,185,129,.15);} .fi-p{background:rgba(139,92,246,.15);}
 .feat-card h3{font-size:.95rem;font-weight:700;margin-bottom:7px;}
 .feat-card p{font-size:.83rem;color:var(--muted2);line-height:1.65;}
 
-/* HOW */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;margin-top:44px;}
 .step{text-align:center;padding:22px 14px;}
 .step-n{width:46px;height:46px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--accent);margin:0 auto 14px;}
 .step h3{font-size:.92rem;font-weight:700;margin-bottom:7px;}
 .step p{font-size:.8rem;color:var(--muted2);line-height:1.65;}
 
-/* PRICING */
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:44px;}
 .price-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;position:relative;transition:all .3s;}
 .price-card.feat{border-color:var(--accent);background:linear-gradient(135deg,rgba(245,158,11,.05),rgba(249,115,22,.03));}
@@ -122,14 +87,13 @@ section{padding:76px 24px;}
 .price-div{border:none;border-top:1px solid var(--border);margin:18px 0;}
 .price-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
 .price-feats li{font-size:.81rem;display:flex;align-items:center;gap:7px;color:var(--muted2);}
-.ck{color:var(--green);}.cx{color:var(--muted);}
+.ck{color:var(--green);} .cx{color:var(--muted);}
 .btn-price{width:100%;padding:11px;border-radius:9px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;}
 .btn-out{background:transparent;border:1px solid var(--border)!important;color:var(--text);}
 .btn-out:hover{border-color:var(--accent)!important;color:var(--accent);}
 .btn-sol{background:var(--accent);color:#000;}
 .btn-sol:hover{background:#fbbf24;}
 
-/* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:44px;}
 .testi-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:20px;}
 .stars{color:var(--accent);font-size:12px;margin-bottom:11px;}
@@ -139,7 +103,6 @@ section{padding:76px 24px;}
 .testi-name{font-size:.81rem;font-weight:700;}
 .testi-role{font-size:.7rem;color:var(--muted);}
 
-/* PREVIEW */
 .prev-win{background:rgba(17,24,39,.8);border:1px solid var(--border);border-radius:18px;overflow:hidden;max-width:680px;margin:44px auto 0;}
 .prev-bar{background:#1a2235;padding:11px 15px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);}
 .dr{width:9px;height:9px;border-radius:50%;background:#ef4444;}
@@ -160,7 +123,6 @@ section{padding:76px 24px;}
 .prev-ai-hdr{font-size:.62rem;font-weight:700;color:var(--accent);margin-bottom:5px;}
 .prev-ai-txt{font-size:.68rem;color:#94a3b8;line-height:1.75;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
 
-/* CTA */
 .cta-box{max-width:620px;margin:0 auto;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(59,130,246,.06));border:1px solid rgba(245,158,11,.2);border-radius:22px;padding:52px 36px;text-align:center;}
 .cta-box h2{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
 .cta-box p{color:var(--muted2);margin-bottom:26px;font-size:.92rem;line-height:1.75;}
@@ -177,7 +139,7 @@ footer span{color:var(--accent);}
 .modal-x:hover{background:rgba(255,255,255,.15);}
 .modal h2{font-size:1.3rem;font-weight:800;margin-bottom:6px;}
 .modal-sub{font-size:.83rem;color:var(--muted2);margin-bottom:24px;}
-.modal-tabs{display:flex;gap:0;background:rgba(255,255,255,.05);border-radius:10px;padding:3px;margin-bottom:22px;}
+.modal-tabs{display:flex;background:rgba(255,255,255,.05);border-radius:10px;padding:3px;margin-bottom:22px;}
 .modal-tab{flex:1;padding:8px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
 .modal-tab.active{background:var(--accent);color:#000;}
 .fg{margin-bottom:14px;}
@@ -189,13 +151,12 @@ footer span{color:var(--accent);}
 .btn-sub:hover{background:#fbbf24;}
 .modal-div{text-align:center;color:var(--muted);font-size:.75rem;margin:16px 0;position:relative;}
 .modal-div::before,.modal-div::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border);}
-.modal-div::before{left:0;}.modal-div::after{right:0;}
+.modal-div::before{left:0;} .modal-div::after{right:0;}
 .btn-goog{width:100%;padding:11px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;}
 .btn-goog:hover{background:rgba(255,255,255,.06);}
 .success-msg{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:14px;text-align:center;font-size:.84rem;color:var(--green);display:none;}
 
-/* WHATSAPP */
-.wa{position:fixed;bottom:24px;right:24px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);cursor:pointer;transition:all .3s;text-decoration:none;}
+.wa{position:fixed;bottom:24px;right:24px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);text-decoration:none;transition:all .3s;}
 .wa:hover{transform:scale(1.1);}
 .wa svg{width:26px;height:26px;fill:#fff;}
 </style>
@@ -219,17 +180,17 @@ footer span{color:var(--accent);}
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
 
-    <!-- LOGGED OUT -->
+    <!-- LOGGED OUT: Login + Start Free buttons -->
     <div id="navOut" style="display:flex;gap:8px;align-items:center;">
-      <button class="btn-login" onclick="openModal('login')">Log In</button>
-      <button class="btn-cta" onclick="openModal('signup')">Start Free →</button>
+      <button class="btn-nav-outline" onclick="openModal('login')">Log In</button>
+      <button class="btn-nav-cta" onclick="openModal('signup')">Start Free →</button>
     </div>
 
-    <!-- LOGGED IN — shows email + logout button only -->
+    <!-- LOGGED IN: actual email + PRO pill + Log Out button -->
     <div id="navIn" style="display:none;align-items:center;gap:10px;">
-      <span id="navEmail" style="font-size:.78rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <span class="nav-email" id="navEmail"></span>
       <span class="nav-pro-pill" id="navProPill" style="display:none;">PRO ✦</span>
-      <button class="btn-login" onclick="logout()">Log Out</button>
+      <button class="btn-nav-outline" onclick="logout()">Log Out</button>
     </div>
   </div>
 </nav>
@@ -238,21 +199,17 @@ footer span{color:var(--accent);}
 <section class="hero" style="margin-top:57px;">
   <div class="hero-glow"></div>
   <div class="hero-badge">🚀 AI-Powered WB JEE Preparation</div>
-  <h1>
-    Crack WB JEE<br>
-    <span class="gold">with AI Explanations</span><br>
-    <span class="dim">for every question</span>
-  </h1>
+  <h1>Crack WB JEE<br><span class="gold">with AI Explanations</span><br><span class="dim">for every question</span></h1>
   <p class="hero-sub">90+ previous year questions with step-by-step AI solutions. Physics, Chemistry & Mathematics. Trusted by students across West Bengal.</p>
   <div class="hero-btns">
     <button class="btn-hp" onclick="handleHeroCta()">Start Practising Free →</button>
     <button class="btn-hs" onclick="document.getElementById('preview').scrollIntoView({behavior:'smooth'})">See Demo ▼</button>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="hs-num">90+</span><span class="hs-label">QUESTIONS</span></div>
-    <div class="hero-stat"><span class="hs-num">10</span><span class="hs-label">YEARS (2015–2024)</span></div>
-    <div class="hero-stat"><span class="hs-num">3</span><span class="hs-label">SUBJECTS</span></div>
-    <div class="hero-stat"><span class="hs-num">AI</span><span class="hs-label">POWERED</span></div>
+    <div><span class="hs-num">90+</span><span class="hs-label">QUESTIONS</span></div>
+    <div><span class="hs-num">10</span><span class="hs-label">YEARS (2015–2024)</span></div>
+    <div><span class="hs-num">3</span><span class="hs-label">SUBJECTS</span></div>
+    <div><span class="hs-num">AI</span><span class="hs-label">POWERED</span></div>
   </div>
 </section>
 
@@ -296,7 +253,7 @@ Step 3: t = 0 or t = 2 s
     <div class="sec-title">Everything you need to score higher</div>
     <p class="sec-sub">Built specifically for WB JEE aspirants. No fluff, just tools that work.</p>
     <div class="feat-grid">
-      <div class="feat-card fc-g"><div class="feat-icon fi-g">🤖</div><h3>AI Step-by-Step Explanations</h3><p>Get detailed solutions powered by Claude AI. Understand the concept, not just the answer.</p></div>
+      <div class="feat-card fc-g"><div class="feat-icon fi-g">🤖</div><h3>AI Step-by-Step Explanations</h3><p>Detailed solutions powered by Claude AI. Understand the concept, not just the answer.</p></div>
       <div class="feat-card fc-b"><div class="feat-icon fi-b">📚</div><h3>90+ PYQ Questions</h3><p>Previous year questions from WB JEE 2015–2024 across Physics, Chemistry, and Mathematics.</p></div>
       <div class="feat-card fc-gr"><div class="feat-icon fi-gr">📊</div><h3>Progress Tracker</h3><p>Track correct/wrong answers in real-time. Know your weak areas and focus smartly.</p></div>
       <div class="feat-card fc-p"><div class="feat-icon fi-p">🎯</div><h3>Chapter & Year-wise Filter</h3><p>Filter by subject, chapter, year and difficulty. Practice exactly what you need.</p></div>
@@ -385,8 +342,8 @@ Step 3: t = 0 or t = 2 s
     <div class="sec-title">Students love it</div>
     <div class="testi-grid">
       <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"The AI explanations are amazing! My Physics score jumped from 45% to 72%."</p><div class="testi-auth"><div class="testi-av" style="background:rgba(59,130,246,.15);color:#3b82f6;">SR</div><div><div class="testi-name">Subhrajit Roy</div><div class="testi-role">WB JEE Aspirant, Kolkata</div></div></div></div>
-      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Chapter-wise filter is a game changer. AI solutions feel like having a tutor 24/7."</p><div class="testi-auth"><div class="testi-av" style="background:rgba(16,185,129,.15);color:#10b981;">PB</div><div><div class="testi-name">Priya Banerjee</div><div class="testi-role">WB JEE Aspirant, Howrah</div></div></div></div>
-      <div class="testi-card"><div class="stars">★★★★☆</div><p class="testi-txt">"10 years of PYQs with AI explanations in Bengali — nothing like this before for WB JEE!"</p><div class="testi-auth"><div class="testi-av" style="background:rgba(245,158,11,.15);color:#f59e0b;">AM</div><div><div class="testi-name">Arnab Mukherjee</div><div class="testi-role">WB JEE Aspirant, Durgapur</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Chapter-wise filter is a game changer. AI solutions feel like a tutor 24/7."</p><div class="testi-auth"><div class="testi-av" style="background:rgba(16,185,129,.15);color:#10b981;">PB</div><div><div class="testi-name">Priya Banerjee</div><div class="testi-role">WB JEE Aspirant, Howrah</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★☆</div><p class="testi-txt">"10 years of PYQs with AI explanations in Bengali — nothing like this before!"</p><div class="testi-auth"><div class="testi-av" style="background:rgba(245,158,11,.15);color:#f59e0b;">AM</div><div><div class="testi-name">Arnab Mukherjee</div><div class="testi-role">WB JEE Aspirant, Durgapur</div></div></div></div>
     </div>
   </div>
 </section>
@@ -397,13 +354,13 @@ Step 3: t = 0 or t = 2 s
     <h2>Ready to crack WB JEE 2025?</h2>
     <p>Start free today. No credit card required. Join students across West Bengal practising smarter.</p>
     <button class="btn-hp" onclick="handleHeroCta()">Start Practising Free →</button>
-    <p style="margin-top:12px;font-size:.72rem;color:#64748b;">✓ Free forever plan &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ Cancel anytime</p>
+    <p style="margin-top:12px;font-size:.72rem;color:#64748b;">✓ Free forever &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ Cancel anytime</p>
   </div>
 </section>
 
 <footer>
   <p>© 2025 WB JEE <span>PYQ</span> Solver &nbsp;·&nbsp; Made with ❤️ for WB JEE aspirants in West Bengal</p>
-  <p style="margin-top:7px;font-size:.7rem;">Privacy Policy &nbsp;·&nbsp; Terms of Service &nbsp;·&nbsp; Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="33404643435c4147734451595656434a421d5a5d">[email&#160;protected]</a></p>
+  <p style="margin-top:7px;font-size:.7rem;">Privacy Policy &nbsp;·&nbsp; Terms of Service &nbsp;·&nbsp; Contact: support@wbjeepyq.in</p>
 </footer>
 
 <a class="wa" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20need%20help%20with%20WB%20JEE%20PYQ%20Solver" target="_blank" rel="noopener">
@@ -420,7 +377,6 @@ Step 3: t = 0 or t = 2 s
       <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Log In</button>
       <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
     </div>
-    <!-- LOGIN -->
     <div id="loginForm">
       <div class="fg"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"/><div class="ferr" id="errLE"></div></div>
       <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••"/><div class="ferr" id="errLP"></div></div>
@@ -431,7 +387,6 @@ Step 3: t = 0 or t = 2 s
         Continue with Google
       </button>
     </div>
-    <!-- SIGNUP -->
     <div id="signupForm" style="display:none;">
       <div class="fg"><label>Full Name</label><input type="text" id="signupName" placeholder="Rahul Das"/><div class="ferr" id="errSN"></div></div>
       <div class="fg"><label>Email</label><input type="email" id="signupEmail" placeholder="you@example.com"/><div class="ferr" id="errSE"></div></div>
@@ -447,36 +402,8 @@ Step 3: t = 0 or t = 2 s
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── HELPERS ──────────────────────────────────────────
-function todayKey(){return new Date().toISOString().slice(0,10);}
-
-function makeid(email){
-  if(!email)return'USR-00000';
-  let h=0;for(let i=0;i<email.length;i++){h=((h<<5)-h)+email.charCodeAt(i);h|=0;}
-  return'USR-'+(Math.abs(h)%100000).toString().padStart(5,'0');
-}
-
-function fmtRelative(ts){
-  if(!ts)return'—';
-  const d=Math.floor((Date.now()-ts)/1000);
-  if(d<60)return'Just now';
-  if(d<3600)return Math.floor(d/60)+'m ago';
-  if(d<86400)return Math.floor(d/3600)+'h ago';
-  return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
-}
-
-function fmtFull(ts){
-  if(!ts)return'—';
-  return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'});
-}
-
-function getTodayUsage(){
-  try{const r=localStorage.getItem('wbjee_u_'+todayKey());return r?JSON.parse(r):{q:0,ai:0};}
-  catch{return{q:0,ai:0};}
-}
-
-// ── LANG ─────────────────────────────────────────────
+<script>
+// ── LANG ─────────────────────────────────
 function setLang(l,el){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
@@ -484,11 +411,11 @@ function setLang(l,el){
   try{localStorage.setItem('wbjee_lang',l);}catch{}
 }
 
-// ── AUTH ─────────────────────────────────────────────
+// ── AUTH ─────────────────────────────────
 let currentUser=null;
 
 function loadAuth(){
-  try{const u=localStorage.getItem('wbjee_user');if(u)currentUser=JSON.parse(u);}catch{}
+  try{currentUser=JSON.parse(localStorage.getItem('wbjee_user')||'null');}catch{}
   updateNav();
 }
 
@@ -497,70 +424,30 @@ function saveUser(u){
   try{localStorage.setItem('wbjee_user',JSON.stringify(u));}catch{}
 }
 
+// Shows ONLY email + PRO pill + Log Out button when signed in
 function updateNav(){
   const navOut=document.getElementById('navOut');
   const navIn=document.getElementById('navIn');
   if(currentUser){
     navOut.style.display='none';
     navIn.style.display='flex';
-
-    // Record this visit as last login
-    const prevLogin=currentUser.lastLogin||Date.now();
-    currentUser.lastLogin=Date.now();
-    try{localStorage.setItem('wbjee_user',JSON.stringify(currentUser));}catch{}
-
-    const uid=makeid(currentUser.email);
-    const usage=getTodayUsage();
-
-    // Nav bar labels
-    document.getElementById('navName').textContent=currentUser.name||'User';
-    document.getElementById('navMeta').textContent='Last login: '+fmtRelative(prevLogin);
-
-    // Pro pill
-    const pill=document.getElementById('navProPill');
-    if(currentUser.isPro){pill.style.display='inline-block';}
-    else{pill.style.display='none';}
-
-    // Dropdown fields
-    document.getElementById('ddAv').textContent=(currentUser.name||'U')[0].toUpperCase();
-    document.getElementById('ddHName').textContent=currentUser.name||'—';
-    document.getElementById('ddHEmail').textContent=currentUser.email||'—';
-    document.getElementById('ddUID').textContent=uid;
-    document.getElementById('ddLastLogin').textContent=fmtRelative(prevLogin);
-    document.getElementById('ddSince').textContent=fmtFull(currentUser.createdAt||Date.now());
-    document.getElementById('ddQToday').textContent=(usage.q||0)+' / 10';
-
-    const planEl=document.getElementById('ddPlan');
-    if(currentUser.isPro){planEl.textContent='⭐ PRO PLAN — Unlimited access';planEl.className='dd-plan pro';}
-    else{planEl.textContent='FREE PLAN — 10 questions/day';planEl.className='dd-plan free';}
+    document.getElementById('navEmail').textContent=currentUser.email||'';
+    document.getElementById('navProPill').style.display=currentUser.isPro?'inline-block':'none';
   }else{
     navOut.style.display='flex';
     navIn.style.display='none';
   }
 }
 
-// Dropdown toggle
-let ddOpen=false;
-function toggleDropdown(e){
-  e.stopPropagation();
-  ddOpen=!ddOpen;
-  document.getElementById('navDropdown').classList.toggle('open',ddOpen);
-}
-document.addEventListener('click',()=>{
-  if(ddOpen){ddOpen=false;document.getElementById('navDropdown')?.classList.remove('open');}
-});
-document.getElementById('navDropdown')?.addEventListener('click',e=>e.stopPropagation());
-
 function logout(){
   currentUser=null;
   try{localStorage.removeItem('wbjee_user');}catch{}
-  ddOpen=false;
-  document.getElementById('navDropdown')?.classList.remove('open');
   updateNav();
 }
+
 function goToApp(){window.location.href='app.html';}
 
-// ── MODAL ─────────────────────────────────────────────
+// ── MODAL ─────────────────────────────────
 function openModal(tab='signup'){
   document.getElementById('authModal').classList.remove('hidden');
   switchTab(tab);
@@ -595,11 +482,11 @@ function handleLogin(){
   showErr('errLE','');showErr('errLP','');
   if(!validEmail(email)){showErr('errLE','Please enter a valid email.');return;}
   if(pass.length<6){showErr('errLP','Password must be at least 6 characters.');return;}
-  let allUsers={};
-  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
-  const stored=allUsers[email];
+  let all={};
+  try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  const stored=all[email];
   if(!stored||stored.password!==pass){showErr('errLP','Invalid email or password.');return;}
-  saveUser({email,name:stored.name,isPro:stored.isPro||false,lastLogin:Date.now(),createdAt:stored.createdAt||Date.now()});
+  saveUser({email,name:stored.name,isPro:stored.isPro||false,createdAt:stored.createdAt||Date.now()});
   updateNav();
   showSuccess('✅ Logged in! Redirecting...');
 }
@@ -613,12 +500,12 @@ function handleSignupSubmit(){
   if(name.length<2){showErr('errSN','Please enter your full name.');return;}
   if(!validEmail(email)){showErr('errSE','Please enter a valid email.');return;}
   if(pass.length<6){showErr('errSP','Password must be at least 6 characters.');return;}
-  let allUsers={};
-  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  let all={};
+  try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
   const now=Date.now();
-  allUsers[email]={name,password:pass,isPro:false,createdAt:now};
-  localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));
-  saveUser({email,name,isPro:false,lastLogin:now,createdAt:now});
+  all[email]={name,password:pass,isPro:false,createdAt:now};
+  localStorage.setItem('wbjee_all_users',JSON.stringify(all));
+  saveUser({email,name,isPro:false,createdAt:now});
   updateNav();
   showSuccess('🎉 Account created! Welcome '+name+'!');
 }
@@ -626,11 +513,11 @@ function handleSignupSubmit(){
 // GOOGLE (simulated)
 function handleGoogleAuth(){
   const name='Student User', email='student@gmail.com';
-  let allUsers={};
-  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  let all={};
+  try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
   const now=Date.now();
-  if(!allUsers[email]){allUsers[email]={name,password:'google',isPro:false,createdAt:now};localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));}
-  saveUser({email,name,isPro:allUsers[email].isPro||false,lastLogin:now,createdAt:allUsers[email].createdAt||now});
+  if(!all[email]){all[email]={name,password:'google',isPro:false,createdAt:now};localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
+  saveUser({email,name,isPro:all[email].isPro||false,createdAt:all[email].createdAt||now});
   updateNav();
   showSuccess('✅ Signed in with Google!');
 }
@@ -638,11 +525,11 @@ function handleGoogleAuth(){
 function handleHeroCta(){if(currentUser)goToApp();else openModal('signup');}
 function handleSignup(){openModal('signup');}
 
-// ── RAZORPAY ──────────────────────────────────────────
+// ── RAZORPAY ──────────────────────────────
 function handleProPayment(amount,plan){
   if(!currentUser){openModal('signup');return;}
   const opts={
-    key:'rzp_test_XXXXXXXXXXXXXXXX', // ← Replace with your Razorpay Key ID
+    key:'rzp_test_XXXXXXXXXXXXXXXX',
     amount:amount*100,currency:'INR',
     name:'WB JEE PYQ Solver',
     description:plan==='monthly'?'Pro Plan – ₹99/month':'Pro Plan – ₹799/year',
@@ -665,5 +552,17 @@ function handleProPayment(amount,plan){
   catch{alert('Demo mode: Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID.');}
 }
 
-// ── INIT ──────────────────────────────────────────────
-document.addEventList
+// ── INIT ──────────────────────────────────
+document.addEventListener('DOMContentLoaded',function(){
+  loadAuth();
+  try{
+    var l=localStorage.getItem('wbjee_lang');
+    if(l&&l!=='en'){
+      var b=document.querySelector('.lang-btn[onclick*="\''+l+'\'"]');
+      if(b)setLang(l,b);
+    }
+  }catch(e){}
+});
+</script>
+</body>
+</html>
