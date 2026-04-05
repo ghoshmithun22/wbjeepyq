@@ -4,15 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WB JEE PYQ Solver – AI-Powered Exam Preparation</title>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX'); // Replace with your GA4 Measurement ID
-</script>
-<!-- Razorpay -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -24,312 +15,291 @@ body.lang-hi{font-family:'Noto Sans Devanagari','Sora',sans-serif;}
 a{text-decoration:none;color:inherit;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;}
-.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:800;font-family:'Sora',sans-serif!important;cursor:pointer;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:800;cursor:pointer;}
 .nav-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
 .nav-logo span{color:var(--accent);}
 .nav-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
 .nav-links{display:flex;gap:18px;font-size:.82rem;color:var(--muted2);}
 .nav-links a:hover{color:var(--text);}
-.lang-switcher{display:flex;gap:3px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:3px;}
-.lang-btn{font-family:'Sora',sans-serif!important;padding:4px 10px;border-radius:7px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
+.lang-sw{display:flex;gap:3px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:3px;}
+.lang-btn{font-family:'Sora',sans-serif;padding:4px 10px;border-radius:7px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
 .lang-btn.active{background:var(--accent);color:#000;}
 .lang-btn:hover:not(.active){background:rgba(255,255,255,.08);color:var(--text);}
-.nav-login-btn{font-family:'Sora',sans-serif!important;background:transparent;border:1px solid var(--border);color:var(--muted2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;}
-.nav-login-btn:hover{border-color:var(--accent);color:var(--accent);}
-.nav-cta{background:var(--accent);color:#000;font-weight:700;padding:7px 18px;border-radius:8px;font-size:.82rem;cursor:pointer;border:none;font-family:'Sora',sans-serif!important;transition:all .2s;white-space:nowrap;}
-.nav-cta:hover{background:#fbbf24;transform:translateY(-1px);}
-.nav-user{display:flex;align-items:center;gap:8px;}
-.nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#000;cursor:pointer;font-family:'Sora',sans-serif!important;}
-.nav-pro-badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:700;font-family:'Sora',sans-serif!important;}
-.nav-user-info{display:flex;flex-direction:column;align-items:flex-end;cursor:pointer;position:relative;}
-.nav-user-name{font-size:.78rem;font-weight:700;color:var(--text);line-height:1.2;font-family:'Sora',sans-serif!important;}
-.nav-user-meta{font-size:.65rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;line-height:1.2;}
-.nav-user-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:#111827;border:1px solid var(--border);border-radius:12px;padding:14px 16px;min-width:240px;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:ddIn .2s ease;}
-@keyframes ddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.nav-user-dropdown.hidden{display:none;}
-.dd-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);margin-bottom:8px;}
-.dd-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#000;flex-shrink:0;font-family:'Sora',sans-serif!important;}
-.dd-name{font-size:.82rem;font-weight:700;color:var(--text);}
-.dd-email{font-size:.68rem;color:var(--muted2);}
-.dd-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
-.dd-info-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
-.dd-info-label{font-size:.6rem;color:var(--muted2);margin-bottom:2px;letter-spacing:.4px;text-transform:uppercase;}
-.dd-info-value{font-size:.73rem;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;}
-.dd-plan{font-size:.7rem;padding:4px 10px;border-radius:8px;font-weight:700;text-align:center;margin-bottom:10px;font-family:'Sora',sans-serif!important;}
-.dd-plan.free{background:rgba(148,163,184,.1);color:var(--muted2);border:1px solid var(--border);}
-.dd-plan.pro{background:rgba(245,158,11,.12);color:var(--accent);border:1px solid rgba(245,158,11,.3);}
-.dd-btn{width:100%;padding:8px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);transition:all .2s;margin-bottom:5px;text-align:left;display:flex;align-items:center;gap:7px;}
-.dd-btn:hover{border-color:var(--accent);color:var(--accent);}
-.dd-btn.danger{color:var(--red);border-color:rgba(239,68,68,.2);}
-.dd-btn.danger:hover{background:rgba(239,68,68,.06);border-color:var(--red);}
+.btn-login{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted2);padding:6px 14px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.btn-login:hover{border-color:var(--accent);color:var(--accent);}
+.btn-cta{background:var(--accent);color:#000;font-weight:700;padding:7px 18px;border-radius:8px;font-size:.82rem;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:all .2s;}
+.btn-cta:hover{background:#fbbf24;transform:translateY(-1px);}
 
-/* LANG BAR */
-.lang-bar{background:rgba(59,130,246,.08);border-bottom:1px solid rgba(59,130,246,.15);padding:7px 28px;text-align:center;font-size:.73rem;color:var(--muted2);display:none;margin-top:57px;}
-.lang-bar.active{display:block;}
+/* USER INFO IN NAV */
+.nav-user-wrap{position:relative;display:none;align-items:center;gap:8px;}
+.nav-user-info{cursor:pointer;text-align:right;}
+.nav-user-name{font-size:.8rem;font-weight:700;color:var(--text);display:block;line-height:1.3;}
+.nav-user-meta{font-size:.63rem;color:var(--muted2);display:block;font-family:'JetBrains Mono',monospace;}
+.nav-pro-pill{background:linear-gradient(135deg,#f59e0b,#f97316);color:#000;font-size:.63rem;font-weight:800;padding:2px 8px;border-radius:8px;}
+
+/* DROPDOWN */
+.nav-dropdown{position:absolute;top:calc(100% + 12px);right:0;background:#111827;border:1px solid var(--border);border-radius:14px;padding:16px;min-width:256px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,.6);display:none;}
+.nav-dropdown.open{display:block;animation:ddIn .2s ease;}
+@keyframes ddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.dd-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+.dd-av{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:#000;flex-shrink:0;}
+.dd-hname{font-size:.84rem;font-weight:700;color:var(--text);}
+.dd-hemail{font-size:.68rem;color:var(--muted2);margin-top:1px;word-break:break-all;}
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.dd-cell{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
+.dd-clabel{font-size:.58rem;color:var(--muted2);letter-spacing:.4px;text-transform:uppercase;margin-bottom:3px;}
+.dd-cval{font-size:.74rem;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;word-break:break-all;}
+.dd-plan{text-align:center;padding:6px 10px;border-radius:8px;font-size:.72rem;font-weight:700;margin-bottom:12px;}
+.dd-plan.free{background:rgba(148,163,184,.08);color:var(--muted2);border:1px solid var(--border);}
+.dd-plan.pro{background:rgba(245,158,11,.1);color:var(--accent);border:1px solid rgba(245,158,11,.3);}
+.dd-btn{width:100%;padding:8px 12px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);transition:all .2s;margin-bottom:6px;text-align:left;display:flex;align-items:center;gap:8px;}
+.dd-btn:hover{border-color:var(--accent);color:var(--accent);}
+.dd-btn.red{color:var(--red);border-color:rgba(239,68,68,.2);}
+.dd-btn.red:hover{background:rgba(239,68,68,.06);border-color:var(--red);}
+.dd-btn:last-child{margin-bottom:0;}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
 .hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(245,158,11,.12) 0%,transparent 70%);pointer-events:none;}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:600;margin-bottom:24px;letter-spacing:.5px;font-family:'Sora',sans-serif!important;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:600;margin-bottom:24px;letter-spacing:.5px;}
 .hero h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;line-height:1.15;letter-spacing:-2px;max-width:800px;margin-bottom:20px;}
 .hero h1 .gold{background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero h1 .dim{color:var(--muted2);}
 .hero-sub{font-size:1rem;color:var(--muted2);max-width:520px;line-height:1.75;margin-bottom:36px;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;}
-.btn-hero-primary{background:var(--accent);color:#000;font-weight:800;padding:13px 30px;border-radius:12px;font-size:.95rem;cursor:pointer;border:none;font-family:'Sora',sans-serif!important;transition:all .2s;}
-.btn-hero-primary:hover{background:#fbbf24;transform:translateY(-2px);}
-.btn-hero-secondary{background:rgba(255,255,255,.05);color:var(--text);padding:13px 26px;border-radius:12px;font-size:.9rem;border:1px solid var(--border);font-family:'Sora',sans-serif!important;cursor:pointer;transition:all .2s;}
-.btn-hero-secondary:hover{border-color:var(--muted2);}
+.btn-hp{background:var(--accent);color:#000;font-weight:800;padding:13px 30px;border-radius:12px;font-size:.95rem;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:all .2s;}
+.btn-hp:hover{background:#fbbf24;transform:translateY(-2px);}
+.btn-hs{background:rgba(255,255,255,.05);color:var(--text);padding:13px 26px;border-radius:12px;font-size:.9rem;border:1px solid var(--border);font-family:'Sora',sans-serif;cursor:pointer;transition:all .2s;}
+.btn-hs:hover{border-color:var(--muted2);}
 .hero-stats{display:flex;gap:36px;flex-wrap:wrap;justify-content:center;}
-.hero-stat-num{font-size:1.7rem;font-weight:800;color:var(--accent);font-family:'Sora',sans-serif!important;}
-.hero-stat-label{font-size:.7rem;color:var(--muted);margin-top:3px;letter-spacing:.5px;}
+.hs-num{font-size:1.7rem;font-weight:800;color:var(--accent);display:block;}
+.hs-label{font-size:.7rem;color:var(--muted);margin-top:3px;display:block;}
 
 /* SECTIONS */
 section{padding:76px 24px;}
-.section-inner{max-width:1000px;margin:0 auto;}
-.section-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;margin-bottom:16px;font-family:'Sora',sans-serif!important;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue);}
-.section-title{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
-.section-sub{color:var(--muted2);font-size:.92rem;max-width:500px;line-height:1.75;}
+.si{max-width:1000px;margin:0 auto;}
+.sec-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;margin-bottom:16px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue);}
+.sec-title{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
+.sec-sub{color:var(--muted2);font-size:.92rem;max-width:500px;line-height:1.75;}
 
 /* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:44px;}
-.feature-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:all .3s;position:relative;overflow:hidden;}
-.feature-card:hover{border-color:rgba(245,158,11,.3);transform:translateY(-3px);}
-.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s;}
-.feature-card:hover::before{opacity:1;}
-.fc-gold::before{background:linear-gradient(90deg,var(--accent),#f97316);}
-.fc-blue::before{background:linear-gradient(90deg,var(--blue),#6366f1);}
-.fc-green::before{background:linear-gradient(90deg,var(--green),#14b8a6);}
-.fc-purple::before{background:linear-gradient(90deg,var(--purple),#ec4899);}
-.feature-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
-.fi-gold{background:rgba(245,158,11,.15);}
-.fi-blue{background:rgba(59,130,246,.15);}
-.fi-green{background:rgba(16,185,129,.15);}
-.fi-purple{background:rgba(139,92,246,.15);}
-.feature-card h3{font-size:.95rem;font-weight:700;margin-bottom:7px;}
-.feature-card p{font-size:.83rem;color:var(--muted2);line-height:1.65;}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:44px;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:all .3s;position:relative;overflow:hidden;}
+.feat-card:hover{border-color:rgba(245,158,11,.3);transform:translateY(-3px);}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s;}
+.feat-card:hover::before{opacity:1;}
+.fc-g::before{background:linear-gradient(90deg,var(--accent),#f97316);}
+.fc-b::before{background:linear-gradient(90deg,var(--blue),#6366f1);}
+.fc-gr::before{background:linear-gradient(90deg,var(--green),#14b8a6);}
+.fc-p::before{background:linear-gradient(90deg,var(--purple),#ec4899);}
+.feat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+.fi-g{background:rgba(245,158,11,.15);}
+.fi-b{background:rgba(59,130,246,.15);}
+.fi-gr{background:rgba(16,185,129,.15);}
+.fi-p{background:rgba(139,92,246,.15);}
+.feat-card h3{font-size:.95rem;font-weight:700;margin-bottom:7px;}
+.feat-card p{font-size:.83rem;color:var(--muted2);line-height:1.65;}
 
-/* STEPS */
+/* HOW */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;margin-top:44px;}
 .step{text-align:center;padding:22px 14px;}
-.step-num{width:46px;height:46px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--accent);margin:0 auto 14px;font-family:'Sora',sans-serif!important;}
+.step-n{width:46px;height:46px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--accent);margin:0 auto 14px;}
 .step h3{font-size:.92rem;font-weight:700;margin-bottom:7px;}
 .step p{font-size:.8rem;color:var(--muted2);line-height:1.65;}
 
 /* PRICING */
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:44px;}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:44px;}
 .price-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;position:relative;transition:all .3s;}
-.price-card.featured{border-color:var(--accent);background:linear-gradient(135deg,rgba(245,158,11,.05),rgba(249,115,22,.03));}
+.price-card.feat{border-color:var(--accent);background:linear-gradient(135deg,rgba(245,158,11,.05),rgba(249,115,22,.03));}
 .price-card:hover{transform:translateY(-3px);}
-.popular-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.68rem;font-weight:800;padding:3px 14px;border-radius:12px;white-space:nowrap;font-family:'Sora',sans-serif!important;}
-.price-name{font-size:.78rem;font-weight:700;color:var(--muted2);letter-spacing:.8px;margin-bottom:10px;font-family:'Sora',sans-serif!important;}
-.price-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:4px;}
-.price-amount .amount{font-size:2.2rem;font-weight:800;font-family:'Sora',sans-serif!important;}
-.price-amount .period{font-size:.82rem;color:var(--muted);}
+.pop-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.68rem;font-weight:800;padding:3px 14px;border-radius:12px;white-space:nowrap;}
+.price-name{font-size:.78rem;font-weight:700;color:var(--muted2);letter-spacing:.8px;margin-bottom:10px;}
+.price-amt{display:flex;align-items:baseline;gap:4px;margin-bottom:4px;}
+.price-amt .am{font-size:2.2rem;font-weight:800;}
+.price-amt .per{font-size:.82rem;color:var(--muted);}
 .price-desc{font-size:.78rem;color:var(--muted);margin-bottom:18px;}
-.price-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
-.price-features li{font-size:.81rem;display:flex;align-items:center;gap:7px;color:var(--muted2);}
-.check{color:var(--green);}.cross{color:var(--muted);}
-.btn-price{width:100%;padding:11px;border-radius:9px;font-family:'Sora',sans-serif!important;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;}
-.btn-outline{background:transparent;border:1px solid var(--border)!important;color:var(--text);}
-.btn-outline:hover{border-color:var(--accent)!important;color:var(--accent);}
-.btn-solid{background:var(--accent);color:#000;}
-.btn-solid:hover{background:#fbbf24;}
+.price-div{border:none;border-top:1px solid var(--border);margin:18px 0;}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
+.price-feats li{font-size:.81rem;display:flex;align-items:center;gap:7px;color:var(--muted2);}
+.ck{color:var(--green);}.cx{color:var(--muted);}
+.btn-price{width:100%;padding:11px;border-radius:9px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;}
+.btn-out{background:transparent;border:1px solid var(--border)!important;color:var(--text);}
+.btn-out:hover{border-color:var(--accent)!important;color:var(--accent);}
+.btn-sol{background:var(--accent);color:#000;}
+.btn-sol:hover{background:#fbbf24;}
 
 /* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:44px;}
 .testi-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:20px;}
 .stars{color:var(--accent);font-size:12px;margin-bottom:11px;}
-.testi-text{font-size:.83rem;color:var(--muted2);line-height:1.75;margin-bottom:14px;}
-.testi-author{display:flex;align-items:center;gap:9px;}
-.testi-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;font-family:'Sora',sans-serif!important;}
+.testi-txt{font-size:.83rem;color:var(--muted2);line-height:1.75;margin-bottom:14px;}
+.testi-auth{display:flex;align-items:center;gap:9px;}
+.testi-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;}
 .testi-name{font-size:.81rem;font-weight:700;}
 .testi-role{font-size:.7rem;color:var(--muted);}
 
 /* PREVIEW */
-.preview-window{background:rgba(17,24,39,.8);border:1px solid var(--border);border-radius:18px;overflow:hidden;max-width:680px;margin:44px auto 0;}
-.preview-titlebar{background:#1a2235;padding:11px 15px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);}
-.dot-r{width:9px;height:9px;border-radius:50%;background:#ef4444;}
-.dot-y{width:9px;height:9px;border-radius:50%;background:#f59e0b;}
-.dot-g{width:9px;height:9px;border-radius:50%;background:#10b981;}
-.preview-url{flex:1;background:rgba(255,255,255,.05);border-radius:5px;padding:3px 11px;font-size:.68rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;text-align:center;}
-.preview-body{padding:18px;}
-.preview-q{background:#1a2235;border-radius:9px;padding:14px;}
+.prev-win{background:rgba(17,24,39,.8);border:1px solid var(--border);border-radius:18px;overflow:hidden;max-width:680px;margin:44px auto 0;}
+.prev-bar{background:#1a2235;padding:11px 15px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);}
+.dr{width:9px;height:9px;border-radius:50%;background:#ef4444;}
+.dy{width:9px;height:9px;border-radius:50%;background:#f59e0b;}
+.dg{width:9px;height:9px;border-radius:50%;background:#10b981;}
+.prev-url{flex:1;background:rgba(255,255,255,.05);border-radius:5px;padding:3px 11px;font-size:.68rem;color:var(--muted2);font-family:'JetBrains Mono',monospace;text-align:center;}
+.prev-body{padding:18px;}
+.prev-q{background:#1a2235;border-radius:9px;padding:14px;}
 .ptag-wrap{font-size:.62rem;color:var(--muted);margin-bottom:7px;display:flex;gap:5px;flex-wrap:wrap;}
-.ptag{padding:2px 6px;border-radius:4px;font-size:.58rem;font-weight:600;font-family:'Sora',sans-serif!important;}
-.preview-q-text{font-size:.79rem;color:var(--text);margin-bottom:10px;line-height:1.5;}
-.preview-opts{display:grid;gap:5px;}
-.preview-opt{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:6px;border:1px solid var(--border);font-size:.72rem;color:var(--muted2);}
-.preview-opt.right{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--text);}
-.preview-opt-l{width:18px;height:18px;border-radius:4px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;font-family:'Sora',sans-serif!important;}
-.preview-opt.right .preview-opt-l{background:var(--green);color:#fff;}
-.preview-ai{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:7px;padding:10px;margin-top:8px;}
-.preview-ai-hdr{font-size:.62rem;font-weight:700;color:var(--accent);margin-bottom:5px;font-family:'Sora',sans-serif!important;}
-.preview-ai-txt{font-size:.68rem;color:#94a3b8;line-height:1.75;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
+.ptag{padding:2px 6px;border-radius:4px;font-size:.58rem;font-weight:600;}
+.prev-q-txt{font-size:.79rem;color:var(--text);margin-bottom:10px;line-height:1.5;}
+.prev-opts{display:grid;gap:5px;}
+.prev-opt{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:6px;border:1px solid var(--border);font-size:.72rem;color:var(--muted2);}
+.prev-opt.right{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--text);}
+.prev-ol{width:18px;height:18px;border-radius:4px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;}
+.prev-opt.right .prev-ol{background:var(--green);color:#fff;}
+.prev-ai{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:7px;padding:10px;margin-top:8px;}
+.prev-ai-hdr{font-size:.62rem;font-weight:700;color:var(--accent);margin-bottom:5px;}
+.prev-ai-txt{font-size:.68rem;color:#94a3b8;line-height:1.75;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
 
 /* CTA */
-.cta-section{text-align:center;padding:90px 24px;}
-.cta-box{max-width:620px;margin:0 auto;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(59,130,246,.06));border:1px solid rgba(245,158,11,.2);border-radius:22px;padding:52px 36px;}
+.cta-box{max-width:620px;margin:0 auto;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(59,130,246,.06));border:1px solid rgba(245,158,11,.2);border-radius:22px;padding:52px 36px;text-align:center;}
 .cta-box h2{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
 .cta-box p{color:var(--muted2);margin-bottom:26px;font-size:.92rem;line-height:1.75;}
 
-/* FOOTER */
 footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;color:var(--muted);font-size:.78rem;}
 footer span{color:var(--accent);}
 
-/* MODAL OVERLAY */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
-.modal-overlay.hidden{display:none;}
-.modal{background:#111827;border:1px solid var(--border);border-radius:20px;padding:36px;max-width:420px;width:100%;position:relative;animation:modalIn .25s ease;}
-@keyframes modalIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.08);border:none;color:var(--muted2);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.modal-close:hover{background:rgba(255,255,255,.15);color:var(--text);}
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-ov.hidden{display:none;}
+.modal{background:#111827;border:1px solid var(--border);border-radius:20px;padding:36px;max-width:420px;width:100%;position:relative;animation:mIn .25s ease;}
+@keyframes mIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-x{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.08);border:none;color:var(--muted2);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal-x:hover{background:rgba(255,255,255,.15);}
 .modal h2{font-size:1.3rem;font-weight:800;margin-bottom:6px;}
-.modal p.modal-sub{font-size:.83rem;color:var(--muted2);margin-bottom:24px;}
+.modal-sub{font-size:.83rem;color:var(--muted2);margin-bottom:24px;}
 .modal-tabs{display:flex;gap:0;background:rgba(255,255,255,.05);border-radius:10px;padding:3px;margin-bottom:22px;}
 .modal-tab{flex:1;padding:8px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
 .modal-tab.active{background:var(--accent);color:#000;}
-.form-group{margin-bottom:14px;}
-.form-group label{display:block;font-size:.75rem;color:var(--muted2);margin-bottom:5px;font-weight:600;}
-.form-group input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:.86rem;color:var(--text);font-family:'Sora',sans-serif;outline:none;transition:all .2s;}
-.form-group input:focus{border-color:var(--accent);}
-.form-error{font-size:.74rem;color:var(--red);margin-top:4px;display:none;}
-.btn-submit{width:100%;padding:12px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;border:none;background:var(--accent);color:#000;transition:all .2s;margin-top:4px;}
-.btn-submit:hover{background:#fbbf24;}
-.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
-.modal-divider{text-align:center;color:var(--muted);font-size:.75rem;margin:16px 0;position:relative;}
-.modal-divider::before,.modal-divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border);}
-.modal-divider::before{left:0;}.modal-divider::after{right:0;}
-.btn-google{width:100%;padding:11px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;}
-.btn-google:hover{background:rgba(255,255,255,.06);}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:.75rem;color:var(--muted2);margin-bottom:5px;font-weight:600;}
+.fg input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:.86rem;color:var(--text);font-family:'Sora',sans-serif;outline:none;transition:all .2s;}
+.fg input:focus{border-color:var(--accent);}
+.ferr{font-size:.74rem;color:var(--red);margin-top:4px;display:none;}
+.btn-sub{width:100%;padding:12px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;border:none;background:var(--accent);color:#000;transition:all .2s;margin-top:4px;}
+.btn-sub:hover{background:#fbbf24;}
+.modal-div{text-align:center;color:var(--muted);font-size:.75rem;margin:16px 0;position:relative;}
+.modal-div::before,.modal-div::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border);}
+.modal-div::before{left:0;}.modal-div::after{right:0;}
+.btn-goog{width:100%;padding:11px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;}
+.btn-goog:hover{background:rgba(255,255,255,.06);}
 .success-msg{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:14px;text-align:center;font-size:.84rem;color:var(--green);display:none;}
 
-/* WHATSAPP BUTTON */
-.whatsapp-btn{position:fixed;bottom:24px;right:24px;z-index:500;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;transition:all .3s;text-decoration:none;}
-.whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.5);}
-.whatsapp-btn svg{width:28px;height:28px;fill:#fff;}
-.whatsapp-tooltip{position:absolute;right:62px;background:#1a2235;color:var(--text);padding:6px 12px;border-radius:8px;font-size:.75rem;white-space:nowrap;border:1px solid var(--border);opacity:0;pointer-events:none;transition:opacity .2s;font-family:'Sora',sans-serif;}
-.whatsapp-btn:hover .whatsapp-tooltip{opacity:1;}
+/* WHATSAPP */
+.wa{position:fixed;bottom:24px;right:24px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);cursor:pointer;transition:all .3s;text-decoration:none;}
+.wa:hover{transform:scale(1.1);}
+.wa svg{width:26px;height:26px;fill:#fff;}
 </style>
 </head>
 <body>
 
-<!-- LANG BAR -->
-<div class="lang-bar" id="langBar"></div>
-
-<!-- NAV -->
 <nav>
-  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <div class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">
     <div class="nav-logo-icon">📚</div>
     WB JEE <span>PYQ</span>
   </div>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#features" data-t="navFeatures">Features</a>
-      <a href="#how" data-t="navHow">How it works</a>
-      <a href="#pricing" data-t="navPricing">Pricing</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
     </div>
-    <div class="lang-switcher">
+    <div class="lang-sw">
       <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
       <button class="lang-btn" onclick="setLang('bn',this)">বাং</button>
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
-    <!-- Auth buttons (shown when logged out) -->
-    <div id="navAuthBtns">
-      <button class="nav-login-btn" onclick="openModal('login')" data-t="navLogin">Log In</button>
-      <button class="nav-cta" onclick="openModal('signup')" data-t="navCta">Start Free →</button>
+
+    <!-- LOGGED OUT -->
+    <div id="navOut" style="display:flex;gap:8px;align-items:center;">
+      <button class="btn-login" onclick="openModal('login')">Log In</button>
+      <button class="btn-cta" onclick="openModal('signup')">Start Free →</button>
     </div>
-    <!-- User info (shown when logged in) — no logout button, shows dropdown -->
-    <div class="nav-user hidden" id="navUserArea" style="position:relative;">
-      <div class="nav-user-info" onclick="toggleDropdown()" id="navUserInfo">
-        <span class="nav-user-name" id="navUserName">User</span>
-        <span class="nav-user-meta" id="navUserMeta">Last login: —</span>
+
+    <!-- LOGGED IN — user info + dropdown, NO top-level logout -->
+    <div class="nav-user-wrap" id="navIn">
+      <div class="nav-user-info" onclick="toggleDropdown(event)">
+        <span class="nav-user-name" id="navName">User</span>
+        <span class="nav-user-meta" id="navMeta">Last login: —</span>
       </div>
-      <span class="nav-pro-badge hidden" id="navProBadge">PRO ✦</span>
-      <!-- DROPDOWN -->
-      <div class="nav-user-dropdown hidden" id="navDropdown">
-        <div class="dd-row">
-          <div class="dd-avatar" id="ddAvatar">U</div>
+      <span class="nav-pro-pill" id="navProPill" style="display:none;">PRO ✦</span>
+
+      <!-- DROPDOWN (no dismiss button in nav — logout lives here) -->
+      <div class="nav-dropdown" id="navDropdown">
+        <div class="dd-head">
+          <div class="dd-av" id="ddAv">U</div>
           <div>
-            <div class="dd-name" id="ddName">—</div>
-            <div class="dd-email" id="ddEmail">—</div>
+            <div class="dd-hname" id="ddHName">—</div>
+            <div class="dd-hemail" id="ddHEmail">—</div>
           </div>
         </div>
-        <div class="dd-info">
-          <div class="dd-info-item">
-            <div class="dd-info-label">User ID</div>
-            <div class="dd-info-value" id="ddUserId">—</div>
-          </div>
-          <div class="dd-info-item">
-            <div class="dd-info-label">Last Login</div>
-            <div class="dd-info-value" id="ddLastLogin">—</div>
-          </div>
-          <div class="dd-info-item">
-            <div class="dd-info-label">Member Since</div>
-            <div class="dd-info-value" id="ddMemberSince">—</div>
-          </div>
-          <div class="dd-info-item">
-            <div class="dd-info-label">Questions Today</div>
-            <div class="dd-info-value" id="ddQToday">—</div>
-          </div>
+        <div class="dd-grid">
+          <div class="dd-cell"><div class="dd-clabel">User ID</div><div class="dd-cval" id="ddUID">—</div></div>
+          <div class="dd-cell"><div class="dd-clabel">Last Login</div><div class="dd-cval" id="ddLastLogin">—</div></div>
+          <div class="dd-cell"><div class="dd-clabel">Member Since</div><div class="dd-cval" id="ddSince">—</div></div>
+          <div class="dd-cell"><div class="dd-clabel">Questions Today</div><div class="dd-cval" id="ddQToday">—</div></div>
         </div>
         <div class="dd-plan free" id="ddPlan">FREE PLAN — 10 questions/day</div>
         <button class="dd-btn" onclick="goToApp()">📚 Go to Practice App</button>
-        <button class="dd-btn danger" onclick="logout()">🚪 Log Out</button>
+        <button class="dd-btn red" onclick="logout()">🚪 Log Out</button>
       </div>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="margin-top:57px;">
   <div class="hero-glow"></div>
-  <div class="hero-badge" data-t="heroBadge">🚀 AI-Powered WB JEE Preparation</div>
+  <div class="hero-badge">🚀 AI-Powered WB JEE Preparation</div>
   <h1>
-    <span data-t="heroLine1">Crack WB JEE</span><br>
-    <span class="gold" data-t="heroLine2">with AI Explanations</span><br>
-    <span class="dim" data-t="heroLine3">for every question</span>
+    Crack WB JEE<br>
+    <span class="gold">with AI Explanations</span><br>
+    <span class="dim">for every question</span>
   </h1>
-  <p class="hero-sub" data-t="heroSub">90+ previous year questions with step-by-step AI solutions. Physics, Chemistry & Mathematics. Trusted by students across West Bengal.</p>
+  <p class="hero-sub">90+ previous year questions with step-by-step AI solutions. Physics, Chemistry & Mathematics. Trusted by students across West Bengal.</p>
   <div class="hero-btns">
-    <button class="btn-hero-primary" data-t="heroCta" onclick="handleHeroCta()">Start Practising Free →</button>
-    <button class="btn-hero-secondary" data-t="heroDemo" onclick="document.getElementById('preview').scrollIntoView({behavior:'smooth'})">See Demo ▼</button>
+    <button class="btn-hp" onclick="handleHeroCta()">Start Practising Free →</button>
+    <button class="btn-hs" onclick="document.getElementById('preview').scrollIntoView({behavior:'smooth'})">See Demo ▼</button>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">90+</div><div class="hero-stat-label" data-t="stat1">QUESTIONS</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">10</div><div class="hero-stat-label" data-t="stat2">YEARS (2015–2024)</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label" data-t="stat3">SUBJECTS</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">AI</div><div class="hero-stat-label" data-t="stat4">POWERED</div></div>
+    <div class="hero-stat"><span class="hs-num">90+</span><span class="hs-label">QUESTIONS</span></div>
+    <div class="hero-stat"><span class="hs-num">10</span><span class="hs-label">YEARS (2015–2024)</span></div>
+    <div class="hero-stat"><span class="hs-num">3</span><span class="hs-label">SUBJECTS</span></div>
+    <div class="hero-stat"><span class="hs-num">AI</span><span class="hs-label">POWERED</span></div>
   </div>
 </section>
 
 <!-- PREVIEW -->
 <section id="preview" style="padding:0 24px 76px;background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,.05) 0%,transparent 70%);">
-  <div class="section-inner" style="text-align:center;">
-    <div class="preview-window">
-      <div class="preview-titlebar">
-        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
-        <div class="preview-url">wbjeepyq.in/app</div>
-      </div>
-      <div class="preview-body">
-        <div class="preview-q">
+  <div class="si" style="text-align:center;">
+    <div class="prev-win">
+      <div class="prev-bar"><div class="dr"></div><div class="dy"></div><div class="dg"></div><div class="prev-url">wbjeepyq.in/app</div></div>
+      <div class="prev-body">
+        <div class="prev-q">
           <div class="ptag-wrap">
             <span class="ptag" style="background:rgba(59,130,246,.15);color:#3b82f6;">⚡ Physics</span>
             <span class="ptag" style="background:rgba(245,158,11,.12);color:#f59e0b;">📅 WB JEE 2024</span>
             <span class="ptag" style="background:rgba(16,185,129,.12);color:#10b981;">📖 Kinematics</span>
           </div>
-          <div class="preview-q-text" id="previewQ">A particle moves along x-axis with x = 6t² − 2t³. The particle comes to rest at time t =</div>
-          <div class="preview-opts">
-            <div class="preview-opt"><div class="preview-opt-l">A</div><span id="pA">t = 0 only</span></div>
-            <div class="preview-opt"><div class="preview-opt-l">B</div><span id="pB">t = 2 s only</span></div>
-            <div class="preview-opt right"><div class="preview-opt-l">C</div><span id="pC">t = 0 and t = 2 s ✓</span></div>
-            <div class="preview-opt"><div class="preview-opt-l">D</div><span id="pD">t = 1 s only</span></div>
+          <div class="prev-q-txt">A particle moves along x-axis with x = 6t² − 2t³. The particle comes to rest at time t =</div>
+          <div class="prev-opts">
+            <div class="prev-opt"><div class="prev-ol">A</div> t = 0 only</div>
+            <div class="prev-opt"><div class="prev-ol">B</div> t = 2 s only</div>
+            <div class="prev-opt right"><div class="prev-ol">C</div> t = 0 and t = 2 s ✓</div>
+            <div class="prev-opt"><div class="prev-ol">D</div> t = 1 s only</div>
           </div>
-          <div class="preview-ai">
-            <div class="preview-ai-hdr" id="previewAIHdr">🤖 AI EXPLANATION • Claude</div>
-            <div class="preview-ai-txt" id="previewAITxt">Step 1: v = dx/dt = 12t − 6t²
+          <div class="prev-ai">
+            <div class="prev-ai-hdr">🤖 AI EXPLANATION • Claude</div>
+            <div class="prev-ai-txt">Step 1: v = dx/dt = 12t − 6t²
 Step 2: Set v = 0 → 6t(2−t) = 0
 Step 3: t = 0 or t = 2 s
 ✅ Answer: t = 0 and t = 2 s
@@ -343,347 +313,276 @@ Step 3: t = 0 or t = 2 s
 
 <!-- FEATURES -->
 <section id="features">
-  <div class="section-inner">
-    <div class="section-badge" data-t="featBadge">FEATURES</div>
-    <div class="section-title" data-t="featTitle">Everything you need to score higher</div>
-    <p class="section-sub" data-t="featSub">Built specifically for WB JEE aspirants. No fluff, just tools that work.</p>
-    <div class="features-grid">
-      <div class="feature-card fc-gold"><div class="feature-icon fi-gold">🤖</div><h3 data-t="f1Title">AI Step-by-Step Explanations</h3><p data-t="f1Desc">Get detailed solutions powered by Claude AI. Understand the concept, not just the answer.</p></div>
-      <div class="feature-card fc-blue"><div class="feature-icon fi-blue">📚</div><h3 data-t="f2Title">90+ PYQ Questions</h3><p data-t="f2Desc">Previous year questions from WB JEE 2015–2024 across Physics, Chemistry, and Mathematics.</p></div>
-      <div class="feature-card fc-green"><div class="feature-icon fi-green">📊</div><h3 data-t="f3Title">Progress Tracker</h3><p data-t="f3Desc">Track correct/wrong answers in real-time. Know your weak areas and focus smartly.</p></div>
-      <div class="feature-card fc-purple"><div class="feature-icon fi-purple">🎯</div><h3 data-t="f4Title">Chapter & Year-wise Filter</h3><p data-t="f4Desc">Filter by subject, chapter, year and difficulty. Practice exactly what you need.</p></div>
-      <div class="feature-card fc-blue"><div class="feature-icon fi-blue">⚡</div><h3 data-t="f5Title">Instant Feedback</h3><p data-t="f5Desc">Know immediately if your answer is right or wrong. Learn from mistakes on the spot.</p></div>
-      <div class="feature-card fc-gold"><div class="feature-icon fi-gold">🌐</div><h3 data-t="f6Title">3 Language Support</h3><p data-t="f6Desc">AI explanations in Bengali, Hindi and English — learn in the language you think in.</p></div>
+  <div class="si">
+    <div class="sec-badge">FEATURES</div>
+    <div class="sec-title">Everything you need to score higher</div>
+    <p class="sec-sub">Built specifically for WB JEE aspirants. No fluff, just tools that work.</p>
+    <div class="feat-grid">
+      <div class="feat-card fc-g"><div class="feat-icon fi-g">🤖</div><h3>AI Step-by-Step Explanations</h3><p>Get detailed solutions powered by Claude AI. Understand the concept, not just the answer.</p></div>
+      <div class="feat-card fc-b"><div class="feat-icon fi-b">📚</div><h3>90+ PYQ Questions</h3><p>Previous year questions from WB JEE 2015–2024 across Physics, Chemistry, and Mathematics.</p></div>
+      <div class="feat-card fc-gr"><div class="feat-icon fi-gr">📊</div><h3>Progress Tracker</h3><p>Track correct/wrong answers in real-time. Know your weak areas and focus smartly.</p></div>
+      <div class="feat-card fc-p"><div class="feat-icon fi-p">🎯</div><h3>Chapter & Year-wise Filter</h3><p>Filter by subject, chapter, year and difficulty. Practice exactly what you need.</p></div>
+      <div class="feat-card fc-b"><div class="feat-icon fi-b">⚡</div><h3>Instant Feedback</h3><p>Know immediately if your answer is right or wrong. Learn from mistakes on the spot.</p></div>
+      <div class="feat-card fc-g"><div class="feat-icon fi-g">🌐</div><h3>3 Language Support</h3><p>AI explanations in Bengali, Hindi and English — learn in the language you think in.</p></div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section id="how" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.03),transparent);">
-  <div class="section-inner" style="text-align:center;">
-    <div class="section-badge" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#10b981;" data-t="howBadge">HOW IT WORKS</div>
-    <div class="section-title" data-t="howTitle">Simple. Effective. Proven.</div>
-    <p class="section-sub" style="margin:0 auto;" data-t="howSub">Start practising in under 60 seconds.</p>
+  <div class="si" style="text-align:center;">
+    <div class="sec-badge" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#10b981;">HOW IT WORKS</div>
+    <div class="sec-title">Simple. Effective. Proven.</div>
+    <p class="sec-sub" style="margin:0 auto;">Start practising in under 60 seconds.</p>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><h3 data-t="step1Title">Sign Up Free</h3><p data-t="step1Desc">Create your free account in 10 seconds. No credit card required.</p></div>
-      <div class="step"><div class="step-num">2</div><h3 data-t="step2Title">Choose Subject & Year</h3><p data-t="step2Desc">Pick Physics, Chemistry or Maths. Filter by year or chapter.</p></div>
-      <div class="step"><div class="step-num">3</div><h3 data-t="step3Title">Get AI Explanation</h3><p data-t="step3Desc">Click AI Explanation for step-by-step solution in your language.</p></div>
-      <div class="step"><div class="step-num">4</div><h3 data-t="step4Title">Track & Improve</h3><p data-t="step4Desc">Watch your score improve. Upgrade to Pro for unlimited access.</p></div>
+      <div class="step"><div class="step-n">1</div><h3>Sign Up Free</h3><p>Create your free account in 10 seconds. No credit card required.</p></div>
+      <div class="step"><div class="step-n">2</div><h3>Choose Subject & Year</h3><p>Pick Physics, Chemistry or Maths. Filter by year or chapter.</p></div>
+      <div class="step"><div class="step-n">3</div><h3>Get AI Explanation</h3><p>Step-by-step solution in Bengali, Hindi or English.</p></div>
+      <div class="step"><div class="step-n">4</div><h3>Track & Improve</h3><p>Watch your score improve. Upgrade to Pro for unlimited access.</p></div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-inner" style="text-align:center;">
-    <div class="section-badge" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25);color:#f59e0b;" data-t="priceBadge">PRICING</div>
-    <div class="section-title" data-t="priceTitle">Simple, student-friendly pricing</div>
-    <p class="section-sub" style="margin:0 auto;" data-t="priceSub">Start free. Upgrade when you're ready.</p>
-    <div class="pricing-grid">
+  <div class="si" style="text-align:center;">
+    <div class="sec-badge" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25);color:#f59e0b;">PRICING</div>
+    <div class="sec-title">Simple, student-friendly pricing</div>
+    <p class="sec-sub" style="margin:0 auto;">Start free. Upgrade when you're ready.</p>
+    <div class="price-grid">
       <div class="price-card">
-        <div class="price-name" data-t="planFreeName">FREE</div>
-        <div class="price-amount"><span class="amount">₹0</span><span class="period" data-t="perMonth">/month</span></div>
-        <div class="price-desc" data-t="planFreeDesc">Perfect to get started</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
-          <li><span class="check">✓</span><span data-t="pf1">10 questions per day</span></li>
-          <li><span class="check">✓</span><span data-t="pf2">3 AI explanations per day</span></li>
-          <li><span class="check">✓</span><span data-t="pf3">All subjects access</span></li>
-          <li><span class="check">✓</span><span data-t="pf4">Progress tracker</span></li>
-          <li><span class="cross">✗</span><span data-t="pf5">Unlimited AI explanations</span></li>
-          <li><span class="cross">✗</span><span data-t="pf6">Mock tests</span></li>
+        <div class="price-name">FREE</div>
+        <div class="price-amt"><span class="am">₹0</span><span class="per">/month</span></div>
+        <div class="price-desc">Perfect to get started</div>
+        <hr class="price-div"/>
+        <ul class="price-feats">
+          <li><span class="ck">✓</span> 10 questions per day</li>
+          <li><span class="ck">✓</span> 3 AI explanations per day</li>
+          <li><span class="ck">✓</span> All subjects access</li>
+          <li><span class="ck">✓</span> Progress tracker</li>
+          <li><span class="cx">✗</span> Unlimited AI explanations</li>
+          <li><span class="cx">✗</span> Mock tests</li>
         </ul>
-        <button class="btn-price btn-outline" data-t="btnFree" onclick="handleSignup()">Start Free →</button>
+        <button class="btn-price btn-out" onclick="handleHeroCta()">Start Free →</button>
       </div>
-      <div class="price-card featured">
-        <div class="popular-badge" data-t="popularBadge">⭐ MOST POPULAR</div>
-        <div class="price-name" data-t="planProName">PRO</div>
-        <div class="price-amount"><span class="amount">₹99</span><span class="period" data-t="perMonth">/month</span></div>
-        <div class="price-desc" data-t="planProDesc">For serious WB JEE aspirants</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
-          <li><span class="check">✓</span><span data-t="pp1">Unlimited questions</span></li>
-          <li><span class="check">✓</span><span data-t="pp2">Unlimited AI explanations</span></li>
-          <li><span class="check">✓</span><span data-t="pp3">All subjects & chapters</span></li>
-          <li><span class="check">✓</span><span data-t="pp4">Chapter-wise tests</span></li>
-          <li><span class="check">✓</span><span data-t="pp5">Bengali + Hindi + English</span></li>
-          <li><span class="check">✓</span><span data-t="pp6">Priority support</span></li>
+      <div class="price-card feat">
+        <div class="pop-badge">⭐ MOST POPULAR</div>
+        <div class="price-name">PRO</div>
+        <div class="price-amt"><span class="am">₹99</span><span class="per">/month</span></div>
+        <div class="price-desc">For serious WB JEE aspirants</div>
+        <hr class="price-div"/>
+        <ul class="price-feats">
+          <li><span class="ck">✓</span> Unlimited questions</li>
+          <li><span class="ck">✓</span> Unlimited AI explanations</li>
+          <li><span class="ck">✓</span> All subjects & chapters</li>
+          <li><span class="ck">✓</span> Chapter-wise tests</li>
+          <li><span class="ck">✓</span> Bengali + Hindi + English</li>
+          <li><span class="ck">✓</span> Priority support</li>
         </ul>
-        <button class="btn-price btn-solid" data-t="btnPro" onclick="handleProPayment(99,'monthly')">Get Pro for ₹99 →</button>
+        <button class="btn-price btn-sol" onclick="handleProPayment(99,'monthly')">Get Pro for ₹99 →</button>
       </div>
       <div class="price-card">
-        <div class="price-name" data-t="planYearName">YEARLY</div>
-        <div class="price-amount"><span class="amount">₹799</span><span class="period" data-t="perYear">/year</span></div>
-        <div class="price-desc" data-t="planYearDesc">Save ₹389 vs monthly</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
-          <li><span class="check">✓</span><span data-t="py1">Everything in Pro</span></li>
-          <li><span class="check">✓</span><span data-t="py2">Full year access</span></li>
-          <li><span class="check">✓</span><span data-t="py3">Mock test series</span></li>
-          <li><span class="check">✓</span><span data-t="py4">Rank predictor</span></li>
-          <li><span class="check">✓</span><span data-t="py5">College predictor</span></li>
-          <li><span class="check">✓</span><span data-t="py6">WhatsApp support</span></li>
+        <div class="price-name">YEARLY</div>
+        <div class="price-amt"><span class="am">₹799</span><span class="per">/year</span></div>
+        <div class="price-desc">Save ₹389 vs monthly</div>
+        <hr class="price-div"/>
+        <ul class="price-feats">
+          <li><span class="ck">✓</span> Everything in Pro</li>
+          <li><span class="ck">✓</span> Full year access</li>
+          <li><span class="ck">✓</span> Mock test series</li>
+          <li><span class="ck">✓</span> Rank predictor</li>
+          <li><span class="ck">✓</span> College predictor</li>
+          <li><span class="ck">✓</span> WhatsApp support</li>
         </ul>
-        <button class="btn-price btn-outline" data-t="btnYear" onclick="handleProPayment(799,'yearly')">Get Yearly →</button>
+        <button class="btn-price btn-out" onclick="handleProPayment(799,'yearly')">Get Yearly →</button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section style="padding:76px 24px;">
-  <div class="section-inner" style="text-align:center;">
-    <div class="section-badge" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.25);color:#8b5cf6;" data-t="testiBadge">STUDENT REVIEWS</div>
-    <div class="section-title" data-t="testiTitle">Students love it</div>
+<section>
+  <div class="si" style="text-align:center;">
+    <div class="sec-badge" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.25);color:#8b5cf6;">STUDENT REVIEWS</div>
+    <div class="sec-title">Students love it</div>
     <div class="testi-grid">
-      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text" data-t="testi1">"The AI explanations are amazing! My Physics score jumped from 45% to 72%."</p><div class="testi-author"><div class="testi-avatar" style="background:rgba(59,130,246,.15);color:#3b82f6;">SR</div><div><div class="testi-name">Subhrajit Roy</div><div class="testi-role" data-t="testiRole1">WB JEE Aspirant, Kolkata</div></div></div></div>
-      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text" data-t="testi2">"Chapter-wise filter is a game changer. AI solutions feel like a 24/7 tutor."</p><div class="testi-author"><div class="testi-avatar" style="background:rgba(16,185,129,.15);color:#10b981;">PB</div><div><div class="testi-name">Priya Banerjee</div><div class="testi-role" data-t="testiRole2">WB JEE Aspirant, Howrah</div></div></div></div>
-      <div class="testi-card"><div class="stars">★★★★☆</div><p class="testi-text" data-t="testi3">"10 years of PYQs with AI explanations in Bengali — nothing like this before!"</p><div class="testi-author"><div class="testi-avatar" style="background:rgba(245,158,11,.15);color:#f59e0b;">AM</div><div><div class="testi-name">Arnab Mukherjee</div><div class="testi-role" data-t="testiRole3">WB JEE Aspirant, Durgapur</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"The AI explanations are amazing! My Physics score jumped from 45% to 72%."</p><div class="testi-auth"><div class="testi-av" style="background:rgba(59,130,246,.15);color:#3b82f6;">SR</div><div><div class="testi-name">Subhrajit Roy</div><div class="testi-role">WB JEE Aspirant, Kolkata</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Chapter-wise filter is a game changer. AI solutions feel like having a tutor 24/7."</p><div class="testi-auth"><div class="testi-av" style="background:rgba(16,185,129,.15);color:#10b981;">PB</div><div><div class="testi-name">Priya Banerjee</div><div class="testi-role">WB JEE Aspirant, Howrah</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★☆</div><p class="testi-txt">"10 years of PYQs with AI explanations in Bengali — nothing like this before for WB JEE!"</p><div class="testi-auth"><div class="testi-av" style="background:rgba(245,158,11,.15);color:#f59e0b;">AM</div><div><div class="testi-name">Arnab Mukherjee</div><div class="testi-role">WB JEE Aspirant, Durgapur</div></div></div></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section style="padding:90px 24px;">
   <div class="cta-box">
-    <h2 data-t="ctaTitle">Ready to crack WB JEE 2025?</h2>
-    <p data-t="ctaDesc">Start free today. No credit card required. Join students across West Bengal practising smarter.</p>
-    <button class="btn-hero-primary" data-t="ctaBtn" onclick="handleHeroCta()">Start Practising Free →</button>
-    <p style="margin-top:12px;font-size:.72rem;color:#64748b;" data-t="ctaNote">✓ Free forever plan · ✓ No credit card · ✓ Cancel anytime</p>
+    <h2>Ready to crack WB JEE 2025?</h2>
+    <p>Start free today. No credit card required. Join students across West Bengal practising smarter.</p>
+    <button class="btn-hp" onclick="handleHeroCta()">Start Practising Free →</button>
+    <p style="margin-top:12px;font-size:.72rem;color:#64748b;">✓ Free forever plan &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ Cancel anytime</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 WB JEE <span>PYQ</span> Solver · <span data-t="footerMade">Made with ❤️ for WB JEE aspirants in West Bengal</span></p>
-  <p style="margin-top:7px;font-size:.7rem;" data-t="footerLinks">Privacy Policy · Terms of Service · Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7b4b2b7b7a8b5b387b0a5ada2a2b7beb6e9aea9">[email&#160;protected]</a></p>
+  <p>© 2025 WB JEE <span>PYQ</span> Solver &nbsp;·&nbsp; Made with ❤️ for WB JEE aspirants in West Bengal</p>
+  <p style="margin-top:7px;font-size:.7rem;">Privacy Policy &nbsp;·&nbsp; Terms of Service &nbsp;·&nbsp; Contact: support@wbjeepyq.in</p>
 </footer>
 
-<!-- WHATSAPP BUTTON -->
-<a class="whatsapp-btn" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20help%20with%20WB%20JEE%20PYQ%20Solver" target="_blank" rel="noopener" id="waBtn">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  <span class="whatsapp-tooltip" id="waTooltip">Chat on WhatsApp</span>
+<a class="wa" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20need%20help%20with%20WB%20JEE%20PYQ%20Solver" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- LOGIN / SIGNUP MODAL -->
-<div class="modal-overlay hidden" id="authModal">
+<!-- AUTH MODAL -->
+<div class="modal-ov hidden" id="authModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-x" onclick="closeModal()">✕</button>
     <h2 id="modalTitle">Welcome back!</h2>
     <p class="modal-sub" id="modalSub">Log in to continue your WB JEE preparation.</p>
     <div class="modal-tabs">
-      <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')" data-t="tabLogin">Log In</button>
-      <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')" data-t="tabSignup">Sign Up</button>
+      <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Log In</button>
+      <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
     </div>
-    <!-- LOGIN FORM -->
+    <!-- LOGIN -->
     <div id="loginForm">
-      <div class="form-group">
-        <label data-t="emailLabel">Email</label>
-        <input type="email" id="loginEmail" placeholder="you@example.com"/>
-        <div class="form-error" id="loginEmailErr"></div>
-      </div>
-      <div class="form-group">
-        <label data-t="passwordLabel">Password</label>
-        <input type="password" id="loginPassword" placeholder="••••••••"/>
-        <div class="form-error" id="loginPassErr"></div>
-      </div>
-      <button class="btn-submit" onclick="handleLogin()" id="loginBtn" data-t="loginBtn">Log In</button>
-      <div class="modal-divider" data-t="orDivider">or</div>
-      <button class="btn-google" onclick="handleGoogleAuth()">
+      <div class="fg"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"/><div class="ferr" id="errLE"></div></div>
+      <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••"/><div class="ferr" id="errLP"></div></div>
+      <button class="btn-sub" onclick="handleLogin()">Log In</button>
+      <div class="modal-div">or</div>
+      <button class="btn-goog" onclick="handleGoogleAuth()">
         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 12.9 5 4 13.9 4 25s8.9 20 20 20 20-8.9 20-20c0-1.3-.2-2.6-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19.1 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 16.3 5 9.6 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.3 36.6 26.8 37.5 24 37.5c-5.2 0-9.6-3.3-11.3-8L6 34.4C9.5 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C42 35.8 44 30.8 44 25c0-1.3-.2-2.6-.4-4.5z"/></svg>
-        <span data-t="googleBtn">Continue with Google</span>
+        Continue with Google
       </button>
     </div>
-    <!-- SIGNUP FORM -->
+    <!-- SIGNUP -->
     <div id="signupForm" style="display:none;">
-      <div class="form-group">
-        <label data-t="nameLabel">Full Name</label>
-        <input type="text" id="signupName" placeholder="Rahul Das"/>
-        <div class="form-error" id="signupNameErr"></div>
-      </div>
-      <div class="form-group">
-        <label data-t="emailLabel">Email</label>
-        <input type="email" id="signupEmail" placeholder="you@example.com"/>
-        <div class="form-error" id="signupEmailErr"></div>
-      </div>
-      <div class="form-group">
-        <label data-t="passwordLabel">Password</label>
-        <input type="password" id="signupPassword" placeholder="Min 6 characters"/>
-        <div class="form-error" id="signupPassErr"></div>
-      </div>
-      <button class="btn-submit" onclick="handleSignupSubmit()" id="signupBtn" data-t="signupBtn">Create Free Account →</button>
-      <div class="modal-divider" data-t="orDivider">or</div>
-      <button class="btn-google" onclick="handleGoogleAuth()">
+      <div class="fg"><label>Full Name</label><input type="text" id="signupName" placeholder="Rahul Das"/><div class="ferr" id="errSN"></div></div>
+      <div class="fg"><label>Email</label><input type="email" id="signupEmail" placeholder="you@example.com"/><div class="ferr" id="errSE"></div></div>
+      <div class="fg"><label>Password</label><input type="password" id="signupPass" placeholder="Min 6 characters"/><div class="ferr" id="errSP"></div></div>
+      <button class="btn-sub" onclick="handleSignupSubmit()">Create Free Account →</button>
+      <div class="modal-div">or</div>
+      <button class="btn-goog" onclick="handleGoogleAuth()">
         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 12.9 5 4 13.9 4 25s8.9 20 20 20 20-8.9 20-20c0-1.3-.2-2.6-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19.1 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 16.3 5 9.6 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.3 36.6 26.8 37.5 24 37.5c-5.2 0-9.6-3.3-11.3-8L6 34.4C9.5 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C42 35.8 44 30.8 44 25c0-1.3-.2-2.6-.4-4.5z"/></svg>
-        <span data-t="googleBtn">Continue with Google</span>
+        Continue with Google
       </button>
     </div>
     <div class="success-msg" id="authSuccess"></div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ═══════════════════════════════════════════════════════
-// TRANSLATIONS
-// ═══════════════════════════════════════════════════════
-const T = {
-  en:{navFeatures:"Features",navHow:"How it works",navPricing:"Pricing",navLogin:"Log In",navCta:"Start Free →",navLogout:"Log Out",heroBadge:"🚀 AI-Powered WB JEE Preparation",heroLine1:"Crack WB JEE",heroLine2:"with AI Explanations",heroLine3:"for every question",heroSub:"90+ previous year questions with step-by-step AI solutions. Physics, Chemistry & Mathematics.",heroCta:"Start Practising Free →",heroDemo:"See Demo ▼",stat1:"QUESTIONS",stat2:"YEARS (2015–2024)",stat3:"SUBJECTS",stat4:"POWERED",featBadge:"FEATURES",featTitle:"Everything you need to score higher",featSub:"Built specifically for WB JEE aspirants.",f1Title:"AI Step-by-Step Explanations",f1Desc:"Get detailed solutions powered by Claude AI.",f2Title:"90+ PYQ Questions",f2Desc:"Previous year questions from WB JEE 2015–2024.",f3Title:"Progress Tracker",f3Desc:"Track correct/wrong answers in real-time.",f4Title:"Chapter & Year-wise Filter",f4Desc:"Filter by subject, chapter, year and difficulty.",f5Title:"Instant Feedback",f5Desc:"Know immediately if your answer is right or wrong.",f6Title:"3 Language Support",f6Desc:"AI explanations in Bengali, Hindi and English.",howBadge:"HOW IT WORKS",howTitle:"Simple. Effective. Proven.",howSub:"Start practising in under 60 seconds.",step1Title:"Sign Up Free",step1Desc:"Create your free account in 10 seconds.",step2Title:"Choose Subject & Year",step2Desc:"Pick Physics, Chemistry or Maths.",step3Title:"Get AI Explanation",step3Desc:"Step-by-step solution in your language.",step4Title:"Track & Improve",step4Desc:"Upgrade to Pro for unlimited access.",priceBadge:"PRICING",priceTitle:"Simple, student-friendly pricing",priceSub:"Start free. Upgrade when you're ready.",planFreeName:"FREE",perMonth:"/month",perYear:"/year",planFreeDesc:"Perfect to get started",planProDesc:"For serious WB JEE aspirants",planYearDesc:"Save ₹389 vs monthly",planProName:"PRO",planYearName:"YEARLY",pf1:"10 questions per day",pf2:"3 AI explanations per day",pf3:"All subjects access",pf4:"Progress tracker",pf5:"Unlimited AI explanations",pf6:"Mock tests",pp1:"Unlimited questions",pp2:"Unlimited AI explanations",pp3:"All subjects & chapters",pp4:"Chapter-wise tests",pp5:"Bengali + Hindi + English",pp6:"Priority support",py1:"Everything in Pro",py2:"Full year access",py3:"Mock test series",py4:"Rank predictor",py5:"College predictor",py6:"WhatsApp support",popularBadge:"⭐ MOST POPULAR",btnFree:"Start Free →",btnPro:"Get Pro for ₹99 →",btnYear:"Get Yearly →",testiBadge:"STUDENT REVIEWS",testiTitle:"Students love it",testi1:'"The AI explanations are amazing! My Physics score jumped from 45% to 72%."',testi2:'"Chapter-wise filter is a game changer. AI solutions feel like a 24/7 tutor."',testi3:'"10 years of PYQs with AI explanations in Bengali — nothing like this before!"',testiRole1:"WB JEE Aspirant, Kolkata",testiRole2:"WB JEE Aspirant, Howrah",testiRole3:"WB JEE Aspirant, Durgapur",ctaTitle:"Ready to crack WB JEE 2025?",ctaDesc:"Start free today. No credit card required.",ctaBtn:"Start Practising Free →",ctaNote:"✓ Free forever · ✓ No credit card · ✓ Cancel anytime",footerMade:"Made with ❤️ for WB JEE aspirants in West Bengal",footerLinks:"Privacy Policy · Terms of Service · Contact: support@wbjeepyq.in",langBar:"",tabLogin:"Log In",tabSignup:"Sign Up",emailLabel:"Email",passwordLabel:"Password",nameLabel:"Full Name",loginBtn:"Log In",signupBtn:"Create Free Account →",googleBtn:"Continue with Google",orDivider:"or",waTooltip:"Chat on WhatsApp",previewAIHdr:"🤖 AI EXPLANATION • Claude",previewAITxt:"Step 1: v = dx/dt = 12t − 6t²\nStep 2: Set v = 0 → 6t(2−t) = 0\nStep 3: t = 0 or t = 2 s\n✅ Answer: t = 0 and t = 2 s\n💡 Differentiate position → velocity, set to zero!"},
-  bn:{navFeatures:"বৈশিষ্ট্য",navHow:"কীভাবে কাজ করে",navPricing:"মূল্য",navLogin:"লগ ইন",navCta:"বিনামূল্যে শুরু করুন →",navLogout:"লগ আউট",heroBadge:"🚀 AI-চালিত WB JEE প্রস্তুতি",heroLine1:"WB JEE জয় করুন",heroLine2:"AI ব্যাখ্যা দিয়ে",heroLine3:"প্রতিটি প্রশ্নে",heroSub:"৯০+ বিগত বছরের প্রশ্ন এবং ধাপে ধাপে AI সমাধান। পদার্থবিজ্ঞান, রসায়ন ও গণিত।",heroCta:"বিনামূল্যে অনুশীলন শুরু করুন →",heroDemo:"ডেমো দেখুন ▼",stat1:"প্রশ্ন",stat2:"বছর (২০১৫–২০২৪)",stat3:"বিষয়",stat4:"AI চালিত",featBadge:"বৈশিষ্ট্য",featTitle:"উচ্চতর স্কোরের জন্য সবকিছু",featSub:"WB JEE পরীক্ষার্থীদের জন্য বিশেষভাবে তৈরি।",f1Title:"AI ধাপে ধাপে ব্যাখ্যা",f1Desc:"Claude AI দ্বারা বিস্তারিত সমাধান পান।",f2Title:"৯০+ PYQ প্রশ্ন",f2Desc:"WB JEE ২০১৫–২০২৪-এর বিগত বছরের প্রশ্ন।",f3Title:"অগ্রগতি ট্র্যাকার",f3Desc:"সঠিক/ভুল উত্তর রিয়েল-টাইমে ট্র্যাক করুন।",f4Title:"অধ্যায় ও বছর অনুযায়ী ফিল্টার",f4Desc:"বিষয়, অধ্যায়, বছর ও কঠিনতা অনুযায়ী ফিল্টার করুন।",f5Title:"তাৎক্ষণিক প্রতিক্রিয়া",f5Desc:"উত্তর সঠিক না ভুল তা তাৎক্ষণিক জানুন।",f6Title:"৩টি ভাষা সমর্থন",f6Desc:"বাংলা, হিন্দি ও ইংরেজিতে AI ব্যাখ্যা।",howBadge:"কীভাবে কাজ করে",howTitle:"সহজ। কার্যকর। প্রমাণিত।",howSub:"৬০ সেকেন্ডের মধ্যে অনুশীলন শুরু করুন।",step1Title:"বিনামূল্যে সাইন আপ করুন",step1Desc:"১০ সেকেন্ডে বিনামূল্যে অ্যাকাউন্ট তৈরি করুন।",step2Title:"বিষয় ও বছর বেছে নিন",step2Desc:"পদার্থ, রসায়ন বা গণিত বেছে নিন।",step3Title:"AI ব্যাখ্যা পান",step3Desc:"আপনার ভাষায় ধাপে ধাপে সমাধান পান।",step4Title:"ট্র্যাক করুন ও উন্নতি করুন",step4Desc:"সীমাহীন অ্যাক্সেসের জন্য প্রো-তে আপগ্রেড করুন।",priceBadge:"মূল্য",priceTitle:"সহজ, শিক্ষার্থীবান্ধব মূল্য",priceSub:"বিনামূল্যে শুরু করুন। প্রস্তুত হলে আপগ্রেড করুন।",planFreeName:"বিনামূল্যে",perMonth:"/মাস",perYear:"/বছর",planFreeDesc:"শুরু করার জন্য উপযুক্ত",planProDesc:"গুরুতর WB JEE পরীক্ষার্থীদের জন্য",planYearDesc:"মাসিকের চেয়ে ₹৩৮৯ সাশ্রয়",planProName:"প্রো",planYearName:"বার্ষিক",pf1:"প্রতিদিন ১০টি প্রশ্ন",pf2:"প্রতিদিন ৩টি AI ব্যাখ্যা",pf3:"সব বিষয়ে প্রবেশাধিকার",pf4:"অগ্রগতি ট্র্যাকার",pf5:"সীমাহীন AI ব্যাখ্যা",pf6:"মক টেস্ট",pp1:"সীমাহীন প্রশ্ন",pp2:"সীমাহীন AI ব্যাখ্যা",pp3:"সব বিষয় ও অধ্যায়",pp4:"অধ্যায়ভিত্তিক টেস্ট",pp5:"বাংলা + হিন্দি + ইংরেজি",pp6:"অগ্রাধিকার সহায়তা",py1:"প্রো-র সব কিছু",py2:"পূর্ণ বছরের প্রবেশাধিকার",py3:"মক টেস্ট সিরিজ",py4:"র‍্যাঙ্ক প্রিডিক্টর",py5:"কলেজ প্রিডিক্টর",py6:"WhatsApp সহায়তা",popularBadge:"⭐ সবচেয়ে জনপ্রিয়",btnFree:"বিনামূল্যে শুরু করুন →",btnPro:"₹৯৯-এ প্রো নিন →",btnYear:"বার্ষিক নিন →",testiBadge:"ছাত্রছাত্রীদের মতামত",testiTitle:"ছাত্রছাত্রীরা এটি ভালোবাসে",testi1:'"AI ব্যাখ্যাগুলো অসাধারণ! পদার্থবিজ্ঞানে আমার স্কোর ৪৫% থেকে ৭২%-এ উঠল।"',testi2:'"অধ্যায়ভিত্তিক ফিল্টার দারুণ। AI সমাধান ২৪/৭ টিউটর রাখার মতো।"',testi3:'"বাংলায় AI ব্যাখ্যাসহ ১০ বছরের PYQ — এরকম কিছু আগে ছিল না।"',testiRole1:"WB JEE পরীক্ষার্থী, কলকাতা",testiRole2:"WB JEE পরীক্ষার্থী, হাওড়া",testiRole3:"WB JEE পরীক্ষার্থী, দুর্গাপুর",ctaTitle:"WB JEE 2025 জয় করতে প্রস্তুত?",ctaDesc:"আজই বিনামূল্যে শুরু করুন। ক্রেডিট কার্ড লাগবে না।",ctaBtn:"বিনামূল্যে অনুশীলন শুরু করুন →",ctaNote:"✓ চিরকাল বিনামূল্যে · ✓ কার্ড লাগবে না · ✓ যেকোনো সময় বাতিল করুন",footerMade:"পশ্চিমবঙ্গের WB JEE পরীক্ষার্থীদের জন্য ❤️ দিয়ে তৈরি",footerLinks:"গোপনীয়তা নীতি · ব্যবহারের শর্ত · যোগাযোগ: support@wbjeepyq.in",langBar:"🌐 সাইটটি এখন বাংলায় দেখা যাচ্ছে",tabLogin:"লগ ইন",tabSignup:"সাইন আপ",emailLabel:"ইমেইল",passwordLabel:"পাসওয়ার্ড",nameLabel:"পুরো নাম",loginBtn:"লগ ইন",signupBtn:"বিনামূল্যে অ্যাকাউন্ট তৈরি করুন →",googleBtn:"Google দিয়ে চালিয়ে যান",orDivider:"অথবা",waTooltip:"WhatsApp-এ চ্যাট করুন",previewAIHdr:"🤖 AI ব্যাখ্যা • Claude",previewAITxt:"ধাপ ১: v = dx/dt = 12t − 6t²\nধাপ ২: v = 0 রাখলে: 6t(2−t) = 0\nধাপ ৩: t = 0 বা t = 2 s\n✅ উত্তর: t = 0 এবং t = 2 s\n💡 অবস্থানের অবকলন করুন → বেগ পান!"},
-  hi:{navFeatures:"विशेषताएं",navHow:"कैसे काम करता है",navPricing:"मूल्य",navLogin:"लॉग इन",navCta:"मुफ़्त शुरू करें →",navLogout:"लॉग आउट",heroBadge:"🚀 AI-संचालित WB JEE तैयारी",heroLine1:"WB JEE क्रैक करें",heroLine2:"AI व्याख्या से",heroLine3:"हर प्रश्न में",heroSub:"90+ पिछले वर्षों के प्रश्न और चरण-दर-चरण AI समाधान। भौतिकी, रसायन और गणित।",heroCta:"मुफ़्त में अभ्यास शुरू करें →",heroDemo:"डेमो देखें ▼",stat1:"प्रश्न",stat2:"वर्ष (2015–2024)",stat3:"विषय",stat4:"AI संचालित",featBadge:"विशेषताएं",featTitle:"बेहतर स्कोर के लिए सब कुछ",featSub:"WB JEE उम्मीदवारों के लिए विशेष रूप से बनाया गया।",f1Title:"AI चरण-दर-चरण व्याख्या",f1Desc:"Claude AI द्वारा विस्तृत समाधान पाएं।",f2Title:"90+ PYQ प्रश्न",f2Desc:"WB JEE 2015–2024 के पिछले वर्षों के प्रश्न।",f3Title:"प्रगति ट्रैकर",f3Desc:"सही/गलत उत्तर रियल-टाइम में ट्रैक करें।",f4Title:"अध्याय और वर्ष-वार फ़िल्टर",f4Desc:"विषय, अध्याय, वर्ष और कठिनाई से फ़िल्टर करें।",f5Title:"तुरंत फीडबैक",f5Desc:"तुरंत जानें उत्तर सही है या गलत।",f6Title:"3 भाषा समर्थन",f6Desc:"बांग्ला, हिन्दी और अंग्रेज़ी में AI व्याख्या।",howBadge:"कैसे काम करता है",howTitle:"सरल। प्रभावी। सिद्ध।",howSub:"60 सेकंड में अभ्यास शुरू करें।",step1Title:"मुफ़्त साइन अप करें",step1Desc:"10 सेकंड में मुफ़्त खाता बनाएं।",step2Title:"विषय और वर्ष चुनें",step2Desc:"भौतिकी, रसायन या गणित चुनें।",step3Title:"AI व्याख्या पाएं",step3Desc:"अपनी भाषा में चरण-दर-चरण समाधान।",step4Title:"ट्रैक करें और सुधारें",step4Desc:"असीमित पहुंच के लिए प्रो में अपग्रेड करें।",priceBadge:"मूल्य",priceTitle:"सरल, छात्र-अनुकूल मूल्य",priceSub:"मुफ़्त शुरू करें। तैयार होने पर अपग्रेड करें।",planFreeName:"मुफ़्त",perMonth:"/माह",perYear:"/वर्ष",planFreeDesc:"शुरुआत के लिए उपयुक्त",planProDesc:"गंभीर WB JEE उम्मीदवारों के लिए",planYearDesc:"मासिक से ₹389 बचत",planProName:"प्रो",planYearName:"वार्षिक",pf1:"प्रतिदिन 10 प्रश्न",pf2:"प्रतिदिन 3 AI व्याख्या",pf3:"सभी विषयों तक पहुंच",pf4:"प्रगति ट्रैकर",pf5:"असीमित AI व्याख्या",pf6:"मॉक टेस्ट",pp1:"असीमित प्रश्न",pp2:"असीमित AI व्याख्या",pp3:"सभी विषय और अध्याय",pp4:"अध्याय-वार टेस्ट",pp5:"बांग्ला + हिन्दी + अंग्रेज़ी",pp6:"प्राथमिकता सहायता",py1:"प्रो में सब कुछ",py2:"पूरे वर्ष की पहुंच",py3:"मॉक टेस्ट सीरीज़",py4:"रैंक प्रेडिक्टर",py5:"कॉलेज प्रेडिक्टर",py6:"WhatsApp सहायता",popularBadge:"⭐ सबसे लोकप्रिय",btnFree:"मुफ़्त शुरू करें →",btnPro:"₹99 में प्रो लें →",btnYear:"वार्षिक लें →",testiBadge:"छात्रों की समीक्षा",testiTitle:"छात्र इसे पसंद करते हैं",testi1:'"AI व्याख्याएं अद्भुत हैं! मेरा भौतिकी स्कोर 45% से 72% हो गया।"',testi2:'"अध्याय-वार फ़िल्टर कमाल की है। AI समाधान 24/7 ट्यूटर जैसा है।"',testi3:'"हिन्दी में AI व्याख्या के साथ 10 साल के PYQ — पहले ऐसा कुछ नहीं था।"',testiRole1:"WB JEE उम्मीदवार, कोलकाता",testiRole2:"WB JEE उम्मीदवार, हावड़ा",testiRole3:"WB JEE उम्मीदवार, दुर्गापुर",ctaTitle:"WB JEE 2025 क्रैक करने के लिए तैयार?",ctaDesc:"आज मुफ़्त शुरू करें। कोई क्रेडिट कार्ड नहीं।",ctaBtn:"मुफ़्त में अभ्यास शुरू करें →",ctaNote:"✓ हमेशा मुफ़्त · ✓ कार्ड नहीं · ✓ कभी भी रद्द करें",footerMade:"पश्चिम बंगाल के WB JEE उम्मीदवारों के लिए ❤️ से बनाया",footerLinks:"गोपनीयता नीति · उपयोग की शर्तें · संपर्क: support@wbjeepyq.in",langBar:"🌐 साइट अब हिन्दी में देखी जा रही है",tabLogin:"लॉग इन",tabSignup:"साइन अप",emailLabel:"ईमेल",passwordLabel:"पासवर्ड",nameLabel:"पूरा नाम",loginBtn:"लॉग इन",signupBtn:"मुफ़्त खाता बनाएं →",googleBtn:"Google से जारी रखें",orDivider:"या",waTooltip:"WhatsApp पर चैट करें",previewAIHdr:"🤖 AI व्याख्या • Claude",previewAITxt:"चरण 1: v = dx/dt = 12t − 6t²\nचरण 2: v = 0 रखने पर: 6t(2−t) = 0\nचरण 3: t = 0 या t = 2 s\n✅ उत्तर: t = 0 और t = 2 s\n💡 स्थिति का अवकलन = वेग, शून्य रखें!"}
-};
-let currentLang='en';
+<script>
+// ── HELPERS ──────────────────────────────────────────
+function todayKey(){return new Date().toISOString().slice(0,10);}
 
-function t(k){return T[currentLang][k]||T.en[k]||k;}
-
-function setLang(lang,el){
-  currentLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  document.body.className=lang!=='en'?'lang-'+lang:'';
-  document.documentElement.lang=lang;
-  document.querySelectorAll('[data-t]').forEach(e=>{const k=e.getAttribute('data-t');const v=T[lang][k]||T.en[k];if(v!==undefined)e.textContent=v;});
-  const bar=document.getElementById('langBar');
-  if(lang!=='en'&&T[lang].langBar){bar.textContent=T[lang].langBar;bar.classList.add('active');}
-  else bar.classList.remove('active');
-  // Preview update
-  const pq=document.getElementById('previewQ'),pa=document.getElementById('pA'),pb=document.getElementById('pB'),pc=document.getElementById('pC'),pd=document.getElementById('pD');
-  if(lang==='bn'){pq&&(pq.textContent='একটি কণা x-অক্ষ বরাবর x = 6t² − 2t³ অবস্থানে চলে। কণাটি কোন সময়ে থামে?');pa&&(pa.textContent='শুধু t = 0 তে');pb&&(pb.textContent='শুধু t = 2 s তে');pc&&(pc.textContent='t = 0 এবং t = 2 s তে ✓');pd&&(pd.textContent='শুধু t = 1 s তে');}
-  else if(lang==='hi'){pq&&(pq.textContent='एक कण x-अक्ष पर x = 6t² − 2t³ स्थिति में चलता है। कण किस समय रुकता है?');pa&&(pa.textContent='केवल t = 0 पर');pb&&(pb.textContent='केवल t = 2 s पर');pc&&(pc.textContent='t = 0 और t = 2 s पर ✓');pd&&(pd.textContent='केवल t = 1 s पर');}
-  else{pq&&(pq.textContent='A particle moves along x-axis with x = 6t² − 2t³. The particle comes to rest at time t =');pa&&(pa.textContent='t = 0 only');pb&&(pb.textContent='t = 2 s only');pc&&(pc.textContent='t = 0 and t = 2 s ✓');pd&&(pd.textContent='t = 1 s only');}
-  const aih=document.getElementById('previewAIHdr'),ait=document.getElementById('previewAITxt');
-  if(aih)aih.textContent=T[lang].previewAIHdr||T.en.previewAIHdr;
-  if(ait)ait.textContent=T[lang].previewAITxt||T.en.previewAITxt;
-  document.getElementById('waTooltip').textContent=T[lang].waTooltip||T.en.waTooltip;
-  // Save preference
-  try{localStorage.setItem('wbjee_lang',lang);}catch(e){}
+function makeid(email){
+  if(!email)return'USR-00000';
+  let h=0;for(let i=0;i<email.length;i++){h=((h<<5)-h)+email.charCodeAt(i);h|=0;}
+  return'USR-'+(Math.abs(h)%100000).toString().padStart(5,'0');
 }
 
-// ═══════════════════════════════════════════════════════
-// AUTH STATE
-// ═══════════════════════════════════════════════════════
-let currentUser=null;
-function loadAuth(){
-  try{
-    const u=localStorage.getItem('wbjee_user');
-    if(u){currentUser=JSON.parse(u);updateNavAuth();}
-  }catch(e){}
-}
-function saveUser(u){currentUser=u;try{localStorage.setItem('wbjee_user',JSON.stringify(u));}catch(e){}}
-
-// Generate short user ID from email
-function makeUserId(email){
-  if(!email) return 'USR-0000';
-  let hash=0;for(let i=0;i<email.length;i++){hash=((hash<<5)-hash)+email.charCodeAt(i);hash|=0;}
-  return 'USR-'+(Math.abs(hash)%100000).toString().padStart(5,'0');
+function fmtRelative(ts){
+  if(!ts)return'—';
+  const d=Math.floor((Date.now()-ts)/1000);
+  if(d<60)return'Just now';
+  if(d<3600)return Math.floor(d/60)+'m ago';
+  if(d<86400)return Math.floor(d/3600)+'h ago';
+  return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
 }
 
-function fmtDate(ts){
-  if(!ts) return '—';
-  const d=new Date(ts);
-  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
-}
-
-function fmtDateShort(ts){
-  if(!ts) return '—';
-  const d=new Date(ts);
-  const now=new Date();
-  const diffMs=now-d;
-  const diffMins=Math.floor(diffMs/60000);
-  if(diffMins<1) return 'Just now';
-  if(diffMins<60) return diffMins+'m ago';
-  const diffHrs=Math.floor(diffMins/60);
-  if(diffHrs<24) return diffHrs+'h ago';
-  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+function fmtFull(ts){
+  if(!ts)return'—';
+  return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'});
 }
 
 function getTodayUsage(){
-  try{
-    const key='wbjee_u_'+new Date().toISOString().slice(0,10);
-    const raw=localStorage.getItem(key);
-    return raw?JSON.parse(raw):{q:0,ai:0};
-  }catch{return{q:0,ai:0};}
+  try{const r=localStorage.getItem('wbjee_u_'+todayKey());return r?JSON.parse(r):{q:0,ai:0};}
+  catch{return{q:0,ai:0};}
 }
 
-function updateNavAuth(){
-  const authBtns=document.getElementById('navAuthBtns');
-  const userArea=document.getElementById('navUserArea');
-  const proBadge=document.getElementById('navProBadge');
+// ── LANG ─────────────────────────────────────────────
+function setLang(l,el){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.body.className=l!=='en'?'lang-'+l:'';
+  try{localStorage.setItem('wbjee_lang',l);}catch{}
+}
 
+// ── AUTH ─────────────────────────────────────────────
+let currentUser=null;
+
+function loadAuth(){
+  try{const u=localStorage.getItem('wbjee_user');if(u)currentUser=JSON.parse(u);}catch{}
+  updateNav();
+}
+
+function saveUser(u){
+  currentUser=u;
+  try{localStorage.setItem('wbjee_user',JSON.stringify(u));}catch{}
+}
+
+function updateNav(){
+  const navOut=document.getElementById('navOut');
+  const navIn=document.getElementById('navIn');
   if(currentUser){
-    authBtns.classList.add('hidden');
-    userArea.classList.remove('hidden');
+    navOut.style.display='none';
+    navIn.style.display='flex';
 
-    // Record last login time
-    const now=Date.now();
-    const prev=currentUser.lastLogin||now;
-    currentUser.lastLogin=now;
-    try{localStorage.setItem('wbjee_user',JSON.stringify(currentUser));}catch(e){}
+    // Record this visit as last login
+    const prevLogin=currentUser.lastLogin||Date.now();
+    currentUser.lastLogin=Date.now();
+    try{localStorage.setItem('wbjee_user',JSON.stringify(currentUser));}catch{}
 
-    const uid=makeUserId(currentUser.email);
-    const lastLoginStr=fmtDateShort(prev);
-    const memberSince=fmtDate(currentUser.createdAt||now);
+    const uid=makeid(currentUser.email);
     const usage=getTodayUsage();
 
-    // Nav bar — show name + last login (no logout button)
-    document.getElementById('navUserName').textContent=currentUser.name||'User';
-    document.getElementById('navUserMeta').textContent='Last login: '+lastLoginStr;
+    // Nav bar labels
+    document.getElementById('navName').textContent=currentUser.name||'User';
+    document.getElementById('navMeta').textContent='Last login: '+fmtRelative(prevLogin);
 
-    // Pro badge
-    if(currentUser.isPro) proBadge.classList.remove('hidden');
-    else proBadge.classList.add('hidden');
+    // Pro pill
+    const pill=document.getElementById('navProPill');
+    if(currentUser.isPro){pill.style.display='inline-block';}
+    else{pill.style.display='none';}
 
-    // Dropdown content
-    document.getElementById('ddAvatar').textContent=(currentUser.name||'U')[0].toUpperCase();
-    document.getElementById('ddName').textContent=currentUser.name||'User';
-    document.getElementById('ddEmail').textContent=currentUser.email||'—';
-    document.getElementById('ddUserId').textContent=uid;
-    document.getElementById('ddLastLogin').textContent=lastLoginStr;
-    document.getElementById('ddMemberSince').textContent=memberSince;
-    document.getElementById('ddQToday').textContent=usage.q+' / 10';
+    // Dropdown fields
+    document.getElementById('ddAv').textContent=(currentUser.name||'U')[0].toUpperCase();
+    document.getElementById('ddHName').textContent=currentUser.name||'—';
+    document.getElementById('ddHEmail').textContent=currentUser.email||'—';
+    document.getElementById('ddUID').textContent=uid;
+    document.getElementById('ddLastLogin').textContent=fmtRelative(prevLogin);
+    document.getElementById('ddSince').textContent=fmtFull(currentUser.createdAt||Date.now());
+    document.getElementById('ddQToday').textContent=(usage.q||0)+' / 10';
 
-    // Plan badge
     const planEl=document.getElementById('ddPlan');
-    if(currentUser.isPro){
-      planEl.textContent='⭐ PRO PLAN — Unlimited access';
-      planEl.className='dd-plan pro';
-    }else{
-      planEl.textContent='FREE PLAN — 10 questions/day';
-      planEl.className='dd-plan free';
-    }
+    if(currentUser.isPro){planEl.textContent='⭐ PRO PLAN — Unlimited access';planEl.className='dd-plan pro';}
+    else{planEl.textContent='FREE PLAN — 10 questions/day';planEl.className='dd-plan free';}
   }else{
-    authBtns.classList.remove('hidden');
-    userArea.classList.add('hidden');
+    navOut.style.display='flex';
+    navIn.style.display='none';
   }
 }
 
-let dropdownOpen=false;
-function toggleDropdown(){
-  const dd=document.getElementById('navDropdown');
-  dropdownOpen=!dropdownOpen;
-  dd.classList.toggle('hidden',!dropdownOpen);
+// Dropdown toggle
+let ddOpen=false;
+function toggleDropdown(e){
+  e.stopPropagation();
+  ddOpen=!ddOpen;
+  document.getElementById('navDropdown').classList.toggle('open',ddOpen);
 }
-// Close dropdown when clicking outside
-document.addEventListener('click',function(e){
-  const area=document.getElementById('navUserArea');
-  if(area&&!area.contains(e.target)){
-    document.getElementById('navDropdown')?.classList.add('hidden');
-    dropdownOpen=false;
-  }
+document.addEventListener('click',()=>{
+  if(ddOpen){ddOpen=false;document.getElementById('navDropdown')?.classList.remove('open');}
 });
+document.getElementById('navDropdown')?.addEventListener('click',e=>e.stopPropagation());
 
 function logout(){
   currentUser=null;
-  try{localStorage.removeItem('wbjee_user');}catch(e){}
-  // Close dropdown
-  document.getElementById('navDropdown')?.classList.add('hidden');
-  dropdownOpen=false;
-  updateNavAuth();
-  if(typeof gtag==='function') gtag('event','logout');
+  try{localStorage.removeItem('wbjee_user');}catch{}
+  ddOpen=false;
+  document.getElementById('navDropdown')?.classList.remove('open');
+  updateNav();
 }
 function goToApp(){window.location.href='app.html';}
 
-// ═══════════════════════════════════════════════════════
-// MODAL
-// ═══════════════════════════════════════════════════════
+// ── MODAL ─────────────────────────────────────────────
 function openModal(tab='signup'){
   document.getElementById('authModal').classList.remove('hidden');
   switchTab(tab);
@@ -703,116 +602,96 @@ function switchTab(tab){
 document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// VALIDATION
-function validateEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
-function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display=msg?'block':'none';}
-function showSuccess(msg){const s=document.getElementById('authSuccess');s.textContent=msg;s.style.display='block';setTimeout(()=>{closeModal();goToApp();},1500);}
+function showErr(id,msg){const el=document.getElementById(id);if(el){el.textContent=msg;el.style.display=msg?'block':'none';}}
+function showSuccess(msg){
+  const s=document.getElementById('authSuccess');
+  s.textContent=msg;s.style.display='block';
+  setTimeout(()=>{closeModal();goToApp();},1500);
+}
+function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
+// LOGIN
 function handleLogin(){
-  let ok=true;
   const email=document.getElementById('loginEmail').value.trim();
-  const pass=document.getElementById('loginPassword').value;
-  showErr('loginEmailErr','');showErr('loginPassErr','');
-  if(!validateEmail(email)){showErr('loginEmailErr','Please enter a valid email.');ok=false;}
-  if(pass.length<6){showErr('loginPassErr','Password must be at least 6 characters.');ok=false;}
-  if(!ok)return;
-  // Simulate login (in production connect to Firebase/Supabase)
-  const storedUser=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}')[email];
-  if(!storedUser||storedUser.password!==pass){showErr('loginPassErr','Invalid email or password.');return;}
-  saveUser({email,name:storedUser.name,isPro:storedUser.isPro||false,lastLogin:Date.now(),createdAt:storedUser.createdAt||Date.now()});
-  updateNavAuth();
-  gtag('event','login',{method:'email'});
-  showSuccess('✅ Logged in successfully!');
+  const pass=document.getElementById('loginPass').value;
+  showErr('errLE','');showErr('errLP','');
+  if(!validEmail(email)){showErr('errLE','Please enter a valid email.');return;}
+  if(pass.length<6){showErr('errLP','Password must be at least 6 characters.');return;}
+  let allUsers={};
+  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  const stored=allUsers[email];
+  if(!stored||stored.password!==pass){showErr('errLP','Invalid email or password.');return;}
+  saveUser({email,name:stored.name,isPro:stored.isPro||false,lastLogin:Date.now(),createdAt:stored.createdAt||Date.now()});
+  updateNav();
+  showSuccess('✅ Logged in! Redirecting...');
 }
 
-function handleSignup(){openModal('signup');}
+// SIGNUP
 function handleSignupSubmit(){
-  let ok=true;
   const name=document.getElementById('signupName').value.trim();
   const email=document.getElementById('signupEmail').value.trim();
-  const pass=document.getElementById('signupPassword').value;
-  showErr('signupNameErr','');showErr('signupEmailErr','');showErr('signupPassErr','');
-  if(name.length<2){showErr('signupNameErr','Please enter your full name.');ok=false;}
-  if(!validateEmail(email)){showErr('signupEmailErr','Please enter a valid email.');ok=false;}
-  if(pass.length<6){showErr('signupPassErr','Password must be at least 6 characters.');ok=false;}
-  if(!ok)return;
-  // Store user (in production use a real DB)
+  const pass=document.getElementById('signupPass').value;
+  showErr('errSN','');showErr('errSE','');showErr('errSP','');
+  if(name.length<2){showErr('errSN','Please enter your full name.');return;}
+  if(!validEmail(email)){showErr('errSE','Please enter a valid email.');return;}
+  if(pass.length<6){showErr('errSP','Password must be at least 6 characters.');return;}
   let allUsers={};
-  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-  allUsers[email]={name,password:pass,isPro:false,createdAt:Date.now()};
+  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  const now=Date.now();
+  allUsers[email]={name,password:pass,isPro:false,createdAt:now};
   localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));
-  saveUser({email,name,isPro:false,lastLogin:Date.now(),createdAt:Date.now()});
-  updateNavAuth();
-  gtag('event','sign_up',{method:'email'});
-  showSuccess('🎉 Account created! Welcome ' + name + '!');
+  saveUser({email,name,isPro:false,lastLogin:now,createdAt:now});
+  updateNav();
+  showSuccess('🎉 Account created! Welcome '+name+'!');
 }
 
+// GOOGLE (simulated)
 function handleGoogleAuth(){
-  // Simulate Google auth — in production use Firebase Google Auth
-  const mockName='Student User';
-  const mockEmail='student@gmail.com';
+  const name='Student User', email='student@gmail.com';
   let allUsers={};
-  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-  if(!allUsers[mockEmail]){allUsers[mockEmail]={name:mockName,password:'google',isPro:false,createdAt:Date.now()};localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));}
-  saveUser({email:mockEmail,name:mockName,isPro:allUsers[mockEmail].isPro,lastLogin:Date.now(),createdAt:allUsers[mockEmail].createdAt||Date.now()});
-  updateNavAuth();
-  gtag('event','sign_up',{method:'google'});
+  try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch{}
+  const now=Date.now();
+  if(!allUsers[email]){allUsers[email]={name,password:'google',isPro:false,createdAt:now};localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));}
+  saveUser({email,name,isPro:allUsers[email].isPro||false,lastLogin:now,createdAt:allUsers[email].createdAt||now});
+  updateNav();
   showSuccess('✅ Signed in with Google!');
 }
 
-function handleHeroCta(){
-  if(currentUser)goToApp();
-  else openModal('signup');
-}
+function handleHeroCta(){if(currentUser)goToApp();else openModal('signup');}
+function handleSignup(){openModal('signup');}
 
-// ═══════════════════════════════════════════════════════
-// RAZORPAY PAYMENT
-// ═══════════════════════════════════════════════════════
+// ── RAZORPAY ──────────────────────────────────────────
 function handleProPayment(amount,plan){
   if(!currentUser){openModal('signup');return;}
-  gtag('event','begin_checkout',{currency:'INR',value:amount});
-  const options={
-    key:'rzp_test_XXXXXXXXXXXXXXXX', // Replace with your Razorpay Key ID
-    amount:amount*100, // paise
-    currency:'INR',
+  const opts={
+    key:'rzp_test_XXXXXXXXXXXXXXXX', // ← Replace with your Razorpay Key ID
+    amount:amount*100,currency:'INR',
     name:'WB JEE PYQ Solver',
-    description:plan==='monthly'?'Pro Plan – Monthly':'Pro Plan – Yearly',
-    image:'https://via.placeholder.com/80x80/f59e0b/000000?text=📚',
+    description:plan==='monthly'?'Pro Plan – ₹99/month':'Pro Plan – ₹799/year',
     prefill:{name:currentUser.name||'',email:currentUser.email||''},
     theme:{color:'#f59e0b'},
-    handler:function(response){
-      // Payment successful
-      gtag('event','purchase',{currency:'INR',value:amount,transaction_id:response.razorpay_payment_id});
-      // Upgrade user to Pro
-      let allUsers={};
-      try{allUsers=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-      if(allUsers[currentUser.email]){allUsers[currentUser.email].isPro=true;allUsers[currentUser.email].plan=plan;allUsers[currentUser.email].paidAt=Date.now();}
-      localStorage.setItem('wbjee_all_users',JSON.stringify(allUsers));
-      saveUser({...currentUser,isPro:true,plan});
-      updateNavAuth();
-      alert('🎉 Payment successful! You are now a Pro member. Enjoy unlimited access!');
+    handler(resp){
+      const upgraded={...currentUser,isPro:true,plan,paidAt:Date.now()};
+      saveUser(upgraded);
+      try{
+        const all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
+        if(all[currentUser.email]){all[currentUser.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
+      }catch{}
+      updateNav();
+      alert('🎉 Welcome to Pro! Unlimited access unlocked.');
       goToApp();
     },
-    modal:{ondismiss:function(){gtag('event','checkout_abandoned',{value:amount});}}
+    modal:{ondismiss(){}}
   };
-  try{const rzp=new Razorpay(options);rzp.open();}
-  catch(e){alert('Payment gateway not available in demo. In production, replace with your Razorpay Key ID.');}
+  try{new Razorpay(opts).open();}
+  catch{alert('Demo mode: Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID.');}
 }
 
-// ═══════════════════════════════════════════════════════
-// GOOGLE ANALYTICS EVENTS
-// ═══════════════════════════════════════════════════════
-function trackEvent(action,params={}){if(typeof gtag==='function')gtag('event',action,params);}
-// Track scroll depth
-let scrollTracked={25:false,50:false,75:false,100:false};
-window.addEventListener('scroll',()=>{
-  const pct=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
-  [25,50,75,100].forEach(p=>{if(pct>=p&&!scrollTracked[p]){scrollTracked[p]=true;trackEvent('scroll',{percent_scrolled:p});}});
+// ── INIT ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  loadAuth();
+  try{const l=localStorage.getItem('wbjee_lang');if(l&&l!=='en'){const b=document.querySelector(`.lang-btn[onclick*="'${l}'"]`);if(b)setLang(l,b);}}catch{}
 });
-// Track CTA clicks
-document.querySelectorAll('.btn-hero-primary,.btn-solid,.nav-cta').forEach(b=>{b.addEventListener('click',()=>trackEvent('cta_click',{button_text:b.textContent.trim()}));});
-
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',()=
+</script>
+</body>
+</html>

@@ -17,35 +17,34 @@ body.lang-hi{font-family:'Noto Sans Devanagari','Sora',sans-serif;}
 header{padding:12px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,15,30,.95);backdrop-filter:blur(10px);flex-wrap:wrap;gap:8px;}
 .logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
 .logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
-.logo-text{font-size:.98rem;font-weight:800;font-family:'Sora',sans-serif!important;}.logo-text span{color:var(--accent);}
-.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.lang-switcher{display:flex;gap:3px;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:3px;}
-.lang-btn{font-family:'Sora',sans-serif!important;padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s;}
+.logo-text{font-size:.98rem;font-weight:800;}.logo-text span{color:var(--accent);}
+.hdr-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.lang-sw{display:flex;gap:3px;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:3px;}
+.lang-btn{font-family:'Sora',sans-serif;padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s;}
 .lang-btn.active{background:var(--accent);color:#000;}
 .lang-btn:hover:not(.active){background:rgba(255,255,255,.07);color:var(--text);}
-.nav-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#000;font-family:'Sora',sans-serif!important;}
-.badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:3px 9px;border-radius:16px;font-size:.67rem;font-weight:600;font-family:'Sora',sans-serif!important;}
+.badge{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);padding:3px 9px;border-radius:16px;font-size:.67rem;font-weight:600;}
 .pro-badge{background:linear-gradient(135deg,#f59e0b,#f97316);color:#000;border:none;font-weight:800;}
-.btn-sm-hdr{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:7px;font-size:.74rem;cursor:pointer;transition:all .2s;}
-.btn-sm-hdr:hover{border-color:var(--accent);color:var(--accent);}
-.btn-upgrade-hdr{background:var(--accent);color:#000;border:none;font-weight:700;padding:5px 13px;border-radius:7px;font-size:.74rem;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s;}
-.btn-upgrade-hdr:hover{background:#fbbf24;}
+.btn-hdr{font-family:'Sora',sans-serif;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:7px;font-size:.74rem;cursor:pointer;transition:all .2s;}
+.btn-hdr:hover{border-color:var(--accent);color:var(--accent);}
+.btn-upgrade{background:var(--accent);color:#000;border:none;font-weight:700;padding:5px 13px;border-radius:7px;font-size:.74rem;cursor:pointer;font-family:'Sora',sans-serif;}
+.btn-upgrade:hover{background:#fbbf24;}
+.nav-av{width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#000;}
 
 /* LIMIT BAR */
-.limit-bar{padding:8px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.73rem;transition:background .3s;}
+.limit-bar{padding:8px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.73rem;}
 .limit-bar.safe{background:rgba(16,185,129,.06);border-bottom:1px solid rgba(16,185,129,.15);}
-.limit-bar.warning{background:rgba(245,158,11,.08);border-bottom:1px solid rgba(245,158,11,.2);}
+.limit-bar.warn{background:rgba(245,158,11,.08);border-bottom:1px solid rgba(245,158,11,.2);}
 .limit-bar.danger{background:rgba(239,68,68,.08);border-bottom:1px solid rgba(239,68,68,.2);}
-.limit-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.limit-dots{display:flex;gap:3px;}
-.limit-dot{width:9px;height:9px;border-radius:50%;transition:all .3s;}
-.limit-dot.used{background:var(--red);}
-.limit-dot.warn{background:var(--accent);}
-.limit-dot.free{background:rgba(255,255,255,.1);}
-.limit-label{color:var(--muted);font-size:.71rem;}
-.limit-label strong{color:var(--text);}
-.btn-go-pro{background:var(--accent);color:#000;border:none;font-weight:700;padding:5px 14px;border-radius:7px;font-size:.71rem;cursor:pointer;font-family:'Sora',sans-serif;white-space:nowrap;transition:all .2s;}
-.btn-go-pro:hover{background:#fbbf24;transform:translateY(-1px);}
+.lim-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.lim-dots{display:flex;gap:3px;}
+.lim-dot{width:9px;height:9px;border-radius:50%;transition:all .3s;}
+.lim-dot.used{background:var(--red);}
+.lim-dot.warn{background:var(--accent);}
+.lim-dot.free{background:rgba(255,255,255,.1);}
+.lim-label{color:var(--muted);font-size:.71rem;}
+.btn-gopro{background:var(--accent);color:#000;border:none;font-weight:700;padding:5px 14px;border-radius:7px;font-size:.71rem;cursor:pointer;font-family:'Sora',sans-serif;white-space:nowrap;}
+.btn-gopro:hover{background:#fbbf24;}
 
 /* HERO */
 .hero{text-align:center;padding:26px 22px 12px;}
@@ -53,11 +52,11 @@ header{padding:12px 22px;display:flex;align-items:center;justify-content:space-b
 .hero h1 .ac{background:linear-gradient(135deg,var(--accent),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero p{color:var(--muted);margin-top:5px;font-size:.82rem;}
 .stats{display:flex;justify-content:center;gap:20px;padding:10px 22px 14px;flex-wrap:wrap;}
-.stat-num{font-size:1.2rem;font-weight:800;color:var(--accent);font-family:'Sora',sans-serif!important;display:block;}
-.stat-label{font-size:.62rem;color:var(--muted);}
+.stat-num{font-size:1.2rem;font-weight:800;color:var(--accent);display:block;}
+.stat-lbl{font-size:.62rem;color:var(--muted);}
 
 /* TABS & FILTERS */
-.subject-tabs{display:flex;gap:5px;padding:0 18px 11px;max-width:980px;margin:0 auto;flex-wrap:wrap;}
+.tabs{display:flex;gap:5px;padding:0 18px 11px;max-width:980px;margin:0 auto;flex-wrap:wrap;}
 .tab{font-family:'Sora',sans-serif;padding:5px 13px;border-radius:16px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .2s;}
 .tab-all.active{background:var(--text);color:#000;border-color:transparent;}
 .tab-p.active{background:var(--blue);color:#fff;border-color:transparent;}
@@ -67,23 +66,23 @@ header{padding:12px 22px;display:flex;align-items:center;justify-content:space-b
 select{font-family:'Sora',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 11px;border-radius:8px;font-size:.79rem;cursor:pointer;outline:none;}
 select:hover{border-color:var(--blue);}
 .btn-filter{font-family:'Sora',sans-serif;background:var(--accent);color:#000;font-weight:700;border:none;padding:7px 15px;border-radius:8px;font-size:.79rem;cursor:pointer;}
-.qcount{font-size:.68rem;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 9px;border-radius:7px;font-family:'JetBrains Mono',monospace;}
+.qcnt{font-size:.68rem;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 9px;border-radius:7px;font-family:'JetBrains Mono',monospace;}
 
 /* MAIN */
 .main{max-width:980px;margin:0 auto;padding:0 18px 60px;}
 .prog-bar{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 15px;margin-bottom:11px;display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
 .prog-track{flex:1;min-width:60px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:3px;transition:width .4s;}
-.prog-text{font-size:.7rem;color:var(--muted);white-space:nowrap;font-family:'JetBrains Mono',monospace;}
+.prog-txt{font-size:.7rem;color:var(--muted);white-space:nowrap;font-family:'JetBrains Mono',monospace;}
 .score-row{display:flex;gap:11px;}.score-item{display:flex;align-items:center;gap:4px;font-size:.7rem;}
 .dot{width:6px;height:6px;border-radius:50%;}
 
-/* QUESTION CARD */
+/* Q CARD */
 .q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:11px;animation:fu .3s ease;position:relative;overflow:hidden;}
 .q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--accent));}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .q-meta{display:flex;gap:5px;margin-bottom:11px;flex-wrap:wrap;}
-.tag{font-size:.61rem;font-weight:600;padding:2px 7px;border-radius:5px;font-family:'Sora',sans-serif!important;}
+.tag{font-size:.61rem;font-weight:600;padding:2px 7px;border-radius:5px;}
 .tp{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.25);}
 .tc{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.25);}
 .tm{background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.25);}
@@ -94,25 +93,25 @@ select:hover{border-color:var(--blue);}
 .options{display:grid;gap:7px;}
 .option{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;font-size:.83rem;line-height:1.5;}
 .option:hover{border-color:var(--blue);background:rgba(59,130,246,.07);}
-.option.rc,.option.correct{border-color:var(--green);background:rgba(16,185,129,.1);}
-.option.wrong{border-color:var(--red);background:rgba(239,68,68,.08);}
-.opt-l{width:23px;height:23px;border-radius:5px;background:var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.71rem;flex-shrink:0;font-family:'Sora',sans-serif!important;}
-.rc .opt-l,.correct .opt-l{background:var(--green);color:#fff;}
-.wrong .opt-l{background:var(--red);color:#fff;}
+.option.rc{border-color:var(--green);background:rgba(16,185,129,.1);}
+.option.wg{border-color:var(--red);background:rgba(239,68,68,.08);}
+.opt-l{width:23px;height:23px;border-radius:5px;background:var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.71rem;flex-shrink:0;}
+.rc .opt-l{background:var(--green);color:#fff;}
+.wg .opt-l{background:var(--red);color:#fff;}
 .q-actions{display:flex;gap:7px;margin-top:13px;flex-wrap:wrap;}
-.btn-action{font-family:'Sora',sans-serif;padding:7px 13px;border-radius:7px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:5px;}
-.btn-action:hover{border-color:var(--accent);color:var(--accent);}
+.btn-act{font-family:'Sora',sans-serif;padding:7px 13px;border-radius:7px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:5px;}
+.btn-act:hover{border-color:var(--accent);color:var(--accent);}
 .btn-ai{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(249,115,22,.12));border-color:rgba(245,158,11,.35);color:var(--accent);}
 .ai-box{margin-top:12px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.18);border-radius:10px;padding:14px;display:none;}
 .ai-box.on{display:block;animation:fu .3s ease;}
-.ai-hdr{font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:8px;font-family:'Sora',sans-serif!important;}
+.ai-hdr{font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:8px;}
 .ai-txt{font-size:.81rem;line-height:1.9;color:#cbd5e1;font-family:'JetBrains Mono',monospace;white-space:pre-wrap;}
 body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto Sans Devanagari',sans-serif;font-size:.84rem;}
-.tc2{display:inline-block;width:2px;height:12px;background:var(--accent);animation:blink .8s infinite;vertical-align:middle;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.ldots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin:0 2px;animation:bounce 1.2s infinite;}
+.tc2{display:inline-block;width:2px;height:12px;background:var(--accent);animation:bl .8s infinite;vertical-align:middle;}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
+.ldots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin:0 2px;animation:bo 1.2s infinite;}
 .ldots span:nth-child(2){animation-delay:.2s}.ldots span:nth-child(3){animation-delay:.4s}
-@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+@keyframes bo{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
 
 /* NAV BUTTONS */
 .nav-btns{display:flex;gap:9px;justify-content:center;margin-top:4px;align-items:center;}
@@ -121,50 +120,48 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
 .btn-prev:hover{border-color:var(--blue);color:var(--text);}
 .btn-next{background:var(--blue);border:none;color:#fff;}
 .btn-next:hover{background:#2563eb;transform:translateY(-1px);}
-.jump-input{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 8px;border-radius:7px;font-size:.74rem;width:52px;text-align:center;outline:none;}
+.j-input{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 8px;border-radius:7px;font-size:.74rem;width:52px;text-align:center;outline:none;}
 
-/* EMPTY */
 .empty{text-align:center;padding:60px 24px;color:var(--muted);}
 
-/* ★ PAYWALL OVERLAY — covers the ENTIRE page */
-#paywallOverlay{position:fixed;inset:0;background:rgba(7,9,15,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);}
-#paywallOverlay.hidden{display:none!important;}
-.pw-box{background:#111827;border:1px solid rgba(245,158,11,.35);border-radius:22px;padding:36px 32px;max-width:460px;width:100%;text-align:center;position:relative;animation:fu .3s ease;}
-.pw-icon{font-size:3rem;margin-bottom:14px;}
-.pw-title{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
-.pw-desc{color:var(--muted);font-size:.86rem;line-height:1.75;margin-bottom:22px;}
-.pw-stats{display:flex;justify-content:center;gap:28px;margin-bottom:24px;padding:16px;background:rgba(245,158,11,.06);border-radius:12px;}
-.pw-stat{text-align:center;}
-.pw-stat-num{font-size:1.6rem;font-weight:800;color:var(--accent);font-family:'Sora',sans-serif!important;}
-.pw-stat-label{font-size:.68rem;color:var(--muted);}
-.pw-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
-.pw-feats li{font-size:.83rem;display:flex;align-items:center;gap:8px;color:var(--muted);}
-.pw-feats .ck{color:var(--green);font-size:1rem;}
-.btn-pw-main{width:100%;padding:14px;border-radius:12px;font-family:'Sora',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;border:none;background:var(--accent);color:#000;margin-bottom:10px;transition:all .2s;}
-.btn-pw-main:hover{background:#fbbf24;transform:translateY(-1px);}
-.btn-pw-year{width:100%;padding:11px;border-radius:12px;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--muted);margin-bottom:14px;transition:all .2s;}
-.btn-pw-year:hover{border-color:var(--accent);color:var(--accent);}
-.pw-note{font-size:.72rem;color:var(--muted);}
-.pw-reset{margin-top:10px;font-size:.7rem;color:rgba(255,255,255,.25);}
+/* PAYWALL OVERLAY — fullscreen, no dismiss */
+#pw{position:fixed;inset:0;background:rgba(7,9,15,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);}
+#pw.on{display:flex;}
+.pw-box{background:#111827;border:1px solid rgba(245,158,11,.3);border-radius:22px;padding:34px 30px;max-width:450px;width:100%;text-align:center;animation:fu .3s ease;}
+.pw-icon{font-size:2.8rem;margin-bottom:12px;}
+.pw-title{font-size:1.35rem;font-weight:800;margin-bottom:8px;}
+.pw-desc{color:var(--muted);font-size:.85rem;line-height:1.75;margin-bottom:18px;}
+.pw-stats{display:flex;justify-content:center;gap:28px;margin-bottom:20px;padding:14px;background:rgba(245,158,11,.06);border-radius:12px;}
+.pw-snum{font-size:1.5rem;font-weight:800;color:var(--accent);display:block;}
+.pw-slbl{font-size:.66rem;color:var(--muted);}
+.pw-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.pw-feats li{font-size:.82rem;display:flex;align-items:center;gap:8px;color:var(--muted);}
+.pw-feats .ck{color:var(--green);}
+.btn-pw1{width:100%;padding:14px;border-radius:12px;font-family:'Sora',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;border:none;background:var(--accent);color:#000;margin-bottom:9px;transition:all .2s;}
+.btn-pw1:hover{background:#fbbf24;transform:translateY(-1px);}
+.btn-pw2{width:100%;padding:11px;border-radius:12px;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--muted);margin-bottom:12px;transition:all .2s;}
+.btn-pw2:hover{border-color:var(--accent);color:var(--accent);}
+.pw-note{font-size:.7rem;color:var(--muted);}
+.pw-reset{margin-top:8px;font-size:.65rem;color:rgba(255,255,255,.2);}
 
 /* WHATSAPP */
-.wa{position:fixed;bottom:22px;right:22px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);cursor:pointer;transition:all .3s;text-decoration:none;}
+.wa{position:fixed;bottom:22px;right:22px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);text-decoration:none;transition:all .3s;}
 .wa:hover{transform:scale(1.1);}
 .wa svg{width:26px;height:26px;fill:#fff;}
 </style>
 </head>
 <body>
 
-<!-- ★ FULLSCREEN PAYWALL OVERLAY — cannot be dismissed unless Pro -->
-<div id="paywallOverlay" class="hidden">
+<!-- PAYWALL OVERLAY — covers entire page, no close button -->
+<div id="pw">
   <div class="pw-box">
-    <div class="pw-icon">🔒</div>
+    <div class="pw-icon" id="pwIcon">🔒</div>
     <div class="pw-title" id="pwTitle">Daily Limit Reached!</div>
     <div class="pw-desc" id="pwDesc">You've viewed all 10 free questions for today. Upgrade to Pro for unlimited access every day!</div>
     <div class="pw-stats">
-      <div class="pw-stat"><div class="pw-stat-num">10</div><div class="pw-stat-label">Free / day</div></div>
-      <div class="pw-stat"><div class="pw-stat-num">∞</div><div class="pw-stat-label">Pro — unlimited</div></div>
-      <div class="pw-stat"><div class="pw-stat-num">3</div><div class="pw-stat-label">Languages</div></div>
+      <div><span class="pw-snum">10</span><span class="pw-slbl">Free/day</span></div>
+      <div><span class="pw-snum">∞</span><span class="pw-slbl">Pro — unlimited</span></div>
+      <div><span class="pw-snum">3</span><span class="pw-slbl">Languages</span></div>
     </div>
     <ul class="pw-feats">
       <li><span class="ck">✓</span> Unlimited questions every day</li>
@@ -173,9 +170,9 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
       <li><span class="ck">✓</span> Progress analytics & rank predictor</li>
       <li><span class="ck">✓</span> Priority WhatsApp support</li>
     </ul>
-    <button class="btn-pw-main" onclick="handleProPayment(99,'monthly')">⭐ Get Pro for ₹99/month →</button>
-    <button class="btn-pw-year" onclick="handleProPayment(799,'yearly')">Or get Yearly for ₹799 — Save ₹389</button>
-    <div class="pw-note" id="pwNote">✓ Instant activation &nbsp;·&nbsp; ✓ Cancel anytime</div>
+    <button class="btn-pw1" onclick="handleProPayment(99,'monthly')">⭐ Get Pro for ₹99/month →</button>
+    <button class="btn-pw2" onclick="handleProPayment(799,'yearly')">Or Yearly for ₹799 — Save ₹389</button>
+    <div class="pw-note">✓ Instant activation &nbsp;·&nbsp; ✓ Cancel anytime</div>
     <div class="pw-reset" id="pwReset"></div>
   </div>
 </div>
@@ -185,46 +182,46 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
     <div class="logo-icon">📚</div>
     <div class="logo-text">WB JEE <span>PYQ</span></div>
   </div>
-  <div class="header-right">
-    <div class="lang-switcher">
+  <div class="hdr-right">
+    <div class="lang-sw">
       <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
       <button class="lang-btn" onclick="setLang('bn',this)">বাং</button>
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
-    <div id="hdrAuth">
-      <button class="btn-sm-hdr" onclick="window.location.href='index.html'">Log In / Sign Up</button>
-    </div>
-    <div id="hdrUser" style="display:none;align-items:center;gap:7px;">
-      <div class="nav-avatar" id="hdrAvatar">U</div>
-      <span class="badge pro-badge" id="hdrProBadge" style="display:none;">PRO ✦</span>
-      <button class="btn-upgrade-hdr" id="hdrUpgradeBtn" onclick="showPaywall('upgrade')" style="display:none;">⭐ Go Pro</button>
-      <button class="btn-sm-hdr" onclick="logout()">Log Out</button>
+    <!-- logged out -->
+    <div id="hdrOut"><button class="btn-hdr" onclick="window.location.href='index.html'">Log In / Sign Up</button></div>
+    <!-- logged in -->
+    <div id="hdrIn" style="display:none;align-items:center;gap:7px;">
+      <div class="nav-av" id="hdrAv">U</div>
+      <span class="badge pro-badge" id="hdrPro" style="display:none;">PRO ✦</span>
+      <button class="btn-upgrade" id="hdrUp" onclick="showPaywall('upgrade')" style="display:none;">⭐ Upgrade</button>
+      <button class="btn-hdr" onclick="logout()">Log Out</button>
     </div>
     <div class="badge">✦ AI • 90 Qs</div>
   </div>
 </header>
 
 <!-- LIMIT BAR -->
-<div class="limit-bar safe" id="limitBar">
-  <div class="limit-left">
-    <div class="limit-dots" id="limitDots"></div>
-    <span class="limit-label" id="limitLabel">Loading...</span>
+<div class="limit-bar safe" id="limBar">
+  <div class="lim-left">
+    <div class="lim-dots" id="limDots"></div>
+    <span class="lim-label" id="limLabel">Questions today: 0 / 10</span>
   </div>
-  <button class="btn-go-pro" onclick="showPaywall('upgrade')">⭐ Go Pro — Unlimited</button>
+  <button class="btn-gopro" onclick="showPaywall('upgrade')">⭐ Go Pro — Unlimited</button>
 </div>
 
 <div class="hero">
-  <h1><span data-t="h1">Crack WB JEE with</span> <span class="ac" data-t="h2">AI Explanations</span></h1>
-  <p data-t="sub">90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024</p>
+  <h1>Crack WB JEE with <span class="ac">AI Explanations</span></h1>
+  <p>90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024</p>
 </div>
 <div class="stats">
-  <div class="stat"><span class="stat-num">90</span><span class="stat-label" data-t="sQ">Questions</span></div>
-  <div class="stat"><span class="stat-num">10</span><span class="stat-label" data-t="sY">Years</span></div>
-  <div class="stat"><span class="stat-num">3</span><span class="stat-label" data-t="sS">Subjects</span></div>
-  <div class="stat"><span class="stat-num">AI</span><span class="stat-label" data-t="sA">Powered</span></div>
+  <div><span class="stat-num">90</span><span class="stat-lbl">Questions</span></div>
+  <div><span class="stat-num">10</span><span class="stat-lbl">Years</span></div>
+  <div><span class="stat-num">3</span><span class="stat-lbl">Subjects</span></div>
+  <div><span class="stat-num">AI</span><span class="stat-lbl">Powered</span></div>
 </div>
 
-<div class="subject-tabs">
+<div class="tabs">
   <button class="tab tab-all active" onclick="setTab('all',this)">All (90)</button>
   <button class="tab tab-p" onclick="setTab('Physics',this)">⚡ Physics</button>
   <button class="tab tab-c" onclick="setTab('Chemistry',this)">🧪 Chemistry</button>
@@ -234,24 +231,24 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
   <select id="yrF"><option value="all">All Years</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option></select>
   <select id="dfF"><option value="all">All Difficulty</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select>
   <button class="btn-filter" onclick="applyFilters()">🔍 Filter</button>
-  <div class="qcount" id="qcount">90 questions</div>
+  <div class="qcnt" id="qcnt">90 questions</div>
 </div>
 
 <div class="main">
   <div class="prog-bar">
-    <div style="font-size:.7rem;color:var(--muted);white-space:nowrap" data-t="prog">Progress</div>
+    <div style="font-size:.7rem;color:var(--muted);white-space:nowrap">Progress</div>
     <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-    <div class="prog-text" id="progTxt">0 / 90</div>
+    <div class="prog-txt" id="progTxt">0 / 90</div>
     <div class="score-row">
-      <div class="score-item"><div class="dot" style="background:var(--green)"></div><span id="cCount">0</span> <span data-t="corr">Correct</span></div>
-      <div class="score-item"><div class="dot" style="background:var(--red)"></div><span id="wCount">0</span> <span data-t="wrong">Wrong</span></div>
+      <div class="score-item"><div class="dot" style="background:var(--green)"></div><span id="cCnt">0</span> Correct</div>
+      <div class="score-item"><div class="dot" style="background:var(--red)"></div><span id="wCnt">0</span> Wrong</div>
     </div>
   </div>
   <div id="qArea"></div>
   <div class="nav-btns" id="navBtns">
-    <button class="btn-nav btn-prev" onclick="navigate(-1)">← <span data-t="prev">Prev</span></button>
-    <input class="jump-input" id="jumpIn" type="number" min="1" placeholder="Q#" onchange="jumpTo(this.value)"/>
-    <button class="btn-nav btn-next" onclick="navigate(1)"><span data-t="nxt">Next</span> →</button>
+    <button class="btn-nav btn-prev" onclick="navigate(-1)">← Prev</button>
+    <input class="j-input" id="jIn" type="number" min="1" placeholder="Q#" onchange="jumpTo(this.value)"/>
+    <button class="btn-nav btn-next" onclick="navigate(1)">Next →</button>
   </div>
 </div>
 
@@ -260,250 +257,204 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
 </a>
 
 <script>
-// ════════════════════════════════════════════════════
-// TRANSLATIONS
-// ════════════════════════════════════════════════════
-const TR={
-  en:{h1:"Crack WB JEE with",h2:"AI Explanations",sub:"90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024",sQ:"Questions",sY:"Years",sS:"Subjects",sA:"Powered",prog:"Progress",corr:"Correct",wrong:"Wrong",prev:"Prev",nxt:"Next",reveal:"Reveal Answer",showAns:"Show Answer",aiBtn:"🤖 AI Explanation",aiHdr:"🤖 AI EXPLANATION",aiPow:"• Claude",loading:"Generating...",noQ:"No questions found. Try different filters.",qOf:"Question {c} of {t}",easy:"Easy",medium:"Medium",hard:"Hard",limitSafe:"Questions today: {u} / {max} used",limitWarn:"⚠️ Almost at limit: {u} / {max} questions used today",limitDanger:"🔴 Limit reached: {u} / {max} — Upgrade to continue",pwTitle:"Daily Limit Reached!",pwDesc:"You've viewed all {max} free questions for today. Come back tomorrow or upgrade to Pro for unlimited access!",pwNote:"✓ Instant activation · ✓ Cancel anytime",pwReset:"Resets at midnight. Questions used: {u}/{max}",aiLimitTitle:"AI Limit Reached",aiLimitDesc:"You've used all {max} free AI explanations today. Upgrade to Pro for unlimited AI in Bengali, Hindi & English!",maybeLater:"Maybe later"},
-  bn:{h1:"WB JEE জয় করুন",h2:"AI ব্যাখ্যা দিয়ে",sub:"৯০টি বিগত বছরের প্রশ্ন • পদার্থবিজ্ঞান • রসায়ন • গণিত • ২০১৫–২০২৪",sQ:"প্রশ্ন",sY:"বছর",sS:"বিষয়",sA:"AI চালিত",prog:"অগ্রগতি",corr:"সঠিক",wrong:"ভুল",prev:"আগে",nxt:"পরে",reveal:"উত্তর দেখুন",showAns:"উত্তর দেখুন",aiBtn:"🤖 AI ব্যাখ্যা",aiHdr:"🤖 AI ব্যাখ্যা",aiPow:"• Claude",loading:"বাংলায় তৈরি হচ্ছে...",noQ:"কোনো প্রশ্ন পাওয়া যায়নি।",qOf:"প্রশ্ন {c} / {t}",easy:"সহজ",medium:"মাঝারি",hard:"কঠিন",limitSafe:"আজকের প্রশ্ন: {u} / {max} ব্যবহৃত",limitWarn:"⚠️ সীমার কাছে: {u} / {max} প্রশ্ন ব্যবহৃত",limitDanger:"🔴 সীমা শেষ: {u} / {max} — আপগ্রেড করুন",pwTitle:"দৈনিক সীমা শেষ!",pwDesc:"আজকের {max}টি বিনামূল্যে প্রশ্ন শেষ হয়ে গেছে। আগামীকাল আসুন বা সীমাহীন অ্যাক্সেসের জন্য প্রো নিন!",pwNote:"✓ তাৎক্ষণিক অ্যাক্টিভেশন · ✓ যেকোনো সময় বাতিল করুন",pwReset:"মধ্যরাতে রিসেট হয়। ব্যবহৃত: {u}/{max}",aiLimitTitle:"AI সীমা শেষ",aiLimitDesc:"আজকের {max}টি AI ব্যাখ্যা শেষ। সীমাহীন সমাধানের জন্য প্রো নিন!",maybeLater:"পরে"},
-  hi:{h1:"WB JEE क्रैक करें",h2:"AI व्याख्या से",sub:"90 पिछले वर्षों के प्रश्न • भौतिकी • रसायन • गणित • 2015–2024",sQ:"प्रश्न",sY:"वर्ष",sS:"विषय",sA:"AI संचालित",prog:"प्रगति",corr:"सही",wrong:"गलत",prev:"पिछला",nxt:"अगला",reveal:"उत्तर देखें",showAns:"उत्तर देखें",aiBtn:"🤖 AI व्याख्या",aiHdr:"🤖 AI व्याख्या",aiPow:"• Claude",loading:"हिन्दी में तैयार हो रही है...",noQ:"कोई प्रश्न नहीं मिला।",qOf:"प्रश्न {c} / {t}",easy:"आसान",medium:"मध्यम",hard:"कठिन",limitSafe:"आज के प्रश्न: {u} / {max} उपयोग",limitWarn:"⚠️ सीमा के पास: {u} / {max} उपयोग",limitDanger:"🔴 सीमा समाप्त: {u} / {max} — अपग्रेड करें",pwTitle:"दैनिक सीमा समाप्त!",pwDesc:"आज के {max} मुफ़्त प्रश्न समाप्त हो गए। कल वापस आएं या असीमित पहुंच के लिए प्रो लें!",pwNote:"✓ तुरंत एक्टिवेशन · ✓ कभी भी रद्द करें",pwReset:"मध्यरात्रि को रीसेट होगा। उपयोग: {u}/{max}",aiLimitTitle:"AI सीमा समाप्त",aiLimitDesc:"आज की {max} AI व्याख्याएं समाप्त। असीमित समाधान के लिए प्रो लें!",maybeLater:"बाद में"}
-};
+// ══════════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════════
 let lang='en';
-function tx(k,v={}){let s=(TR[lang][k]||TR.en[k]||k);Object.entries(v).forEach(([a,b])=>{s=s.replaceAll('{'+a+'}',b);});return s;}
 function setLang(l,el){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.body.className=l!=='en'?'lang-'+l:'';
   document.documentElement.lang=l;
-  document.querySelectorAll('[data-t]').forEach(e=>{const k=e.getAttribute('data-t');const v=TR[l][k]||TR.en[k];if(v!==undefined)e.textContent=v;});
-  updateLimitBar();
-  if(filtered.length)renderQ();
-  try{localStorage.setItem('wbjee_lang',l);}catch(e){}
+  updateLimBar();
+  if(filtered.length) renderQ();
+  try{localStorage.setItem('wbjee_lang',l);}catch{}
 }
 
-// ════════════════════════════════════════════════════
-// ★ LIMIT SYSTEM — THE HEART OF IT ALL ★
-// Every single question access goes through checkLimit()
-// ════════════════════════════════════════════════════
-const FREE_Q   = 10;   // questions per day
-const FREE_AI  = 3;    // AI explanations per day
+// ══════════════════════════════════════════
+// LIMIT SYSTEM
+// ══════════════════════════════════════════
+const FREE_Q=10, FREE_AI=3;
 
-function todayKey(){return new Date().toISOString().slice(0,10);}  // "2026-04-04"
+function todayKey(){return new Date().toISOString().slice(0,10);}
 
 function getUsage(){
-  try{
-    const raw=localStorage.getItem('wbjee_u_'+todayKey());
-    return raw ? JSON.parse(raw) : {q:0, ai:0, seen:[]};
-  }catch{return{q:0,ai:0,seen:[]};}
+  try{const r=localStorage.getItem('wbjee_u_'+todayKey());return r?JSON.parse(r):{q:0,ai:0,seen:[]};}
+  catch{return{q:0,ai:0,seen:[]};}
 }
 function saveUsage(u){
   try{localStorage.setItem('wbjee_u_'+todayKey(),JSON.stringify(u));}catch{}
 }
 
-// Returns true if user is Pro (bypass all limits)
 function isPro(){
-  try{
-    const u=JSON.parse(localStorage.getItem('wbjee_user')||'null');
-    return u && u.isPro===true;
-  }catch{return false;}
+  try{const u=JSON.parse(localStorage.getItem('wbjee_user')||'null');return !!(u&&u.isPro);}
+  catch{return false;}
 }
 
-// ★ MAIN GATE — call before showing ANY question
-// Returns true = allowed, false = blocked (paywall shown)
-function checkLimit(questionId){
-  if(isPro()) return true;                          // Pro: always allowed
-
-  const u=getUsage();
-
-  // If this exact question was already seen today, free re-visit
-  if(u.seen && u.seen.includes(questionId)) return true;
-
-  // New question — check count
-  if(u.q >= FREE_Q){
-    showPaywall('q_limit');
-    return false;                                   // BLOCKED
-  }
-
-  // Allow — record it
-  u.q++;
-  if(!u.seen) u.seen=[];
-  u.seen.push(questionId);
-  saveUsage(u);
-  updateLimitBar();
-  return true;
-}
-
-// ★ AI GATE
-function checkAILimit(){
+// ★ THE ONE GATE — returns true=allowed, false=blocked
+function checkLimit(qid){
   if(isPro()) return true;
   const u=getUsage();
-  if(u.ai >= FREE_AI){
-    showPaywall('ai_limit');
-    return false;
-  }
-  u.ai++;
+  // Already seen today — free revisit
+  if(u.seen&&u.seen.includes(qid)) return true;
+  // New question — check count
+  if(u.q>=FREE_Q){showPaywall('q_limit');return false;}
+  // Allow and record
+  u.q=(u.q||0)+1;
+  if(!u.seen)u.seen=[];
+  u.seen.push(qid);
   saveUsage(u);
-  updateLimitBar();
+  updateLimBar();
   return true;
 }
 
-function updateLimitBar(){
-  if(isPro()){
-    document.getElementById('limitBar').style.display='none';
-    return;
-  }
-  document.getElementById('limitBar').style.display='flex';
+function checkAI(){
+  if(isPro()) return true;
   const u=getUsage();
-  const used=u.q||0;
-  const left=FREE_Q-used;
-  const bar=document.getElementById('limitBar');
-  const dots=document.getElementById('limitDots');
-  const label=document.getElementById('limitLabel');
+  if(u.ai>=FREE_AI){showPaywall('ai_limit');return false;}
+  u.ai=(u.ai||0)+1;
+  saveUsage(u);
+  updateLimBar();
+  return true;
+}
 
+function updateLimBar(){
+  if(isPro()){document.getElementById('limBar').style.display='none';return;}
+  document.getElementById('limBar').style.display='flex';
+  const u=getUsage();
+  const used=u.q||0, left=FREE_Q-used;
+  const bar=document.getElementById('limBar');
+  const dots=document.getElementById('limDots');
+  const lbl=document.getElementById('limLabel');
   // Dots
   let html='';
   for(let i=0;i<FREE_Q;i++){
-    let cls=i<used ? (used>=FREE_Q?'used':'warn') : 'free';
-    if(used>=FREE_Q) cls='used';
-    html+=`<div class="limit-dot ${cls}"></div>`;
+    const cls=i<used?(used>=FREE_Q?'used':'warn'):'free';
+    html+=`<div class="lim-dot ${cls}"></div>`;
   }
   dots.innerHTML=html;
-
-  // Label & bar color
+  // Bar color & label
   if(used>=FREE_Q){
     bar.className='limit-bar danger';
-    label.innerHTML=`<strong>${tx('limitDanger',{u:used,max:FREE_Q})}</strong>`;
+    lbl.innerHTML=`<strong>🔴 Daily limit reached (${used}/${FREE_Q}) — Upgrade to continue</strong>`;
   }else if(left<=3){
-    bar.className='limit-bar warning';
-    label.innerHTML=tx('limitWarn',{u:used,max:FREE_Q});
+    bar.className='limit-bar warn';
+    lbl.textContent=`⚠️ Almost there: ${used}/${FREE_Q} questions used today`;
   }else{
     bar.className='limit-bar safe';
-    label.innerHTML=tx('limitSafe',{u:used,max:FREE_Q});
+    lbl.textContent=`Questions today: ${used} / ${FREE_Q} used`;
   }
 }
 
-// ════════════════════════════════════════════════════
-// PAYWALL — fullscreen, no dismiss button for q_limit
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
+// PAYWALL (fullscreen, no escape)
+// ══════════════════════════════════════════
 function showPaywall(reason){
   const u=getUsage();
-  const overlay=document.getElementById('paywallOverlay');
+  const icon=document.getElementById('pwIcon');
   const title=document.getElementById('pwTitle');
   const desc=document.getElementById('pwDesc');
-  const note=document.getElementById('pwNote');
   const reset=document.getElementById('pwReset');
-
   if(reason==='ai_limit'){
-    title.textContent=tx('aiLimitTitle');
-    desc.textContent=tx('aiLimitDesc',{max:FREE_AI});
+    icon.textContent='🤖';
+    title.textContent='AI Limit Reached!';
+    desc.textContent=`You've used all ${FREE_AI} free AI explanations today. Upgrade to Pro for unlimited AI solutions in Bengali, Hindi & English!`;
   }else{
-    title.textContent=tx('pwTitle');
-    desc.textContent=tx('pwDesc',{max:FREE_Q});
+    icon.textContent='🔒';
+    title.textContent='Daily Limit Reached!';
+    desc.textContent=`You've viewed all ${FREE_Q} free questions for today. Upgrade to Pro for unlimited access every day!`;
   }
-  note.textContent=tx('pwNote');
-  reset.textContent=tx('pwReset',{u:u.q,max:FREE_Q});
-  overlay.classList.remove('hidden');
-  // Prevent ANY interaction with the page behind
+  reset.textContent=`Resets at midnight · Questions used: ${u.q||0}/${FREE_Q}`;
+  document.getElementById('pw').classList.add('on');
   document.body.style.overflow='hidden';
 }
 
-// Paywall can only close if user is now Pro (after payment)
-function tryClosePaywall(){
+function closePaywall(){
+  // Only closes if user has upgraded to Pro
   if(isPro()){
-    document.getElementById('paywallOverlay').classList.add('hidden');
+    document.getElementById('pw').classList.remove('on');
     document.body.style.overflow='';
-    updateLimitBar();
+    updateLimBar();
     renderQ();
   }
-  // Otherwise: stays open. User must pay or wait till tomorrow.
 }
 
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 // AUTH
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 let currentUser=null;
 function loadAuth(){
   try{currentUser=JSON.parse(localStorage.getItem('wbjee_user')||'null');}catch{}
   renderNav();
 }
 function renderNav(){
-  const hdrAuth=document.getElementById('hdrAuth');
-  const hdrUser=document.getElementById('hdrUser');
-  const hdrAvatar=document.getElementById('hdrAvatar');
-  const hdrProBadge=document.getElementById('hdrProBadge');
-  const hdrUpgradeBtn=document.getElementById('hdrUpgradeBtn');
+  const out=document.getElementById('hdrOut');
+  const inn=document.getElementById('hdrIn');
+  const av=document.getElementById('hdrAv');
+  const pro=document.getElementById('hdrPro');
+  const up=document.getElementById('hdrUp');
   if(currentUser){
-    hdrAuth.style.display='none';
-    hdrUser.style.display='flex';
-    hdrAvatar.textContent=(currentUser.name||'U')[0].toUpperCase();
-    hdrProBadge.style.display=currentUser.isPro?'inline-flex':'none';
-    hdrUpgradeBtn.style.display=currentUser.isPro?'none':'inline-block';
+    out.style.display='none'; inn.style.display='flex';
+    av.textContent=(currentUser.name||'U')[0].toUpperCase();
+    if(currentUser.isPro){pro.style.display='inline-flex';up.style.display='none';}
+    else{pro.style.display='none';up.style.display='inline-block';}
   }else{
-    hdrAuth.style.display='block';
-    hdrUser.style.display='none';
+    out.style.display='block'; inn.style.display='none';
   }
 }
 function logout(){
   currentUser=null;
   try{localStorage.removeItem('wbjee_user');}catch{}
-  renderNav(); updateLimitBar();
+  renderNav(); updateLimBar();
 }
 
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 // RAZORPAY
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 function handleProPayment(amount,plan){
-  if(!currentUser){
-    // Save intent, redirect to login
-    try{localStorage.setItem('wbjee_payment_intent',JSON.stringify({amount,plan}));}catch{}
-    window.location.href='index.html';
-    return;
-  }
+  if(!currentUser){window.location.href='index.html';return;}
   const opts={
-    key:'rzp_test_XXXXXXXXXXXXXXXX',  // ← Replace with your Razorpay Key ID
-    amount:amount*100,
-    currency:'INR',
+    key:'rzp_test_XXXXXXXXXXXXXXXX', // ← Replace with your Razorpay Key ID
+    amount:amount*100,currency:'INR',
     name:'WB JEE PYQ Solver',
-    description:plan==='monthly'?'Pro Plan – ₹99/month':'Pro Plan – ₹799/year',
+    description:plan==='monthly'?'Pro – ₹99/month':'Pro – ₹799/year',
     prefill:{name:currentUser.name||'',email:currentUser.email||''},
     theme:{color:'#f59e0b'},
     handler(resp){
-      // Mark Pro
-      const upgraded={...currentUser,isPro:true,plan,paidAt:Date.now(),paymentId:resp.razorpay_payment_id};
-      currentUser=upgraded;
+      const up={...currentUser,isPro:true,plan,paidAt:Date.now()};
+      currentUser=up;
       try{
-        localStorage.setItem('wbjee_user',JSON.stringify(upgraded));
-        // Also update in all_users store
+        localStorage.setItem('wbjee_user',JSON.stringify(up));
         const all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
-        if(all[currentUser.email]){all[currentUser.email].isPro=true;all[currentUser.email].plan=plan;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
+        if(all[up.email]){all[up.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
       }catch{}
       renderNav();
-      tryClosePaywall();   // Will now close since isPro()=true
-      alert('🎉 Welcome to Pro! Unlimited access is now active.');
+      closePaywall(); // Will now work because isPro()=true
+      alert('🎉 Welcome to Pro! Unlimited access unlocked.');
     },
-    modal:{ondismiss:()=>{}}
+    modal:{ondismiss(){}}
   };
   try{new Razorpay(opts).open();}
   catch{alert('Demo mode: Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID.');}
 }
 
-// ════════════════════════════════════════════════════
-// QUESTIONS (90)
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
+// QUESTIONS DATA (90)
+// ══════════════════════════════════════════
 const ALL=[
-{id:1,year:2024,subject:"Physics",chapter:"Kinematics",difficulty:"Medium",text:"A particle moves along x-axis with position x = 6t² − 2t³. The particle comes to rest at time t =",options:["t = 0 only","t = 2 s only","t = 0 and t = 2 s","t = 1 s only"],answer:2,explanation:{en:"v = dx/dt = 12t − 6t²\nSet v = 0: 6t(2−t) = 0 → t = 0 or t = 2 s\n\n✅ Answer: t = 0 and t = 2 s\n💡 Differentiate position to get velocity, set to zero.",bn:"v = 12t − 6t²; শূন্য রাখলে t = 0 বা t = 2 s\n\n✅ উত্তর: t = 0 এবং t = 2 s",hi:"v = 12t − 6t²; शून्य रखें → t = 0 या t = 2 s\n\n✅ उत्तर: t = 0 और t = 2 s"}},
-{id:2,year:2024,subject:"Physics",chapter:"Laws of Motion",difficulty:"Easy",text:"A block of mass 5 kg is on a rough surface with μ = 0.4. Minimum force to move it? (g = 10 m/s²)",options:["10 N","20 N","25 N","40 N"],answer:1,explanation:{en:"N = mg = 50 N; f = μN = 20 N\n\n✅ Answer: 20 N",bn:"N = 50N; f = 20N\n\n✅ উত্তর: 20 N",hi:"N = 50N; f = 20N\n\n✅ उत्तर: 20 N"}},
+{id:1,year:2024,subject:"Physics",chapter:"Kinematics",difficulty:"Medium",text:"A particle moves along x-axis with position x = 6t² − 2t³. The particle comes to rest at time t =",options:["t = 0 only","t = 2 s only","t = 0 and t = 2 s","t = 1 s only"],answer:2,explanation:{en:"v = dx/dt = 12t − 6t²\nSet v = 0: 6t(2−t) = 0 → t = 0 or t = 2 s\n\n✅ Answer: t = 0 and t = 2 s\n💡 Differentiate position to get velocity, set to zero.",bn:"v = 12t − 6t²; v = 0 রাখলে → t = 0 বা t = 2 s\n\n✅ উত্তর: t = 0 এবং t = 2 s",hi:"v = 12t − 6t²; v = 0 रखें → t = 0 या t = 2 s\n\n✅ उत्तर: t = 0 और t = 2 s"}},
+{id:2,year:2024,subject:"Physics",chapter:"Laws of Motion",difficulty:"Easy",text:"A block of mass 5 kg is on a rough surface with μ = 0.4. Minimum force to move it? (g = 10 m/s²)",options:["10 N","20 N","25 N","40 N"],answer:1,explanation:{en:"N = mg = 50N; f = μN = 20N\n\n✅ Answer: 20 N",bn:"f = μN = 20N\n\n✅ উত্তর: 20 N",hi:"f = μN = 20N\n\n✅ उत्तर: 20 N"}},
 {id:3,year:2023,subject:"Physics",chapter:"Work & Energy",difficulty:"Medium",text:"Body of mass 2 kg thrown upward with KE = 490 J. Height reached? (g = 9.8)",options:["50 m","25 m","20 m","10 m"],answer:1,explanation:{en:"KE = mgh → h = 25 m\n\n✅ Answer: 25 m",bn:"h = 25 m\n\n✅ উত্তর: 25 m",hi:"h = 25 m\n\n✅ उत्तर: 25 m"}},
 {id:4,year:2023,subject:"Physics",chapter:"Gravitation",difficulty:"Easy",text:"Value of g at height equal to Earth's radius R above the surface:",options:["g/2","g/4","g/3","2g"],answer:1,explanation:{en:"g' = gR²/(2R)² = g/4\n\n✅ Answer: g/4",bn:"g' = g/4\n\n✅ উত্তর: g/4",hi:"g' = g/4\n\n✅ उत्तर: g/4"}},
 {id:5,year:2022,subject:"Physics",chapter:"Waves",difficulty:"Medium",text:"Speed of sound at 0°C is 332 m/s. Speed at 100°C ≈",options:["372 m/s","386 m/s","366 m/s","400 m/s"],answer:1,explanation:{en:"v ∝ √T → 386 m/s\n\n✅ Answer: 386 m/s",bn:"v ∝ √T → 386 m/s\n\n✅ উত্তর: 386 m/s",hi:"v ∝ √T → 386 m/s\n\n✅ उत्तर: 386 m/s"}},
-{id:6,year:2022,subject:"Physics",chapter:"Current Electricity",difficulty:"Easy",text:"Resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance =",options:["1 Ω","11 Ω","0.5 Ω","2 Ω"],answer:0,explanation:{en:"1/R = 1/2+1/3+1/6 = 1 → R = 1Ω\n\n✅ Answer: 1 Ω",bn:"R = 1Ω\n\n✅ উত্তর: 1 Ω",hi:"R = 1Ω\n\n✅ उत्तर: 1 Ω"}},
+{id:6,year:2022,subject:"Physics",chapter:"Current Electricity",difficulty:"Easy",text:"Resistors 2Ω, 3Ω, 6Ω in parallel. Equivalent resistance =",options:["1 Ω","11 Ω","0.5 Ω","2 Ω"],answer:0,explanation:{en:"1/R = 1 → R = 1Ω\n\n✅ Answer: 1 Ω",bn:"R = 1Ω\n\n✅ উত্তর: 1 Ω",hi:"R = 1Ω\n\n✅ उत्तर: 1 Ω"}},
 {id:7,year:2021,subject:"Physics",chapter:"Optics",difficulty:"Medium",text:"Convex lens f=20cm, image at v=60cm. Object distance u =",options:["30 cm","40 cm","15 cm","60 cm"],answer:0,explanation:{en:"1/v−1/u=1/f → u=30 cm\n\n✅ Answer: 30 cm",bn:"u = 30 cm\n\n✅ উত্তর: 30 cm",hi:"u = 30 cm\n\n✅ उत्तर: 30 cm"}},
-{id:8,year:2021,subject:"Physics",chapter:"Magnetism",difficulty:"Hard",text:"Proton (m=1.67×10⁻²⁷kg, q=1.6×10⁻¹⁹C) at 10⁶m/s in B=0.5T. Radius =",options:["0.021 m","0.21 m","2.1 m","0.0021 m"],answer:0,explanation:{en:"r = mv/qB = 0.021 m\n\n✅ Answer: 0.021 m",bn:"r = mv/qB = 0.021 m\n\n✅ উত্তর: 0.021 m",hi:"r = mv/qB = 0.021 m\n\n✅ उत्तर: 0.021 m"}},
+{id:8,year:2021,subject:"Physics",chapter:"Magnetism",difficulty:"Hard",text:"Proton (m=1.67×10⁻²⁷kg, q=1.6×10⁻¹⁹C) at 10⁶m/s in B=0.5T. Radius =",options:["0.021 m","0.21 m","2.1 m","0.0021 m"],answer:0,explanation:{en:"r = mv/qB = 0.021 m\n\n✅ Answer: 0.021 m",bn:"r = 0.021 m\n\n✅ উত্তর: 0.021 m",hi:"r = 0.021 m\n\n✅ उत्तर: 0.021 m"}},
 {id:9,year:2020,subject:"Physics",chapter:"Thermodynamics",difficulty:"Medium",text:"In isothermal process, internal energy of ideal gas:",options:["Increases","Decreases","Remains constant","Becomes zero"],answer:2,explanation:{en:"T=constant → ΔU=0\n\n✅ Answer: Remains constant",bn:"ΔU = 0\n\n✅ উত্তর: অপরিবর্তিত",hi:"ΔU = 0\n\n✅ उत्तर: अपरिवर्तित"}},
 {id:10,year:2019,subject:"Physics",chapter:"Modern Physics",difficulty:"Hard",text:"de Broglie wavelength of mass m, velocity v =",options:["h/mv","mv/h","h×mv","m/hv"],answer:0,explanation:{en:"λ = h/mv\n\n✅ Answer: h/mv",bn:"λ = h/mv\n\n✅ উত্তর: h/mv",hi:"λ = h/mv\n\n✅ उत्तर: h/mv"}},
 {id:11,year:2024,subject:"Physics",chapter:"Projectile Motion",difficulty:"Medium",text:"Ball projected horizontally at 20m/s from 80m cliff. Time to hit ground: (g=10)",options:["4 s","8 s","2 s","6 s"],answer:0,explanation:{en:"80=½×10×t² → t=4s\n\n✅ Answer: 4 s",bn:"t = 4 s\n\n✅ উত্তর: 4 s",hi:"t = 4 s\n\n✅ उत्तर: 4 s"}},
-{id:12,year:2023,subject:"Physics",chapter:"Rotational Motion",difficulty:"Hard",text:"Moment of inertia of solid sphere (mass M, radius R) about diameter:",options:["2MR²/5","MR²/2","MR²","2MR²/3"],answer:0,explanation:{en:"I = (2/5)MR²\n\n✅ Answer: 2MR²/5",bn:"I = (2/5)MR²\n\n✅ উত্তর: 2MR²/5",hi:"I = (2/5)MR²\n\n✅ उत्तर: 2MR²/5"}},
+{id:12,year:2023,subject:"Physics",chapter:"Rotational Motion",difficulty:"Hard",text:"Moment of inertia of solid sphere (M, R) about diameter:",options:["2MR²/5","MR²/2","MR²","2MR²/3"],answer:0,explanation:{en:"I = (2/5)MR²\n\n✅ Answer: 2MR²/5",bn:"I = (2/5)MR²\n\n✅ উত্তর: 2MR²/5",hi:"I = (2/5)MR²\n\n✅ उत्तर: 2MR²/5"}},
 {id:13,year:2022,subject:"Physics",chapter:"Fluid Mechanics",difficulty:"Medium",text:"Body floats with 60% volume submerged. Its density: (ρ_water=1000)",options:["600 kg/m³","400 kg/m³","1200 kg/m³","800 kg/m³"],answer:0,explanation:{en:"ρ = 0.6×1000 = 600 kg/m³\n\n✅ Answer: 600 kg/m³",bn:"ρ = 600 kg/m³\n\n✅ উত্তর: 600 kg/m³",hi:"ρ = 600 kg/m³\n\n✅ उत्तर: 600 kg/m³"}},
 {id:14,year:2021,subject:"Physics",chapter:"SHM",difficulty:"Medium",text:"Simple pendulum length 1m. Time period: (g=10, π²≈10)",options:["2 s","1 s","4 s","0.5 s"],answer:0,explanation:{en:"T=2π√(L/g)≈2s\n\n✅ Answer: 2 s",bn:"T ≈ 2 s\n\n✅ উত্তর: 2 s",hi:"T ≈ 2 s\n\n✅ उत्तर: 2 s"}},
 {id:15,year:2020,subject:"Physics",chapter:"EM Induction",difficulty:"Hard",text:"Coil: 100 turns, A=0.01m², B drops 2T→0 in 0.5s. EMF =",options:["4 V","2 V","1 V","8 V"],answer:0,explanation:{en:"EMF=N×A×ΔB/Δt=4V\n\n✅ Answer: 4 V",bn:"EMF = 4 V\n\n✅ উত্তর: 4 V",hi:"EMF = 4 V\n\n✅ उत्तर: 4 V"}},
@@ -513,10 +464,10 @@ const ALL=[
 {id:19,year:2016,subject:"Physics",chapter:"Semiconductors",difficulty:"Easy",text:"In p-n junction, depletion layer width in reverse bias:",options:["Increases","Decreases","Remains same","Becomes zero"],answer:0,explanation:{en:"Reverse bias → widens\n\n✅ Answer: Increases",bn:"বিপরীত বায়াস → প্রসারিত\n\n✅ উত্তর: বৃদ্ধি পায়",hi:"विपरीत बायस → चौड़ी\n\n✅ उत्तर: बढ़ती है"}},
 {id:20,year:2015,subject:"Physics",chapter:"Ray Optics",difficulty:"Easy",text:"Critical angle for medium with refractive index √2:",options:["45°","30°","60°","90°"],answer:0,explanation:{en:"sinC=1/√2 → C=45°\n\n✅ Answer: 45°",bn:"C = 45°\n\n✅ উত্তর: 45°",hi:"C = 45°\n\n✅ उत्तर: 45°"}},
 {id:21,year:2024,subject:"Physics",chapter:"Units & Dimensions",difficulty:"Easy",text:"Dimensions of pressure:",options:["[ML⁻¹T⁻²]","[MLT⁻²]","[ML²T⁻²]","[ML⁻²T⁻²]"],answer:0,explanation:{en:"P=F/A → [ML⁻¹T⁻²]\n\n✅ Answer: [ML⁻¹T⁻²]",bn:"[ML⁻¹T⁻²]\n\n✅ উত্তর: [ML⁻¹T⁻²]",hi:"[ML⁻¹T⁻²]\n\n✅ उत्तर: [ML⁻¹T⁻²]"}},
-{id:22,year:2023,subject:"Physics",chapter:"Circular Motion",difficulty:"Medium",text:"Car 1000kg, circle r=50m at 10m/s. Centripetal force =",options:["2000 N","1000 N","500 N","4000 N"],answer:0,explanation:{en:"F=mv²/r=2000N\n\n✅ Answer: 2000 N",bn:"F = 2000 N\n\n✅ উত্তর: 2000 N",hi:"F = 2000 N\n\n✅ उत्तर: 2000 N"}},
-{id:23,year:2022,subject:"Physics",chapter:"Elasticity",difficulty:"Medium",text:"Y=2×10¹¹Pa, Strain=0.001. Stress =",options:["2×10⁸ Pa","2×10¹⁴ Pa","2×10⁵ Pa","2×10² Pa"],answer:0,explanation:{en:"Stress=2×10⁸Pa\n\n✅ Answer: 2×10⁸ Pa",bn:"পীড়ন = 2×10⁸ Pa\n\n✅ উত্তর: 2×10⁸ Pa",hi:"2×10⁸ Pa\n\n✅ उत्तर: 2×10⁸ Pa"}},
+{id:22,year:2023,subject:"Physics",chapter:"Circular Motion",difficulty:"Medium",text:"Car 1000kg, r=50m at 10m/s. Centripetal force =",options:["2000 N","1000 N","500 N","4000 N"],answer:0,explanation:{en:"F=mv²/r=2000N\n\n✅ Answer: 2000 N",bn:"F = 2000 N\n\n✅ উত্তর: 2000 N",hi:"F = 2000 N\n\n✅ उत्तर: 2000 N"}},
+{id:23,year:2022,subject:"Physics",chapter:"Elasticity",difficulty:"Medium",text:"Y=2×10¹¹Pa, Strain=0.001. Stress =",options:["2×10⁸ Pa","2×10¹⁴ Pa","2×10⁵ Pa","2×10² Pa"],answer:0,explanation:{en:"Stress=Y×Strain=2×10⁸Pa\n\n✅ Answer: 2×10⁸ Pa",bn:"পীড়ন = 2×10⁸ Pa\n\n✅ উত্তর: 2×10⁸ Pa",hi:"2×10⁸ Pa\n\n✅ उत्तर: 2×10⁸ Pa"}},
 {id:24,year:2021,subject:"Physics",chapter:"EM Waves",difficulty:"Easy",text:"Which EM wave has the highest frequency?",options:["Gamma rays","X-rays","UV rays","Microwaves"],answer:0,explanation:{en:"Gamma rays\n\n✅ Answer: Gamma rays",bn:"গামা রশ্মি\n\n✅ উত্তর: Gamma rays",hi:"गामा किरणें\n\n✅ उत्तर: Gamma rays"}},
-{id:25,year:2020,subject:"Physics",chapter:"Photoelectric Effect",difficulty:"Medium",text:"Work function=2eV. Threshold frequency: (h=6.6×10⁻³⁴)",options:["4.8×10¹⁴ Hz","9.6×10¹⁴ Hz","2.4×10¹⁴ Hz","1.2×10¹⁴ Hz"],answer:0,explanation:{en:"ν₀=φ/h≈4.8×10¹⁴Hz\n\n✅ Answer: 4.8×10¹⁴ Hz\n💡 1eV=1.6×10⁻¹⁹J",bn:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ উত্তর: 4.8×10¹⁴ Hz",hi:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ उत्तर: 4.8×10¹⁴ Hz"}},
+{id:25,year:2020,subject:"Physics",chapter:"Photoelectric Effect",difficulty:"Medium",text:"Work function=2eV. Threshold frequency: (h=6.6×10⁻³⁴)",options:["4.8×10¹⁴ Hz","9.6×10¹⁴ Hz","2.4×10¹⁴ Hz","1.2×10¹⁴ Hz"],answer:0,explanation:{en:"ν₀=φ/h≈4.8×10¹⁴Hz\n\n✅ Answer: 4.8×10¹⁴ Hz",bn:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ উত্তর: 4.8×10¹⁴ Hz",hi:"ν₀ ≈ 4.8×10¹⁴ Hz\n\n✅ उत्तर: 4.8×10¹⁴ Hz"}},
 {id:26,year:2019,subject:"Physics",chapter:"AC Circuits",difficulty:"Hard",text:"In LCR circuit at resonance, impedance =",options:["R only","√(R²+X²)","X_L−X_C","Zero"],answer:0,explanation:{en:"Resonance: Z=R\n\n✅ Answer: R only",bn:"Z = R\n\n✅ উত্তর: শুধু R",hi:"Z = R\n\n✅ उत्तर: केवल R"}},
 {id:27,year:2018,subject:"Physics",chapter:"Thermal Expansion",difficulty:"Easy",text:"Rod 2m at 20°C, α=1.2×10⁻⁵/°C. Length at 70°C:",options:["2.0012 m","2.012 m","2.12 m","2.001 m"],answer:0,explanation:{en:"ΔL=0.0012m → 2.0012m\n\n✅ Answer: 2.0012 m",bn:"L = 2.0012 m\n\n✅ উত্তর: 2.0012 m",hi:"L = 2.0012 m\n\n✅ उत्तर: 2.0012 m"}},
 {id:28,year:2017,subject:"Physics",chapter:"Interference",difficulty:"Hard",text:"YDSE: β=λD/d. If d halved, β becomes:",options:["2β","β/2","4β","β"],answer:0,explanation:{en:"β∝1/d → 2β\n\n✅ Answer: 2β",bn:"2β\n\n✅ উত্তর: 2β",hi:"2β\n\n✅ उत्तर: 2β"}},
@@ -534,7 +485,7 @@ const ALL=[
 {id:40,year:2019,subject:"Chemistry",chapter:"Nuclear Chemistry",difficulty:"Medium",text:"²³⁸U→²³⁴Th+X. X is:",options:["Neutron","Proton","Alpha particle","Beta particle"],answer:2,explanation:{en:"A=4,Z=2 → Alpha\n\n✅ Answer: Alpha particle",bn:"আলফা কণা\n\n✅ উত্তর: Alpha particle",hi:"अल्फा कण\n\n✅ उत्तर: Alpha particle"}},
 {id:41,year:2024,subject:"Chemistry",chapter:"Atomic Structure",difficulty:"Medium",text:"Number of orbitals in third shell (n=3):",options:["9","3","6","18"],answer:0,explanation:{en:"3s+3p+3d=9\n\n✅ Answer: 9",bn:"9\n\n✅ উত্তর: 9",hi:"9\n\n✅ उत्तर: 9"}},
 {id:42,year:2023,subject:"Chemistry",chapter:"s-Block Elements",difficulty:"Easy",text:"Which alkali metal reacts most vigorously with water?",options:["Li","Na","K","Cs"],answer:3,explanation:{en:"Cs>Rb>K>Na>Li\n\n✅ Answer: Cs",bn:"Cs\n\n✅ উত্তর: Cs",hi:"Cs\n\n✅ उत्तर: Cs"}},
-{id:43,year:2023,subject:"Chemistry",chapter:"Thermochemistry",difficulty:"Medium",text:"ΔH=−200kJ, ΔS=−100J/K at 300K. ΔG=",options:["−170 kJ","−230 kJ","−200 kJ","170 kJ"],answer:0,explanation:{en:"ΔG=ΔH−TΔS=−170kJ\n\n✅ Answer: −170 kJ",bn:"ΔG = −170 kJ\n\n✅ উত্তর: −170 kJ",hi:"ΔG = −170 kJ\n\n✅ उत्तर: −170 kJ"}},
+{id:43,year:2023,subject:"Chemistry",chapter:"Thermochemistry",difficulty:"Medium",text:"ΔH=−200kJ, ΔS=−100J/K at 300K. ΔG=",options:["−170 kJ","−230 kJ","−200 kJ","170 kJ"],answer:0,explanation:{en:"ΔG=−170kJ\n\n✅ Answer: −170 kJ",bn:"ΔG = −170 kJ\n\n✅ উত্তর: −170 kJ",hi:"ΔG = −170 kJ\n\n✅ उत्तर: −170 kJ"}},
 {id:44,year:2022,subject:"Chemistry",chapter:"Coordination Compounds",difficulty:"Hard",text:"IUPAC name of [Cu(NH₃)₄]²⁺:",options:["Tetraamminecopper(II)","Tetraamminecopper(I)","Copper tetraamine","Amminecopper(IV)"],answer:0,explanation:{en:"Tetraamminecopper(II)\n\n✅ Answer: Tetraamminecopper(II)",bn:"Tetraamminecopper(II)\n\n✅ উত্তর: Tetraamminecopper(II)",hi:"Tetraamminecopper(II)\n\n✅ उत्तर: Tetraamminecopper(II)"}},
 {id:45,year:2021,subject:"Chemistry",chapter:"Solutions",difficulty:"Medium",text:"Osmotic pressure of 0.1M glucose at 27°C: (R=0.082)",options:["2.46 atm","0.82 atm","24.6 atm","0.246 atm"],answer:0,explanation:{en:"π=MRT=2.46atm\n\n✅ Answer: 2.46 atm",bn:"π = 2.46 atm\n\n✅ উত্তর: 2.46 atm",hi:"π = 2.46 atm\n\n✅ उत्तर: 2.46 atm"}},
 {id:46,year:2020,subject:"Chemistry",chapter:"p-Block Elements",difficulty:"Easy",text:"Which is most acidic?",options:["HClO₄","HClO₃","HClO₂","HClO"],answer:0,explanation:{en:"HClO₄ most acidic\n\n✅ Answer: HClO₄",bn:"HClO₄\n\n✅ উত্তর: HClO₄",hi:"HClO₄\n\n✅ उत्तर: HClO₄"}},
@@ -545,7 +496,7 @@ const ALL=[
 {id:51,year:2015,subject:"Chemistry",chapter:"Haloalkanes",difficulty:"Medium",text:"SN2 reaction is favoured by:",options:["Primary alkyl halide","Tertiary alkyl halide","Secondary alkyl halide","Aryl halide"],answer:0,explanation:{en:"Primary — least steric hindrance\n\n✅ Answer: Primary alkyl halide",bn:"প্রাথমিক\n\n✅ উত্তর: Primary",hi:"प्राथमिक\n\n✅ उत्तर: Primary"}},
 {id:52,year:2024,subject:"Chemistry",chapter:"d-Block Elements",difficulty:"Medium",text:"Which transition metal has the highest melting point?",options:["Tungsten (W)","Iron (Fe)","Copper (Cu)","Chromium (Cr)"],answer:0,explanation:{en:"Tungsten: 3422°C\n\n✅ Answer: Tungsten",bn:"টাংস্টেন\n\n✅ উত্তর: Tungsten",hi:"टंगस्टन\n\n✅ उत्तर: Tungsten"}},
 {id:53,year:2023,subject:"Chemistry",chapter:"Aldehydes & Ketones",difficulty:"Medium",text:"Which test distinguishes aldehyde from ketone?",options:["Tollens' test","Iodoform test","Lucas test","Benedict's test"],answer:0,explanation:{en:"Tollens': silver mirror for aldehyde\n\n✅ Answer: Tollens' test",bn:"টলেন্স পরীক্ষা\n\n✅ উত্তর: Tollens' test",hi:"टॉलेन परीक्षण\n\n✅ उत्तर: Tollens' test"}},
-{id:54,year:2022,subject:"Chemistry",chapter:"Carboxylic Acids",difficulty:"Easy",text:"Acetic acid + NaOH forms:",options:["Sodium acetate + water","Sodium acetate + H₂","Ethanol + NaCl","Ethyl acetate"],answer:0,explanation:{en:"CH₃COONa+H₂O\n\n✅ Answer: Sodium acetate + water",bn:"সোডিয়াম অ্যাসিটেট+জল\n\n✅ উত্তর: Sodium acetate + water",hi:"सोडियम एसीटेट+जल\n\n✅ उत्तर: Sodium acetate + water"}},
+{id:54,year:2022,subject:"Chemistry",chapter:"Carboxylic Acids",difficulty:"Easy",text:"Acetic acid + NaOH forms:",options:["Sodium acetate + water","Sodium acetate + H₂","Ethanol + NaCl","Ethyl acetate"],answer:0,explanation:{en:"CH₃COONa+H₂O\n\n✅ Answer: Sodium acetate + water",bn:"সোডিয়াম অ্যাসিটেট + জল\n\n✅ উত্তর: Sodium acetate + water",hi:"सोडियम एसीटेट+जल\n\n✅ उत्तर: Sodium acetate + water"}},
 {id:55,year:2021,subject:"Chemistry",chapter:"Amines",difficulty:"Medium",text:"Highest basic strength in aqueous solution:",options:["Methylamine","Ammonia","Dimethylamine","Trimethylamine"],answer:2,explanation:{en:"Dimethylamine>Methylamine>Trimethylamine>NH₃\n\n✅ Answer: Dimethylamine",bn:"Dimethylamine\n\n✅ উত্তর: Dimethylamine",hi:"Dimethylamine\n\n✅ उत्तर: Dimethylamine"}},
 {id:56,year:2020,subject:"Chemistry",chapter:"Solid State",difficulty:"Hard",text:"Atoms per unit cell in FCC:",options:["4","2","1","8"],answer:0,explanation:{en:"8×(1/8)+6×(1/2)=4\n\n✅ Answer: 4",bn:"4\n\n✅ উত্তর: 4",hi:"4\n\n✅ उत्तर: 4"}},
 {id:57,year:2019,subject:"Chemistry",chapter:"Chemical Kinetics",difficulty:"Medium",text:"For first-order reaction, half-life t½=",options:["0.693/k","k/0.693","1/k","0.693k"],answer:0,explanation:{en:"t½=0.693/k\n\n✅ Answer: 0.693/k",bn:"0.693/k\n\n✅ উত্তর: 0.693/k",hi:"0.693/k\n\n✅ उत्तर: 0.693/k"}},
@@ -555,13 +506,13 @@ const ALL=[
 {id:61,year:2024,subject:"Mathematics",chapter:"Quadratic Equations",difficulty:"Easy",text:"If α, β are roots of x²−5x+6=0, then α²+β²=",options:["25","13","12","37"],answer:1,explanation:{en:"α+β=5,αβ=6 → α²+β²=13\n\n✅ Answer: 13",bn:"13\n\n✅ উত্তর: 13",hi:"13\n\n✅ उत्तर: 13"}},
 {id:62,year:2024,subject:"Mathematics",chapter:"Trigonometry",difficulty:"Easy",text:"sin 30° + cos 60° − tan 45° =",options:["0","1","−1","0.5"],answer:0,explanation:{en:"0.5+0.5−1=0\n\n✅ Answer: 0",bn:"0\n\n✅ উত্তর: 0",hi:"0\n\n✅ उत्तर: 0"}},
 {id:63,year:2023,subject:"Mathematics",chapter:"Matrices",difficulty:"Medium",text:"If A=[[2,0],[0,3]], A²=",options:["[[4,0],[0,9]]","[[4,0],[0,6]]","[[2,0],[0,9]]","[[4,9],[0,0]]"],answer:0,explanation:{en:"[[4,0],[0,9]]\n\n✅ Answer: [[4,0],[0,9]]",bn:"[[4,0],[0,9]]\n\n✅ উত্তর: [[4,0],[0,9]]",hi:"[[4,0],[0,9]]\n\n✅ उत्तर: [[4,0],[0,9]]"}},
-{id:64,year:2023,subject:"Mathematics",chapter:"Probability",difficulty:"Medium",text:"A die is thrown. P(prime number)=",options:["1/2","1/3","2/3","1/6"],answer:0,explanation:{en:"Primes:{2,3,5}=3/6=1/2\n\n✅ Answer: 1/2",bn:"P = 1/2\n\n✅ উত্তর: 1/2",hi:"P = 1/2\n\n✅ उत्तर: 1/2"}},
+{id:64,year:2023,subject:"Mathematics",chapter:"Probability",difficulty:"Medium",text:"A die is thrown. P(prime number)=",options:["1/2","1/3","2/3","1/6"],answer:0,explanation:{en:"Primes:{2,3,5}=1/2\n\n✅ Answer: 1/2\n💡 1 is NOT prime!",bn:"P = 1/2\n\n✅ উত্তর: 1/2",hi:"P = 1/2\n\n✅ उत्तर: 1/2"}},
 {id:65,year:2022,subject:"Mathematics",chapter:"Differentiation",difficulty:"Medium",text:"y=x³+2x²−5x+1. dy/dx at x=1:",options:["3","2","1","0"],answer:1,explanation:{en:"dy/dx=3x²+4x−5; at x=1: 2\n\n✅ Answer: 2",bn:"2\n\n✅ উত্তর: 2",hi:"2\n\n✅ उत्तर: 2"}},
 {id:66,year:2022,subject:"Mathematics",chapter:"Integration",difficulty:"Hard",text:"∫(2x+3)dx=",options:["x²+3x+C","2x²+3x+C","x²+3+C","2x+C"],answer:0,explanation:{en:"x²+3x+C\n\n✅ Answer: x²+3x+C",bn:"x²+3x+C\n\n✅ উত্তর: x²+3x+C",hi:"x²+3x+C\n\n✅ उत्तर: x²+3x+C"}},
 {id:67,year:2021,subject:"Mathematics",chapter:"Permutation & Combination",difficulty:"Medium",text:"Arrangements of letters of 'INDIA':",options:["120","60","24","30"],answer:1,explanation:{en:"5!/2!=60\n\n✅ Answer: 60",bn:"60\n\n✅ উত্তর: 60",hi:"60\n\n✅ उत्तर: 60"}},
 {id:68,year:2021,subject:"Mathematics",chapter:"Straight Lines",difficulty:"Medium",text:"Slope of line parallel to 3x−4y+7=0:",options:["3/4","−4/3","4/3","−3/4"],answer:0,explanation:{en:"slope=3/4\n\n✅ Answer: 3/4",bn:"3/4\n\n✅ উত্তর: 3/4",hi:"3/4\n\n✅ उत्तर: 3/4"}},
 {id:69,year:2020,subject:"Mathematics",chapter:"Sets & Functions",difficulty:"Easy",text:"A={1,2,3}, B={2,3,4}. A∩B=",options:["{2,3}","{1,2,3,4}","{1,4}","{1,2,3}"],answer:0,explanation:{en:"{2,3}\n\n✅ Answer: {2,3}",bn:"{2,3}\n\n✅ উত্তর: {2,3}",hi:"{2,3}\n\n✅ उत्तर: {2,3}"}},
-{id:70,year:2019,subject:"Mathematics",chapter:"Complex Numbers",difficulty:"Hard",text:"Modulus of z=3+4i:",options:["5","7","1","25"],answer:0,explanation:{en:"|z|=5\n\n✅ Answer: 5",bn:"5\n\n✅ উত্তর: 5",hi:"5\n\n✅ उत्तर: 5"}},
+{id:70,year:2019,subject:"Mathematics",chapter:"Complex Numbers",difficulty:"Hard",text:"Modulus of z=3+4i:",options:["5","7","1","25"],answer:0,explanation:{en:"|z|=5\n\n✅ Answer: 5\n💡 3-4-5 triple!",bn:"5\n\n✅ উত্তর: 5",hi:"5\n\n✅ उत्तर: 5"}},
 {id:71,year:2024,subject:"Mathematics",chapter:"Binomial Theorem",difficulty:"Medium",text:"Number of terms in (a+b)¹⁰:",options:["11","10","9","12"],answer:0,explanation:{en:"n+1=11\n\n✅ Answer: 11",bn:"11\n\n✅ উত্তর: 11",hi:"11\n\n✅ उत्तर: 11"}},
 {id:72,year:2023,subject:"Mathematics",chapter:"Sequences & Series",difficulty:"Medium",text:"Sum of first 10 terms of AP: 2,5,8...",options:["155","150","145","160"],answer:0,explanation:{en:"S₁₀=155\n\n✅ Answer: 155",bn:"155\n\n✅ উত্তর: 155",hi:"155\n\n✅ उत्तर: 155"}},
 {id:73,year:2023,subject:"Mathematics",chapter:"Limits",difficulty:"Medium",text:"lim(x→0) sinx/x=",options:["1","0","∞","−1"],answer:0,explanation:{en:"Standard limit=1\n\n✅ Answer: 1",bn:"1\n\n✅ উত্তর: 1",hi:"1\n\n✅ उत्तर: 1"}},
@@ -584,9 +535,9 @@ const ALL=[
 {id:90,year:2017,subject:"Mathematics",chapter:"Area Under Curves",difficulty:"Hard",text:"Area bounded by y=x², x-axis, x=0 to x=3:",options:["9 sq units","27 sq units","3 sq units","18 sq units"],answer:0,explanation:{en:"∫₀³x²dx=9\n\n✅ Answer: 9 sq units",bn:"9 বর্গ একক\n\n✅ উত্তর: 9 sq units",hi:"9 वर्ग इकाई\n\n✅ उत्तर: 9 sq units"}}
 ];
 
-// ════════════════════════════════════════════════════
-// APP STATE & RENDER
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
+// APP STATE
+// ══════════════════════════════════════════
 let filtered=[...ALL], cur=0, answered={}, activeTab='all';
 
 function setTab(s,el){
@@ -605,24 +556,21 @@ function applyFilters(){
     (df==='all'||q.difficulty===df)
   );
   cur=0;
-  document.getElementById('qcount').textContent=filtered.length+' questions';
+  document.getElementById('qcnt').textContent=filtered.length+' questions';
   if(!filtered.length){
-    document.getElementById('qArea').innerHTML=`<div class="empty"><p>${tx('noQ')}</p></div>`;
+    document.getElementById('qArea').innerHTML='<div class="empty"><p>No questions found. Try different filters.</p></div>';
     document.getElementById('navBtns').style.display='none';
     updateProg(); return;
   }
   document.getElementById('navBtns').style.display='flex';
-  // ★ Always gate the first question through checkLimit
-  goTo(0);
+  goTo(0); // Always gate through checkLimit
 }
 
-// ★ SINGLE ENTRY POINT for all navigation
-// ALL navigation must call goTo(). No exceptions.
+// ★ ONE GATE — all navigation must call this
 function goTo(idx){
   if(idx<0||idx>=filtered.length) return;
   const q=filtered[idx];
-  // Gate: will show paywall and return false if blocked
-  if(!checkLimit(q.id)) return;
+  if(!checkLimit(q.id)) return; // Blocked → paywall shown
   cur=idx;
   renderQ();
 }
@@ -634,13 +582,13 @@ function renderQ(){
   const sc=q.subject==='Physics'?'tp':q.subject==='Chemistry'?'tc':'tm';
   const si=q.subject==='Physics'?'⚡':q.subject==='Chemistry'?'🧪':'📐';
   const dc=q.difficulty==='Easy'?'#10b981':q.difficulty==='Medium'?'#f59e0b':'#ef4444';
-  const dl=q.difficulty==='Easy'?tx('easy'):q.difficulty==='Medium'?tx('medium'):tx('hard');
+  const dl=q.difficulty==='Easy'?'Easy':q.difficulty==='Medium'?'Medium':'Hard';
   const opts=q.options.map((o,i)=>{
     let c='';
-    if(ans!==undefined){if(i===q.answer)c='rc';if(i===ans&&ans!==q.answer)c='wrong';}
-    return `<div class="option ${c}" onclick="selectAnswer(${i})"><div class="opt-l">${'ABCD'[i]}</div><span>${o}</span></div>`;
+    if(ans!==undefined){if(i===q.answer)c='rc';if(i===ans&&ans!==q.answer)c='wg';}
+    return `<div class="option ${c}" onclick="selectAns(${i})"><div class="opt-l">${'ABCD'[i]}</div><span>${o}</span></div>`;
   }).join('');
-  const ql=tx('qOf',{c:cur+1,t:filtered.length});
+  const ql=`Question ${cur+1} of ${filtered.length}`;
   const aiShown=answered[q.id+'_ai'];
   const u=getUsage();
   const aiBlocked=!isPro()&&(u.ai>=FREE_AI)&&!aiShown;
@@ -656,25 +604,25 @@ function renderQ(){
       <div class="q-text">${q.text}</div>
       <div class="options">${opts}</div>
       <div class="q-actions">
-        ${ans!==undefined?`<button class="btn-action btn-ai" onclick="${aiBlocked?'showPaywall(\'ai_limit\')':'getAI()'}">${aiBlocked?'🔒 AI — Go Pro':tx('aiBtn')}</button>`:''}
-        <button class="btn-action" onclick="revealAnswer()">👁 ${ans!==undefined?tx('showAns'):tx('reveal')}</button>
+        ${ans!==undefined?`<button class="btn-act btn-ai" onclick="${aiBlocked?'showPaywall(\'ai_limit\')':'getAI()'}">${aiBlocked?'🔒 AI (Pro only)':'🤖 AI Explanation'}</button>`:''}
+        <button class="btn-act" onclick="revealAns()">👁 ${ans!==undefined?'Show Answer':'Reveal Answer'}</button>
       </div>
       <div class="ai-box ${aiShown?'on':''}" id="aiBox">
-        <div class="ai-hdr">${tx('aiHdr')} <span style="opacity:.5">${tx('aiPow')}</span></div>
+        <div class="ai-hdr">🤖 AI EXPLANATION • Claude</div>
         <div class="ai-txt" id="aiTxt">${aiShown?(answered[q.id+'_e_'+lang]||q.explanation[lang]||q.explanation.en):''}</div>
       </div>
     </div>`;
-  document.getElementById('jumpIn').value=cur+1;
+  document.getElementById('jIn').value=cur+1;
 }
 
-function selectAnswer(i){
+function selectAns(i){
   const q=filtered[cur];
   if(answered[q.id]!==undefined) return;
   answered[q.id]=i;
   renderQ(); updateProg();
 }
 
-function revealAnswer(){
+function revealAns(){
   const q=filtered[cur];
   if(answered[q.id]===undefined) answered[q.id]=q.answer;
   renderQ();
@@ -686,28 +634,24 @@ function updateProg(){
   const corr=filtered.filter(q=>answered[q.id]===q.answer).length;
   document.getElementById('progFill').style.width=total?(done/total*100)+'%':'0%';
   document.getElementById('progTxt').textContent=`${done} / ${total}`;
-  document.getElementById('cCount').textContent=corr;
-  document.getElementById('wCount').textContent=done-corr;
+  document.getElementById('cCnt').textContent=corr;
+  document.getElementById('wCnt').textContent=done-corr;
 }
 
-// ★ Navigate uses goTo — automatically gated
+// ★ Navigate → goTo (gated)
 function navigate(dir){goTo(cur+dir);}
-
-// ★ Jump uses goTo — automatically gated
-function jumpTo(val){
-  const n=parseInt(val)-1;
-  if(!isNaN(n)&&n>=0&&n<filtered.length) goTo(n);
-}
+// ★ Jump → goTo (gated)
+function jumpTo(val){const n=parseInt(val)-1;if(!isNaN(n)&&n>=0&&n<filtered.length)goTo(n);}
 
 async function getAI(){
   const q=filtered[cur];
-  if(!checkAILimit()) return;
+  if(!checkAI()) return;
   document.getElementById('aiBox').classList.add('on');
-  document.getElementById('aiTxt').innerHTML=`<div class="ldots"><span></span><span></span><span></span></div> ${tx('loading')}`;
+  document.getElementById('aiTxt').innerHTML=`<div class="ldots"><span></span><span></span><span></span></div> Generating...`;
   const ck=q.id+'_e_'+lang;
   if(answered[ck]){answered[q.id+'_ai']=true;typeIt(answered[ck]);return;}
   const li=lang==='bn'?'Respond ENTIRELY in Bengali (বাংলা).':lang==='hi'?'Respond ENTIRELY in Hindi (Devanagari).':'Respond in English.';
-  const prompt=`${li}\n\nWB JEE expert tutor. Concise step-by-step solution.\n\nSubject: ${q.subject} | Chapter: ${q.chapter} | Year: ${q.year}\nQ: ${q.text}\nOptions: ${q.options.map((o,i)=>'ABCD'[i]+') '+o).join(' | ')}\nAnswer: ${'ABCD'[q.answer]}) ${q.options[q.answer]}\n\n3-5 steps. One exam tip at end.`;
+  const prompt=`${li}\n\nWB JEE expert tutor. Step-by-step solution.\nSubject: ${q.subject} | Chapter: ${q.chapter} | Year: ${q.year}\nQ: ${q.text}\nOptions: ${q.options.map((o,i)=>'ABCD'[i]+') '+o).join(' | ')}\nAnswer: ${'ABCD'[q.answer]}) ${q.options[q.answer]}\n\n3-5 steps. One exam tip.`;
   try{
     const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
     const data=await res.json();
@@ -719,21 +663,21 @@ async function getAI(){
 
 function typeIt(text){
   const el=document.getElementById('aiTxt'); el.innerHTML=''; let i=0;
-  const cur2=document.createElement('span'); cur2.className='tc2';
-  function go(){if(i<text.length){el.textContent=text.slice(0,++i);el.appendChild(cur2);setTimeout(go,8);}else cur2.remove();}
+  const c=document.createElement('span'); c.className='tc2';
+  function go(){if(i<text.length){el.textContent=text.slice(0,++i);el.appendChild(c);setTimeout(go,8);}else c.remove();}
   go();
 }
 
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 // INIT
-// ════════════════════════════════════════════════════
+// ══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',()=>{
   loadAuth();
-  // Restore language
+  // Restore lang
   try{const l=localStorage.getItem('wbjee_lang');if(l&&l!=='en'){const b=document.querySelector(`.lang-btn[onclick*="'${l}'"]`);if(b)setLang(l,b);}}catch{}
-  updateLimitBar();
+  updateLimBar();
   applyFilters();
-  // Check if limit already hit on page load
+  // Show paywall immediately if limit already hit
   if(!isPro()&&getUsage().q>=FREE_Q) showPaywall('q_limit');
 });
 </script>
