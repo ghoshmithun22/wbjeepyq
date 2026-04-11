@@ -120,56 +120,56 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
     <!-- Logged out -->
-    <div id="hdrOut"><button class="btn-hdr" onclick="window.location.href='index.html'">Log In / Sign Up</button></div>
+    <div id="hdrOut"><button class="btn-hdr" onclick="window.location.href='index.html'" data-t="loginBtn">Log In / Sign Up</button></div>
     <!-- Logged in: email + logout only -->
     <div id="hdrIn" style="display:none;align-items:center;gap:8px;">
       <span class="nav-email" id="hdrEmail"></span>
       <span class="badge pro-badge" id="hdrPro" style="display:none;">PRO ✦</span>
-      <button class="btn-hdr" onclick="logout()">Log Out</button>
+      <button class="btn-hdr" onclick="logout()" data-t="logoutBtn">Log Out</button>
     </div>
     <div class="badge">✦ AI • 90 Qs</div>
   </div>
 </header>
 
 <div class="hero">
-  <h1>Crack WB JEE with <span class="ac">AI Explanations</span></h1>
-  <p>90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024</p>
+  <h1><span data-t="heroMain">Crack WB JEE with</span> <span class="ac" data-t="heroAI">AI Explanations</span></h1>
+  <p data-t="heroSub">90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024</p>
 </div>
 <div class="stats">
-  <div><span class="stat-num">90</span><span class="stat-lbl">Questions</span></div>
-  <div><span class="stat-num">10</span><span class="stat-lbl">Years</span></div>
-  <div><span class="stat-num">3</span><span class="stat-lbl">Subjects</span></div>
-  <div><span class="stat-num">AI</span><span class="stat-lbl">Powered</span></div>
+  <div><span class="stat-num">90</span><span class="stat-lbl" data-t="statQ">Questions</span></div>
+  <div><span class="stat-num">10</span><span class="stat-lbl" data-t="statY">Years</span></div>
+  <div><span class="stat-num">3</span><span class="stat-lbl" data-t="statS">Subjects</span></div>
+  <div><span class="stat-num">AI</span><span class="stat-lbl" data-t="statA">Powered</span></div>
 </div>
 
 <div class="tabs">
-  <button class="tab tab-all active" onclick="setTab('all',this)">All (90)</button>
+  <button class="tab tab-all active" onclick="setTab('all',this)" data-t="tabAll">All (90)</button>
   <button class="tab tab-p" onclick="setTab('Physics',this)">⚡ Physics</button>
   <button class="tab tab-c" onclick="setTab('Chemistry',this)">🧪 Chemistry</button>
   <button class="tab tab-m" onclick="setTab('Mathematics',this)">📐 Maths</button>
 </div>
 <div class="filters">
-  <select id="yrF"><option value="all">All Years</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option></select>
-  <select id="dfF"><option value="all">All Difficulty</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select>
+  <select id="yrF"><option value="all" data-t="filterYr">All Years</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option></select>
+  <select id="dfF"><option value="all" data-t="filterDiff">All Difficulty</option><option value="Easy" data-t="easy">Easy</option><option value="Medium" data-t="medium">Medium</option><option value="Hard" data-t="hard">Hard</option></select>
   <button class="btn-filter" onclick="applyFilters()">🔍 Filter</button>
   <div class="qcnt" id="qcnt">90 questions</div>
 </div>
 
 <div class="main">
   <div class="prog-bar">
-    <div style="font-size:.7rem;color:var(--muted);white-space:nowrap">Progress</div>
+    <div style="font-size:.7rem;color:var(--muted);white-space:nowrap" data-t="progress">Progress</div>
     <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-txt" id="progTxt">0 / 90</div>
     <div class="score-row">
-      <div class="score-item"><div class="dot" style="background:var(--green)"></div><span id="cCnt">0</span> Correct</div>
-      <div class="score-item"><div class="dot" style="background:var(--red)"></div><span id="wCnt">0</span> Wrong</div>
+      <div class="score-item"><div class="dot" style="background:var(--green)"></div><span id="cCnt">0</span> <span data-t="correct">Correct</span></div>
+      <div class="score-item"><div class="dot" style="background:var(--red)"></div><span id="wCnt">0</span> <span data-t="wrong">Wrong</span></div>
     </div>
   </div>
   <div id="qArea"></div>
   <div class="nav-btns" id="navBtns">
-    <button class="btn-nav btn-prev" onclick="navigate(-1)">← Prev</button>
+    <button class="btn-nav btn-prev" onclick="navigate(-1)">← <span data-t="prev">Prev</span></button>
     <input class="j-input" id="jIn" type="number" min="1" placeholder="Q#" onchange="jumpTo(this.value)"/>
-    <button class="btn-nav btn-next" onclick="navigate(1)">Next →</button>
+    <button class="btn-nav btn-next" onclick="navigate(1)"><span data-t="next">Next</span> →</button>
   </div>
 </div>
 
@@ -180,11 +180,86 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
 <script>
 // ── LANG ──────────────────────────────────────────────
 let lang='en';
+
+const UI={
+  en:{
+    heroMain:'Crack WB JEE with', heroAI:'AI Explanations',
+    heroSub:'90 Previous Year Questions • Physics • Chemistry • Mathematics • 2015–2024',
+    statQ:'Questions', statY:'Years', statS:'Subjects', statA:'Powered',
+    tabAll:'All (90)',
+    filterYr:'All Years', filterDiff:'All Difficulty',
+    easy:'Easy', medium:'Medium', hard:'Hard',
+    progress:'Progress', correct:'Correct', wrong:'Wrong',
+    prev:'Prev', next:'Next',
+    loginBtn:'Log In / Sign Up', logoutBtn:'Log Out',
+    revealAns:'Reveal Answer', showAns:'Show Answer',
+    aiBtn:'🤖 AI Explanation', aiHdr:'🤖 AI EXPLANATION',
+    generating:'Generating...',
+    noQ:'No questions found. Try different filters.',
+    qOf:'Question {c} of {t}',
+    diffEasy:'Easy', diffMedium:'Medium', diffHard:'Hard',
+  },
+  bn:{
+    heroMain:'WB JEE জয় করুন', heroAI:'AI ব্যাখ্যা দিয়ে',
+    heroSub:'৯০টি বিগত বছরের প্রশ্ন • পদার্থবিজ্ঞান • রসায়ন • গণিত • ২০১৫–২০২৪',
+    statQ:'প্রশ্ন', statY:'বছর', statS:'বিষয়', statA:'AI চালিত',
+    tabAll:'সব (৯০)',
+    filterYr:'সব বছর', filterDiff:'সব কঠিনতা',
+    easy:'সহজ', medium:'মাঝারি', hard:'কঠিন',
+    progress:'অগ্রগতি', correct:'সঠিক', wrong:'ভুল',
+    prev:'আগে', next:'পরে',
+    loginBtn:'লগ ইন / সাইন আপ', logoutBtn:'লগ আউট',
+    revealAns:'উত্তর দেখুন', showAns:'উত্তর দেখুন',
+    aiBtn:'🤖 AI ব্যাখ্যা', aiHdr:'🤖 AI ব্যাখ্যা',
+    generating:'বাংলায় তৈরি হচ্ছে...',
+    noQ:'কোনো প্রশ্ন পাওয়া যায়নি। অন্য ফিল্টার চেষ্টা করুন।',
+    qOf:'প্রশ্ন {c} / {t}',
+    diffEasy:'সহজ', diffMedium:'মাঝারি', diffHard:'কঠিন',
+  },
+  hi:{
+    heroMain:'WB JEE क्रैक करें', heroAI:'AI व्याख्या से',
+    heroSub:'90 पिछले वर्षों के प्रश्न • भौतिकी • रसायन • गणित • 2015–2024',
+    statQ:'प्रश्न', statY:'वर्ष', statS:'विषय', statA:'AI संचालित',
+    tabAll:'सभी (90)',
+    filterYr:'सभी वर्ष', filterDiff:'सभी कठिनाई',
+    easy:'आसान', medium:'मध्यम', hard:'कठिन',
+    progress:'प्रगति', correct:'सही', wrong:'गलत',
+    prev:'पिछला', next:'अगला',
+    loginBtn:'लॉग इन / साइन अप', logoutBtn:'लॉग आउट',
+    revealAns:'उत्तर देखें', showAns:'उत्तर देखें',
+    aiBtn:'🤖 AI व्याख्या', aiHdr:'🤖 AI व्याख्या',
+    generating:'हिन्दी में तैयार हो रही है...',
+    noQ:'कोई प्रश्न नहीं मिला। दूसरे फ़िल्टर आज़माएं।',
+    qOf:'प्रश्न {c} / {t}',
+    diffEasy:'आसान', diffMedium:'मध्यम', diffHard:'कठिन',
+  }
+};
+
+function tx(k,vars={}){
+  let s=(UI[lang]&&UI[lang][k])||UI.en[k]||k;
+  Object.entries(vars).forEach(([a,b])=>{s=s.replace('{'+a+'}',b);});
+  return s;
+}
+
+function applyTranslations(){
+  // Update all data-t elements
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');
+    const v=(UI[lang]&&UI[lang][k])||UI.en[k];
+    if(v!==undefined) el.textContent=v;
+  });
+  // Subject tab labels stay with emoji — only "All" tab changes
+  // Re-count badge
+  document.getElementById('qcnt').textContent=filtered.length+' '+tx('statQ').toLowerCase();
+}
+
 function setLang(l,el){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.body.className=l!=='en'?'lang-'+l:'';
+  document.documentElement.lang=l;
+  applyTranslations();
   if(filtered.length) renderQ();
   try{localStorage.setItem('wbjee_lang',l);}catch{}
 }
@@ -354,9 +429,10 @@ function applyFilters(){
     (df==='all'||q.difficulty===df)
   );
   cur=0;
-  document.getElementById('qcnt').textContent=filtered.length+' questions';
+  document.getElementById('qcnt').textContent=filtered.length+' '+tx('statQ').toLowerCase();
+  applyTranslations();
   if(!filtered.length){
-    document.getElementById('qArea').innerHTML='<div class="empty"><p>No questions found. Try different filters.</p></div>';
+    document.getElementById('qArea').innerHTML='<div class="empty"><p>'+tx('noQ')+'</p></div>';
     document.getElementById('navBtns').style.display='none';
     updateProg(); return;
   }
@@ -371,12 +447,13 @@ function renderQ(){
   const sc=q.subject==='Physics'?'tp':q.subject==='Chemistry'?'tc':'tm';
   const si=q.subject==='Physics'?'⚡':q.subject==='Chemistry'?'🧪':'📐';
   const dc=q.difficulty==='Easy'?'#10b981':q.difficulty==='Medium'?'#f59e0b':'#ef4444';
-  const dl=q.difficulty==='Easy'?'Easy':q.difficulty==='Medium'?'Medium':'Hard';
+  const dl=q.difficulty==='Easy'?tx('diffEasy'):q.difficulty==='Medium'?tx('diffMedium'):tx('diffHard');
   const opts=q.options.map((o,i)=>{
     let c='';
     if(ans!==undefined){if(i===q.answer)c='rc';if(i===ans&&ans!==q.answer)c='wg';}
     return `<div class="option ${c}" onclick="selectAns(${i})"><div class="opt-l">${'ABCD'[i]}</div><span>${o}</span></div>`;
   }).join('');
+  const ql=tx('qOf',{c:cur+1,t:filtered.length});
   const aiShown=answered[q.id+'_ai'];
   document.getElementById('qArea').innerHTML=`
     <div class="q-card">
@@ -386,15 +463,15 @@ function renderQ(){
         <span class="tag tch">📖 ${q.chapter}</span>
         <span class="tag" style="background:${dc}22;color:${dc};border:1px solid ${dc}44">${dl}</span>
       </div>
-      <div class="q-num">Question ${cur+1} of ${filtered.length}</div>
+      <div class="q-num">${ql}</div>
       <div class="q-text">${q.text}</div>
       <div class="options">${opts}</div>
       <div class="q-actions">
-        ${ans!==undefined?`<button class="btn-act btn-ai" onclick="getAI()">🤖 AI Explanation</button>`:''}
-        <button class="btn-act" onclick="revealAns()">👁 ${ans!==undefined?'Show Answer':'Reveal Answer'}</button>
+        ${ans!==undefined?`<button class="btn-act btn-ai" onclick="getAI()">${tx('aiBtn')}</button>`:''}
+        <button class="btn-act" onclick="revealAns()">👁 \${ans!==undefined?tx('showAns'):tx('revealAns')}</button>
       </div>
       <div class="ai-box ${aiShown?'on':''}" id="aiBox">
-        <div class="ai-hdr">🤖 AI EXPLANATION • Claude</div>
+        <div class="ai-hdr">${tx('aiHdr')} • Claude</div>
         <div class="ai-txt" id="aiTxt">${aiShown?(answered[q.id+'_e_'+lang]||q.explanation[lang]||q.explanation.en):''}</div>
       </div>
     </div>`;
@@ -437,7 +514,7 @@ function jumpTo(val){
 async function getAI(){
   const q=filtered[cur];
   document.getElementById('aiBox').classList.add('on');
-  document.getElementById('aiTxt').innerHTML='<div class="ldots"><span></span><span></span><span></span></div> Generating...';
+  document.getElementById('aiTxt').innerHTML=`<div class="ldots"><span></span><span></span><span></span></div> ${tx('generating')}`;
   const ck=q.id+'_e_'+lang;
   if(answered[ck]){answered[q.id+'_ai']=true;typeIt(answered[ck]);return;}
   const li=lang==='bn'?'Respond ENTIRELY in Bengali (বাংলা).':lang==='hi'?'Respond ENTIRELY in Hindi (Devanagari).':'Respond in English.';
@@ -465,6 +542,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var l=localStorage.getItem('wbjee_lang');
     if(l&&l!=='en'){var b=document.querySelector('.lang-btn[onclick*="\''+l+'\'"]');if(b)setLang(l,b);}
   }catch(e){}
+  applyTranslations();
   applyFilters();
 });
 </script>
