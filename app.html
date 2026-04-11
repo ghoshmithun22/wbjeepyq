@@ -468,7 +468,7 @@ function renderQ(){
       <div class="options">${opts}</div>
       <div class="q-actions">
         ${ans!==undefined?`<button class="btn-act btn-ai" onclick="getAI()">${tx('aiBtn')}</button>`:''}
-        <button class="btn-act" onclick="revealAns()">👁 \${ans!==undefined?tx('showAns'):tx('revealAns')}</button>
+        ${ans!==undefined ? `<button class="btn-act" onclick="revealAns()">👁 ${tx('showAns')}</button>` : `<button class="btn-act" onclick="revealAns()">👁 ${tx('revealAns')}</button>`}
       </div>
       <div class="ai-box ${aiShown?'on':''}" id="aiBox">
         <div class="ai-hdr">${tx('aiHdr')} • Claude</div>
