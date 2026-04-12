@@ -669,14 +669,23 @@ function handleSignupSubmit(){
 }
 
 function handleGoogleAuth(){
-  var name='Student User', email='student@gmail.com';
+  // In production replace this with real Firebase Google Sign-In
+  // For demo: prompt for email so the correct email is shown in the navbar
+  var email = prompt('Enter your Gmail address to continue with Google:','');
+  if(!email || email.trim()===''){ return; }
+  email = email.trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert('Please enter a valid email address.');
+    return;
+  }
+  var name = email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
   var all={};
   try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
   var now=Date.now();
   if(!all[email]){all[email]={name:name,password:'google',isPro:false,createdAt:now};localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
-  saveUser({email:email,name:name,isPro:all[email].isPro||false,createdAt:all[email].createdAt||now});
+  saveUser({email:email,name:all[email].name||name,isPro:all[email].isPro||false,createdAt:all[email].createdAt||now});
   updateNav();
-  showSuccess('✅ Signed in with Google!');
+  showSuccess('✅ Signed in as '+email);
 }
 
 function handleHeroCta(){if(currentUser)goToApp();else openModal('signup');}
