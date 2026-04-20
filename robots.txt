@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://crackwbjee.in/sitemap.xml
