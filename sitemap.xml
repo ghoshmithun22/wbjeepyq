@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage / Landing Page -->
+  <url>
+    <loc>https://crackwbjee.in/</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://crackwbjee.in/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://crackwbjee.in/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://crackwbjee.in/"/>
+  </url>
+
+  <!-- Practice App -->
+  <url>
+    <loc>https://crackwbjee.in/app.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Physics Section -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Chemistry Section -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mathematics Section -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Year-wise Pages — Physics -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2024</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2023</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2022</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2021</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2020</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2019</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2018</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2017</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2016</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Physics&amp;year=2015</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Year-wise Pages — Chemistry -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2024</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2023</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2022</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2021</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2020</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2019</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2018</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2017</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2016</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Chemistry&amp;year=2015</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Year-wise Pages — Mathematics -->
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2024</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2023</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2022</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2021</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2020</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2019</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2018</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2017</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2016</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://crackwbjee.in/app.html?subject=Mathematics&amp;year=2015</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
