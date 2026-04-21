@@ -81,6 +81,9 @@ select:hover{border-color:var(--blue);}
 .btn-act{font-family:'Sora',sans-serif;padding:7px 13px;border-radius:7px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:all .2s;display:flex;align-items:center;gap:5px;}
 .btn-act:hover{border-color:var(--accent);color:var(--accent);}
 .btn-ai{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(249,115,22,.12));border-color:rgba(245,158,11,.35);color:var(--accent);}
+.btn-voice{background:linear-gradient(135deg,rgba(59,130,246,.10),rgba(99,102,241,.10));border-color:rgba(59,130,246,.3);color:var(--blue);}
+.btn-voice.speaking{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(249,115,22,.1));border-color:rgba(239,68,68,.4);color:var(--red);animation:pulse-voice .9s infinite;}
+@keyframes pulse-voice{0%,100%{opacity:1}50%{opacity:.6}}
 .ai-box{margin-top:12px;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.18);border-radius:10px;padding:14px;display:none;}
 .ai-box.on{display:block;animation:fu .3s ease;}
 .ai-hdr{font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:8px;}
@@ -198,6 +201,7 @@ const UI={
     noQ:'No questions found. Try different filters.',
     qOf:'Question {c} of {t}',
     diffEasy:'Easy', diffMedium:'Medium', diffHard:'Hard',
+    speakQ:'🔊 Read Question', stopSpeak:'⏹ Stop', speakAI:'🔊 Read Explanation',
   },
   bn:{
     heroMain:'WB JEE জয় করুন', heroAI:'AI ব্যাখ্যা দিয়ে',
@@ -215,6 +219,7 @@ const UI={
     noQ:'কোনো প্রশ্ন পাওয়া যায়নি। অন্য ফিল্টার চেষ্টা করুন।',
     qOf:'প্রশ্ন {c} / {t}',
     diffEasy:'সহজ', diffMedium:'মাঝারি', diffHard:'কঠিন',
+    speakQ:'🔊 প্রশ্ন পড়ুন', stopSpeak:'⏹ থামুন', speakAI:'🔊 ব্যাখ্যা পড়ুন',
   },
   hi:{
     heroMain:'WB JEE क्रैक करें', heroAI:'AI व्याख्या से',
@@ -232,6 +237,7 @@ const UI={
     noQ:'कोई प्रश्न नहीं मिला। दूसरे फ़िल्टर आज़माएं।',
     qOf:'प्रश्न {c} / {t}',
     diffEasy:'आसान', diffMedium:'मध्यम', diffHard:'कठिन',
+    speakQ:'🔊 प्रश्न सुनें', stopSpeak:'⏹ रोकें', speakAI:'🔊 व्याख्या सुनें',
   }
 };
 
@@ -269,6 +275,13 @@ let currentUser=null;
 function loadAuth(){
   try{currentUser=JSON.parse(localStorage.getItem('wbjee_user')||'null');}catch{}
   renderNav();
+  // Listen for storage changes (e.g. login/logout in another tab or from index.html)
+  window.addEventListener('storage', function(e){
+    if(e.key==='wbjee_user'){
+      try{currentUser=e.newValue?JSON.parse(e.newValue):null;}catch{}
+      renderNav();
+    }
+  });
 }
 function renderNav(){
   const out=document.getElementById('hdrOut');
@@ -286,6 +299,8 @@ function renderNav(){
 function logout(){
   currentUser=null;
   try{localStorage.removeItem('wbjee_user');}catch{}
+  // If Firebase is available (loaded from index.html redirect), sign out there too
+  if(typeof window.__fbSignOut === 'function'){ window.__fbSignOut().catch(function(){}); }
   renderNav();
 }
 
@@ -302,11 +317,16 @@ function handleProPayment(amount,plan){
     handler(resp){
       const up={...currentUser,isPro:true,plan,paidAt:Date.now()};
       currentUser=up;
-      try{
-        localStorage.setItem('wbjee_user',JSON.stringify(up));
-        const all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
-        if(all[up.email]){all[up.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
-      }catch{}
+      try{ localStorage.setItem('wbjee_user',JSON.stringify(up)); }catch{}
+      // Persist Pro status to Firestore if Firebase is available
+      if(typeof window.__fbUpgradePro === 'function'){
+        window.__fbUpgradePro(plan);
+      } else {
+        try{
+          const all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
+          if(all[up.email]){all[up.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
+        }catch{}
+      }
       renderNav();
       alert('🎉 Welcome to Pro! Unlimited access unlocked.');
     },
@@ -618,7 +638,7 @@ function applyFilters(){
     updateProg(); return;
   }
   document.getElementById('navBtns').style.display='flex';
-  cur=0; renderQ();
+  stopSpeak();cur=0; renderQ();
 }
 
 function renderQ(){
@@ -650,9 +670,13 @@ function renderQ(){
       <div class="q-actions">
         ${ans!==undefined?`<button class="btn-act btn-ai" onclick="getAI()">${tx('aiBtn')}</button>`:''}
         ${ans!==undefined ? `<button class="btn-act" onclick="revealAns()">👁 ${tx('showAns')}</button>` : `<button class="btn-act" onclick="revealAns()">👁 ${tx('revealAns')}</button>`}
+        <button class="btn-act btn-voice" id="btnSpeak" onclick="toggleSpeakQ()">${tx('speakQ')}</button>
       </div>
       <div class="ai-box ${aiShown?'on':''}" id="aiBox">
-        <div class="ai-hdr">${tx('aiHdr')} • Claude</div>
+        <div class="ai-hdr" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>${tx('aiHdr')} • Claude</span>
+          ${aiShown?`<button class="btn-act btn-voice" id="btnSpeakAI" onclick="toggleSpeakAI()" style="margin:0;padding:4px 10px;font-size:.67rem;">${tx('speakAI')}</button>`:''}
+        </div>
         <div class="ai-txt" id="aiTxt">${aiShown?(answered[q.id+'_e_'+lang]||q.explanation[lang]||q.explanation.en):''}</div>
       </div>
     </div>`;
@@ -684,12 +708,12 @@ function updateProg(){
 
 function navigate(dir){
   const next=cur+dir;
-  if(next>=0&&next<filtered.length){cur=next;renderQ();}
+  if(next>=0&&next<filtered.length){stopSpeak();cur=next;renderQ();}
 }
 
 function jumpTo(val){
   const n=parseInt(val)-1;
-  if(!isNaN(n)&&n>=0&&n<filtered.length){cur=n;renderQ();}
+  if(!isNaN(n)&&n>=0&&n<filtered.length){stopSpeak();cur=n;renderQ();}
 }
 
 async function getAI(){
@@ -712,9 +736,150 @@ async function getAI(){
 function typeIt(text){
   const el=document.getElementById('aiTxt'); el.innerHTML=''; let i=0;
   const c=document.createElement('span'); c.className='tc2';
-  function go(){if(i<text.length){el.textContent=text.slice(0,++i);el.appendChild(c);setTimeout(go,8);}else c.remove();}
+  function go(){
+    if(i<text.length){el.textContent=text.slice(0,++i);el.appendChild(c);setTimeout(go,8);}
+    else{
+      c.remove();
+      // Show Read AI button once text is fully typed
+      const hdr=document.querySelector('.ai-hdr');
+      if(hdr && !document.getElementById('btnSpeakAI')){
+        const btn=document.createElement('button');
+        btn.className='btn-act btn-voice';
+        btn.id='btnSpeakAI';
+        btn.style.cssText='margin:0;padding:4px 10px;font-size:.67rem;';
+        btn.textContent=tx('speakAI');
+        btn.onclick=toggleSpeakAI;
+        hdr.style.display='flex';
+        hdr.style.alignItems='center';
+        hdr.style.justifyContent='space-between';
+        hdr.appendChild(btn);
+      }
+    }
+  }
   go();
 }
+
+
+// ══════════════════════════════════════════════════════
+// TEXT-TO-SPEECH ENGINE
+// ══════════════════════════════════════════════════════
+var _ttsUtterance = null;
+var _ttsSpeaking  = false;
+
+// Language code map for Web Speech API
+var TTS_LANG = { en:'en-IN', bn:'bn-IN', hi:'hi-IN' };
+
+function _getBestVoice(langCode) {
+  var voices = window.speechSynthesis.getVoices();
+  // Exact match first
+  var v = voices.find(function(x){ return x.lang === langCode; });
+  // Fallback: prefix match (e.g. bn-BD for Bengali)
+  if (!v) v = voices.find(function(x){ return x.lang.startsWith(langCode.split('-')[0]); });
+  // Last resort: any Indian English voice
+  if (!v && langCode !== 'en-IN') v = voices.find(function(x){ return x.lang === 'en-IN'; });
+  return v || null;
+}
+
+function _speak(text, onEnd) {
+  if (!window.speechSynthesis) {
+    alert('Text-to-speech is not supported in this browser. Try Chrome or Edge.');
+    return;
+  }
+  stopSpeak();
+  // Clean text: remove markdown symbols, emojis noise
+  var clean = text
+    .replace(/✅|💡|🤖|👁|⚡|🧪|📐|📅|📖|→|←/g, '')
+    .replace(/\*\*/g,'').replace(/\*/g,'')
+    .replace(/\n/g, '. ')
+    .replace(/\s+/g,' ')
+    .trim();
+
+  _ttsUtterance = new SpeechSynthesisUtterance(clean);
+  _ttsUtterance.lang  = TTS_LANG[lang] || 'en-IN';
+  _ttsUtterance.rate  = 0.92;
+  _ttsUtterance.pitch = 1.0;
+
+  // Set best available voice
+  function doSpeak() {
+    var voice = _getBestVoice(TTS_LANG[lang] || 'en-IN');
+    if (voice) _ttsUtterance.voice = voice;
+    _ttsSpeaking = true;
+    _ttsUtterance.onend = function() {
+      _ttsSpeaking = false;
+      _resetSpeakBtns();
+      if (typeof onEnd === 'function') onEnd();
+    };
+    _ttsUtterance.onerror = function() {
+      _ttsSpeaking = false;
+      _resetSpeakBtns();
+    };
+    window.speechSynthesis.speak(_ttsUtterance);
+  }
+
+  // Voices may not be loaded yet on first call
+  if (window.speechSynthesis.getVoices().length > 0) {
+    doSpeak();
+  } else {
+    window.speechSynthesis.onvoiceschanged = function() { doSpeak(); };
+  }
+}
+
+function stopSpeak() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  _ttsSpeaking = false;
+  _resetSpeakBtns();
+}
+
+function _resetSpeakBtns() {
+  var bq = document.getElementById('btnSpeak');
+  var ba = document.getElementById('btnSpeakAI');
+  if (bq) { bq.textContent = tx('speakQ'); bq.classList.remove('speaking'); }
+  if (ba) { ba.textContent = tx('speakAI'); ba.classList.remove('speaking'); }
+}
+
+function _buildQText() {
+  var q = filtered[cur]; if (!q) return '';
+  var opts = q.options.map(function(o,i){ return 'ABCD'[i] + ': ' + o; }).join('. ');
+  return q.text + '. Options: ' + opts;
+}
+
+function toggleSpeakQ() {
+  var btn = document.getElementById('btnSpeak');
+  if (_ttsSpeaking) {
+    stopSpeak();
+    return;
+  }
+  if (btn) { btn.textContent = tx('stopSpeak'); btn.classList.add('speaking'); }
+  // Also reset AI button
+  var ba = document.getElementById('btnSpeakAI');
+  if (ba) { ba.textContent = tx('speakAI'); ba.classList.remove('speaking'); }
+
+  _speak(_buildQText(), function() {
+    // Auto-read answer if already answered
+    var q = filtered[cur];
+    if (q && answered[q.id] !== undefined) {
+      var ansText = 'Answer: ' + 'ABCD'[q.answer] + ': ' + q.options[q.answer];
+      _speak(ansText);
+    }
+  });
+}
+
+function toggleSpeakAI() {
+  var btn = document.getElementById('btnSpeakAI');
+  if (_ttsSpeaking) {
+    stopSpeak();
+    return;
+  }
+  var aiTxt = document.getElementById('aiTxt');
+  if (!aiTxt || !aiTxt.textContent.trim()) return;
+  if (btn) { btn.textContent = tx('stopSpeak'); btn.classList.add('speaking'); }
+  var bq = document.getElementById('btnSpeak');
+  if (bq) { bq.textContent = tx('speakQ'); bq.classList.remove('speaking'); }
+  _speak(aiTxt.textContent);
+}
+
+// Stop speech when navigating away
+function _stopOnNav() { stopSpeak(); }
 
 // ── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',function(){
