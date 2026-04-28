@@ -104,6 +104,11 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
 .j-input{font-family:'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 8px;border-radius:7px;font-size:.74rem;width:52px;text-align:center;outline:none;}
 .empty{text-align:center;padding:60px 24px;color:var(--muted);}
 
+.official-link{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:var(--blue);border:1px solid rgba(59,130,246,.3);background:rgba(59,130,246,.08);padding:4px 11px;border-radius:16px;text-decoration:none;transition:all .2s;white-space:nowrap;}
+.official-link:hover{background:rgba(59,130,246,.16);border-color:rgba(59,130,246,.5);transform:translateY(-1px);}
+.site-footer{text-align:center;padding:14px 22px;border-top:1px solid var(--border);font-size:.72rem;color:var(--muted);margin-top:20px;}
+.site-footer a{color:var(--blue);text-decoration:none;font-weight:600;}
+.site-footer a:hover{text-decoration:underline;}
 .wa{position:fixed;bottom:22px;right:22px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);text-decoration:none;transition:all .3s;}
 .wa:hover{transform:scale(1.1);}
 .wa svg{width:26px;height:26px;fill:#fff;}
@@ -131,6 +136,9 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
       <button class="btn-hdr" onclick="logout()" data-t="logoutBtn">Log Out</button>
     </div>
     <div class="badge">✦ AI • 270 Qs</div>
+    <a class="official-link" href="https://wbjeeb.nic.in/wbjee/" target="_blank" rel="noopener" title="WB JEE Official Website">
+      🏛️ Official Site
+    </a>
   </div>
 </header>
 
@@ -174,6 +182,13 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
     <input class="j-input" id="jIn" type="number" min="1" placeholder="Q#" onchange="jumpTo(this.value)"/>
     <button class="btn-nav btn-next" onclick="navigate(1)"><span data-t="next">Next</span> →</button>
   </div>
+</div>
+
+<div class="site-footer">
+  <p>📚 WB JEE PYQ Solver &nbsp;·&nbsp;
+  <a href="https://wbjeeb.nic.in/wbjee/" target="_blank" rel="noopener">🏛️ WB JEE Official Website (wbjeeb.nic.in)</a>
+  &nbsp;·&nbsp; For official exam dates, syllabus &amp; admit card, always visit the official site.
+  </p>
 </div>
 
 <a class="wa" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20need%20help%20with%20WB%20JEE%20PYQ%20Solver" target="_blank" rel="noopener">
@@ -686,7 +701,7 @@ function renderQ(){
       </div>
       <div class="ai-box ${aiShown?'on':''}" id="aiBox">
         <div class="ai-hdr" style="display:flex;align-items:center;justify-content:space-between;">
-          <span>${tx('aiHdr')} • Claude</span>
+          <span>${tx('aiHdr')}</span>
           ${aiShown?`<button class="btn-act btn-voice" id="btnSpeakAI" onclick="toggleSpeakAI()" style="margin:0;padding:4px 10px;font-size:.67rem;">${tx('speakAI')}</button>`:''}
         </div>
         <div class="ai-txt" id="aiTxt">${aiShown?(answered[q.id+'_e_'+lang]||q.explanation[lang]||q.explanation.en):''}</div>
