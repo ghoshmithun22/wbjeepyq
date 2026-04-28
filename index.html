@@ -751,11 +751,29 @@ function switchTab(tab){
 document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
-function showErr(id,msg){var el=document.getElementById(id);if(el){el.textContent=msg;el.style.display=msg?'block':'none';}}
+function showErr(id,msg){
+  var el=document.getElementById(id);
+  if(el){
+    el.textContent=msg;
+    el.style.display=msg?'block':'none';
+    el.style.color='var(--red)';
+    el.style.fontSize='.78rem';
+    el.style.marginTop='5px';
+  }
+}
 function showSuccess(msg){
   var s=document.getElementById('authSuccess');
-  s.textContent=msg;s.style.display='block';
-  setTimeout(function(){closeModal();goToApp();},1500);
+  if(!s) return;
+  s.textContent=msg;
+  s.style.display='block';
+  // Reset any disabled buttons
+  document.querySelectorAll('.btn-sub').forEach(function(b){
+    b.disabled=false;
+  });
+  setTimeout(function(){
+    closeModal();
+    goToApp();
+  },1200);
 }
 function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
@@ -784,13 +802,18 @@ function handleLogin(){
         }
       });
   } else {
-    // Fallback localStorage (dev / Firebase not configured)
+    // Fallback: localStorage auth (Firebase not yet configured)
     btn.disabled=false; btn.textContent='Log In';
     var all={};
     try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
     var stored=all[email];
-    if(!stored||stored.password!==pass){showErr('errLP','Invalid email or password.');return;}
-    saveUser({email:email,name:stored.name,isPro:stored.isPro||false,createdAt:stored.createdAt||Date.now()});
+    if(!stored){
+      showErr('errLP','No account found. Please sign up first.');return;
+    }
+    if(stored.password!==pass){
+      showErr('errLP','Incorrect password. Please try again.');return;
+    }
+    saveUser({email:email,name:stored.name||email.split('@')[0],isPro:stored.isPro||false,createdAt:stored.createdAt||Date.now()});
     updateNav();
     showSuccess('✅ Logged in! Redirecting...');
   }
@@ -823,13 +846,16 @@ function handleSignupSubmit(){
         }
       });
   } else {
-    // Fallback localStorage (dev / Firebase not configured)
+    // Fallback: localStorage auth (Firebase not yet configured)
     btn.disabled=false; btn.textContent='Create Free Account →';
     var all={};
     try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
+    if(all[email]){
+      showErr('errSE','An account already exists with this email. Please log in instead.');return;
+    }
     var now=Date.now();
     all[email]={name:name,password:pass,isPro:false,createdAt:now};
-    localStorage.setItem('wbjee_all_users',JSON.stringify(all));
+    try{localStorage.setItem('wbjee_all_users',JSON.stringify(all));}catch(e){}
     saveUser({email:email,name:name,isPro:false,createdAt:now});
     updateNav();
     showSuccess('🎉 Account created! Welcome '+name+'!');
@@ -841,8 +867,24 @@ function handleGoogleAuth(){
     // Firebase Google Sign-In (production)
     window.__fbSignInGoogle();
   } else {
-    // Fallback: Firebase SDK not yet initialised (show loading)
-    alert('Loading... please try again in a moment.');
+    // Fallback: Firebase not configured — use email prompt
+    var email=prompt('Enter your Gmail address to sign in with Google:','');
+    if(!email||!email.trim()) return;
+    email=email.trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      alert('Please enter a valid email address.'); return;
+    }
+    var all={};
+    try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
+    var now=Date.now();
+    var name=email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+    if(!all[email]){
+      all[email]={name:name,password:'google-oauth',isPro:false,createdAt:now};
+      try{localStorage.setItem('wbjee_all_users',JSON.stringify(all));}catch(e){}
+    }
+    saveUser({email:email,name:all[email].name||name,isPro:all[email].isPro||false,createdAt:all[email].createdAt||now});
+    updateNav();
+    showSuccess('✅ Signed in as '+email);
   }
 }
 
