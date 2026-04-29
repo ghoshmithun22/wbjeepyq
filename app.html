@@ -127,14 +127,7 @@ body.lang-bn .ai-txt,body.lang-hi .ai-txt{font-family:'Noto Sans Bengali','Noto 
       <button class="lang-btn" onclick="setLang('bn',this)">বাং</button>
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
-    <!-- Logged out -->
-    <div id="hdrOut"><button class="btn-hdr" onclick="window.location.href='index.html'" data-t="loginBtn">Log In / Sign Up</button></div>
-    <!-- Logged in: email + logout only -->
-    <div id="hdrIn" style="display:none;align-items:center;gap:8px;">
-      <span class="nav-email" id="hdrEmail"></span>
-      <span class="badge pro-badge" id="hdrPro" style="display:none;">PRO ✦</span>
-      <button class="btn-hdr" onclick="logout()" data-t="logoutBtn">Log Out</button>
-    </div>
+
     <div class="badge">✦ AI • 270 Qs</div>
     <a class="official-link" href="https://wbjeeb.nic.in/wbjee/" target="_blank" rel="noopener" title="WB JEE Official Website">
       🏛️ Official Site
@@ -209,7 +202,6 @@ const UI={
     easy:'Easy', medium:'Medium', hard:'Hard',
     progress:'Progress', correct:'Correct', wrong:'Wrong',
     prev:'Prev', next:'Next',
-    loginBtn:'Log In / Sign Up', logoutBtn:'Log Out',
     revealAns:'Reveal Answer', showAns:'Show Answer',
     aiBtn:'🤖 AI Explanation', aiHdr:'🤖 AI EXPLANATION',
     generating:'Generating...',
@@ -227,7 +219,6 @@ const UI={
     easy:'সহজ', medium:'মাঝারি', hard:'কঠিন',
     progress:'অগ্রগতি', correct:'সঠিক', wrong:'ভুল',
     prev:'আগে', next:'পরে',
-    loginBtn:'লগ ইন / সাইন আপ', logoutBtn:'লগ আউট',
     revealAns:'উত্তর দেখুন', showAns:'উত্তর দেখুন',
     aiBtn:'🤖 AI ব্যাখ্যা', aiHdr:'🤖 AI ব্যাখ্যা',
     generating:'বাংলায় তৈরি হচ্ছে...',
@@ -245,7 +236,6 @@ const UI={
     easy:'आसान', medium:'मध्यम', hard:'कठिन',
     progress:'प्रगति', correct:'सही', wrong:'गलत',
     prev:'पिछला', next:'अगला',
-    loginBtn:'लॉग इन / साइन अप', logoutBtn:'लॉग आउट',
     revealAns:'उत्तर देखें', showAns:'उत्तर देखें',
     aiBtn:'🤖 AI व्याख्या', aiHdr:'🤖 AI व्याख्या',
     generating:'हिन्दी में तैयार हो रही है...',
@@ -285,83 +275,9 @@ function setLang(l,el){
   try{localStorage.setItem('wbjee_lang',l);}catch{}
 }
 
-// ── AUTH ──────────────────────────────────────────────
-let currentUser=null;
-function loadAuth(){
-  try{currentUser=JSON.parse(localStorage.getItem('wbjee_user')||'null');}catch{}
-  // Redirect to login if not signed in
-  if(!currentUser){
-    window.location.replace('index.html');
-    return;
-  }
-  renderNav();
-  // Listen for storage changes — if user logs out in another tab, redirect here too
-  window.addEventListener('storage', function(e){
-    if(e.key==='wbjee_user'){
-      try{currentUser=e.newValue?JSON.parse(e.newValue):null;}catch{}
-      if(!currentUser){
-        stopSpeak();
-        window.location.replace('index.html');
-      } else {
-        renderNav();
-      }
-    }
-  });
-}
-function renderNav(){
-  const out=document.getElementById('hdrOut');
-  const inn=document.getElementById('hdrIn');
-  if(currentUser){
-    out.style.display='none';
-    inn.style.display='flex';
-    document.getElementById('hdrEmail').textContent=currentUser.email||'';
-    document.getElementById('hdrPro').style.display=currentUser.isPro?'inline-flex':'none';
-  }else{
-    out.style.display='block';
-    inn.style.display='none';
-  }
-}
-function logout(){
-  stopSpeak();
-  currentUser=null;
-  try{localStorage.removeItem('wbjee_user');}catch{}
-  // Firebase sign out
-  if(typeof window.__fbSignOut === 'function'){ window.__fbSignOut().catch(function(){}); }
-  // Always redirect to login page — never stay on app after logout
-  window.location.replace('index.html');
-}
 
-// ── RAZORPAY ──────────────────────────────────────────
-function handleProPayment(amount,plan){
-  if(!currentUser){window.location.href='index.html';return;}
-  const opts={
-    key:'rzp_test_XXXXXXXXXXXXXXXX', // ← Replace with your Razorpay Key ID
-    amount:amount*100,currency:'INR',
-    name:'WB JEE PYQ Solver',
-    description:plan==='monthly'?'Pro – ₹99/month':'Pro – ₹799/year',
-    prefill:{name:currentUser.name||'',email:currentUser.email||''},
-    theme:{color:'#f59e0b'},
-    handler(resp){
-      const up={...currentUser,isPro:true,plan,paidAt:Date.now()};
-      currentUser=up;
-      try{ localStorage.setItem('wbjee_user',JSON.stringify(up)); }catch{}
-      // Persist Pro status to Firestore if Firebase is available
-      if(typeof window.__fbUpgradePro === 'function'){
-        window.__fbUpgradePro(plan);
-      } else {
-        try{
-          const all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
-          if(all[up.email]){all[up.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
-        }catch{}
-      }
-      renderNav();
-      alert('🎉 Welcome to Pro! Unlimited access unlocked.');
-    },
-    modal:{ondismiss(){}}
-  };
-  try{new Razorpay(opts).open();}
-  catch{alert('Demo mode: Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID.');}
-}
+
+
 
 // ── QUESTIONS (90) ────────────────────────────────────
 const ALL=[
@@ -910,7 +826,6 @@ function _stopOnNav() { stopSpeak(); }
 
 // ── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',function(){
-  loadAuth();
   try{
     var l=localStorage.getItem('wbjee_lang');
     if(l&&l!=='en'){var b=document.querySelector('.lang-btn[onclick*="\''+l+'\'"]');if(b)setLang(l,b);}

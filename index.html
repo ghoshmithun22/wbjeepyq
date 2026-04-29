@@ -4,117 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WB JEE PYQ Solver</title>
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword,
-           createUserWithEmailAndPassword, GoogleAuthProvider, signOut, updateProfile }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  // ── FIREBASE CONFIG ─────────────────────────────────────────────
-  // Replace with your Firebase project config from console.firebase.google.com
-  const firebaseConfig = {
-    apiKey:            "AIzaSyCIywxWbl6KnDhdB2WynEHPFBe2zceGLiM",
-    authDomain:        "wbjee-site.firebaseapp.com",
-    projectId:         "wbjee-site",
-    storageBucket:     "wbjee-site.firebasestorage.app",
-    messagingSenderId: "626933163973",
-    appId:             "1:626933163973:web:a9059d670f3b2011194dac"
-  };
-
-  const app      = initializeApp(firebaseConfig);
-  const auth     = getAuth(app);
-  const db       = getFirestore(app);
-  const provider = new GoogleAuthProvider();
-
-  // ── HELPERS ────────────────────────────────────────────────────
-  async function getUserDoc(uid) {
-    const ref = doc(db, "users", uid);
-    const snap = await getDoc(ref);
-    return snap.exists() ? snap.data() : null;
-  }
-
-  async function upsertUserDoc(uid, data) {
-    const ref = doc(db, "users", uid);
-    const snap = await getDoc(ref);
-    if (snap.exists()) {
-      await updateDoc(ref, data);
-    } else {
-      await setDoc(ref, { createdAt: Date.now(), isPro: false, ...data });
-    }
-  }
-
-  // ── AUTH STATE LISTENER ────────────────────────────────────────
-  onAuthStateChanged(auth, async (fbUser) => {
-    if (fbUser) {
-      const data = await getUserDoc(fbUser.uid) || {};
-      const user = {
-        uid:     fbUser.uid,
-        email:   fbUser.email,
-        name:    fbUser.displayName || data.name || fbUser.email.split('@')[0],
-        isPro:   data.isPro || false,
-        plan:    data.plan  || 'free',
-        createdAt: data.createdAt || Date.now()
-      };
-      // Save to localStorage so app.html can read it without Firebase
-      try { localStorage.setItem('wbjee_user', JSON.stringify(user)); } catch(e){}
-      window.__fbCurrentUser = user;
-      if (typeof window.updateNav === 'function') window.updateNav();
-    } else {
-      try { localStorage.removeItem('wbjee_user'); } catch(e){}
-      window.__fbCurrentUser = null;
-      if (typeof window.updateNav === 'function') window.updateNav();
-    }
-  });
-
-  // ── EXPOSE AUTH FUNCTIONS TO GLOBAL SCOPE ────────────────────
-  window.__fbSignInGoogle = async function() {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      await upsertUserDoc(result.user.uid, {
-        name:  result.user.displayName,
-        email: result.user.email,
-        lastLogin: Date.now()
-      });
-      // onAuthStateChanged will update UI
-    } catch (err) {
-      if (err.code === 'auth/popup-blocked') {
-        alert('Popup was blocked. Please allow popups for this site and try again.');
-      } else if (err.code !== 'auth/popup-closed-by-user') {
-        alert('Google sign-in failed: ' + err.message);
-      }
-    }
-  };
-
-  window.__fbSignInEmail = async function(email, password) {
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    await upsertUserDoc(result.user.uid, { lastLogin: Date.now() });
-  };
-
-  window.__fbSignUp = async function(name, email, password) {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(result.user, { displayName: name });
-    await upsertUserDoc(result.user.uid, { name, email, lastLogin: Date.now() });
-  };
-
-  window.__fbSignOut = async function() {
-    await signOut(auth);
-  };
-
-  window.__fbUpgradePro = async function(plan) {
-    const fbUser = auth.currentUser;
-    if (!fbUser) return;
-    await upsertUserDoc(fbUser.uid, { isPro: true, plan, paidAt: Date.now() });
-    // Update local state
-    const user = JSON.parse(localStorage.getItem('wbjee_user') || '{}');
-    user.isPro = true; user.plan = plan;
-    localStorage.setItem('wbjee_user', JSON.stringify(user));
-    window.__fbCurrentUser = user;
-    if (typeof window.updateNav === 'function') window.updateNav();
-  };
-</script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -239,31 +128,8 @@ section{padding:76px 24px;}
 footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;color:var(--muted);font-size:.78rem;}
 footer span{color:var(--accent);}
 
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
-.modal-ov.hidden{display:none;}
-.modal{background:#111827;border:1px solid var(--border);border-radius:20px;padding:36px;max-width:420px;width:100%;position:relative;animation:mIn .25s ease;}
 @keyframes mIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.modal-x{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.08);border:none;color:var(--muted2);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.modal-x:hover{background:rgba(255,255,255,.15);}
-.modal h2{font-size:1.3rem;font-weight:800;margin-bottom:6px;}
-.modal-sub{font-size:.83rem;color:var(--muted2);margin-bottom:24px;}
-.modal-tabs{display:flex;background:rgba(255,255,255,.05);border-radius:10px;padding:3px;margin-bottom:22px;}
-.modal-tab{flex:1;padding:8px;border-radius:8px;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .2s;}
-.modal-tab.active{background:var(--accent);color:#000;}
-.fg{margin-bottom:14px;}
-.fg label{display:block;font-size:.75rem;color:var(--muted2);margin-bottom:5px;font-weight:600;}
-.fg input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:.86rem;color:var(--text);font-family:'Sora',sans-serif;outline:none;transition:all .2s;}
-.fg input:focus{border-color:var(--accent);}
-.ferr{font-size:.74rem;color:var(--red);margin-top:4px;display:none;}
-.btn-sub{width:100%;padding:12px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;border:none;background:var(--accent);color:#000;transition:all .2s;margin-top:4px;}
-.btn-sub:hover{background:#fbbf24;}
-.modal-div{text-align:center;color:var(--muted);font-size:.75rem;margin:16px 0;position:relative;}
-.modal-div::before,.modal-div::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border);}
-.modal-div::before{left:0;} .modal-div::after{right:0;}
-.btn-goog{width:100%;padding:11px;border-radius:10px;font-family:'Sora',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;}
-.btn-goog:hover{background:rgba(255,255,255,.06);}
-.success-msg{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:14px;text-align:center;font-size:.84rem;color:var(--green);display:none;}
-
+.modal-div::before{left:0;} 
 .wa{position:fixed;bottom:24px;right:24px;z-index:500;width:50px;height:50px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.4);text-decoration:none;transition:all .3s;}
 .wa:hover{transform:scale(1.1);}
 .wa svg{width:26px;height:26px;fill:#fff;}
@@ -288,17 +154,7 @@ footer span{color:var(--accent);}
       <button class="lang-btn" onclick="setLang('bn',this)">বাং</button>
       <button class="lang-btn" onclick="setLang('hi',this)">हिं</button>
     </div>
-    <!-- Logged out -->
-    <div id="navOut" style="display:flex;gap:8px;align-items:center;">
-      <button class="btn-nav-outline" onclick="openModal('login')" data-t="navLogin">Log In</button>
-      <button class="btn-nav-cta" onclick="openModal('signup')" data-t="navCta">Start Free →</button>
-    </div>
-    <!-- Logged in: email + PRO pill + Log Out -->
-    <div id="navIn" style="display:none;align-items:center;gap:10px;">
-      <span class="nav-email" id="navEmail"></span>
-      <span class="nav-pro-pill" id="navProPill" style="display:none;">PRO ✦</span>
-      <button class="btn-nav-outline" onclick="logout()" data-t="navLogout">Log Out</button>
-    </div>
+
   </div>
 </nav>
 
@@ -313,7 +169,7 @@ footer span{color:var(--accent);}
   </h1>
   <p class="hero-sub" data-t="heroSub">90+ previous year questions with step-by-step AI solutions. Physics, Chemistry &amp; Mathematics. Trusted by students across West Bengal.</p>
   <div class="hero-btns">
-    <button class="btn-hp" onclick="handleHeroCta()" data-t="heroCta">Start Practising Free →</button>
+    <a href="app.html" class="btn-hp" data-t="heroCta">Start Practising Free →</a>
     <button class="btn-hs" onclick="document.getElementById('preview').scrollIntoView({behavior:'smooth'})" data-t="heroDemo">See Demo ▼</button>
   </div>
   <div class="hero-stats">
@@ -381,7 +237,7 @@ Step 3: t = 0 or t = 2 s
     <div class="sec-title" data-t="howTitle">Simple. Effective. Proven.</div>
     <p class="sec-sub" style="margin:0 auto;" data-t="howSub">Start practising in under 60 seconds.</p>
     <div class="steps">
-      <div class="step"><div class="step-n">1</div><h3 data-t="s1h">Sign Up Free</h3><p data-t="s1p">Create your free account in 10 seconds. No credit card required.</p></div>
+      <div class="step"><div class="step-n">1</div><h3 data-t="s1h">Open the App</h3><p data-t="s1p">Visit crackwbjee.in and start practising instantly. No account needed.</p></div>
       <div class="step"><div class="step-n">2</div><h3 data-t="s2h">Choose Subject &amp; Year</h3><p data-t="s2p">Pick Physics, Chemistry or Maths. Filter by year or chapter.</p></div>
       <div class="step"><div class="step-n">3</div><h3 data-t="s3h">Get AI Explanation</h3><p data-t="s3p">Step-by-step solution in Bengali, Hindi or English.</p></div>
       <div class="step"><div class="step-n">4</div><h3 data-t="s4h">Track &amp; Improve</h3><p data-t="s4p">Watch your score improve. Practice unlimited questions.</p></div>
@@ -409,7 +265,7 @@ Step 3: t = 0 or t = 2 s
           <li><span class="cx">✗</span><span data-t="pf5">Unlimited AI explanations</span></li>
           <li><span class="cx">✗</span><span data-t="pf6">Mock tests</span></li>
         </ul>
-        <button class="btn-price btn-out" onclick="handleHeroCta()" data-t="btnFree">Start Free →</button>
+        <a class="btn-price btn-out" href="app.html" data-t="btnFree">Start Free →</a>
       </div>
       <div class="price-card feat">
         <div class="pop-badge" data-t="popBadge">⭐ MOST POPULAR</div>
@@ -464,7 +320,7 @@ Step 3: t = 0 or t = 2 s
   <div class="cta-box">
     <h2 data-t="ctaTitle">Ready to crack WB JEE 2026?</h2>
     <p data-t="ctaDesc">Start free today. No credit card required. Join students across West Bengal practising smarter.</p>
-    <button class="btn-hp" onclick="handleHeroCta()" data-t="heroCta">Start Practising Free →</button>
+    <button class="btn-hp" href="app.html" data-t="heroCta">Start Practising Free →</button>
     <p style="margin-top:12px;font-size:.72rem;color:#64748b;" data-t="ctaNote">✓ Free forever &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ Cancel anytime</p>
   </div>
 </section>
@@ -483,41 +339,6 @@ Step 3: t = 0 or t = 2 s
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- AUTH MODAL -->
-<div class="modal-ov hidden" id="authModal">
-  <div class="modal">
-    <button class="modal-x" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle">Welcome back!</h2>
-    <p class="modal-sub" id="modalSub">Log in to continue your WB JEE preparation.</p>
-    <div class="modal-tabs">
-      <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')" data-t="tabLogin">Log In</button>
-      <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')" data-t="tabSignup">Sign Up</button>
-    </div>
-    <div id="loginForm">
-      <div class="fg"><label data-t="lblEmail">Email</label><input type="email" id="loginEmail" placeholder="you@example.com"/><div class="ferr" id="errLE"></div></div>
-      <div class="fg"><label data-t="lblPass">Password</label><input type="password" id="loginPass" placeholder="••••••••"/><div class="ferr" id="errLP"></div></div>
-      <button class="btn-sub" onclick="handleLogin()" data-t="btnLogin">Log In</button>
-      <div class="modal-div" data-t="orDiv">or</div>
-      <button class="btn-goog" onclick="handleGoogleAuth()">
-        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 12.9 5 4 13.9 4 25s8.9 20 20 20 20-8.9 20-20c0-1.3-.2-2.6-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19.1 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 16.3 5 9.6 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.3 36.6 26.8 37.5 24 37.5c-5.2 0-9.6-3.3-11.3-8L6 34.4C9.5 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C42 35.8 44 30.8 44 25c0-1.3-.2-2.6-.4-4.5z"/></svg>
-        <span data-t="btnGoogle">Continue with Google</span>
-      </button>
-    </div>
-    <div id="signupForm" style="display:none;">
-      <div class="fg"><label data-t="lblName">Full Name</label><input type="text" id="signupName" placeholder="Rahul Das"/><div class="ferr" id="errSN"></div></div>
-      <div class="fg"><label data-t="lblEmail">Email</label><input type="email" id="signupEmail" placeholder="you@example.com"/><div class="ferr" id="errSE"></div></div>
-      <div class="fg"><label data-t="lblPass">Password</label><input type="password" id="signupPass" placeholder="Min 6 characters"/><div class="ferr" id="errSP"></div></div>
-      <button class="btn-sub" onclick="handleSignupSubmit()" data-t="btnSignup">Create Free Account →</button>
-      <div class="modal-div" data-t="orDiv">or</div>
-      <button class="btn-goog" onclick="handleGoogleAuth()">
-        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 12.9 5 4 13.9 4 25s8.9 20 20 20 20-8.9 20-20c0-1.3-.2-2.6-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19.1 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.1 6.9 29.3 5 24 5 16.3 5 9.6 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.3 36.6 26.8 37.5 24 37.5c-5.2 0-9.6-3.3-11.3-8L6 34.4C9.5 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C42 35.8 44 30.8 44 25c0-1.3-.2-2.6-.4-4.5z"/></svg>
-        <span data-t="btnGoogle">Continue with Google</span>
-      </button>
-    </div>
-    <div class="success-msg" id="authSuccess"></div>
-  </div>
-</div>
-
 <script>
 // ════════════════════════════════════════════
 // TRANSLATIONS — every UI string in all 3 langs
@@ -525,7 +346,7 @@ Step 3: t = 0 or t = 2 s
 const UI={
   en:{
     navFeatures:'Features', navHow:'How it works', navPricing:'Pricing',
-    navLogin:'Log In', navCta:'Start Free →', navLogout:'Log Out',
+   
     heroBadge:'🚀 AI-Powered WB JEE Preparation',
     heroLine1:'Crack WB JEE', heroLine2:'with AI Explanations', heroLine3:'for every question',
     heroSub:'90+ previous year questions with step-by-step AI solutions. Physics, Chemistry & Mathematics. Trusted by students across West Bengal.',
@@ -540,7 +361,7 @@ const UI={
     f5h:'Instant Feedback', f5p:'Know immediately if your answer is right or wrong. Learn from mistakes on the spot.',
     f6h:'3 Language Support', f6p:'AI explanations in Bengali, Hindi and English — learn in the language you think in.',
     howBadge:'HOW IT WORKS', howTitle:'Simple. Effective. Proven.', howSub:'Start practising in under 60 seconds.',
-    s1h:'Sign Up Free', s1p:'Create your free account in 10 seconds. No credit card required.',
+    s1h:'Open the App', s1p:'Visit crackwbjee.in and start practising instantly. No sign-up needed.',
     s2h:'Choose Subject & Year', s2p:'Pick Physics, Chemistry or Maths. Filter by year or chapter.',
     s3h:'Get AI Explanation', s3p:'Step-by-step solution in Bengali, Hindi or English.',
     s4h:'Track & Improve', s4p:'Watch your score improve. Practice unlimited questions.',
@@ -562,10 +383,6 @@ const UI={
     ctaDesc:'Start free today. No credit card required. Join students across West Bengal practising smarter.',
     ctaNote:'✓ Free forever · ✓ No credit card · ✓ Cancel anytime',
     footerMade:'Made with ❤️ for WB JEE aspirants in West Bengal',
-    tabLogin:'Log In', tabSignup:'Sign Up',
-    lblEmail:'Email', lblPass:'Password', lblName:'Full Name',
-    btnLogin:'Log In', btnSignup:'Create Free Account →', btnGoogle:'Continue with Google',
-    orDiv:'or',
     demoQ:'A particle moves along x-axis with x = 6t² − 2t³. The particle comes to rest at time t =',
     demoA:'t = 0 only', demoB:'t = 2 s only', demoC:'t = 0 and t = 2 s ✓', demoD:'t = 1 s only',
     demoAIHdr:'🤖 AI EXPLANATION',
@@ -573,7 +390,7 @@ const UI={
   },
   bn:{
     navFeatures:'বৈশিষ্ট্য', navHow:'কীভাবে কাজ করে', navPricing:'মূল্য',
-    navLogin:'লগ ইন', navCta:'বিনামূল্যে শুরু করুন →', navLogout:'লগ আউট',
+   
     heroBadge:'🚀 AI-চালিত WB JEE প্রস্তুতি',
     heroLine1:'WB JEE জয় করুন', heroLine2:'AI ব্যাখ্যা দিয়ে', heroLine3:'প্রতিটি প্রশ্নে',
     heroSub:'৯০+ বিগত বছরের প্রশ্ন এবং ধাপে ধাপে AI সমাধান। পদার্থবিজ্ঞান, রসায়ন ও গণিত। পশ্চিমবঙ্গের ছাত্রছাত্রীদের বিশ্বাস।',
@@ -588,7 +405,7 @@ const UI={
     f5h:'তাৎক্ষণিক প্রতিক্রিয়া', f5p:'উত্তর সঠিক না ভুল তা তাৎক্ষণিক জানুন।',
     f6h:'৩টি ভাষা সমর্থন', f6p:'বাংলা, হিন্দি ও ইংরেজিতে AI ব্যাখ্যা — আপনার ভাষায় শিখুন।',
     howBadge:'কীভাবে কাজ করে', howTitle:'সহজ। কার্যকর। প্রমাণিত।', howSub:'৬০ সেকেন্ডের মধ্যে অনুশীলন শুরু করুন।',
-    s1h:'বিনামূল্যে সাইন আপ করুন', s1p:'১০ সেকেন্ডে বিনামূল্যে অ্যাকাউন্ট তৈরি করুন।',
+    s1h:'অ্যাপ খুলুন', s1p:'crackwbjee.in এ যান এবং সঙ্গে সঙ্গে অনুশীলন শুরু করুন।',
     s2h:'বিষয় ও বছর বেছে নিন', s2p:'পদার্থ, রসায়ন বা গণিত বেছে নিন।',
     s3h:'AI ব্যাখ্যা পান', s3p:'আপনার ভাষায় ধাপে ধাপে সমাধান পান।',
     s4h:'ট্র্যাক করুন ও উন্নতি করুন', s4p:'স্কোর উন্নতি দেখুন। সীমাহীন প্রশ্ন অনুশীলন করুন।',
@@ -610,10 +427,6 @@ const UI={
     ctaDesc:'আজই বিনামূল্যে শুরু করুন। ক্রেডিট কার্ড লাগবে না। পশ্চিমবঙ্গের হাজারো ছাত্রদের সাথে যোগ দিন।',
     ctaNote:'✓ চিরকাল বিনামূল্যে · ✓ কার্ড লাগবে না · ✓ যেকোনো সময় বাতিল করুন',
     footerMade:'পশ্চিমবঙ্গের WB JEE পরীক্ষার্থীদের জন্য ❤️ দিয়ে তৈরি',
-    tabLogin:'লগ ইন', tabSignup:'সাইন আপ',
-    lblEmail:'ইমেইল', lblPass:'পাসওয়ার্ড', lblName:'পুরো নাম',
-    btnLogin:'লগ ইন', btnSignup:'বিনামূল্যে অ্যাকাউন্ট তৈরি করুন →', btnGoogle:'Google দিয়ে চালিয়ে যান',
-    orDiv:'অথবা',
     demoQ:'একটি কণা x-অক্ষ বরাবর x = 6t² − 2t³ অবস্থানে চলে। কণাটি কোন সময়ে থামে?',
     demoA:'শুধু t = 0 তে', demoB:'শুধু t = 2 s তে', demoC:'t = 0 এবং t = 2 s তে ✓', demoD:'শুধু t = 1 s তে',
     demoAIHdr:'🤖 AI ব্যাখ্যা',
@@ -621,7 +434,7 @@ const UI={
   },
   hi:{
     navFeatures:'विशेषताएं', navHow:'कैसे काम करता है', navPricing:'मूल्य',
-    navLogin:'लॉग इन', navCta:'मुफ़्त शुरू करें →', navLogout:'लॉग आउट',
+   
     heroBadge:'🚀 AI-संचालित WB JEE तैयारी',
     heroLine1:'WB JEE क्रैक करें', heroLine2:'AI व्याख्या से', heroLine3:'हर प्रश्न में',
     heroSub:'90+ पिछले वर्षों के प्रश्न और चरण-दर-चरण AI समाधान। भौतिकी, रसायन और गणित। पश्चिम बंगाल के छात्रों का भरोसा।',
@@ -636,7 +449,7 @@ const UI={
     f5h:'तुरंत फीडबैक', f5p:'तुरंत जानें उत्तर सही है या गलत। गलतियों से सीखें।',
     f6h:'3 भाषा समर्थन', f6p:'बांग्ला, हिन्दी और अंग्रेज़ी में AI व्याख्या — अपनी भाषा में सीखें।',
     howBadge:'कैसे काम करता है', howTitle:'सरल। प्रभावी। सिद्ध।', howSub:'60 सेकंड में अभ्यास शुरू करें।',
-    s1h:'मुफ़्त साइन अप करें', s1p:'10 सेकंड में मुफ़्त खाता बनाएं। कोई क्रेडिट कार्ड नहीं।',
+    s1h:'ऐप खोलें', s1p:'crackwbjee.in पर जाएं और तुरंत अभ्यास शुरू करें।',
     s2h:'विषय और वर्ष चुनें', s2p:'भौतिकी, रसायन या गणित चुनें।',
     s3h:'AI व्याख्या पाएं', s3p:'बांग्ला, हिन्दी या अंग्रेज़ी में चरण-दर-चरण समाधान।',
     s4h:'ट्रैक करें और सुधारें', s4p:'स्कोर में सुधार देखें। असीमित प्रश्नों का अभ्यास करें।',
@@ -658,10 +471,6 @@ const UI={
     ctaDesc:'आज मुफ़्त शुरू करें। कोई क्रेडिट कार्ड नहीं। पश्चिम बंगाल के छात्रों के साथ जुड़ें।',
     ctaNote:'✓ हमेशा मुफ़्त · ✓ कार्ड नहीं · ✓ कभी भी रद्द करें',
     footerMade:'पश्चिम बंगाल के WB JEE उम्मीदवारों के लिए ❤️ से बनाया',
-    tabLogin:'लॉग इन', tabSignup:'साइन अप',
-    lblEmail:'ईमेल', lblPass:'पासवर्ड', lblName:'पूरा नाम',
-    btnLogin:'लॉग इन', btnSignup:'मुफ़्त खाता बनाएं →', btnGoogle:'Google से जारी रखें',
-    orDiv:'या',
     demoQ:'एक कण x-अक्ष पर x = 6t² − 2t³ स्थिति में चलता है। कण किस समय रुकता है?',
     demoA:'केवल t = 0 पर', demoB:'केवल t = 2 s पर', demoC:'t = 0 और t = 2 s पर ✓', demoD:'केवल t = 1 s पर',
     demoAIHdr:'🤖 AI व्याख्या',
@@ -694,238 +503,8 @@ function setLang(l,el){
   try{localStorage.setItem('wbjee_lang',l);}catch(e){}
 }
 
-// ── AUTH ────────────────────────────────────────────
-var currentUser=null;
-function loadAuth(){
-  // Read cached user (set by Firebase onAuthStateChanged listener)
-  try{currentUser=JSON.parse(localStorage.getItem('wbjee_user')||'null');}catch(e){}
-  // Also expose updateNav globally so Firebase listener can call it
-  window.updateNav = updateNav;
-  updateNav();
-}
-function saveUser(u){
-  currentUser=u;
-  try{localStorage.setItem('wbjee_user',JSON.stringify(u));}catch(e){}
-}
-function updateNav(){
-  var navOut=document.getElementById('navOut');
-  var navIn=document.getElementById('navIn');
-  if(currentUser){
-    navOut.style.display='none';
-    navIn.style.display='flex';
-    document.getElementById('navEmail').textContent=currentUser.email||'';
-    document.getElementById('navProPill').style.display=currentUser.isPro?'inline-block':'none';
-  }else{
-    navOut.style.display='flex';
-    navIn.style.display='none';
-  }
-}
-function logout(){
-  if(typeof window.__fbSignOut === 'function'){
-    window.__fbSignOut().catch(function(){});
-  }
-  currentUser=null;
-  try{localStorage.removeItem('wbjee_user');}catch(e){}
-  updateNav();
-}
-function goToApp(){window.location.href='app.html';}
-
-// ── MODAL ────────────────────────────────────────────
-function openModal(tab){
-  tab=tab||'signup';
-  document.getElementById('authModal').classList.remove('hidden');
-  switchTab(tab);
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('authModal').classList.add('hidden');
-  document.body.style.overflow='';
-  document.getElementById('authSuccess').style.display='none';
-}
-function switchTab(tab){
-  document.getElementById('loginForm').style.display=tab==='login'?'block':'none';
-  document.getElementById('signupForm').style.display=tab==='signup'?'block':'none';
-  document.getElementById('tabLogin').classList.toggle('active',tab==='login');
-  document.getElementById('tabSignup').classList.toggle('active',tab==='signup');
-}
-document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
-
-function showErr(id,msg){
-  var el=document.getElementById(id);
-  if(el){
-    el.textContent=msg;
-    el.style.display=msg?'block':'none';
-    el.style.color='var(--red)';
-    el.style.fontSize='.78rem';
-    el.style.marginTop='5px';
-  }
-}
-function showSuccess(msg){
-  var s=document.getElementById('authSuccess');
-  if(!s) return;
-  s.textContent=msg;
-  s.style.display='block';
-  // Reset any disabled buttons
-  document.querySelectorAll('.btn-sub').forEach(function(b){
-    b.disabled=false;
-  });
-  setTimeout(function(){
-    closeModal();
-    goToApp();
-  },1200);
-}
-function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
-
-function handleLogin(){
-  var email=document.getElementById('loginEmail').value.trim();
-  var pass=document.getElementById('loginPass').value;
-  showErr('errLE','');showErr('errLP','');
-  if(!validEmail(email)){showErr('errLE','Please enter a valid email.');return;}
-  if(pass.length<6){showErr('errLP','Password must be at least 6 characters.');return;}
-  var btn=document.getElementById('loginForm').querySelector('.btn-sub');
-  btn.disabled=true; btn.textContent='Signing in...';
-  if(typeof window.__fbSignInEmail === 'function'){
-    // Firebase email/password sign-in (production)
-    window.__fbSignInEmail(email, pass)
-      .then(function(){
-        showSuccess('✅ Logged in! Redirecting...');
-      })
-      .catch(function(err){
-        btn.disabled=false; btn.textContent='Log In';
-        if(err.code==='auth/user-not-found'||err.code==='auth/wrong-password'||err.code==='auth/invalid-credential'){
-          showErr('errLP','Invalid email or password.');
-        } else if(err.code==='auth/too-many-requests'){
-          showErr('errLP','Too many attempts. Please try again later.');
-        } else {
-          showErr('errLP', err.message);
-        }
-      });
-  } else {
-    // Fallback: localStorage auth (Firebase not yet configured)
-    btn.disabled=false; btn.textContent='Log In';
-    var all={};
-    try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-    var stored=all[email];
-    if(!stored){
-      showErr('errLP','No account found. Please sign up first.');return;
-    }
-    if(stored.password!==pass){
-      showErr('errLP','Incorrect password. Please try again.');return;
-    }
-    saveUser({email:email,name:stored.name||email.split('@')[0],isPro:stored.isPro||false,createdAt:stored.createdAt||Date.now()});
-    updateNav();
-    showSuccess('✅ Logged in! Redirecting...');
-  }
-}
-
-function handleSignupSubmit(){
-  var name=document.getElementById('signupName').value.trim();
-  var email=document.getElementById('signupEmail').value.trim();
-  var pass=document.getElementById('signupPass').value;
-  showErr('errSN','');showErr('errSE','');showErr('errSP','');
-  if(name.length<2){showErr('errSN','Please enter your full name.');return;}
-  if(!validEmail(email)){showErr('errSE','Please enter a valid email.');return;}
-  if(pass.length<6){showErr('errSP','Password must be at least 6 characters.');return;}
-  var btn=document.getElementById('signupForm').querySelector('.btn-sub');
-  btn.disabled=true; btn.textContent='Creating account...';
-  if(typeof window.__fbSignUp === 'function'){
-    // Firebase account creation (production)
-    window.__fbSignUp(name, email, pass)
-      .then(function(){
-        showSuccess('🎉 Account created! Welcome '+name+'!');
-      })
-      .catch(function(err){
-        btn.disabled=false; btn.textContent='Create Free Account →';
-        if(err.code==='auth/email-already-in-use'){
-          showErr('errSE','An account with this email already exists. Try logging in.');
-        } else if(err.code==='auth/weak-password'){
-          showErr('errSP','Password is too weak. Use at least 6 characters.');
-        } else {
-          showErr('errSE', err.message);
-        }
-      });
-  } else {
-    // Fallback: localStorage auth (Firebase not yet configured)
-    btn.disabled=false; btn.textContent='Create Free Account →';
-    var all={};
-    try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-    if(all[email]){
-      showErr('errSE','An account already exists with this email. Please log in instead.');return;
-    }
-    var now=Date.now();
-    all[email]={name:name,password:pass,isPro:false,createdAt:now};
-    try{localStorage.setItem('wbjee_all_users',JSON.stringify(all));}catch(e){}
-    saveUser({email:email,name:name,isPro:false,createdAt:now});
-    updateNav();
-    showSuccess('🎉 Account created! Welcome '+name+'!');
-  }
-}
-
-function handleGoogleAuth(){
-  if(typeof window.__fbSignInGoogle === 'function'){
-    // Firebase Google Sign-In (production)
-    window.__fbSignInGoogle();
-  } else {
-    // Fallback: Firebase not configured — use email prompt
-    var email=prompt('Enter your Gmail address to sign in with Google:','');
-    if(!email||!email.trim()) return;
-    email=email.trim().toLowerCase();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      alert('Please enter a valid email address.'); return;
-    }
-    var all={};
-    try{all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');}catch(e){}
-    var now=Date.now();
-    var name=email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
-    if(!all[email]){
-      all[email]={name:name,password:'google-oauth',isPro:false,createdAt:now};
-      try{localStorage.setItem('wbjee_all_users',JSON.stringify(all));}catch(e){}
-    }
-    saveUser({email:email,name:all[email].name||name,isPro:all[email].isPro||false,createdAt:all[email].createdAt||now});
-    updateNav();
-    showSuccess('✅ Signed in as '+email);
-  }
-}
-
-function handleHeroCta(){if(currentUser)goToApp();else openModal('signup');}
-function handleSignup(){openModal('signup');}
-
-// ── RAZORPAY ─────────────────────────────────────────
-function handleProPayment(amount,plan){
-  if(!currentUser){openModal('signup');return;}
-  var opts={
-    key:'rzp_test_XXXXXXXXXXXXXXXX',
-    amount:amount*100,currency:'INR',
-    name:'WB JEE PYQ Solver',
-    description:plan==='monthly'?'Pro Plan – ₹99/month':'Pro Plan – ₹799/year',
-    prefill:{name:currentUser.name||'',email:currentUser.email||''},
-    theme:{color:'#f59e0b'},
-    handler:function(resp){
-      var upgraded=Object.assign({},currentUser,{isPro:true,plan:plan,paidAt:Date.now()});
-      saveUser(upgraded);
-      // Persist Pro status to Firestore if Firebase is available
-      if(typeof window.__fbUpgradePro === 'function'){
-        window.__fbUpgradePro(plan);
-      } else {
-        try{
-          var all=JSON.parse(localStorage.getItem('wbjee_all_users')||'{}');
-          if(all[currentUser.email]){all[currentUser.email].isPro=true;localStorage.setItem('wbjee_all_users',JSON.stringify(all));}
-        }catch(e){}
-      }
-      updateNav();
-      alert('🎉 Welcome to Pro! Unlimited access unlocked.');
-      goToApp();
-    },
-    modal:{ondismiss:function(){}}
-  };
-  try{new Razorpay(opts).open();}
-  catch(e){alert('Demo mode: Replace rzp_test_XXXXXXXXXXXXXXXX with your real Razorpay Key ID.');}
-}
-
 // ── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',function(){
-  loadAuth();
   var l='en';
   try{l=localStorage.getItem('wbjee_lang')||'en';}catch(e){}
   var btn=document.querySelector('.lang-btn[onclick*="\''+l+'\'"]');
